@@ -1,2 +1,48 @@
 % !TeX root = ../main-paper.tex
 \section{Results}
+
+\subsection{Experiment 1: Accuracy vs NER approach vs training set size}
+
+Qualitative results
+\textbf{TODO random samples of results + selection of failure cases}
+
+
+Quantitative results: table + graph ideally (with training set size info)
+
+\begin{verbatim}
+Accuracy
+|                             ..o   
+|                ..o       o/       
+|            ./`          /`          
+|        ./o`      .o   o            
+|     ./`        .`                    One curve per approach
+|    o       o/`                  o  
+|          .`                  ./    
+|       o`                    /      
+|                         .o        
+|                       .`           
+|                      o            
+|                                   
++------------------------------   Training set size
+\end{verbatim}
+                                        
+
+
+\subsection{Experiment 2: Accuracy vs NER approach vs OCR noise}
+
+Qualitative results
+\textbf{TODO random samples of results + selection of failure cases}
+
+Quantitative results: table + graph ideally (with OCR noise, same format as previous)
+
+Opt. use synthetic text perturbation as well? Maybe not interesting and too artificial if we have access to 2+ OCR systems.
+(original OCR from BNF, Tesseract 4, Pero OCR…)
+
+
+\subsection{Discussion}
+Interesting points to discuss:
+\begin{itemize}
+    \item can we train on noisy data? (without manual OCR correction?) => future work? cf Pero OCR training procedure?
+    \item do we need better OCR systems or better post-correction techniques (if NER is reliable enough)?
+    \item Construction of the lexicon and associated cost
+\end{itemize}

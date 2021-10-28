@@ -1,2 +1,28 @@
 % !TeX root = ../main-paper.tex
 \section{Introduction}
+
+\textbf{TODO sample (simplified) pipeline of the information extraction process}
+\textbf{and/or}
+\textbf{TODO illustration a sample page (full image, large crop, entry crop with highlighted entities)}
+
+% General context + scope limitation
+NER is a fundamental step of the information extraction pipeline when processing historical listing, like directories for instance.
+OCRed text is not sufficient to build a high level, semantic view of the collection under study;
+indeed, being able to properly tag text tokens unlocks the ability to relate entities,
+and provide colleagues from digital humanities with useful databases.
+
+% Problematic
+NER requires training data, and we have little training data for historical documents.
+OCR is also noisy.
+How can we extract reliable elements in this context?
+
+% Contributions
+\begin{enumerate}
+    \item review state of the art regarding NER for historical documents (section 2)
+    \item dataset (section 3)
+    \item list usable techniques (more to evangelize the DAR community) (section 4)
+    \item compare their performance under various training set sizes (thus annotation costs) and OCR noise levels (thus OCR choices/luck/availability) (sec. 5 and 6)
+    \item suggest smart way to leverage side knowledge like lexicons (FIXME iif this works well, maybe a conclusion instead)
+\end{enumerate}
+
+
