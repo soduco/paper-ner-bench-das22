@@ -1,9 +1,10 @@
 *.aux
+*.bak
 *.bbl
 *.blg
 *.fdb_latexmk
 *.fls
 *.log
 *.out
-main-paper.pdf
 *.synctex.gz
+main-paper.pdf
