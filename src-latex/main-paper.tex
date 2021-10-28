@@ -24,6 +24,7 @@
 %
 \title{A Benchmark of Named Entity Recognition Approaches in Historical Documents\\
 Application to 19$^{th}$ Century French Directories%
+% FIXME "19$^{th}$-Century" with dash?
 \thanks{This work was supported by the French National Research Agency:
 Project SoDuCo, grant ANR-18-CE38-0013. ???FIXME need acknowledgments for directory sources???}}
 %
@@ -50,17 +51,18 @@ INST, CITY, COUNTRY\\
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-The abstract should briefly summarize the contents of the paper in
-150--250 words.
-
-\keywords{First keyword  \and Second keyword \and Another keyword.}
+\input{parts/00-abstract.tex}
+\keywords{Historical documents \and Natural Language Processing \and Named Entity Recognition \and OCR noise \and Annotation cost.}
 \end{abstract}
-%
-%
-%
-\section{First Section}
-\subsection{A Subsection Sample}
-we use spacy \mcite{spacy}
+
+% ---- Sections ----
+\input{parts/10-introduction.tex}
+\input{parts/20-related-work.tex}
+\input{parts/30-dataset.tex}
+\input{parts/40-ner-approaches.tex}
+\input{parts/50-xp-setup.tex}
+\input{parts/60-results.tex}
+\input{parts/80-conclusion.tex}
 
 % ---- Bibliography ----
 \bibliographystyle{splncs04}
