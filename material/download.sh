@@ -3,7 +3,7 @@
 set -e
 
 auth_token=$1
-base_url="https://apps.lrde.epita.fr:443/soduco/directory-annotator/directories"
+base_url="https://apps.lrde.epita.fr/soduco/directory-annotator/storage/directories"
 
 download_img() {
     curl -s -H "Authorization: $auth_token" ${view_url}/image > ${file_name}.jpg
@@ -11,7 +11,7 @@ download_img() {
 }
 
 download_json(){
-    curl -s -H "Authorization: $auth_token" ${view_url}/annotation > ${file_name}.json
+    curl -s -H "Authorization: $auth_token" ${view_url}/annotation | jq '.["content"]' > ${file_name}.json
 }
 
 sample() {
