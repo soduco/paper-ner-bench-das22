@@ -28,3 +28,5 @@ Maybe the current repo should remain public, and we copy/paste the relevant cont
 Or we just set it public after.
 No strong opinion here yet.
 
+## Interesting related work
+- http://spacetime.nypl.org/city-directory-meetup
