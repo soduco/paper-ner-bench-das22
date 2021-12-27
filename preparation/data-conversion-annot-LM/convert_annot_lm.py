@@ -10,7 +10,7 @@ char_map = {
     "µ": "TITRE",
     "£": "ACT",
     "@": "LOC",
-    r"\$": "CARD",
+    r"\$": "CARDINAL",
 #    "%": "FT",  # ???
 }
 
