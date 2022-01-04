@@ -46,6 +46,6 @@ do
     echo -n "$dir, $view -> file_name"
     echo -e
     curl -s -H "Authorization: $auth_token" ${view_url}/annotation | jq '.["content"]' > "${dest_dir}/${file_basename}.json" && \
-    python convert_annot_lm.py "${dest_dir}/${file_basename}.json" "${dest_dir}/${file_basename}-converted.json"
+    python3 convert_annot_lm.py "${dest_dir}/${file_basename}.json" "${dest_dir}/${file_basename}-converted.json"
 done < filelist.csv
 ```
