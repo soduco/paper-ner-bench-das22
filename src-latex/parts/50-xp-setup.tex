@@ -3,8 +3,10 @@
 
 \subsection{Metrics}
 \begin{itemize}
-    \item NER quality: accuracy? precision? recall? f-score? (idea: stick with standard spacy/sklearn metrics)
-    \item OCR accuracy: outputs from standard tools (beware of unknown glyphs: do we need any special care?)
+    \item NER quality: accuracy? precision? recall? f-score? (idea: stick with standard spacy/sklearn metrics) \textcolor{blue}{Dans la plupart des articles que j'ai lus, c'est toujours une F-mesure qui est utilisée et parfois la précision et le rappel sont ajoutés.}
+    \item OCR accuracy: outputs from standard tools (beware of unknown glyphs: do we need any special care?) \textcolor{blue}{Pour l'instant, j'ai croisé: CER, WER, Levenshtein et Jaccard. J'ai encore un état de l'art à lire sur le sujet: il y aura probablement d'autres mesures mentionnées.}
+    
+    \textcolor{blue}{Pour la partie Experiment 2: dans la litérature j'ai vu des courbes F-Mesure(CER) ou F-Mesure(WER) et des diagrammes avec F-Mesure calculée sur des sous-ensembles du corpus classés par score de Levenshtein.}
 \end{itemize}
 
 \subsection{Training procedure}
