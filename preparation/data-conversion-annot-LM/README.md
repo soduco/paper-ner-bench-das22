@@ -43,7 +43,7 @@ while IFS=, read -r dir view
 do
     view_url="${base_url}/${dir}.pdf/${view}"
     file_basename="${dir}_${view}"
-    echo -n "$dir, $view -> file_name"
+    echo -n "$dir, $view -> ${file_basename}"
     echo -e
     curl -s -H "Authorization: $auth_token" ${view_url}/annotation | jq '.["content"]' > "${dest_dir}/${file_basename}.json" && \
     python3 convert_annot_lm.py "${dest_dir}/${file_basename}.json" "${dest_dir}/${file_basename}-converted.json"
