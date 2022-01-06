@@ -6,16 +6,12 @@
 \textbf{TODO illustration a sample page (full image, large crop, entry crop with highlighted entities)}
 
 % General context + scope limitation
-NER is a fundamental step of the information extraction pipeline when processing historical listing, like directories for instance.
-OCRed text is not sufficient to build a high level, semantic view of the collection under study;
-indeed, being able to properly tag text tokens unlocks the ability to relate entities,
-and provide colleagues from digital humanities with useful databases.
 
-% Problematic
-NER requires training data, and we have little training data for historical documents.
-OCR is also noisy.
-How can we extract reliable elements in this context?
+Heritage institutions such as archives or libraries preserve large collections of textual documents, increasingly digitized or natively digital. They disseminate these digital documents on the Web to enable users to access them, thus making these knowledge sources available for numerous applications in the fields of social sciences, environmental studies, education, etc. Fostering information search and reuse within these collections requires two steps. The first step, called Optical Character Recognition (OCR), aims at transforming the images produced during the digitization of the documents into usable digital texts. However, OCRed text is not sufficient to build a high level, semantic view of the collection under study. A second step thus aims at recognizing in these texts the pieces of information most likely to be searched for by users, such as named entities (people, organisations, dates, places, etc.). Indeed, being able to properly tag text tokens unlocks the ability to relate entities, and provide colleagues from digital humanities with useful databases.
 
+In the case of historical textual documents, OCR and Named Entity Recognition (NER) tasks are particularly challenging. Indeed, even in the case of printed historical documents, the OCR approaches used for modern documents fail due to many reasons: poor scan quality, irregular printing baseline, printing artifacts, old fonts, complex page layouts, special glyphs, etc. \textcolor{green}{Phrases précedentes à reprendre avec les termes adéquats + ajouter une ref.} On the other hand, NER approaches developed for modern texts suffer from the time gap between the contemporary entities and the entities mentioned in older texts and from the errors introduced into the text by the OCR step.\textcolor{green}{ajouter une ref}
+
+In this article we focus on a particular type of historical textual sources, as they provide very rich, semi-structured and time-stamped information about people, their activities and their locations: the directories. In a recent work to locate potentially polluted urban soils \cite{bell2020automated}, historical directories are leveraged to identify and locate all the gas stations that were established in the city of Providence during the 20th century. The proposed information extraction pipeline includes OCR, entries identification and business type and address extraction. In the same way, we aim at producing structured spatio-temporal data from the information contained in the 19th century Parisian trade directories. These directories are produced by various publishers, organised according to different indexing methods (by name, by activity, by location, etc.), printed in different layouts, with different fonts, etc. We therefore investigate various state-of-the-art OCR and NER approaches independently and in combination, to assess their usability on our historical directories corpus. Thus, the contributions of this article are the following:
 % Contributions
 \begin{enumerate}
     \item review state of the art regarding NER for historical documents (section 2)

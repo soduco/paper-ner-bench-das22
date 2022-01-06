@@ -1,23 +1,20 @@
 % !TeX root = ../main-paper.tex
 \section{NER Approaches}
 
-TODO describe
 \begin{itemize}
     \item regexp
-    \item spacy cnn
-    \item spacy cnn + lexicon (warning: how do we build it?)
-    \item transformer
+    \item Spacy CNN with tok2vec
+    \item CamemBERT finetuned with wikiner-fr + gold dataset (clean texts)
+    \item CamemBERT finetuned with wikiner-fr + gold dataset (clean texts + pretrained on raw texts (Pero ? Kraken ? Both ?)
 \end{itemize}
 
 
 % Other possibilities:
 1. Traditional ML based:
-
     Conditional Random Fields (CRF) - https://pypi.org/project/sklearn-crfsuite/
     Maximum-entropy Markov model
 
 2. Neural Networks based:
-
     LSTMs, bi-LSTM - https://github.com/flairNLP/flair
     CNNs (SpaCy uses CNN based architecture)
     Transformers (Spacy has recently launched it) - https://spacy.io/universe/project/spacy-transformers
