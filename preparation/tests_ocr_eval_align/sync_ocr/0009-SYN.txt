@@ -1,0 +1,21 @@
+===============================================================================
+
+François, fab.{1}et invent. de cache-pots
+p. fl. de t. coul et de fantais ; cette
+nouv. invent. a p. but de faciliter
+les amat. de fl. à les mettre part.
+d. les appartem.; prop. et élég.,
+Faub.-S{2}-Martin, 147.{3}
+===============================================================================
+{1}
+/tmp/tmp.egfNrFq7S8/ground {}
+/tmp/tmp.egfNrFq7S8/ocr    { }
+===============================================================================
+{2}
+/tmp/tmp.egfNrFq7S8/ground {t}
+/tmp/tmp.egfNrFq7S8/ocr    {i}
+===============================================================================
+{3}
+/tmp/tmp.egfNrFq7S8/ground {}
+/tmp/tmp.egfNrFq7S8/ocr    { 4}
+===============================================================================

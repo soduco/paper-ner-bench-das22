@@ -1,0 +1,67 @@
+UNLV-ISRI OCR Accuracy Report Version 5.1
+-----------------------------------------
+     111   Characters
+      23   Errors
+   79.28%  Accuracy
+
+       0   Reject Characters
+       0   Suspect Markers
+       0   False Marks
+    0.00%  Characters Marked
+   79.28%  Accuracy After Correction
+
+     Ins    Subst      Del   Errors
+       0        0        0        0   Marked
+      20        3        0       23   Unmarked
+      20        3        0       23   Total
+
+   Count   Missed   %Right
+       6        0   100.00   ASCII Spacing Characters
+      33        9    72.73   ASCII Special Symbols
+       1        0   100.00   ASCII Digits
+      48       14    70.83   ASCII Uppercase Letters
+      23        0   100.00   ASCII Lowercase Letters
+     111       23    79.28   Total
+
+  Errors   Marked   Correct-Generated
+      13        0   {<TITRE>::LH::}-{X}
+       6        0   {</PER>}-{}
+       3        0   {TIT}-{PE}
+       1        0   {E}-{}
+
+   Count   Missed   %Right
+       1        0   100.00   {<\n>}
+       5        0   100.00   { }
+       3        0   100.00   {,}
+       1        0   100.00   {.}
+       5        1    80.00   {/}
+       1        0   100.00   {2}
+       4        4     0.00   {:}
+      10        2    80.00   {<}
+      10        2    80.00   {>}
+       6        0   100.00   {A}
+       7        0   100.00   {C}
+       3        0   100.00   {D}
+       4        3    25.00   {E}
+       1        1     0.00   {H}
+       4        2    50.00   {I}
+       5        1    80.00   {L}
+       2        0   100.00   {N}
+       2        0   100.00   {O}
+       2        1    50.00   {P}
+       6        2    66.67   {R}
+       6        4    33.33   {T}
+       3        0   100.00   {a}
+       1        0   100.00   {b}
+       1        0   100.00   {c}
+       3        0   100.00   {e}
+       1        0   100.00   {g}
+       1        0   100.00   {h}
+       2        0   100.00   {i}
+       3        0   100.00   {l}
+       1        0   100.00   {n}
+       2        0   100.00   {o}
+       2        0   100.00   {s}
+       1        0   100.00   {t}
+       1        0   100.00   {u}
+       1        0   100.00   {v}
