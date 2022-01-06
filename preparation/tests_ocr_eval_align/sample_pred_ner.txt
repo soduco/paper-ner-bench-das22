@@ -1,0 +1,28 @@
+PRED NER:
+
+<PER>Delanglard (E.</PER>), <ACT>médecin</ACT>, <LOC>St-Honoré</LOC>, <CARDINAL>353 bis</CARDINAL>.
+
+<PER>Delangle X</PER>, <ACT>avocat</ACT>, <LOC>Choiseul</LOC>, <CARDINAL>2 bis</CARDINAL>.
+
+<PER>Delangle</PER>, <ACT>coiffeur</ACT>, <LOC>Thérèse</LOC>, <CARDINAL>1.</CARDINAL>
+
+<PER>Delangre</PER>, <ACT>fab. anticrottes</ACT>, <LOC>page</LOC> <CARDINAL>310</CARDINAL>, <LOC>q. d'Anjou</LOC>, <CARDINAL>7</CARDINAL>.
+
+<PER>De Langrenier</PER>, <ACT>racahout</ACT>, <LOC>Richelieu</LOC>, <CARDINAL>26</CARDINAL>.
+
+<PER>Delannay</PER>, <ACT>boucher</ACT>, <LOC>St-Denis</LOC>, <CARDINAL>362.</CARDINAL>
+
+<PER>Delannay et Clouet</PER>, <ACT>étoffes de soie</ACT>, <LOC>Vivienne</LOC>, <CARDINAL>18</CARDINAL>.
+
+<PER>De Lanneau fils &amp;, voyez Lanneau</PER>.
+
+<PER>François</PER>, <ACT>fab. et invent. de cache-pots
+p. fl. de t. coul et de fantais ; cette
+nouv. invent. a p. but de faciliter
+les amat. de fl. à les mettre part.
+d. les appartem.; prop. et élég.</ACT>,<LOC>
+Faub.-Si-Martin</LOC>, <CARDINAL>147</CARDINAL>. <CARDINAL>4</CARDINAL>
+
+<PER>Jacquin aîné et co.</PER>, <LOC>S.H. O1835-38-</LOC><CARDINAL>
+41046</CARDINAL>, <LOC>q, de la Mégisserie</LOC>, <CARDINAL>14</CARDINAL>, et<PER>
+Gr.-Charonne</PER>, <LOC>r. de Bagnolet</LOC>, <CARDINAL>26</CARDINAL>.

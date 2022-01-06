@@ -1,0 +1,1 @@
+<PER>De Langrenier</PER>, <ACT>racahout</ACT>, <LOC>Richelieu</LOC>, <CARDINAL>26</CARDINAL>.

@@ -1,0 +1,1 @@
+<PER>Delangle X</PER>, <ACT>avocat</ACT>, <LOC>Choiseul</LOC>, <CARDINAL>2 bis</CARDINAL>.
