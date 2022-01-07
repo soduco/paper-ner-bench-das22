@@ -10,11 +10,16 @@
 \end{itemize}
 
 \subsection{Training procedure}
-5-fold CV for all models.
 \begin{itemize}
-\item Spacy CNN : no limits on the number of epochs, instead use patience=1600.
+\item Spacy CNN : do not put a limit on epochs, instead use patience=1600.
 \item CamemBERT : 3 epochs.
 \end{itemize}
+
+Split the full dataset into 80 percent train, 10 percent dev / eval and 10 percent test.
+Use stratified sampling based on the directory name. This way each set contains samples of all directories. 
+
+
+
 
 
 
