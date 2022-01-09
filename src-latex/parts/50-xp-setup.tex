@@ -14,7 +14,8 @@
 \begin{itemize}
 \item All : leave out 3 directories (~20\% of the dataset) as test data. Then apply stratified sampling based on the directory of each entry to split the remaining into a train set (~72\%) and a dev set (~8\%).
 \item Spacy CNN : No limit on epochs, instead use patience 1600.
-\item CamemBERT \& CamemBERT pretrained : 3 epochs.
+\item CamemBERT: 3 epochs.
+\item CamemBERT pretrained: 3 epochs, pretraining on MLM + NSP with ~20000 raw texts extracted with Pero-OCR.
 \end{itemize}
 
 Experiment 1: split the training set in half recursively as long as the train \& dev sets contain at least one entry of each directory in the original trainset. On the current dataset with 8k entries this leads to the creations of 8 subsets containing 0.8, 1.5, 3.1, 6.2, 12.5, 25, 50 and 100\% of the full train set. Models arerun 5 times on each trainset. 
