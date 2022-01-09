@@ -38,16 +38,28 @@ tbl %>%
     cat(., file = "table.tex")
 
 
-#png("mygraphic.png",  width=1000)
-#cnn$group = 'Cnn'
-#camembert$group = 'Camembert'
-#camembert_pretrained$group = 'Camembert+pretraining'
-#visuals = rbind(cnn, camembert,camembert_pretrained)
-#visuals$vis=c(rep("red",8),rep("blue",8),rep("green",8))
-#ggplot(visuals, aes(y=eval_f1, x=trainsize,group=interaction(group),col=group)) + 
-#   geom_point() + geom_line()
+png("experiment1.png",
+  width     = 20,
+  height    = 10,
+  units     = "cm",
+  res       = 300,
+  pointsize = 4)
 
-#dev.off()
-#browseURL("mygraphic.png") 
+cnn = cnn %>% select(eval_precision, eval_recall, eval_f1, trainsize)
+camembert = camembert %>% select(eval_precision, eval_recall, eval_f1, trainsize)
+camembert_pretrained = camembert_pretrained %>% select(eval_precision, eval_recall, eval_f1, trainsize)
+
+
+cnn$model = 'Cnn'
+camembert$model = 'Camembert'
+camembert_pretrained$model = 'Camembert+pretraining'
+
+visuals = rbind(cnn, camembert,camembert_pretrained)
+
+ggplot(visuals, aes(y=eval_f1, x=trainsize, group=interaction(model), col=model)) + 
+   geom_point(aes(shape = model)) + geom_line(aes(linetype = model)) + theme_light()
+
+dev.off()
+browseURL("experiment1.png") 
 
 
