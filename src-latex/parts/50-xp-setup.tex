@@ -10,18 +10,19 @@
 \end{itemize}
 
 \subsection{Training procedure}
+
 \begin{itemize}
-\item Spacy CNN : do not put a limit on epochs, instead use patience=1600.
-\item CamemBERT : 3 epochs.
+\item All : leave out 3 directories (~20\% of the dataset) as test data. Then apply stratified sampling based on the directory of each entry to split the remaining into a train set (~72\%) and a dev set (~8\%).
+\item Spacy CNN : No limit on epochs, instead use patience 1600.
+\item CamemBERT \& CamemBERT pretrained : 3 epochs.
 \end{itemize}
 
-Split the full dataset into 80 percent train, 10 percent dev / eval and 10 percent test.
-Use stratified sampling based on the directory name. This way each set contains samples of all directories. 
+Experiment 1: split the training set in half recursively as long as the train \& dev sets contain at least one entry of each directory in the original trainset. On the current dataset with 8k entries this leads to the creations of 8 subsets containing 0.8, 1.5, 3.1, 6.2, 12.5, 25, 50 and 100\% of the full train set. Models arerun 5 times on each trainset. 
 
 
-
-
-
+Experiment 2 : 1 run per dataset on the best model, i.e. CamemBERT + pretraining.
+What train/dev/test stragegy ? E.g. trainset 100\% noisy + dev 50\% clean + test 50\% clean ?
+ 
 
 \subsection{Parameters for each method}
 
@@ -34,5 +35,6 @@ Use stratified sampling based on the directory name. This way each set contains 
 \end{itemize}
 
 \subsection{Implementation details}
-we use spacy \mcite{spacy}
-will we use FLAIR as well?
+we use spacy \mcite{spacy} for the CNN implementation and Huggingface for BERT.
+
+will we use FLAIR as well? $\rightarrow$ No

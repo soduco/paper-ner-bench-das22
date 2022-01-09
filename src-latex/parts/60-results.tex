@@ -32,13 +32,6 @@ Camembert+pretraining & 0.190 & 0.685 & 0.889 & 0.913 & \textbf{0.930} & \textbf
 \end{figure}
 	                                        
 
-\subsection{Experiment 2: sensibility to training on noisy data}
-Idea : Measure the impact of training with noisy data when predicting NER tags on both clean and noisy data.
-
-What's interesting : do models perform better on noisy data when trained on noisy data ? Does it impact predictions on clean data ?
-
-Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy, clean} datasets
-
 
 \subsection{Experiment 3: Accuracy vs NER approach vs OCR noise}
 
@@ -46,6 +39,26 @@ Qualitative results
 \textbf{TODO random samples of results + selection of failure cases}
 
 Quantitative results: table + graph ideally (with OCR noise, same format as previous)
+
+Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy, clean} datasets
+
+
+\begin{table}
+\caption{Camembert vs noise}
+\centering
+\begin{tabular}{ll|ll|l}
+                            &                      & \multicolumn{2}{l|}{Training data} &   \\
+                            &                      & noisy & clean                      &   \\ 
+\cline{1-4}
+\multirow{2}{*}{Test data } & noisy                & f1    & f1                         &   \\
+                            & clean                & f1    & f1                         &   \\ 
+\cline{1-4}
+                            & \multicolumn{1}{l}{} &       & \multicolumn{1}{l}{}       &   \\
+                            & \multicolumn{1}{l}{} &       & \multicolumn{1}{l}{}       &  
+\end{tabular}
+\end{table}
+
+
 
 Opt. use synthetic text perturbation as well? Maybe not interesting and too artificial if we have access to 2+ OCR systems.
 (original OCR from BNF, Tesseract 4, Pero OCR…)
