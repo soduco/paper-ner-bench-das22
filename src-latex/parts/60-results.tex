@@ -24,22 +24,13 @@ Camembert+pretraining & 0.190 & 0.685 & 0.889 & 0.913 & \textbf{0.930} & \textbf
 \end{tabular}
 \end{table}
 
-\begin{verbatim}
-Accuracy
-|                             ..o   
-|                ..o       o/       
-|            ./`          /`          
-|        ./o`      .o   o            
-|     ./`        .`                    One curve per approach
-|    o       o/`                  o  
-|          .`                  ./    
-|       o`                    /      
-|                         .o        
-|                       .`           
-|                      o            
-|                                   
-+------------------------------   Training set size
-\end{verbatim}
+\begin{figure}[htb!]
+	   \center{\includegraphics[width=\textwidth]
+	       {../material/experiment_1/f1_vs_trainsize.png}}
+	  \vspace{3in}
+	  \caption{\label{fig:f1-vs-trainsize} Models F1 score on unseen data vs trainset size}
+\end{figure}
+	
                                         
 
 \subsection{Experiment 2: sensibility to training on noisy data}
