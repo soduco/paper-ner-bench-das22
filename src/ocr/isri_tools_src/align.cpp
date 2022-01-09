@@ -53,8 +53,8 @@ int compute_align_map(std::wstring a, std::wstring b, std::vector<int>& map_A, s
   Text B;
   list_initialize(&A);
   list_initialize(&B);
-  text_from_string(&A, a);
-  text_from_string(&B, b);
+  text_from_string(&A, a);  // 16 bit fixed encoding only for now
+  text_from_string(&B, b);  // 16 bit fixed encoding only for now
 
   map_A.resize(a.size());
   map_B.resize(b.size());
@@ -64,7 +64,7 @@ int compute_align_map(std::wstring a, std::wstring b, std::vector<int>& map_A, s
     Text texts[2] = {A, B};
 
     Synclist synclist;
-    fastukk_sync(&synclist, texts);
+    fastukk_sync(&synclist, texts); // Actual call to original UNLV/ISRI tools
     alignment_size = compute_mapping(&synclist, map_A.data(), map_B.data());
   }
 
