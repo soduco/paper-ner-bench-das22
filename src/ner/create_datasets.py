@@ -1,119 +1,171 @@
 import csv
-import logging
 import os
+import numpy as np
 import config as cfg
+from sklearn.model_selection import GroupKFold
 from sklearn.model_selection import train_test_split
 from datasets.dataset_dict import DatasetDict
 from cnn import create_spacy_dataset
 from bert import create_huggingface_dataset
 
-# Helper functions
+logger = cfg.logger
+
+# =============================================================================
+# region ~ Helpers
+
+
 def unwrap(list_of_tuples2):
     return tuple(zip(*list_of_tuples2))
 
 
-# Loads the gold dataset
-with open(cfg.GOLD, encoding="utf-8") as annot:
-    gold_dataset = [(_[0], _[1]) for _ in csv.reader(annot)]
+# endregion
 
-logging.info(f"Gold dataset: {len(gold_dataset)} records")
 
-# Generate Train (80%), Validation|Dev (10%) and Test (10%) datasets
-# with stratified sampling on the directories names.
+# =============================================================================
+# region ~ Main processing
 
-# Get train and dev+test
-_, classes = unwrap(gold_dataset)
-train_devtest = train_test_split(
-    gold_dataset, train_size=0.8, shuffle=True, random_state=cfg.SEED, stratify=classes
-)
-train = train_devtest[0]
 
-# Split dev+test in half to get dev and test
-devtest = train_devtest[1]
-_, classes = unwrap(devtest)
-dev_test = train_test_split(
-    devtest, train_size=0.5, shuffle=True, random_state=cfg.SEED, stratify=classes
-)
-dev = dev_test[0]
-test = dev_test[1]
+def main():
+    """Generate all datasets"""
+    with open(cfg.GOLD, encoding="utf-8") as gf:
+        gold_dataset = np.array([(_[0], _[1]) for _ in csv.reader(gf)])
 
-logging.info(
-    f"Train ({len(train)} records), Dev ({len(dev)} records), Test ({len(test)} records)"
-)
+    logger.info(f"GOLD: {len(gold_dataset)} records")
 
-###
-# Generate smaller train sets for experiment 1
-###
+    ##
+    # Create the global Train, Dev and Test datasets
+    ##
+    train, dev, test = make_train_dev_test(gold_dataset)
+    sets_names = ["train", "dev", "test"]
+    zipped = zip([train, dev, test], sets_names)
+    odir = cfg.DATA_DIR / "datasets"
+    export(odir, zipped)
 
-exp_1_trainsets = [train]
-k = len(train)
-while k > cfg.MIN_TRAINSET_SIZE:
-    try:
-        current = exp_1_trainsets[-1]
-        _, classes = unwrap(current)
-        smaller, rest = train_test_split(
-            current,
-            train_size=0.5,
-            shuffle=True,
-            random_state=cfg.SEED,
-            stratify=classes,
+    ##
+    # Create datasets for experiment 1
+    ##
+    odir = cfg.DATA_DIR / "experiment_1"
+
+    exp1_trainsets = create_experiment_1_trainsets(train)
+    for subtrain in exp1_trainsets:
+        datasets = [subtrain, dev, test]
+        addendum = str(len(subtrain))
+        export(odir, zip(datasets, sets_names), addendum)
+
+
+def make_train_dev_test(gold):
+    """Splits the gold dataset into two subsets where entries from the same directory is garanteed
+    to not be in the both sets.
+    Subset 1 is the test dataset with approx. ~20% of all entries.
+    Subset 2 is splitted into a train set (~70%) and a validation set (~8%).
+    For the second split we use stratified sampling based on directories names so the initial proportion
+    of entries from each directory is preserved accros subsets.
+    """
+
+    # Use GroupKFold to pick a few directories for testing .
+    # In the current state of the gold dataset (08/01/2022),
+    # entries from 3 dirctories will be selected:
+    #   - Bottin1_1820 (267 entries)
+    #   - Didot_1851a (1266 entries)
+    #   - Duverneuil_et_La_Tynna_1806 (186 entries)
+
+    _, groups = unwrap(gold)
+    index_tmp, index_test = list(GroupKFold(n_splits=5).split(gold, groups=groups))[0]
+    subset_tmp, test = gold[index_tmp], gold[index_test]
+
+    # Split subset_tmp into train (~90%) and dev (~10%) stratified on directories names
+    _, groups = unwrap(subset_tmp)
+    train_dev = train_test_split(
+        subset_tmp,
+        train_size=0.9,
+        shuffle=True,
+        random_state=cfg.SEED,
+        stratify=groups,
+    )
+    train = train_dev[0]
+    dev = train_dev[1]
+
+    logger.info(f"Train: {len(train)} entries, {100*len(train)/len(gold):.1f}%")
+    logger.info(f"Dev: {len(dev)} entries, {100*len(dev)/len(gold):.1f}%")
+    logger.info(f"Test: {len(test)} entries, {100*len(test)/len(gold):.1f}%")
+
+    return train, dev, test
+
+
+def create_experiment_1_trainsets(gold_train):
+    """Create smaller trainsets for experiment 1 by dividing the training set
+    in half at each step.
+
+    Args:
+        gold_train ([type]): The full gold trainset
+
+    Returns:
+        [type]: [description]
+    """
+    exp_ts = [gold_train]
+    k = len(gold_train)
+    while k > cfg.MIN_TRAINSET_SIZE:
+        try:
+            current = exp_ts[-1]
+            _, groups = unwrap(current)
+            smaller, rest = train_test_split(
+                current,
+                train_size=0.5,
+                shuffle=True,
+                random_state=cfg.SEED,
+                stratify=groups,
+            )
+            exp_ts.append(smaller)
+            k = len(rest)
+        except ValueError:
+            # Stop now if we encounter the error "The least populated class in y has only 1 member".
+            break
+
+    logger.info(
+        "Experiment 1: {0} training sets of sizes {1}, {2}".format(
+            len(exp_ts),
+            [len(s) for s in exp_ts],
+            [f"{100*len(s)/len(gold_train):.1f}%" for s in exp_ts],
         )
-        exp_1_trainsets.append(smaller)
-        current_train = rest
-        k = len(rest)
-    except ValueError as e:
-        # Stop now if we encounter the error "The least populated class in y has only 1 member".
-        break
+    )
 
-logging.info(
-    f"Experiment 1: created {len(exp_1_trainsets)} training sets of sizes {[len(_) for _ in exp_1_trainsets]}"
-)
+    return exp_ts
 
 
-###
-# Export all datasets in Spacy and Huggingface formats
-###
+def export(path, ds_with_names, addendum=None):
+    """Export all datasets in Spacy and Huggingface native formats."""
 
-
-def export(path, ds_names, addendum=None):
     fname = lambda elemts: "_".join(filter(None, elemts))
-    # Spacy
-    for ds, name in ds_names:
+
+    hf_dic = {}
+
+    for ds, name in ds_with_names:
+
+        data, _ = unwrap(ds)
+
+        # Spacy
         fullpath = path / fname([name, addendum])
         fullpath = fullpath.with_suffix(".spacy")
 
+        if cfg.DEBUG:
+            np.savetxt(fullpath.with_suffix(".debug"), ds, fmt='"%s","%s"')
+
         with open(fullpath, "wb") as tf:
-            bdata = create_spacy_dataset(ds).to_bytes()
+            bdata = create_spacy_dataset(data).to_bytes()
             tf.write(bdata)
 
-    # Huggingface
-    bert_ds = DatasetDict(
-        {
-            "train": create_huggingface_dataset(datasets[0]),
-            "dev": create_huggingface_dataset(datasets[1]),
-            "test": create_huggingface_dataset(datasets[2]),
-        }
-    )
+        # Huggingface
+        hf_dic[name] = create_huggingface_dataset(ds)
+
+    bert_ds = DatasetDict(hf_dic)
     fullpath = path / fname(["huggingface", addendum])
     bert_ds.save_to_disk(fullpath)
 
 
-# Export now
-datasets = [unwrap(train)[0], unwrap(dev)[0], unwrap(test)[0]]
-names = ["train", "dev", "test"]
+# endregion
 
-# Export global Train, Dev and Test
-export(cfg.DATA_DIR, zip(datasets, names))
 
-# Export datasets for experiment 1
-odir = cfg.DATA_DIR / "experiment_1"
-os.makedirs(odir, exist_ok=True)
-
-for ts in exp_1_trainsets:
-    datasets = [ts, unwrap(dev)[0], unwrap(test)[0]]
-    addendum = str(len(ts))
-    export(odir, zip(datasets, names), addendum)
-
-# # FIXME Debug
-# from spacy import displacy
-# displacy.serve(datasets[0].get_docs(nlp.vocab), style="ent")
+# =============================================================================
+# ENTRY POINT
+if __name__ == "__main__":
+    main()

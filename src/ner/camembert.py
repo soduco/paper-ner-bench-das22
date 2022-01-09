@@ -1,16 +1,19 @@
-import json
+import json, argparse, nltk
 import config as cfg
-import os
 import numpy as np
-import nltk
+from pathlib import Path
+from xml.dom.minidom import parseString
 from datasets import Dataset, load_from_disk
+from datasets import load_metric
 from transformers import AutoTokenizer
 from transformers import AutoModelForTokenClassification
 from transformers import TrainingArguments, Trainer, DataCollatorForTokenClassification
-from datasets import load_metric
-from xml.dom.minidom import parseString
 
-# Shared variables
+logger = cfg.logger
+
+# =============================================================================
+# region ~ Model parameters
+
 label_id_map = {
     "O": 0,
     "I-LOC": 1,
@@ -22,32 +25,47 @@ label_id_map = {
     "I-TITRE": 7,
     "I-FT": 8,
 }
-tokenizer = AutoTokenizer.from_pretrained(cfg.BERT_BASE_MODEL)
-training_args = TrainingArguments("berties", **cfg.BERT_TRAINER_CONFIG)
 
-# Training & eval
-def train_eval(train, valid):
+CAMEMBERT_MODEL = "Jean-Baptiste/camembert-ner"
+
+CAMEMBERT_TRAINER_CONFIG = {
+    "evaluation_strategy": "epoch",
+    "learning_rate": 1e-4,
+    "per_device_train_batch_size": 16,
+    "per_device_eval_batch_size": 16,
+    "num_train_epochs": 3,
+    "weight_decay": 1e-5,
+}
+
+tokenizer = AutoTokenizer.from_pretrained(CAMEMBERT_MODEL)
+training_args = TrainingArguments("berties", **CAMEMBERT_TRAINER_CONFIG)
+
+# endregion
+
+# =============================================================================
+# region ~ Train & evaluation
+def train_eval(train, dev, test):
+
     data_collator = DataCollatorForTokenClassification(tokenizer)
 
     trainer = Trainer(
-        model,
+        model,  # Implicit
         training_args,
         train_dataset=train,
-        eval_dataset=valid,
+        eval_dataset=dev,
         data_collator=data_collator,
         tokenizer=tokenizer,
         compute_metrics=compute_metrics,
     )
 
     trainer.train()
-    eval = trainer.evaluate()
-    return eval
+    return trainer.evaluate(test), trainer.evaluate()
 
 
 def compute_metrics(p):
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
-    label_list = list(label2id.keys())
+    label_list = list(label_id_map.keys())
 
     true_predictions = [
         [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
@@ -67,44 +85,56 @@ def compute_metrics(p):
     }
 
 
-##########################
-#  ~ MAIN ENTRY POINT ~
-##########################
+# endregion
+
+# =============================================================================
+# region ~ Main entry point & CLI
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("data", type=str, help="Path to a DataDict")
+    parser.add_argument("metrics", type=str, help="Metrics file, without extention.")
+    # parser.add_argument(
+    #     "--train_id", type=str, help="Trainset identifier for exp. 1.", required=False
+    # )
+    parser.add_argument("--model", type=str, help=f"Name or path to a model. Default is {CAMEMBERT_MODEL}", required=False, default=CAMEMBERT_MODEL)
+    return parser.parse_args()
+
 
 if __name__ == "__main__":
 
-    label2id = label_id_map
-    id2label = {v: k for k, v in label2id.items()}
+    args = parse_args()
+
+    assert args.data and args.metrics
+
+    if cfg.DEBUG:
+        logger.info(f"Model {args.model}")
+        logger.info(f"Running on datasets in {args.data}")
+        logger.info(f"Metrics will be saved in {args.metrics}")
 
     model = AutoModelForTokenClassification.from_pretrained(
-        cfg.BERT_BASE_MODEL,
-        num_labels=len(label2id),
+        args.model,
+        num_labels=len(label_id_map),
         ignore_mismatched_sizes=True,
-        id2label=id2label,
-        label2id=label2id,
+        id2label={v: k for k, v in label_id_map.items()},
+        label2id=label_id_map,
     )
 
-    # Loads datasets, then run train + eval
-    dirs = os.listdir(cfg.DATA_DIR)
-    ds_paths = [
-        os.path.join(cfg.DATA_DIR, dsname)
-        for dsname in dirs
-        if dsname.startswith("huggingface")
-    ]
-    ds = [load_from_disk(ds_loc) for ds_loc in ds_paths]
+    # Train & evaluate
+    datasets = load_from_disk(args.data)
+    metrics = train_eval(**datasets)
 
-    metrics_data = []
-    for data in ds:
-        perfs = train_eval(data["train"], data["valid"])
-        metrics_data.append(perfs)
+    with open(f"{args.metrics}_test.json", "w", encoding="utf-8") as o:
+        json.dump(metrics[0], o)
 
-    with open(cfg.DATA_DIR / "ner_bert_metrics.json", "w", encoding="utf-8") as o:
-        json.dump(metrics_data, o)
+    with open(f"{args.metrics}_dev.json", "w", encoding="utf-8") as o:
+        json.dump(metrics[1], o)
 
+# endregion
 
-###########################
-# ~ DATA CONVERSION UTILS ~
-###########################
+# =============================================================================
+# region ~ Data conversion utils for Hugginface
 
 
 def create_huggingface_dataset(entries):
@@ -162,3 +192,6 @@ def word_tokens_from_xml(entry):
         labels += [cat] * len(words)
 
     return w_tokens, labels
+
+
+# endregion
