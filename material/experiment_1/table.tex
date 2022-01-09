@@ -1,0 +1,14 @@
+\begin{table}[!h]
+
+\caption{Train size vs F1 score}
+\centering
+\begin{tabular}[t]{lcccccccc}
+\toprule
+  & 0.8 & 1.5 & 3.1 & 6.2 & 12.5 & 25 & 50 & 100\\
+\midrule
+Cnn & 0.855 & 0.885 & 0.910 & 0.911 & 0.919 & 0.925 & 0.926 & 0.929\\
+Camembert & 0.236 & 0.626 & 0.856 & 0.916 & 0.930 & 0.933 & 0.948 & 0.953\\
+Camembert+pretraining & 0.190 & 0.685 & 0.889 & 0.913 & 0.930 & 0.946 & 0.948 & 0.960\\
+\bottomrule
+\end{tabular}
+\end{table}
