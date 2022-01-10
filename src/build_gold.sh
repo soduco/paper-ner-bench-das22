@@ -2,6 +2,8 @@
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # This script creates the gold dataset CSV from a set of JSON pages
+# 
+# Requires env. variable $DATADIR.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # ==============================================================================
@@ -26,11 +28,13 @@ function read_groups() {
   done < sampled_pages.txt
 }
 
+
 # ------------------------------------------------------------------------------
 function create_gold() {
-  # Creates the gold dataset from a set of directories jsons and stores it in CSV where:
-  # column 1 is a pre-annotated directory entry in XML
-  # column 2 is the entry's directory name
+  # Creates the gold dataset from a set of directories jsons and stores it 
+  # as a CSV where:
+  # - column 1 is a pre-annotated directory entry in XML
+  # - column 2 is the entry's directory name
   rm -f gold.csv
   for f in $(ls *.json);
   do
@@ -40,11 +44,12 @@ function create_gold() {
   done
 }
 
+
 # ==============================================================================
 # Entry point
 mkdir -p $WORKDIR
 pushd $WORKDIR > /dev/null
 read_groups
-create_gold 
+create_gold
 popd  > /dev/null
 

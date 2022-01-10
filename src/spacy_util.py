@@ -4,9 +4,8 @@ from spacy.tokens import DocBin, Doc
 from xml.dom.minidom import parseString
 from spacy.training import tags_to_entities
 
-###########################
-# ~ DATA CONVERSION UTILS ~
-###########################
+# =============================================================================
+# region ~ Data conversion utils for Spacy
 
 nlp = spacy.blank("fr")
 

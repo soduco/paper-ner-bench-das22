@@ -85,8 +85,8 @@ function train_eval_camembert_pretrained() {
 function main() {
     mkdir -p $METRICS
     train_eval_cnn $(train_sizes)
-    #train_eval_camembert $(train_sizes)
-    #train_eval_camembert_pretrained $(train_sizes)
+    train_eval_camembert $(train_sizes)
+    train_eval_camembert_pretrained $(train_sizes)
 }
 
 # ==============================================================================

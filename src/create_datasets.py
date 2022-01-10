@@ -5,8 +5,8 @@ import config as cfg
 from sklearn.model_selection import GroupKFold
 from sklearn.model_selection import train_test_split
 from datasets.dataset_dict import DatasetDict
-from cnn import create_spacy_dataset
-from bert import create_huggingface_dataset
+from spacy_util import create_spacy_dataset
+from camembert import create_huggingface_dataset
 
 logger = cfg.logger
 
@@ -30,14 +30,22 @@ def main():
     with open(cfg.GOLD, encoding="utf-8") as gf:
         gold_dataset = np.array([(_[0], _[1]) for _ in csv.reader(gf)])
 
-    logger.info(f"GOLD: {len(gold_dataset)} records")
+    logger.info("GOLD: %d records" % len(gold_dataset))
 
     ##
-    # Create the global Train, Dev and Test datasets
+    # Create the global Train & Dev
+    # Stratified split 90/10%
     ##
-    train, dev, test = make_train_dev_test(gold_dataset)
-    sets_names = ["train", "dev", "test"]
-    zipped = zip([train, dev, test], sets_names)
+    _, groups = unwrap(gold_dataset)
+    train, dev = train_test_split(
+        gold_dataset,
+        train_size=0.9,
+        shuffle=True,
+        random_state=cfg.SEED,
+        stratify=groups,
+    )
+    logger.info("TRAIN: %s, DEV: %s" % (len(train) ,len(dev)))
+    zipped = zip([train, dev],  ["train", "dev"])
     odir = cfg.DATA_DIR / "datasets"
     export(odir, zipped)
 
@@ -45,12 +53,14 @@ def main():
     # Create datasets for experiment 1
     ##
     odir = cfg.DATA_DIR / "experiment_1"
-
+    
+    train, dev, test = make_train_dev_test(gold_dataset)
     exp1_trainsets = create_experiment_1_trainsets(train)
+    
     for subtrain in exp1_trainsets:
         datasets = [subtrain, dev, test]
         addendum = str(len(subtrain))
-        export(odir, zip(datasets, sets_names), addendum)
+        export(odir, zip(datasets, ["train", "dev", "test"]), addendum)
 
 
 def make_train_dev_test(gold):
@@ -85,9 +95,9 @@ def make_train_dev_test(gold):
     train = train_dev[0]
     dev = train_dev[1]
 
-    logger.info(f"Train: {len(train)} entries, {100*len(train)/len(gold):.1f}%")
-    logger.info(f"Dev: {len(dev)} entries, {100*len(dev)/len(gold):.1f}%")
-    logger.info(f"Test: {len(test)} entries, {100*len(test)/len(gold):.1f}%")
+    logger.info("Train: %d entries, %.1f%%" % (len(train), 100*len(train)/len(gold)))
+    logger.info("Dev: %d entries, %.1f%%" % (len(dev), 100*len(dev)/len(gold)))
+    logger.info("Test: %d entries, %.1f%%" % (len(test), 100*len(test)/len(gold)))
 
     return train, dev, test
 
@@ -122,7 +132,7 @@ def create_experiment_1_trainsets(gold_train):
             break
 
     logger.info(
-        "Experiment 1: {0} training sets of sizes {1}, {2}".format(
+        "Experiment 1: %d training sets of sizes %s, %s" % (
             len(exp_ts),
             [len(s) for s in exp_ts],
             [f"{100*len(s)/len(gold_train):.1f}%" for s in exp_ts],
