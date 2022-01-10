@@ -114,7 +114,7 @@ ANNOT_CODE_MAP = {  # We use unicode private user area when needed (no dedicated
     "\u2013": "-", # –
     "\u2014": "-", # —
     "::SymbM::": "\uE011",
-    ":NC::": "\uE012",
+    "::NC::": "\uE012",
     "::NA::": "\uE013",
     "::TL::": "\uE014",
     "::TG::": "\uE015",
