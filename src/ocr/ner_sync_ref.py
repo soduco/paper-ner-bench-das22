@@ -294,7 +294,10 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool) -> bool:
             print(f"Suspicious char@{pos:03d}: {char} ({_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
     if not unicodedata.is_normalized('NFKC', text_to_align):
+        # Note: circled letter symbols do not seem to comply with NFKC. Maybe NFC is enough…
         print("Warning: string is not normalized (compatibility + composed mode).")
+    if not unicodedata.is_normalized('NFC', text_to_align):
+        print("Warning: string is not normalized (composed mode).")
     if dump_charset:
         print("Charset for string:")
         print(f"\t\"{text_to_align}\"")
