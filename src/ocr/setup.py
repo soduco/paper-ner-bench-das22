@@ -3,6 +3,8 @@ from pybind11.setup_helpers import Pybind11Extension
 
 sourcefiles = [
     "isri_tools_src/align.cpp",
+    "isri_tools_src/accuracy.cpp",
+    "isri_tools_src/main.cpp",
     "isri_tools_src/Modules/accrpt.c",
     "isri_tools_src/Modules/charclass.c",
     "isri_tools_src/Modules/ci.c",
@@ -19,6 +21,8 @@ sourcefiles = [
     "isri_tools_src/Modules/wacrpt.c",
     "isri_tools_src/Modules/word.c",
     ]
+
+
 
 ext = Pybind11Extension("isri_tools", sourcefiles)
 

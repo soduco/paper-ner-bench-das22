@@ -78,12 +78,12 @@ struct
 			/* enumeration for each character code */
 } Accdata;
 
-void add_class(/* Accdata *accdata, Charvalue value, long count,
-                  long missed */);
+void add_class(Accdata *accdata, Charvalue value, long count,
+                  long missed);
 			/* adds the given character value to "accdata",
                            updating all relevant class enumerations */
 
-void add_conf(/* Accdata *accdata, char *key, long errors, long marked */);
+void add_conf(Accdata *accdata, char *key, long errors, long marked);
 			/* adds the given confusion to "accdata"; "key" contains
 			   the character string representation of the confusion
 			   that will appear in the accuracy report (including
@@ -96,7 +96,7 @@ void read_accrpt(/* Accdata *accdata, char *filename */);
 			   and quits if unable to open the file, or if the file
 			   does not contain an accuracy report */
 
-void write_accrpt(/* Accdata *accdata, char *filename */);
+void write_accrpt(Accdata *accdata, char *filename);
 			/* writes the contents of "accdata" to the named file
 			   (or stdout if "filename" is NULL); reports an error
 			   and quits if unable to create the file */

@@ -5,8 +5,10 @@ extern "C"
 }
 
 #include <string>
+#include <vector>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+
 
 namespace
 {
@@ -44,9 +46,6 @@ namespace
     return i;
   }
 
-}
-
-
 int compute_align_map(std::wstring a, std::wstring b, std::vector<int>& map_A, std::vector<int>& map_B)
 {
   Text A;
@@ -73,11 +72,12 @@ int compute_align_map(std::wstring a, std::wstring b, std::vector<int>& map_A, s
 
   return alignment_size;
 }
+}
 
-std::pair<std::vector<int>, std::vector<int>> align_2(std::wstring a, std::wstring b)
+std::pair<std::vector<int>, std::vector<int>> get_align_map(std::wstring a, std::wstring b)
 {
   std::vector<int> map_A, map_B;
-  int alignment_size = compute_align_map(a, b, map_A, map_B);
+  compute_align_map(a, b, map_A, map_B);
 
   return std::make_pair(map_A, map_B);
 }
@@ -101,11 +101,10 @@ std::pair<std::wstring, std::wstring> align(std::wstring a, std::wstring b, wcha
   return std::make_pair(A, B);
 }
 
-
-
-
-PYBIND11_MODULE(isri_tools, m) {
-    m.doc() = "ISRI Analytic tools"; // optional module docstring
-    m.def("align", &align, "Align two strings");
-    m.def("get_align_map", &align_2, "Get the mapping between two strings");
+void init_align(pybind11::module* m)
+{
+  m->def("align", &align, "Align two strings");
+  m->def("get_align_map", &get_align_map, "Get the mapping between two strings");
 }
+
+

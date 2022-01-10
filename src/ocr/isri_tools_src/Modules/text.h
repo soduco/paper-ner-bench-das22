@@ -87,8 +87,8 @@ void read_text(/* Text *text, char *filename, Textopt *textopt */);
 
 #define STRING_SIZE  8
 
-void char_to_string(/* Boolean suspect, Charvalue value, char *string,
-		       Boolean fake_newline */);
+void char_to_string(Boolean suspect, Charvalue value, char *string,
+		       Boolean fake_newline);
 			/* stores a representation of the given character in
 			   "string", which must be at least STRING_SIZE bytes; a
 			   non-printable character is represented by a hex value
