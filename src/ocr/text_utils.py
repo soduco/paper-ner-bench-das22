@@ -6,15 +6,13 @@
 from collections import Counter
 import io
 import logging
-import argparse
-import sys
+from typing import List, Tuple
 import unicodedata
 from warnings import warn
-from typing import List, Tuple
 
-import regex
-import numpy as np
 import isri_tools
+import numpy as np
+import regex
 
 # ==============================================================================
 # Logging
@@ -57,9 +55,9 @@ ANNOTATION_CODES = [
     ("::UD::", "\uE010"),  # PUA #16
     ("::main::", "\u261E"),  # → "☞"
     ("\U0001F449", "\u261E"),  # "👉" → "☞"  # maybe some extra annotations like this to fix
-    ("::SymbET::", "\u002A"),  # → "*"
+    ("::SymbET::", "\u002A"),  # → "*" (note that \u002A can be represented with 5 or 6 branches in Unicode)
     ("\u2605", "\u002A"), # "★" → "*"  # maybe some extra annotations like this to fix
-    ("::SymbET::", "\u002A"),  # → "*"
+    ("::SymbET::", "\u002A"),  # → "*" (note that \u002A can be represented with 5 or 6 branches in Unicode)
     ("::Tvert::", "\u007C"),  # → "|"
     ("::Thoriz::", "\u002D"),  # → "-"
     ("::SymbM::", "\uE011"),  # PUA #17
@@ -79,109 +77,179 @@ def replace_annotation_codes(text: str) -> str:
 # Unicode charset simplification (mainly for XML compatibility)
 # Expected input: OCR reference text with projected annotations
 # Output: OCR reference text with projected annotations and simplified charset
-# Transform type: (1+ chars) -> (0+ chars), can change string length
+# General transform: (1+ chars) -> (1+ chars) (no deletion for debug purpose)
 
-UNICODE_SIMPLIFICATIONS = [
+# Transform type: (1 char) -> (1+ char), can change string length
+UNICODE_SIMPLIFICATIONS_SINGLE_CHAR = str.maketrans({
     # all new lines to \n
     # https://unicode.org/reports/tr13/tr13-9.html
-    # ("\u000A", "\u000A"),  # LF == \n
-    ("\u000B", "\u000A"),  # VT
-    ("\u000C", "\u000A"),  # FF
-    ("\u000D", "\u000A"),  # CR == \r
-    ("\u000D\u000A", "\u000A"),  # CRLF == \r\n
-    ("\u0085", "\u000A"),  # NEL
-    ("\u2028", "\u000A"),  # LS
-    ("\u2029", "\u000A"),  # PS
+    # "\u000A": "\u000A",  # LF == \n
+    "\u000B": "\u000A",  # VT
+    "\u000C": "\u000A",  # FF
+    "\u000D": "\u000A",  # CR == \r
+    # ("\u000D\u000A", "\u000A"),  # CRLF == \r\n  # move to general substitutions for performance
+    "\u0085": "\u000A",  # NEL
+    "\u2028": "\u000A",  # LS
+    "\u2029": "\u000A",  # PS
 
     # bars
-    ("¦", "|"), # U+00A6 # Commonly interchanged
-    ("\u2044", "/"), # ⁄ FRACTION SLASH U+2044
+    "¦": "|", # U+00A6 # Commonly interchanged
+    "\u2044": "/", # ⁄ FRACTION SLASH U+2044
 
     # quotes and brackets
-    ("«", "\""), # U+00AB
-    ("»", "\""), # U+00BB
-    ("\u2018", "\'"), # ‘ LEFT SINGLE QUOTATION MARK
-    ("\u2019", "\'"), # ’ RIGHT SINGLE QUOTATION MARK
-    ("\u201A", ","), # ‚ SINGLE LOW-9 QUOTATION MARK
-    ("\u201B", "\'"), # ‛ SINGLE HIGH-REVERSED-9 QUOTATION MARK
-    ("\u201C", "\""), # “ LEFT DOUBLE QUOTATION MARK
-    ("\u201D", "\""), # ” RIGHT DOUBLE QUOTATION MARK
-    ("\u201E", "\""), # „ DOUBLE LOW-9 QUOTATION MARK
-    ("\u201F", "\""), # ‟ DOUBLE HIGH-REVERSED-9 QUOTATION MARK
-    ("‹", "<"), # U+2039
-    ("›", ">"), # U+203A
-    ("\u2032", "'"), # ′ PRIME
-    ("\u2033", "\""), # ′′ DOUBLE PRIME
-    ("\u2035", "'"), # ‵ REVERSED PRIME
-    ("\u2036", "\""), # ‵‵ REVERSED DOUBLE PRIME
+    "«": "\"", # U+00AB
+    "»": "\"", # U+00BB
+    "\u2018": "\'", # ‘ LEFT SINGLE QUOTATION MARK
+    "\u2019": "\'", # ’ RIGHT SINGLE QUOTATION MARK
+    "\u201A": ",", # ‚ SINGLE LOW-9 QUOTATION MARK
+    "\u201B": "\'", # ‛ SINGLE HIGH-REVERSED-9 QUOTATION MARK
+    "\u201C": "\"", # “ LEFT DOUBLE QUOTATION MARK
+    "\u201D": "\"", # ” RIGHT DOUBLE QUOTATION MARK
+    "\u201E": "\"", # „ DOUBLE LOW-9 QUOTATION MARK
+    "\u201F": "\"", # ‟ DOUBLE HIGH-REVERSED-9 QUOTATION MARK
+    "\u2032": "'", # ′ PRIME
+    "\u2033": "\"", # ′′ DOUBLE PRIME
+    "\u2035": "'", # ‵ REVERSED PRIME
+    "\u2036": "\"", # ‵‵ REVERSED DOUBLE PRIME
+    "‹": "<", # U+2039
+    "›": ">", # U+203A
 
     # Dots
-    ("\u2022", "."), # • BULLET
-    ("\u2023", "."), # ‣ TRIANGULAR BULLET
-    ("\u2024", "."), # . ONE DOT LEADER
-    ("\u2025", ".."), # .. TWO DOT LEADER
-    ("\u2026", "..."), # ... HORIZONTAL ELLIPSIS
-    ("\u2027", "."), # ‧ HYPHENATION POINT
+    "\u2022": ".", # • BULLET
+    "\u2023": ".", # ‣ TRIANGULAR BULLET
+    "\u2024": ".", # . ONE DOT LEADER
+    "\u2025": "..", # .. TWO DOT LEADER
+    "\u2026": "...", # ... HORIZONTAL ELLIPSIS
+    "\u2027": ".", # ‧ HYPHENATION POINT
 
     # Dashes and spaces
     # http://www.unicode.org/charts/PDF/U2000.pdf
     # http://www.unicode.org/charts/PDF/U2E00.pdf
     # dashes
-    ("\u2010", "\u002D"), # ‐ HYPHEN
-    ("\u2011", "\u002D"), #  NON-BREAKING HYPHEN
-    ("\u2012", "\u002D"), # ‒ FIGURE DASH
-    ("\u2013", "\u002D"), # – EN DASH
-    ("\u2014", "\u002D"), # — EM DASH
-    ("\u2015", "\u002D"), # ― HORIZONTAL BAR
-    ("\u2E3A", "\u002D"), # ⸺  two-em dash
-    ("\u2E3B", "\u002D"), # ⸻ THREE-EM DASH
+    "\u2010": "\u002D", # ‐ HYPHEN
+    "\u2011": "\u002D", #  NON-BREAKING HYPHEN
+    "\u2012": "\u002D", # ‒ FIGURE DASH
+    "\u2013": "\u002D", # – EN DASH
+    "\u2014": "\u002D", # — EM DASH
+    "\u2015": "\u002D", # ― HORIZONTAL BAR
+    "\u2E3A": "\u002D", # ⸺  two-em dash
+    "\u2E3B": "\u002D", # ⸻ THREE-EM DASH
 
-    # all horiz spaces to space
-    ("\u0009", "\u0020"), # HTAB (\t) to SPACE
-    ("\u00A0", "\u0020"), # NBSP to SPACE
-    ("\u2000", "\u0020"),  # EN QUAD
-    ("\u2001", "\u0020"),  # EM QUAD
-    ("\u2002", "\u0020"),  # EN SPACE
-    ("\u2003", "\u0020"),  # EM SPACE
-    ("\u2004", "\u0020"),  # THREE-PER-EM SPACE
-    ("\u2005", "\u0020"),  # FOUR-PER-EM SPACE
-    ("\u2006", "\u0020"),  # SIX-PER-EM SPACE
-    ("\u2007", "\u0020"),  # FIGURE SPACE
-    ("\u2008", "\u0020"),  # PUNCTUATION SPACE
-    ("\u2009", "\u0020"),  # THIN SPACE
-    ("\u200A", "\u0020"),  # HAIR SPACE
-    ("\u202F", "\u0020"),  #  NARROW NO-BREAK SPACE
+    # all horiz spaces to plain space
+    "\u0009": "\u0020", # HTAB (\t)
+    "\u00A0": "\u0020", # NBSP
+    "\u2000": "\u0020",  # EN QUAD
+    "\u2001": "\u0020",  # EM QUAD
+    "\u2002": "\u0020",  # EN SPACE
+    "\u2003": "\u0020",  # EM SPACE
+    "\u2004": "\u0020",  # THREE-PER-EM SPACE
+    "\u2005": "\u0020",  # FOUR-PER-EM SPACE
+    "\u2006": "\u0020",  # SIX-PER-EM SPACE
+    "\u2007": "\u0020",  # FIGURE SPACE
+    "\u2008": "\u0020",  # PUNCTUATION SPACE
+    "\u2009": "\u0020",  # THIN SPACE
+    "\u200A": "\u0020",  # HAIR SPACE
+    "\u202F": "\u0020",  # NARROW NO-BREAK SPACE
+    "\u205F": "\u0020",  # MEDIUM MATHEMATICAL SPACE
 
-    # Lines
-    ("\u2016", "||"),  # ‖ DOUBLE VERTICAL LINE
-    ("\u2012", "_"),  #  ̳ DOUBLE LOW LINE
+    # Lines H/V
+    "\u2016": "||",  # ‖ DOUBLE VERTICAL LINE
+    "\u2017": "_",  #  ̳ DOUBLE LOW LINE
 
-    # Invisible chars
-    ("\u200B", ""), # ZERO WIDTH SPACE
-    ("\u200C", ""), # ZERO WIDTH NON-JOINER
-    ("\u200D", ""), # ZERO WIDTH JOINER
-    ("\u200E", ""), # LEFT-TO-RIGHT MARK
-    ("\u200F", ""), # RIGHT-TO-LEFT MARK
-    ("\u2060", ""), #  WORD JOINER
-    ("\u00AD", ""), # SOFT HYPHEN
-    ("\ufeff", ""), # ZERO WIDTH NO-BREAK SPACE // Byte Order Mark
-]
+    # Invisible chars and layout control → 0xFFFD � REPLACEMENT CHARACTER
+    # We replace rather than deleting to enable debugging
+    "\u00AD": "\uFFFD",  # SOFT HYPHEN
+    "\u200B": "\uFFFD",  # ZERO WIDTH SPACE
+    "\u200C": "\uFFFD",  # ZERO WIDTH NON-JOINER
+    "\u200D": "\uFFFD",  # ZERO WIDTH JOINER
+    "\u200E": "\uFFFD",  # LEFT-TO-RIGHT MARK
+    "\u200F": "\uFFFD",  # RIGHT-TO-LEFT MARK
+    "\u202A": "\uFFFD",  # LEFT-TO-RIGHT EMBEDDING
+    "\u202B": "\uFFFD",  # RIGHT-TO-LEFT EMBEDDING
+    "\u202C": "\uFFFD",  # POP DIRECTIONAL FORMATTING
+    "\u202D": "\uFFFD",  # LEFT-TO-RIGHT OVERRIDE
+    "\u202E": "\uFFFD",  # RIGHT-TO-LEFT OVERRIDE
+    "\u2060": "\uFFFD",  # WORD JOINER
+    "\u2061": "\uFFFD",  # FUNCTION APPLICATION
+    "\u2062": "\uFFFD",  # INVISIBLE TIMES
+    "\u2063": "\uFFFD",  # INVISIBLE SEPARATOR
+    "\u2064": "\uFFFD",  # INVISIBLE PLUS
+    "\u2066": "\uFFFD",  # LEFT-TO-RIGHT ISOLATE
+    "\u2067": "\uFFFD",  # RIGHT-TO-LEFT ISOLATE
+    "\u2068": "\uFFFD",  # FIRST STRONG ISOLATE
+    "\u2069": "\uFFFD",  # POP DIRECTIONAL ISOLATE
+
+    # Deprecated chars
+    "\u206A": "\uFFFD",  # INHIBIT SYMMETRIC SWAPPING
+    "\u206B": "\uFFFD",  # ACTIVATE SYMMETRIC SWAPPING
+    "\u206C": "\uFFFD",  # INHIBIT ARABIC FORM SHAPING
+    "\u206D": "\uFFFD",  # ACTIVATE ARABIC FORM SHAPING
+    "\u206E": "\uFFFD",  # NATIONAL DIGIT SHAPES
+    "\u206F": "\uFFFD",  # NOMINAL DIGIT SHAPES
+
+    # Interlinear annotation
+    "\uFFF9": "\uFFFD",  # INTERLINEAR ANNOTATION ANCHOR
+    "\uFFFA": "\uFFFD",  # INTERLINEAR ANNOTATION SEPARATOR
+    "\uFFFB": "\uFFFD",  # INTERLINEAR ANNOTATION TERMINATOR
+
+    # Replacement characters
+    "\uFFFC": "\uFFFD",  # OBJECT REPLACEMENT CHARACTER
+    # Keep FFFD � REPLACEMENT CHARACTER
+    
+    # Byte order mark
+    "\ufeff": "\uFFFD", # ZERO WIDTH NO-BREAK SPACE
+})
 
 
 def simplify_unicode_charset(text: str) -> str:
-    res = text
-    for fr, to in UNICODE_SIMPLIFICATIONS:
-        res = res.replace(fr, to)
-    # ???
-    #         # Unicode normalization
-    #         line_norm = unicodedata.normalize('NFKC', line)
-    #         line_norm = unicodedata.normalize('NFC', line)  # TODO
+    # Unicode normalization to composed characters (remove combining chars)
+    # We do not use 'NFKC' because the substitutions may not be the ones we want.
+    res = unicodedata.normalize('NFC', text)
+
+    # Replace CRLR to LF
+    res = res.replace("\u000D\u000A", "\u000A")
+
+    # Apply all our 1-char substitutions efficiently
+    res = res.translate(UNICODE_SIMPLIFICATIONS_SINGLE_CHAR)
+
+    # At this point: 
+    # - all new line control chars are mapped to "\n" (\u000A)
+    # - all horizontal space control chars are mapped to " " (\u0020)
+
+    # Replace control chars (but \n) with 0xFFFD � REPLACEMENT CHARACTER
+    # (XML compatibility)
+    # https://www.unicode.org/charts/PDF/U0000.pdf
+    # https://www.unicode.org/charts/PDF/U0080.pdf
+    res = regex.sub("[\u0000-\u0009\u000B-\u001F\u007F]", "\uFFFD", res)  # C0
+    res = regex.sub("[\u0080-\u009F]", "\uFFFD", res)  # C1
+
+    # Replace Variation Selectors with 0xFFFD � REPLACEMENT CHARACTER
+    # https://www.unicode.org/charts/PDF/UFE00.pdf
+    res = regex.sub("[\uFE00-\uFE0F]", "\uFFFD", res)
+
+    # Replace surrogate UTF-16 chars with 0xFFFD � REPLACEMENT CHARACTER
+    # https://www.unicode.org/charts/PDF/UD800.pdf
+    # https://www.unicode.org/charts/PDF/UDC00.pdf
+    res = regex.sub("[\uD800-\uDFFF]", "\uFFFD", res)
+
+    # Replace non characters from Unicode BMP with 0xFFFD � REPLACEMENT CHARACTER
+    # https://www.unicode.org/charts/PDF/UFB50.pdf
+    # https://www.unicode.org/charts/PDF/UFFF0.pdf
+    # FDD0-FDEF + FFFE + FFFF -> 0xFFFD � REPLACEMENT CHARACTER
+    res = regex.sub("[\uFDD0-\uFDEF\uFFFE\uFFFF]", "\uFFFD", res)
+
+    # Note: we could also target unassigned codes but charset control
+    #       should be used instead.
+    
+    # Replace codes > 0xFFFF (chars not in Unicode BMP)
+    res = regex.sub("[^\u0000-\uFFFF]", "\uFFFD", res)
+
     return res
 
 
 # ==============================================================================
 # Check OCR reference charset
-def check_alignment_charset(text_to_align: str, dump_charset: bool) -> bool:
+def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_all: bool=False) -> bool:
     """Check the string passed as parameter contains only acceptable
     unicode code points for the alignment.
 
@@ -192,21 +260,38 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool) -> bool:
     Args:
         text_to_align (str): text to check before alignment
         dump_charset (bool): whether to dump the charset or not (debug)
+        show_all (bool): whether to print info for all chars (not only problematic ones) (debug)
 
     Returns:
         bool: Return True if the text has a valid charset, False otherwise.
     """
+    def _unichr2str(unichar: str) -> str:
+        return unicodedata.name(unichar, repr(unichar))
+
+    def _char_str(char_str):
+        codepoint = ord(char_str)
+        if (char in "\u000A\u000B\u000C\u000D\u0085\u2028\u2029"  # newline
+            or 0x0000 <= codepoint <= 0x0009 # C0
+            or 0x000B <= codepoint <= 0x001F
+            or codepoint == 0x007F
+            or 0x0080 <= codepoint <= 0x009F # C1
+            ):
+            return repr(char_str)
+        return char_str
+
     errors = 0
     for pos, char in enumerate(text_to_align):
         codepoint = ord(char)
+        char_str = _char_str(char)
         if (
             codepoint in (0x0000, 0xFFFE, 0xFFFF)  # NULL, non chars
             or 0xD800 <= codepoint <= 0xDFFF  # surrogates
             or codepoint > 0xFFFF):  # large codepoints
             errors += 1
-            print(f"Invalid char@{pos:03d}: {char} ({_unichr2str(char)})")
+            print(f"Invalid char@{pos:03d}: {hex(ord(char))} ({_unichr2str(char)}"
+                  f" -- cat.: {unicodedata.category(char)})")
         elif not (
-            codepoint in (ord("\n"), ord("\r"))
+            codepoint == ord("\n")
             or 0x0020 <= codepoint <= 0x007E  # Basic_Latin
             or 0x00A0 <= codepoint <= 0x00FF  # Latin-1_Supplement
             or 0x0100 <= codepoint <= 0x017F  # Latin Extended-A
@@ -218,30 +303,35 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool) -> bool:
             or 0xFB00 <= codepoint <= 0xFB06  # ﬀ, ﬁ, ﬂ, ﬃ, ﬄ, ﬅ, ﬆ (ligatures)
             or codepoint == 0xFFFD  # � REPLACEMENT CHARACTER
             ):
-            print(f"Suspect char@{pos:03d}: {char} ({_unichr2str(char)}"
+            print(f"Suspect char@{pos:03d}: {char_str} ({_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
-    if not unicodedata.is_normalized('NFKC', text_to_align):
-        # Note: circled letter symbols do not seem to comply with NFKC.
-        #        indeed: unicodedata.normalize('NFKC', "Ⓞ") ==  "O"
-        # Maybe NFC is enough as we want only composed chars.
-        print("Warning: string is not normalized (compatibility + composed mode).")
-        if not unicodedata.is_normalized('NFC', text_to_align):
-            print("Warning: string is not normalized (composed mode).")
+        elif show_all:
+            print(f"  Valid char@{pos:03d}: {char_str} ({_unichr2str(char)}"
+                  f" -- cat.: {unicodedata.category(char)})")
+    # if not unicodedata.is_normalized('NFKC', text_to_align):
+    #     # Note: circled letter symbols do not seem to comply with NFKC.
+    #     #        indeed: unicodedata.normalize('NFKC', "Ⓞ") ==  "O"
+    #     # Maybe NFC is enough as we want only composed chars.
+    #     print("Warning: string is not normalized (compatibility + composed mode).")
+    if not unicodedata.is_normalized('NFC', text_to_align):
+        print("Warning: string is not normalized (composed mode).")
     if dump_charset:
-        print("Charset for string:")
-        print(f"\t\"{text_to_align}\"")
+        print("Charset:")
+        # print("Charset for string:")
+        # print(f"\t\"{text_to_align}\"")
         charset = Counter(text_to_align)
-        print("\t   # | Char")
-        print("\t ----+---------------------")
+        print("    # | Char")
+        print("  ----+---------------------")
         for char, count in charset.most_common():
-            char_str = char if char != "\n" else "<NL>"
-            print(f"\t {count:3d} | {char_str} ({_unichr2str(char)} -- cat.: {unicodedata.category(char)})")
+            char_str = _char_str(char)
+            try:
+                print(f"  {count:3d} | {char_str} ({_unichr2str(char)}"
+                  f" -- cat.: {unicodedata.category(char)})")
+            except UnicodeEncodeError:
+                print(f"  {count:3d} | {hex(ord(char))} ({_unichr2str(char)}"
+                  f" -- cat.: {unicodedata.category(char)})")
         print("")
     return errors == 0
-
-
-def _unichr2str(unichar: str) -> str:
-    return unicodedata.name(unichar, repr(unichar))
 
 
 # ==============================================================================
@@ -268,7 +358,7 @@ def _unichr2str(unichar: str) -> str:
 
 
 # ==============================================================================
-# read file
+# read UTF-8 file content (opt. strip trailing \n, delete leading BOM)
 
 # TODO read utf-8 file content
 
@@ -398,6 +488,7 @@ def simplify_for_alignment(text: str, case_insensitive=True) -> str:
 
 # ==============================================================================
 # FIXME extract this to separate tool which will be run on all files/strings
+# TODO reuse for "read_utf8_file"
 def project_to_simple_charset(text: str) -> str:
     pass
     # with io.open(args.output, "wt", encoding="UTF-8", newline='',
