@@ -31,6 +31,7 @@ extern "C"
 
 #include <pybind11/iostream.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 #include <string>
 #include <fstream>
 
@@ -176,6 +177,57 @@ print_accurary_report (Accdata *data)
   return result;
 }
 
+namespace
+{
+  void merge_ops(Accops &to, const Accops& from)
+  {
+    to.ins    += from.ins;
+    to.subst  += from.subst;
+    to.del    += from.del;
+    to.errors += from.errors;
+  }
+
+  void merge_conf(Accdata* to, const Conftable& from)
+  {
+    for (int i = 0; i < TABLE_SIZE; ++i)
+      for (auto* entry = from.list[i].first; entry; entry = entry->next)
+        add_conf(to, entry->key, entry->errors, entry->marked);
+  }
+
+  void merge_class(Accclass* to, const Accclass* from, int size)
+  {
+    for (int i = 0; i < size; i++)
+	    if (from[i].count > 0)
+      {
+        to[i].count += from[i].count;
+        to[i].missed += from[i].missed;
+      }
+  }
+}
+
+
+std::unique_ptr<Accdata> accuracy_summary(const std::vector<Accdata*>& data)
+{
+  auto sumops = std::make_unique<Accdata>();
+
+  for (Accdata* x : data)
+  {
+    sumops->characters += x->characters;
+    sumops->errors += x->errors;
+    sumops->reject_characters += x->reject_characters;
+    sumops->suspect_markers += x->suspect_markers;
+    sumops->false_marks += x->false_marks;
+    merge_ops(sumops->marked_ops, x->marked_ops);
+    merge_ops(sumops->unmarked_ops, x->unmarked_ops);
+    merge_ops(sumops->total_ops, x->total_ops);
+    merge_conf(sumops.get(), x->conftable);
+    merge_class(sumops->large_class, x->large_class, MAX_CHARCLASSES);
+    merge_class(sumops->small_class, x->small_class, NUM_CHARVALUES);
+    merge_class(&(sumops->total_class), &(x->total_class), 1);
+  }
+  return sumops;
+}
+
 void
 init_accuracy (py::module &m)
 {
@@ -187,4 +239,5 @@ init_accuracy (py::module &m)
     .def_readonly ("false_marks", &Accdata::false_marks, "number of false marks")
     .def ("__repr__", &print_accurary_report);
   m.def ("compute_accurary_stats", &get_accuracy_stats);
+  m.def ("accurary_summary", &accuracy_summary);
 }
