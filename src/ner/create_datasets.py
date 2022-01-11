@@ -1,5 +1,4 @@
 import csv
-import os
 import numpy as np
 import config as cfg
 from sklearn.model_selection import GroupKFold
@@ -20,6 +19,37 @@ def unwrap(list_of_tuples2):
 
 # endregion
 
+# =============================================================================
+# region ~ Sanity checks
+
+
+def check_experiment1_dev_test_sizes(dev, test):
+    actual = len(dev)
+    expected = 668
+    assert actual == expected, "Experiment 1: expected dev set of size %d, got %d." % (
+        actual,
+        expected,
+    )
+    actual = len(test)
+    expected = 1719
+    assert actual == expected, "Experiment 1: expected test set of size %d, got %d." % (
+        actual,
+        expected,
+    )
+
+
+def check_experiment1_training_subsets_sizes(trainsets):
+    actual = len(trainsets)
+    assert actual == 8, "Experiment 1: expected 8 sub-training sets bu got %d" % actual
+    expected = [6012, 3006, 1503, 751, 375, 187, 93, 46]
+    for ix, actual in enumerate(trainsets):
+        actual_len = len(actual)
+        assert (
+            actual_len == expected[ix]
+        ), "Expected sub-training set of size %d, got %d" % (expected[ix], actual_len)
+
+
+# endregion
 
 # =============================================================================
 # region ~ Main processing
@@ -44,8 +74,9 @@ def main():
         random_state=cfg.SEED,
         stratify=groups,
     )
-    logger.info("TRAIN: %s, DEV: %s" % (len(train) ,len(dev)))
-    zipped = zip([train, dev],  ["train", "dev"])
+
+    logger.info("TRAIN: %s, DEV: %s" % (len(train), len(dev)))
+    zipped = zip([train, dev], ["train", "dev"])
     odir = cfg.DATA_DIR / "datasets"
     export(odir, zipped)
 
@@ -53,10 +84,14 @@ def main():
     # Create datasets for experiment 1
     ##
     odir = cfg.DATA_DIR / "experiment_1"
-    
+
     train, dev, test = make_train_dev_test(gold_dataset)
     exp1_trainsets = create_experiment_1_trainsets(train)
-    
+
+    # Sanity checks
+    check_experiment1_dev_test_sizes(dev, test)
+    check_experiment1_training_subsets_sizes(exp1_trainsets)
+
     for subtrain in exp1_trainsets:
         datasets = [subtrain, dev, test]
         addendum = str(len(subtrain))
@@ -95,15 +130,17 @@ def make_train_dev_test(gold):
     train = train_dev[0]
     dev = train_dev[1]
 
-    logger.info("Train: %d entries, %.1f%%" % (len(train), 100*len(train)/len(gold)))
-    logger.info("Dev: %d entries, %.1f%%" % (len(dev), 100*len(dev)/len(gold)))
-    logger.info("Test: %d entries, %.1f%%" % (len(test), 100*len(test)/len(gold)))
+    logger.info(
+        "Train: %d entries, %.1f%%" % (len(train), 100 * len(train) / len(gold))
+    )
+    logger.info("Dev: %d entries, %.1f%%" % (len(dev), 100 * len(dev) / len(gold)))
+    logger.info("Test: %d entries, %.1f%%" % (len(test), 100 * len(test) / len(gold)))
 
     return train, dev, test
 
 
 def create_experiment_1_trainsets(gold_train):
-    """Create smaller trainsets for experiment 1 by dividing the training set
+    """Create iteratively smaller trainsets for experiment 1 by dividing the training set
     in half at each step.
 
     Args:
@@ -132,7 +169,8 @@ def create_experiment_1_trainsets(gold_train):
             break
 
     logger.info(
-        "Experiment 1: %d training sets of sizes %s, %s" % (
+        "Experiment 1: %d training sets of sizes %s, %s"
+        % (
             len(exp_ts),
             [len(s) for s in exp_ts],
             [f"{100*len(s)/len(gold_train):.1f}%" for s in exp_ts],
