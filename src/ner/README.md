@@ -19,7 +19,19 @@ Three models are evaluated:
 ## Usage
 
 ### Preparation
-1. Set the location of the data directory.
+1. Dependencies
+```bash
+# /!\ ~1.3G
+pip install -r requirements.txt
+```
+
+You will also need the SpaCy pipeline optimized for the French language:
+```bash
+# /!\ 546MB
+python -m spacy download fr_core_news_lg
+```
+
+2. Set the location of the data directory.
 ```bash
 # Set $DATADIR
 export DATADIR=/path/to/paper-ner-bech-das-22/src/data
@@ -28,12 +40,12 @@ export DATADIR=/path/to/paper-ner-bech-das-22/src/data
 export DEBUG=1
 ```
 
-2. Build the gold dataset in CSV from the set of directory pages in JSON
+3. Build the gold dataset in CSV from the set of directory pages in JSON
 ```
 ./build_gold.sh
 ``` 
 
-3. Create the datasets required to evaluate the three models and save them in $DATADIR.
+4. Create the datasets required to evaluate the three models and save them in $DATADIR.
 ```
 ./init_experiments.sh
 ```
