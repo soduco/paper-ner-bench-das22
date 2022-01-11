@@ -18,6 +18,13 @@ import regex
 # Logging
 logger = logging.getLogger(__name__)
 
+
+
+# ==============================================================================
+# Some constants
+TAG_LIST = ["PER", "LOC", "ACT", "CARDINAL", "FT", "TITRE"]
+
+
 # ==============================================================================
 # Annotation codes projection to Unicode chars
 # Expected input: raw OCR human transcription and annotation (special glyphs w/o public codepoints)
@@ -75,6 +82,7 @@ def replace_annotation_codes(text: str) -> str:
 
 # ==============================================================================
 # Unicode charset simplification (mainly for XML compatibility)
+# https://www.w3.org/TR/unicode-xml/#Suitable
 # Expected input: OCR reference text with projected annotations
 # Output: OCR reference text with projected annotations and simplified charset
 # General transform: (1+ chars) -> (1+ chars) (no deletion for debug purpose)
@@ -206,7 +214,7 @@ def simplify_unicode_charset(text: str) -> str:
     # We do not use 'NFKC' because the substitutions may not be the ones we want.
     res = unicodedata.normalize('NFC', text)
 
-    # Replace CRLR to LF
+    # Replace CRLR to LF (must be first)
     res = res.replace("\u000D\u000A", "\u000A")
 
     # Apply all our 1-char substitutions efficiently
@@ -335,95 +343,124 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
 
 
 # ==============================================================================
-# Fix manual NER XML
+# Fix manual NER XML (raw NER reference)
+# Expected input: NER "XML" produced with annotation tool (contains annotation, 
+# un-normalized charset and lacks XML escaping)
+# Output: Clean NER XML to be used as reference (/!\ newlines encoded as PS)
+# Transformation: can add, remove and change chars
 
-# TODO
+def fix_manual_ner_xml(ner_xml_orig: str) -> str:
+    # Get a clean line
+    fixed = remove_unicode_bom(ner_xml_orig)
+    fixed = fixed.rstrip()  # removes any training whitespace and newline char
+
+    # Sanity check
+    if not check_xml(fixed, taglist=TAG_LIST):
+        raise ValueError("Invalid file.")
+
+    # Split on tags
+    chunks, tags = chop_on_tags(fixed, tag_list=TAG_LIST)
+    assert(len(chunks) == len(tags) + 1)
+
+    # Note: We don't unescape XML entities here as the GUI tools doesn't do it.
+
+    # Replace annotation codes (e.g. "::LH::") with (private if needed) unicode chars
+    chunks = list(map(replace_annotation_codes, chunks))
+    
+    # Simplify unicode charset
+    chunks = list(map(simplify_unicode_charset, chunks))
+
+    # Escape XML entities
+    # https://www.w3.org/TR/unicode-xml/#Suitable (obsolete?)
+    chunks = list(map(xml_escape, chunks))
+    
+    # Recreate string (recombine chunks and tags)
+    final_list = []
+    tags.append("")
+    for c, t in zip(chunks, tags):
+        final_list.append(c)
+        final_list.append(t)
+    fixed_final = "".join(final_list)
+
+    # Final charset check
+    if not check_alignment_charset(fixed_final):
+        raise ValueError("Incorrect charset!")
+
+    return fixed_final
+
+
+def xml_escape(text: str, nl_to_ps: bool=True) -> str:
+    # just like https://github.com/python/cpython/tree/3.10/Lib/xml/sax/saxutils.py
+    # with extra chars
+    esc = text
+    esc = esc.replace("&", "&amp;")  # Must be first
+    esc = esc.replace("<", "&lt;")
+    esc = esc.replace(">", "&gt;")
+    esc = esc.replace("\"", "&quot;")
+    esc = esc.replace("'", "&apos;")
+    if nl_to_ps:
+        esc = esc.replace("\n", "\u2029")  # use &#20209; instead?
+    return esc
+
+
+def xml_unescape(xml: str, ps_to_nl: bool=True) -> str:
+    # just like https://github.com/python/cpython/tree/3.10/Lib/xml/sax/saxutils.py
+    # with extra chars
+    unesc = xml
+    if ps_to_nl:
+        unesc = unesc.replace("\u2029", "\n")  # use &#20209; instead?
+    unesc = unesc.replace("&apos;", "'")
+    unesc = unesc.replace("&quot;", "\"")
+    unesc = unesc.replace("&gt;", ">")
+    unesc = unesc.replace("&lt;", "<")
+    unesc = unesc.replace("&amp;", "&")  # Must be last
+    return unesc
 
 # ==============================================================================
 # align NER tags
+# Expected input 1: clean final NER XML ref (no annotation codes, escaped entities)
+# Expected input 2: final OCR text (no annotation codes, simplified charset)
 
-# TODO w/o normalization
-
-# TODO ner charset simplification str.mktrans (accents, uppercase…)
-
-# TODO XML escape
-# TODO XML unescape
-
-# ==============================================================================
-# OCR eval
-
-# TODO call python function
-# TODO OCR equivalences
-# TODO case insensitive or not
-
-
-# ==============================================================================
-# read UTF-8 file content (opt. strip trailing \n, delete leading BOM)
-
-# TODO read utf-8 file content
-
-# TODO strip trailing \n
-# TODO delete BOM
-
-
-
-# 8<----------------------------------
-
-
-
-
-TAG_LIST = ["PER", "LOC", "ACT", "CARDINAL", "FT", "TITRE"]
-
-
-OCR_EVAL_EQUIVALENCES = [
-# ¹ U+00B9 to U+0031  1   <---- use NFKC for this?
-# ² U+00B2 to U+0032  2
-# ³ U+00B3 to U+0033  3
-# µ U+00B5 to U+03BC  μ
-    # ("\u00BA", "\u006F"), # º U+00BA to U+006F  o
-    # …   U+2026 to U+002E U+002E U+002E    ...  <-------- ???
-
-# ™   U+2122 to U+0054 U+004D   TM
-    # ("\uFB00", "ff"),  # Replace ff, fi, fl, ffi, ffl ligatures with separated 
-    # ("\uFB01", "fi"),  # chars. before Unicode normalization inserts
-    # ("\uFB02", "fl"),  # "200c ZERO WIDTH NON-JOINER"
-    # ("\uFB03", "ffi"), # (actually not wrote to UTF-8 output so not done here)
-    # ("\uFB04", "ffl"),
-# ¼ U+00BC to U+0031 U+002F U+0034  1/4 # done by FRACTION SLASH replace after norm.
-# ½ U+00BD to U+0031 U+002F U+0032  1/2 # done by FRACTION SLASH replace after norm.
-# ¾ U+00BE to U+0033 U+002F U+0034  3/4 # done by FRACTION SLASH replace after norm.
-    # ("Æ", "AE"), # U+00C6  # enable multichar? NO: normalize after OCR
-    # ("æ", "ae"), # U+00E6
-    # ("Œ", "OE"), # U+0152
-    # ("œ", "oe"), # U+0153
-    # TODO remove accents?
-    ("À", "A"),
-    ("Ç", "C"),
-    ("É", "E"),
-    ("È", "E"),
-    ("Ê", "E"),
-    ("Ë", "E"),
-    ("Î", "I"),
-    ("Ï", "I"),
-    ("Ô", "O"),
-    ("Ö", "O"),
-    ("Û", "U"),
-    ("Ü", "U"),
-    ("à", "a"),
-    ("ç", "c"),
-    ("é", "e"),
-    ("è", "e"),
-    ("ê", "e"),
-    ("ë", "e"),
-    ("î", "i"),
-    ("ï", "i"),
-    ("ô", "o"),
-    ("ö", "o"),
-    ("û", "u"),
-    ("ü", "u"),
-    ("@", "a"),
-]
-
+ALIGNMENT_SIMPLIFICATION_TABLE = str.maketrans({
+    "\u00B9": "1", # ¹ U+00B9 to U+0031  1
+    "\u00B2": "2", # ² U+00B2 to U+0032  2
+    "\u00B3": "3", # ³ U+00B3 to U+0033  3
+    "°": "o", # º U+00BA to U+006F  o
+    "À": "A",
+    "Ç": "C",
+    "É": "E",
+    "È": "E",
+    "Ê": "E",
+    "Ë": "E",
+    "Î": "I",
+    "Ï": "I",
+    "Ô": "O",
+    "Ö": "O",
+    "Û": "U",
+    "Ü": "U",
+    "à": "a",
+    "ç": "c",
+    "é": "e",
+    "è": "e",
+    "ê": "e",
+    "ë": "e",
+    "î": "i",
+    "ï": "i",
+    "ô": "o",
+    "ö": "o",
+    "û": "u",
+    "ü": "u",
+    "@": "a",
+    "{": "(",
+    "[": "(",
+    "}": ")",
+    "]": ")",
+    ",": ".",
+    ":": ".",
+    ";": ".",
+    "?": "!",
+    "\n": " ",  # easier debugging
+})
 
 
 # ==============================================================================
@@ -459,149 +496,216 @@ def chop_on_tags(ner_xml: str, tag_list: List[str]) -> Tuple[str,str]:
             - texts is the list of strings between beginning of line, tags and end of line
             - tags is the list of opening and closing tags in their order of appearance
     """
-    chunks = regex.split("(</?\L<tag>>)", ner_xml, tag=tag_list) # TODO ignore case for tags?
+    chunks = regex.split(r"(</?\L<tag>>)", ner_xml, tag=tag_list) # TODO ignore case for tags?
     A_chunks = chunks[0::2]
     A_tags = [] if len(chunks) < 2 else chunks[1::2]
     return A_chunks, A_tags
 
 
-def xml_unescape(text: str) -> str:
-    return text
-
-
-
-
-
 def simplify_for_alignment(text: str, case_insensitive=True) -> str:
     # Single char "normalizations"
     # tolerance to OCR single char substitutions (case insensitive, no accents, etc.)
-    # which DO NOT CHANGE THE MATCHING
+    # which DOES NOT CHANGE THE STRING LENGTH
     simplified = text
-    for fr, to in ALIGNMENT_SIMPLIFICATION_TABLE:
-        simplified = simplified.replace(fr, to)
+    simplified = simplified.translate(ALIGNMENT_SIMPLIFICATION_TABLE)
     if case_insensitive:
         simplified = simplified.upper()
     return simplified
 
 
+def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) -> Tuple[str, bool]:
+    """Align NER tag positions from reference to noisy OCR.
 
+    Args:
+        ner_xml_final (str): Reference NER XML with correct tags.
+        text_ocr_final (str): Noisy OCR to align tags on.
+        debug (bool, optional): Activate debug output. Defaults to False.
 
-# ==============================================================================
-# FIXME extract this to separate tool which will be run on all files/strings
-# TODO reuse for "read_utf8_file"
-def project_to_simple_charset(text: str) -> str:
-    pass
-    # with io.open(args.output, "wt", encoding="UTF-8", newline='',
-    #             errors="strict") as file_output:
-    # # output lines are utf-8-encoded and have LF EOL
-    # line_no = 0
-    # with io.open(args.input, "rt", encoding="UTF-8", newline=None,
-    #                 errors="strict") as file_input:
-    #     # input lines are Unicode code point sequences with LF-normalized EOL
-    #     for line in file_input:
-    #         line_no += 1
+    Raises:
+        ValueError: If XML content is invalid
+        ValueError: If NER XML charset is invalid
+        RuntimeError: If OCR text normalization changes its length
+        ValueError: If OCR text charset is invalid
 
-    #         # Check input
-    #         extra_chars = []
-    #         char_no = 0
-    #         for char in line:
-    #             char_no += 1
-    #             if char not in charset:
-    #                 extra_chars.append((char, char_no))
-    #                 err_count += 1
-    #             # logger.debug("\tl:%03d c:%03d %04x %s" 
-    #             #     % (line_no, char_no, ord(char), _unichr2str(char)))
-    #         if extra_chars:
-    #             logger.error("Got %d illegal character(s) in line %d : " 
-    #                             % (len(extra_chars), line_no))
-    #             for i in range(min(CHAR_ERR_LIM, len(extra_chars))):
-    #                 char, pos = extra_chars[i]
-    #                 logger.error("\tl:%03d c:%03d %s" 
-    #                                 % (line_no, pos, _unichr2str(char)))
-    #             if len(extra_chars) > CHAR_ERR_LIM:
-    #                 logger.error("\t ... and %d other(s)." 
-    #                                 % (len(extra_chars) - CHAR_ERR_LIM))
-
-    #         # Unicode normalization
-    #         line_norm = unicodedata.normalize('NFKC', line)
-            
-    #         # Perform custom translations
-    #         line_tr = _transform(line_norm)
-
-    #         # Output new line
-    #         file_output.write(line_tr) 
-
-
-def add_tags_prediction(ner_xml: str, text_ocr: str, debug=False):
-
-    # 1. Process ner_xml
-    ## 1.0. Sanity check
-    _xml_a_correct = check_xml(ner_xml, taglist=TAG_LIST)
-    ## 1.1. Chunking
-    A_chunks, A_tags = chop_on_tags(ner_xml, tag_list=TAG_LIST)
-    ## 1.2. Replace XML entities
-    # We don't do it here as the GUI tools doesn't do it.
+    Returns:
+        Tuple[str, bool]: (xml, no_empty_tag) XML with projected tags and wether this looks correct.
+    """
+    # 1. Process ner_xml_final
+    # => Assume we already have a clean valid XML content with normalized unicode
+    # text without any annotation codes
+    ## Sanity check
+    if not check_xml(ner_xml_final, taglist=TAG_LIST):
+        raise ValueError("Invalid XML content.")
+    ## Chunking
+    A_chunks, A_tags = chop_on_tags(ner_xml_final, tag_list=TAG_LIST)
+    ## Replace XML entities
     A_chunks = list(map(xml_unescape, A_chunks))
-    ## 1.3. Replace annotation codes (e.g. "::LH::") with (private if needed) unicode chars
-    A_chunks = list(map(replace_annotation_codes, A_chunks))
-    # TODO
-    ## 1.4. Simplify the string to ease alignment (e.g. "é"->"e")
+    ## Simplify the string to ease alignment (e.g. "é"->"e")
     A_chunks = list(map(simplify_for_alignment, A_chunks))
-    # TODO
-    # Note: single char projections for now, requires to store complex transforms
-    # in other string otherwise. Plus charset simplification should be performed earlier.
-    ## 1.5. Build string ready for alignment
+    ## Build string ready for alignment
     a = "".join(A_chunks)
-    _charset_a_correct = check_alignment_charset(a, dump_charset=debug)
+    if not check_alignment_charset(a): # dump_charset=debug):
+        raise ValueError("Invalid charset for A, cannot align.")
     # => a is now ready for alignment
 
-    # B. Process text_ocr
-    # Assume we already have a normalized unicode text without any XML content (tags or entities)
-    # 2.1 Simplify the string to ease alignment (e.g. "é"->"e")
-    b = text_ocr  # We keep b and align on a simplified version of it
-    bs = simplify_for_alignment(text_ocr)
+    # 2. Process text_ocr_final
+    # => Assume we already have a normalized unicode text without any XML content (tags or entities)
+    # Simplify the string to ease alignment (e.g. "é"->"e")
+    b = text_ocr_final  # We keep b and align on a simplified version of it
+    bs = simplify_for_alignment(text_ocr_final)
     if len(b) != len(bs):
         raise RuntimeError("simplify_for_alignment changed string len. Cannot align simplified string.")
-    _charset_b_correct = check_alignment_charset(bs, dump_charset=debug)
-
+    if not check_alignment_charset(bs): # dump_charset=debug):
+        raise ValueError("Invalid charset for BS, cannot align.")
 
     # 3. Align
-    A, B = isri_tools.align(a, bs, ' ')  # ␣
-    # print(A)
-    # print(B)
+    if debug:
+        A, B = isri_tools.align(a, bs, '␣')
+        print("A", A)
+        print("B", B)
     A, B = isri_tools.get_align_map(a, bs)
+    if debug:
+        print("A", A)
+        print("B", B)
 
     # 4. 
     pos_tags = np.cumsum([len(x) for x in A_chunks[:-1]])
+    if debug:
+        print("pos_tags", pos_tags)
 
     # 5. Reprojet b on the alignment string
     n = max(np.max(A), np.max(B)) + 1
     chr_list = [ '' for i in range(n + 1)]
     for k, c in zip(B, b):
         chr_list[k] = c
+    # print("chr_list", chr_list)
+    # print("n", n, "len(chr_list)", len(chr_list))
 
-
-    # 6. Add tags on the alignment string
-    # FIXME here it would be safer to cut at insertion position, escape XML entities, then recombine
-    for p, tag in zip(reversed(pos_tags), reversed(A_tags)):
+    # 6. Add tags on the alignment string while escaping
+    stack = []
+    left = 0
+    right = left
+    empty_tag = False
+    for p, tag in zip(list(pos_tags), list(A_tags)):
         if tag.startswith("</"):
-            # print(p, a[p-1], chr_list[A[p-1] + 1])
-            chr_list.insert(A[p-1]+1, tag)
+            right = A[p-1] + 1
+            if left+1 == right:
+                print(f"Error: empty tag {tag} after alignment.")
+                empty_tag = True
         else:
-            # print(p, a[p], chr_list[A[p]])
-            chr_list.insert(A[p], tag)
+            right = A[p]
+        sub = chr_list[left:right]
+        if debug:
+            print(left, right, sub)
+        stack.append(xml_escape("".join(sub)))
+        stack.append(tag)
+        left = right
 
-    return "".join(chr_list)
+    right = None
+    sub = chr_list[left:right]
+    if debug:
+        print(left, right, sub)
+        print("")
+    stack.append(xml_escape("".join(sub)))
+
+    return "".join(stack), not empty_tag
 
 
-def remove_xml_tags_and_entities(xml: str) -> str:
-    # We reuse existing functions here
-    chunks, _tags = chop_on_tags(xml, tag_list=TAG_LIST)
-    chunks = list(map(xml_unescape, chunks))
-    return "".join(chunks)
 
+
+
+
+
+
+# ==============================================================================
+# TODO OCR eval
+
+# TODO OCR equivalences
+# TODO case insensitive or not
+# TODO check charset
+# TODO call isri bindings
+
+
+
+OCR_EQUIVALENCE_MAP = [
+# ¹ U+00B9 to U+0031  1   <---- use NFKC for this?
+# ² U+00B2 to U+0032  2
+# ³ U+00B3 to U+0033  3
+# µ U+00B5 to U+03BC  μ
+    # ("\u00BA", "\u006F"), # º U+00BA to U+006F  o
+    # …   U+2026 to U+002E U+002E U+002E    ...  <-------- ???
+
+# ™   U+2122 to U+0054 U+004D   TM
+    # ("\uFB00", "ff"),  # Replace ff, fi, fl, ffi, ffl ligatures with separated 
+    # ("\uFB01", "fi"),  # chars. before Unicode normalization inserts
+    # ("\uFB02", "fl"),  # "200c ZERO WIDTH NON-JOINER"
+    # ("\uFB03", "ffi"), # (actually not wrote to UTF-8 output so not done here)
+    # ("\uFB04", "ffl"),
+# ¼ U+00BC to U+0031 U+002F U+0034  1/4 # done by FRACTION SLASH replace after norm.
+# ½ U+00BD to U+0031 U+002F U+0032  1/2 # done by FRACTION SLASH replace after norm.
+# ¾ U+00BE to U+0033 U+002F U+0034  3/4 # done by FRACTION SLASH replace after norm.
+    # ("Æ", "AE"), # U+00C6
+    # ("æ", "ae"), # U+00E6
+    # ("Œ", "OE"), # U+0152
+    # ("œ", "oe"), # U+0153
+
+    # TODO remove accents? -> extra map
+    ("À", "A"),
+    ("Ç", "C"),
+    ("É", "E"),
+    ("È", "E"),
+    ("Ê", "E"),
+    ("Ë", "E"),
+    ("Î", "I"),
+    ("Ï", "I"),
+    ("Ô", "O"),
+    ("Ö", "O"),
+    ("Û", "U"),
+    ("Ü", "U"),
+    ("à", "a"),
+    ("ç", "c"),
+    ("é", "e"),
+    ("è", "e"),
+    ("ê", "e"),
+    ("ë", "e"),
+    ("î", "i"),
+    ("ï", "i"),
+    ("ô", "o"),
+    ("ö", "o"),
+    ("û", "u"),
+    ("ü", "u"),
+    # ("@", "a"),
+]
+
+
+
+
+
+# ==============================================================================
+# Read UTF-8 file content (opt. strip trailing \n, delete leading BOM…)
+def read_utf8_file(filename: str, strip_training_spaces: bool=False, delete_leading_bom: bool=False) -> str:
+    text = None
+    with io.open(filename, "rt", encoding="UTF-8", newline=None,
+                 errors="strict") as file_input:
+        text = file_input.read()
+    if delete_leading_bom:
+        text = remove_unicode_bom(text)
+    if strip_training_spaces:
+        text = text.rstrip() # this removes any newline and space char
+    return text
 
 def remove_unicode_bom(text: str) -> str:
     if text.startswith("\uFEFF"): # ZERO WIDTH NO-BREAK SPACE // Byte Order Mark
         return text[1:]
     return text
+
+
+
+
+# 8<----------------------------------
+
+# def remove_xml_tags_and_entities(xml: str) -> str:
+#     # We reuse existing functions here
+#     chunks, _tags = chop_on_tags(xml, tag_list=TAG_LIST)
+#     chunks = list(map(xml_unescape, chunks))
+#     return "".join(chunks)
