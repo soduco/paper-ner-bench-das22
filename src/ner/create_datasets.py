@@ -23,30 +23,46 @@ def unwrap(list_of_tuples2):
 # region ~ Sanity checks
 
 
+def check(expected, actual, msg=""):
+    assert actual == expected, msg
+
+
 def check_experiment1_dev_test_sizes(dev, test):
     actual = len(dev)
-    expected = 668
-    assert actual == expected, "Experiment 1: expected dev set of size %d, got %d." % (
-        actual,
+    expected = 709
+    check(
         expected,
+        actual,
+        f"Experiment 1: expected dev set of size {expected}, got {actual}.",
     )
+
     actual = len(test)
-    expected = 1719
-    assert actual == expected, "Experiment 1: expected test set of size %d, got %d." % (
-        actual,
+    expected = 1690
+    check(
         expected,
+        actual,
+        f"Experiment 1: expected dev set of size {expected}, got {actual}.",
     )
 
 
 def check_experiment1_training_subsets_sizes(trainsets):
     actual = len(trainsets)
-    assert actual == 8, "Experiment 1: expected 8 sub-training sets bu got %d" % actual
-    expected = [6012, 3006, 1503, 751, 375, 187, 93, 46]
+    expected = 8
+    check(
+        expected,
+        actual,
+        f"Experiment 1: expected {expected} sub-training sets but got {actual}",
+    )
+
+    expected = [6373, 3186, 1593, 796, 398, 199, 99, 49, 24]
     for ix, actual in enumerate(trainsets):
         actual_len = len(actual)
-        assert (
-            actual_len == expected[ix]
-        ), "Expected sub-training set of size %d, got %d" % (expected[ix], actual_len)
+        expected_len = expected[ix]
+        check(
+            expected_len,
+            actual_len,
+            f"Expected sub-training set of size {expected_len} but got {actual_len}",
+        )
 
 
 # endregion
@@ -75,15 +91,15 @@ def main():
         stratify=groups,
     )
 
-    logger.info("TRAIN: %s, DEV: %s" % (len(train), len(dev)))
-    zipped = zip([train, dev], ["train", "dev"])
-    odir = cfg.DATA_DIR / "datasets"
-    export(odir, zipped)
+    logger.info("Full train: %s, Full dev: %s" % (len(train), len(dev)))
+    # zipped = zip([train, dev], ["train", "dev"])
+    # odir = cfg.DATA_DIR / "datasets"
+    # export(odir, zipped)
 
     ##
     # Create datasets for experiment 1
     ##
-    odir = cfg.DATA_DIR / "experiment_1"
+    odir = cfg.WORKDIR / "experiment_1"
 
     train, dev, test = make_train_dev_test(gold_dataset)
     exp1_trainsets = create_experiment_1_trainsets(train)
@@ -121,11 +137,7 @@ def make_train_dev_test(gold):
     # Split subset_tmp into train (~90%) and dev (~10%) stratified on directories names
     _, groups = unwrap(subset_tmp)
     train_dev = train_test_split(
-        subset_tmp,
-        train_size=0.9,
-        shuffle=True,
-        random_state=cfg.SEED,
-        stratify=groups,
+        subset_tmp, train_size=0.9, shuffle=True, random_state=cfg.SEED, stratify=groups
     )
     train = train_dev[0]
     dev = train_dev[1]
@@ -151,7 +163,8 @@ def create_experiment_1_trainsets(gold_train):
     """
     exp_ts = [gold_train]
     k = len(gold_train)
-    while k > cfg.MIN_TRAINSET_SIZE:
+
+    while True:
         try:
             current = exp_ts[-1]
             _, groups = unwrap(current)
@@ -162,14 +175,17 @@ def create_experiment_1_trainsets(gold_train):
                 random_state=cfg.SEED,
                 stratify=groups,
             )
-            exp_ts.append(smaller)
             k = len(rest)
+            if k < cfg.MIN_TRAINSET_SIZE:
+                break
+            exp_ts.append(smaller)
+
         except ValueError:
             # Stop now if we encounter the error "The least populated class in y has only 1 member".
             break
 
     logger.info(
-        "Experiment 1: %d training sets of sizes %s, %s"
+        "Experiment 1: Generated %d sub-training sets of resp. sizes %s, %s"
         % (
             len(exp_ts),
             [len(s) for s in exp_ts],
@@ -180,7 +196,7 @@ def create_experiment_1_trainsets(gold_train):
     return exp_ts
 
 
-def export(path, ds_with_names, addendum=None):
+def export(output_dir, ds_with_names, addendum=None):
     """Export all datasets in Spacy and Huggingface native formats."""
 
     fname = lambda elemts: "_".join(filter(None, elemts))
@@ -192,13 +208,13 @@ def export(path, ds_with_names, addendum=None):
         data, _ = unwrap(ds)
 
         # Spacy
-        fullpath = path / fname([name, addendum])
-        fullpath = fullpath.with_suffix(".spacy")
+        spacy_file = output_dir / fname([name, addendum])
+        spacy_file = spacy_file.with_suffix(".spacy")
 
         if cfg.DEBUG:
-            np.savetxt(fullpath.with_suffix(".debug"), ds, fmt='"%s","%s"')
+            np.savetxt(spacy_file.with_suffix(".debug"), ds, fmt='"%s","%s"')
 
-        with open(fullpath, "wb") as tf:
+        with open(spacy_file, "wb") as tf:
             bdata = create_spacy_dataset(data).to_bytes()
             tf.write(bdata)
 
@@ -206,8 +222,8 @@ def export(path, ds_with_names, addendum=None):
         hf_dic[name] = create_huggingface_dataset(ds)
 
     bert_ds = DatasetDict(hf_dic)
-    fullpath = path / fname(["huggingface", addendum])
-    bert_ds.save_to_disk(fullpath)
+    hf_file = output_dir / fname(["huggingface", addendum])
+    bert_ds.save_to_disk(hf_file)
 
 
 # endregion

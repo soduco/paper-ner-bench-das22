@@ -98,7 +98,13 @@ def parse_args():
     # parser.add_argument(
     #     "--train_id", type=str, help="Trainset identifier for exp. 1.", required=False
     # )
-    parser.add_argument("--model", type=str, help=f"Name or path to a model. Default is {CAMEMBERT_MODEL}", required=False, default=CAMEMBERT_MODEL)
+    parser.add_argument(
+        "--model",
+        type=str,
+        help=f"Name or path to a model. Default is {CAMEMBERT_MODEL}",
+        required=False,
+        default=CAMEMBERT_MODEL,
+    )
     return parser.parse_args()
 
 

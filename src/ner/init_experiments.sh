@@ -8,13 +8,12 @@
 # ==============================================================================
 # Let's get paranoid
 set -eu
-
-WORKDIR=`dirname $0`
+WORKDIR=`dirname $0` # Set WORKDIR to be the script location
+EXP1=$WORKDIR/experiment_1
 # ==============================================================================
 
 # Make directories
-mkdir -p $DATADIR/experiment_1
-mkdir -p $DATADIR/datasets
+mkdir -p $EXP1
 
 # Build datasets for all experiments
 echo "Initializing training, dev and test datasets"

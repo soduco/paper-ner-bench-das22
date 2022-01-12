@@ -3,11 +3,11 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # This script trains the CNN, BERT & BERT+PRE models on each subsampled 
 # training set created using create_datasets.py and stored
-# in $DATADIR/experiment_1/datasets
+# in $DATADIR/EXP1eriment_1/datasets
 # 
 # The validation and test sets remain untouched.
 # Precision, recall and F1 scores are measured against the test set
-# and stored in $DATADIR/experiment_1/metrics 
+# and stored in $DATADIR/EXP1eriment_1/metrics 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # ==============================================================================
@@ -15,11 +15,10 @@
 set -eu
 
 # Constants
-EXP1=$DATADIR/experiment_1
+WORKDIR=`dirname $0` # Set WORKDIR to be the script location
+EXP1=$WORKDIR/experiment_1
 METRICS=$EXP1/metrics
-MODEL_PRETRAINED=$DATADIR/pretraining/camembert_best
-
-WORKDIR=`dirname $0`
+MODEL_PRETRAINED="HueyNemud/berties-pretrained-das22"
 # ==============================================================================
 
 
@@ -63,20 +62,18 @@ function train_eval_cnn() {
 # ------------------------------------------------------------------------------
 function train_eval_camembert() {
     # Args: trainset sizes
-    dir=`dirname $0`
     for size in $@; do
         datasetdict="$EXP1/huggingface_$size"
-        python $dir/camembert.py $datasetdict "$METRICS/camembert_${size}"
+        python $WORKDIR/camembert.py $datasetdict "$METRICS/camembert_${size}"
     done
 }
 
 # ------------------------------------------------------------------------------
 function train_eval_camembert_pretrained() {
     # Args: trainset sizes
-    dir=`dirname $0`
     for size in $@; do
         datasetdict="$EXP1/huggingface_$size"
-        python $dir/camembert.py $datasetdict "$METRICS/camembert_pretrained_${size}" \
+        python $WORKDIR/camembert.py $datasetdict "$METRICS/camembert_pretrained_${size}" \
             --model $MODEL_PRETRAINED
     done
 }
@@ -85,8 +82,8 @@ function train_eval_camembert_pretrained() {
 function main() {
     mkdir -p $METRICS
     train_eval_cnn $(train_sizes)
-    train_eval_camembert $(train_sizes)
-    train_eval_camembert_pretrained $(train_sizes)
+    #train_eval_camembert $(train_sizes)
+    #train_eval_camembert_pretrained $(train_sizes)
 }
 
 # ==============================================================================
