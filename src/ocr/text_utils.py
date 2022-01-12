@@ -305,6 +305,7 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
             or 0x0100 <= codepoint <= 0x017F  # Latin Extended-A
             or 0x0200 <= codepoint <= 0x026F  # General Punctuation
             or codepoint == 0x2014  # — EM DASH
+            or codepoint == 0x2029 # Paragraph Separator
             or codepoint in (0x24b6, 0x24b7, 0x24c4, 0x24c5, 0x24cb) # Ⓐ, Ⓑ, Ⓞ, Ⓟ, Ⓥ: Enclosed Alphanumerics (2460–24FF)
             or codepoint in (0x261E, )  # 0x261E:☞ (0x2605: ★): Miscellaneous Symbols (2600–26FF)
             or codepoint in (0x2709, )  # ✉: Dingbats (2700–27BF)
@@ -346,7 +347,7 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
 # ==============================================================================
 # Fix manual NER XML (raw NER reference)
 # Expected input: NER "XML" produced with annotation tool (contains annotation, 
-# un-normalized charset and lacks XML escaping)
+# un-normalized charset but MAY contain XML escaping)
 # Output: Clean NER XML to be used as reference (/!\ newlines encoded as PS)
 # Transformation: can add, remove and change chars
 
@@ -363,7 +364,8 @@ def fix_manual_ner_xml(ner_xml_orig: str) -> str:
     chunks, tags = chop_on_tags(fixed, tag_list=TAG_LIST)
     assert(len(chunks) == len(tags) + 1)
 
-    # Note: We don't unescape XML entities here as the GUI tools doesn't do it.
+    # Unescape XML entities if we have some.
+    chunks = list(map(xml_unescape, chunks))
 
     # Replace annotation codes (e.g. "::LH::") with (private if needed) unicode chars
     chunks = list(map(replace_annotation_codes, chunks))
