@@ -1,7 +1,7 @@
 % !TeX root = ../main-paper.tex
 \section{Results}
 
-\subsection{Experiment 1: Accuracy vs NER approach vs training set size}
+\subsection{Experiment 1: NER sensibility to the number of training samples}
 
 Qualitative results
 \textbf{TODO random samples of results + selection of failure cases}
@@ -15,6 +15,7 @@ Quantitative results: table + graph ideally (with training set size info)
 \centering
 \begin{tabular}[t]{lcccccccc}
 \toprule
+Trainset size (entries) & 49 & 99 & 199 & 398 & 796 & 1593 & 3186 & 6373\\
 Trainset size (\% of the full trainset) & 0.8 & 1.5 & 3.1 & 6.2 & 12.5 & 25 & 50 & 100\\
 \midrule
 Cnn & \textbf{0.855} & \textbf{0.885} & \textbf{0.910} & 0.911 & 0.919 & 0.925 & 0.926 & 0.929\\
@@ -33,7 +34,7 @@ Camembert+pretraining & 0.190 & 0.685 & 0.889 & 0.913 & \textbf{0.930} & \textbf
 	                                        
 
 
-\subsection{Experiment 3: Accuracy vs NER approach vs OCR noise}
+\subsection{Experiment 2: NER in the presence of noisy OCR texts}
 
 Qualitative results
 \textbf{TODO random samples of results + selection of failure cases}
@@ -43,15 +44,16 @@ Quantitative results: table + graph ideally (with OCR noise, same format as prev
 Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy, clean} datasets
 
 
-\begin{table}
+\begin{table}[h!]
 \caption{Camembert vs noise}
 \centering
-\begin{tabular}{ll|ll|l}
-                            &                      & \multicolumn{2}{l|}{Training data} &   \\
-                            &                      & noisy & clean                      &   \\ 
+\begin{tabular}{ll|cc|c}
+ & & \multicolumn{2}{c|}{Training data} & \\
+ & & noisy & clean &   \\ 
 \cline{1-4}
-\multirow{2}{*}{Test data } & noisy                & f1    & f1                         &   \\
-                            & clean                & f1    & f1                         &   \\ 
+\multirow{3}{*}{Test data}& noisy gold (Tesseract) & f1 & f1 & \\
+                            & noisy gold (Pero-OCR) & f1 & f1 & \\ 
+                            & reference gold & f1 & f1 & \\ 
 \cline{1-4}
                             & \multicolumn{1}{l}{} &       & \multicolumn{1}{l}{}       &   \\
                             & \multicolumn{1}{l}{} &       & \multicolumn{1}{l}{}       &  
