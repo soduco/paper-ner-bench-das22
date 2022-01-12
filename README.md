@@ -23,6 +23,9 @@ Code could be either under another subdirectory or in another repo…
 ## Dataset
 Depending on the size of the dataset, we will either share it with GitHub, or with Zenodo.
 
+Pour l'instant l'asset des images + vignettes est ici:
+https://cloud.lrde.epita.fr/s/a8CXFxz4954SDMw
+
 ## Official assets
 Maybe the current repo should remain public, and we copy/paste the relevant content on a public repo upon publication.
 Or we just set it public after.
