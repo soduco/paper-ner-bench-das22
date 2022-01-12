@@ -783,8 +783,8 @@ def remove_unicode_bom(text: str) -> str:
 
 # 8<----------------------------------
 
-# def remove_xml_tags_and_entities(xml: str) -> str:
-#     # We reuse existing functions here
-#     chunks, _tags = chop_on_tags(xml, tag_list=TAG_LIST)
-#     chunks = list(map(xml_unescape, chunks))
-#     return "".join(chunks)
+def remove_xml_tags_and_entities(xml: str) -> str:
+    # We reuse existing functions here
+    chunks, _tags = chop_on_tags(xml, tag_list=TAG_LIST)
+    chunks = list(map(xml_unescape, chunks))
+    return "".join(chunks)
