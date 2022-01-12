@@ -634,7 +634,7 @@ def simplify_for_alignment(text: str, case_insensitive=True) -> str:
     return simplified
 
 
-def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) -> Tuple[str, bool]:
+def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) -> str:
     """Align NER tag positions from reference to noisy OCR.
 
     Args:
@@ -649,8 +649,11 @@ def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) ->
         ValueError: If OCR text charset is invalid
 
     Returns:
-        Tuple[str, bool]: (xml, no_empty_tag) XML with projected tags and wether this looks correct.
+        xml (str): XML with projected tags.
     """
+    if len(ner_xml_final) == 0:
+        raise ValueError("Alignment from empty ref is undefined.")
+
     # 1. Process ner_xml_final
     # => Assume we already have a clean valid XML content with normalized unicode
     # text without any annotation codes
@@ -688,6 +691,10 @@ def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) ->
     if debug:
         print("A", A)
         print("B", B)
+    
+    # Shortcut when B is empty
+    if len(B) == 0:
+        return "".join(A_tags)
 
     # 4. 
     pos_tags = np.cumsum([len(x) for x in A_chunks[:-1]])
@@ -706,13 +713,9 @@ def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) ->
     stack = []
     left = 0
     right = left
-    empty_tag = False
     for p, tag in zip(list(pos_tags), list(A_tags)):
         if tag.startswith("</"):
             right = A[p-1] + 1
-            if left+1 == right:
-                print(f"Error: empty tag {tag} after alignment.")
-                empty_tag = True # FIXME check string content instead
         else:
             right = A[p]
         sub = chr_list[left:right]
@@ -728,8 +731,10 @@ def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) ->
         print(left, right, sub)
         print("")
     stack.append(xml_escape("".join(sub)))
-
-    return "".join(stack), not empty_tag
+    res = "".join(stack)
+    if debug:
+        print(f"OUT: \t{res}")
+    return res
 
 
 

@@ -27,19 +27,23 @@ def test_str_rstrip_removes_all_newlines():
     s = "abc \u000A \u000B \u000C \u000D \u0085 \u2028 \u2029"
     assert(s.rstrip() == "abc")
 
-def test_align_ner_1():
+def test_add_tags_prediction():
     A = "<PER>Anthony</PER> \uE001, <FT>fab.</FT> du <ACT>pêche</ACT>, <LOC>Châtelet</LOC>xx"
     B = "\u261E Mme Antoine, \uE00A fab la p&cheur et \ndu ch>telet et du Faub. St Antoine"
-    R, no_empty_tag = add_tags_prediction(A, B)
-    assert(no_empty_tag)
+    R = add_tags_prediction(A, B)
     assert(R == "\u261E Mme <PER>Antoine</PER>, \uE00A <FT>fab</FT> la <ACT>p&amp;che</ACT>ur et \u2029du <LOC>ch&gt;telet</LOC> et du Faub. St Antoine")
 
-def test_align_ner_1():
     A = "<PER>Anthony</PER> \uE001, <FT>fab</FT><FT>.</FT> du <ACT>pêche</ACT>, <LOC>Châtelet</LOC>xx"
     B = "\u261E Mme Antoine, \uE00A fab la p&cheur et \ndu ch>telet et du Faub. St Antoine"
-    R, no_empty_tag = add_tags_prediction(A, B)
-    assert(not no_empty_tag)
+    R = add_tags_prediction(A, B)
     assert(R == "\u261E Mme <PER>Antoine</PER>, \uE00A <FT>fab</FT><FT></FT> la <ACT>p&amp;che</ACT>ur et \u2029du <LOC>ch&gt;telet</LOC> et du Faub. St Antoine")
+
+    A = "<PER>Anthony</PER> \uE001, <FT>fab</FT><FT>.</FT> du <ACT>pêche</ACT>, <LOC>Châtelet</LOC>xx"
+    B = ""
+    R = add_tags_prediction(A, B)
+    assert(R == "<PER></PER><FT></FT><FT></FT><ACT></ACT><LOC></LOC>")
+
+
 
 def test_xml_contains_empty_tags():
     XML = "<PER>Lebas (en gros)</PER>,<PER> </PER><LOC>R. et Div. de la Fraternité</LOC>, <CARDINAL>91</CARDINAL>."
