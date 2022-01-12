@@ -1,9 +1,19 @@
 % !TeX root = ../main-paper.tex
 \section{NER Approaches}
+Four approaches, one rules-based, three learning-based.
+
+\paragraph{Regexp}
+::TODO::
+
+\paragraph{Spacy 3 transition-based NER.}
+The \textit{of the shelf} NLP library SpaCY offers a named entity recognition tool based on an ad hoc architecture which has not been yet published but is explained by the developers on their website. Although the latest version of SpaCy (v3) leverages BERT models, we could not use them as no NER pipeline is available for the French language at the time of our experiments\footnote{https://spacy.io/models/fr}. The vanilla NER pipeline is two-fold. Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}. The decision layer is an adaptation of the transition-based model presented in~\cite{lample2016}. As words are processed sequentially, their vectors are concatenated with those in the last known entities to encode the nearby predicted semantics as a dynamic attention mechanism. The classification layer relies on a finite-state machine whose transition probabilities are learned using a multi-layer perceptron.
+In 2018~\cite{won2018} compared SpaCy's vanilla NER performances on historical texts about places with several other software packages (Stanford-NER, Ner-Tagger, Edinburgh Geopoarser and Polyglot). Results showed SpaCy to be average with a F1-score of 0.57. The SpaCy developers claims an accuracy of 0.85 for the English NER pipeline \textit{en\_core\_web\_lg} on the OntoNotes 5.0 corpus\footnote{https://spacy.io/usage/facts-figures}.
+
+\paragraph{CamemBERT \& CamemBERT+pretraining on historical directories}
+::TODO::
 
 \begin{itemize}
     \item regexp
-    \item Spacy CNN  : tok2vec tokenizer + transition based NER
     \item CamemBERT finetuned with wikiner-fr + gold dataset (clean texts)
     \item CamemBERT finetuned with wikiner-fr + gold dataset (clean texts + pretrained on raw texts (Pero ? Kraken ? Both ?)
 \end{itemize}
