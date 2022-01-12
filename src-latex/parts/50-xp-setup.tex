@@ -12,11 +12,18 @@
 
 \subsection{Cases studies}
 \subsubsection{Experiment 1: NER sensibility to the number of training samples}
-The first experiment evaluates the performances of the three models on training sets of different sizes. To do so we split the gold reference into a training set, a development set and a test set. The training set is then gradually reduced in size while maintaining the relative frequency of directories within. The training and testing procedure is the same for the three models.
+The first experiment evaluates the performances of the three models on training sets of different sizes.
+To do so we split the gold reference into a training set, a development set and a test set. The training set is then gradually reduced in size while maintaining the relative frequency of directories within.
+The training and testing procedure is the same for the three models.
 
-As the form an structure of entries varies across directories collections and through time, the models may learn to overfit on a subset of directories with specific features. To reduce the evaluation bias we start by leaving out 3 directories (1690 entries, ~20\%) from the gold reference to test each model on unseen directories. Then a stratified sampling based on the entry directory name is applied to the remaining set to create a training (6373 entries, ~71\% of the gold reference) and a development set (709 entries, ~8\%). This sampling procedure is a convenient way to shape both sets to reflect the diversity of directories within the gold reference.
+As the form an structure of entries varies across directories collections and through time, the models may learn to overfit on a subset of directories with specific features.
+To reduce the evaluation bias we start by leaving out 3 directories (1690 entries, ~20\%) from the gold reference to test each model on unseen directories.
+Then a stratified sampling based on the entry directory name is applied to the remaining set to create a training (6373 entries, ~71\% of the gold reference) and a development set (709 entries, ~8\%).
+This sampling procedure is a convenient way to shape both sets to reflect the diversity of directories within the gold reference.
 
-To generate smaller training sets we start from the initial training set and attractively split it in half using the same stratified sampling strategy. We stop if there is only one entry left in a directory or if the current train set contains less than 30 entries. Applying this procedure to the initial training set produced 8 training sets containing 49, 99, 199, 398, 796, 1593, 3186 and 6373 entries.
+To generate smaller training sets we start from the initial training set and attractively split it in half using the same stratified sampling strategy.
+We stop if there is only one entry left in a directory or if the current train set contains less than 30 entries.
+Applying this procedure to the initial training set produced 8 training sets containing 49, 99, 199, 398, 796, 1593, 3186 and 6373 entries.
 
 % Move to metrics ?
 All metrics are evaluated on the test set, yet the biased model performances on the development sets are add in the paper material as additional information.
