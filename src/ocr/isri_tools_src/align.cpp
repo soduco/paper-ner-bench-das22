@@ -107,4 +107,3 @@ void init_align(pybind11::module* m)
   m->def("get_align_map", &get_align_map, "Get the mapping between two strings");
 }
 
-
