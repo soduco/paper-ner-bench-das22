@@ -138,7 +138,7 @@ UNICODE_SIMPLIFICATIONS_SINGLE_CHAR = str.maketrans({
     "\u2011": "\u002D", #  NON-BREAKING HYPHEN
     "\u2012": "\u002D", # ‒ FIGURE DASH
     "\u2013": "\u002D", # – EN DASH
-    "\u2014": "\u002D", # — EM DASH
+    # "\u2014": "\u002D", # — EM DASH  # /!\ kept because we have special chars like this
     "\u2015": "\u002D", # ― HORIZONTAL BAR
     "\u2E3A": "\u002D", # ⸺  two-em dash
     "\u2E3B": "\u002D", # ⸻ THREE-EM DASH
@@ -296,7 +296,7 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
             or 0xD800 <= codepoint <= 0xDFFF  # surrogates
             or codepoint > 0xFFFF):  # large codepoints
             errors += 1
-            print(f"Invalid char@{pos:03d}: {hex(ord(char))} ({_unichr2str(char)}"
+            print(f"Invalid char@{pos:03d}:   ({hex(ord(char))} {_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
         elif not (
             codepoint == ord("\n")
@@ -304,6 +304,7 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
             or 0x00A0 <= codepoint <= 0x00FF  # Latin-1_Supplement
             or 0x0100 <= codepoint <= 0x017F  # Latin Extended-A
             or 0x0200 <= codepoint <= 0x026F  # General Punctuation
+            or codepoint == 0x2014  # — EM DASH
             or codepoint in (0x24b6, 0x24b7, 0x24c4, 0x24c5, 0x24cb) # Ⓐ, Ⓑ, Ⓞ, Ⓟ, Ⓥ: Enclosed Alphanumerics (2460–24FF)
             or codepoint in (0x261E, )  # 0x261E:☞ (0x2605: ★): Miscellaneous Symbols (2600–26FF)
             or codepoint in (0x2709, )  # ✉: Dingbats (2700–27BF)
@@ -311,10 +312,10 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
             or 0xFB00 <= codepoint <= 0xFB06  # ﬀ, ﬁ, ﬂ, ﬃ, ﬄ, ﬅ, ﬆ (ligatures)
             or codepoint == 0xFFFD  # � REPLACEMENT CHARACTER
             ):
-            print(f"Suspect char@{pos:03d}: {char_str} ({_unichr2str(char)}"
+            print(f"Suspect char@{pos:03d}: {char_str} ({hex(ord(char))} {_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
         elif show_all:
-            print(f"  Valid char@{pos:03d}: {char_str} ({_unichr2str(char)}"
+            print(f"  Valid char@{pos:03d}: {char_str} ({hex(ord(char))} {_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
     # if not unicodedata.is_normalized('NFKC', text_to_align):
     #     # Note: circled letter symbols do not seem to comply with NFKC.
@@ -333,10 +334,10 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
         for char, count in charset.most_common():
             char_str = _char_str(char)
             try:
-                print(f"  {count:3d} | {char_str} ({_unichr2str(char)}"
+                print(f"  {count:3d} | {char_str} ({hex(ord(char))} {_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
             except UnicodeEncodeError:
-                print(f"  {count:3d} | {hex(ord(char))} ({_unichr2str(char)}"
+                print(f"  {count:3d} | ({hex(ord(char))} {_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
         print("")
     return errors == 0
@@ -439,6 +440,7 @@ ALIGNMENT_SIMPLIFICATION_TABLE = str.maketrans({
     "Û": "U",
     "Ü": "U",
     "à": "a",
+    "â": "a",
     "ç": "c",
     "é": "e",
     "è": "e",
@@ -460,6 +462,77 @@ ALIGNMENT_SIMPLIFICATION_TABLE = str.maketrans({
     ";": ".",
     "?": "!",
     "\n": " ",  # easier debugging
+    "\u2014": "\u002D", # — EM DASH  # /!\ kept because we have special chars like this
+    "~": "-",
+    "\u0192": "f",  # ƒ (0x192 LATIN SMALL LETTER F WITH HOOK -- cat.: Ll)
+    "\u017f": "f",  # ſ 0x17f LATIN SMALL LETTER LONG S
+    # Cyrillic (because Pero does output some of these)
+    "\u0410": "A",  # 0410 А CYRILLIC CAPITAL LETTER A
+    "\u0411": "B",  # 0411 Б CYRILLIC CAPITAL LETTER BE
+    "\u0412": "B",  # 0412 В CYRILLIC CAPITAL LETTER VE
+    "\u0413": "T",  # 0413 Г CYRILLIC CAPITAL LETTER GHE
+    "\u0414": "A",  # 0414 Д CYRILLIC CAPITAL LETTER DE
+    "\u0415": "E",  # 0415 Е CYRILLIC CAPITAL LETTER IE
+    "\u0416": "X",  # 0416 Ж CYRILLIC CAPITAL LETTER ZHE
+    "\u0417": "3",  # 0417 З CYRILLIC CAPITAL LETTER ZE
+    "\u0418": "N",  # 0418 И CYRILLIC CAPITAL LETTER I
+    "\u0419": "N",  # 0419 Й CYRILLIC CAPITAL LETTER SHORT I
+    "\u041A": "K",  # 041A К CYRILLIC CAPITAL LETTER KA
+    "\u041B": "A",  # 041B Л CYRILLIC CAPITAL LETTER EL
+    "\u041C": "M",  # 041C М CYRILLIC CAPITAL LETTER EM
+    "\u041D": "H",  # 041D Н CYRILLIC CAPITAL LETTER EN
+    "\u041E": "O",  # 041E О CYRILLIC CAPITAL LETTER O
+    "\u041F": "M",  # 041F П CYRILLIC CAPITAL LETTER PE
+    "\u0420": "P",  # 0420 Р CYRILLIC CAPITAL LETTER ER
+    "\u0421": "C",  # 0421 С CYRILLIC CAPITAL LETTER ES
+    "\u0422": "T",  # 0422 Т CYRILLIC CAPITAL LETTER TE
+    "\u0423": "y",  # 0423 У CYRILLIC CAPITAL LETTER U
+    "\u0424": "O",  # 0424 Ф CYRILLIC CAPITAL LETTER EF
+    "\u0425": "X",  # 0425 Х CYRILLIC CAPITAL LETTER HA
+    "\u0426": "U",  # 0426 Ц CYRILLIC CAPITAL LETTER TSE
+    "\u0427": "y",  # 0427 Ч CYRILLIC CAPITAL LETTER CHE
+    "\u0428": "W",  # 0428 Ш CYRILLIC CAPITAL LETTER SHA
+    "\u0429": "W",  # 0429 Щ CYRILLIC CAPITAL LETTER SHCHA
+    "\u042A": "b",  # 042A Ъ CYRILLIC CAPITAL LETTER HARD SIGN
+    "\u042B": "bl",  # 042B Ы CYRILLIC CAPITAL LETTER YERU
+    "\u042C": "b",  # 042C Ь CYRILLIC CAPITAL LETTER SOFT SIGN
+    "\u042D": "3",  # 042D Э CYRILLIC CAPITAL LETTER E
+    "\u042E": "IO",  # 042E Ю CYRILLIC CAPITAL LETTER YU
+    "\u042F": "A",  # 042F Я CYRILLIC CAPITAL LETTER YA
+    "\u0430": "a",  # 0430 а CYRILLIC SMALL LETTER A
+    "\u0431": "b",  # 0431 б CYRILLIC SMALL LETTER BE
+    "\u0432": "B",  # 0432 в CYRILLIC SMALL LETTER VE
+    "\u0433": "T",  # 0433 г CYRILLIC SMALL LETTER GHE
+    "\u0434": "A",  # 0434 д CYRILLIC SMALL LETTER DE
+    "\u0435": "e",  # 0435 е CYRILLIC SMALL LETTER IE
+    "\u0436": "x",  # 0436 ж CYRILLIC SMALL LETTER ZHE
+    "\u0437": "3",  # 0437 з CYRILLIC SMALL LETTER ZE
+    "\u0438": "n",  # 0438 и CYRILLIC SMALL LETTER I
+    "\u0439": "n",  # 0439 й CYRILLIC SMALL LETTER SHORT I
+    "\u043A": "K",  # 043A к CYRILLIC SMALL LETTER KA
+    "\u043B": "n",  # 043B л CYRILLIC SMALL LETTER EL
+    "\u043C": "m",  # 043C м CYRILLIC SMALL LETTER EM
+    "\u043D": "H",  # 043D н CYRILLIC SMALL LETTER EN
+    "\u043E": "o",  # 043E о CYRILLIC SMALL LETTER O
+    "\u043F": "n",  # 043F п CYRILLIC SMALL LETTER PE
+    "\u0440": "p",  # 0440 р CYRILLIC SMALL LETTER ER
+    "\u0441": "c",  # 0441 с CYRILLIC SMALL LETTER ES
+    "\u0442": "T",  # 0442 т CYRILLIC SMALL LETTER TE
+    "\u0443": "y",  # 0443 у CYRILLIC SMALL LETTER U
+    "\u0444": "o",  # 0444 ф CYRILLIC SMALL LETTER EF
+    "\u0445": "x",  # 0445 х CYRILLIC SMALL LETTER HA
+    "\u0446": "u",  # 0446 ц CYRILLIC SMALL LETTER TSE
+    "\u0447": "y",  # 0447 ч CYRILLIC SMALL LETTER CHE
+    "\u0448": "w",  # 0448 ш CYRILLIC SMALL LETTER SHA
+    "\u0449": "w",  # 0449 щ CYRILLIC SMALL LETTER SHCHA
+    "\u044A": "b",  # 044A ъ CYRILLIC SMALL LETTER HARD SIGN
+    "\u044B": "bl",  # 044B ы CYRILLIC SMALL LETTER YERU
+    "\u044C": "b",  # 044C ь CYRILLIC SMALL LETTER SOFT SIGN
+    "\u044D": "3",  # 044D э CYRILLIC SMALL LETTER E
+    "\u044E": "o",  # 044E ю CYRILLIC SMALL LETTER YU
+    "\u044F": "A",  # 044F я CYRILLIC SMALL LETTER YA
+    "\u0450": "e",  # 0450 ѐ CYRILLIC SMALL LETTER IE WITH GRAVE
+    "\u0451": "e",  # 0451 ё CYRILLIC SMALL LETTER IO
 })
 
 
@@ -648,6 +721,10 @@ OCR_EQUIVALENCE_MAP = [
     # ("æ", "ae"), # U+00E6
     # ("Œ", "OE"), # U+0152
     # ("œ", "oe"), # U+0153
+
+    ("\u2014", "\u002D"), # — EM DASH  # /!\ kept because we have special chars like this
+
+    # TODO equivalence for cyrillic chars? maybe not, this is due to bad word script decision
 
     # TODO remove accents? -> extra map
     ("À", "A"),
