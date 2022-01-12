@@ -97315,7 +97315,7 @@
     "book": "Duverneuil_et_La_Tynna_1801",
     "page": 401,
     "text_ocr": "Lebas (en gros), R. et Div. de la Fraternit\u00e9, 91.",
-    "ner_xml": "<PER>Lebas (en gros)</PER>,<PER> </PER><LOC>R. et Div. de la Fraternit\u00e9</LOC>, <CARDINAL>91</CARDINAL>."
+    "ner_xml": "<PER>Lebas (en gros)</PER>, <LOC>R. et Div. de la Fraternit\u00e9</LOC>, <CARDINAL>91</CARDINAL>."
   },
   {
     "id": 370,

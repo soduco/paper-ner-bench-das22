@@ -24,6 +24,17 @@ logger = logging.getLogger(__name__)
 # Some constants
 TAG_LIST = ["PER", "LOC", "ACT", "CARDINAL", "FT", "TITRE"]
 
+_newline_chars = "\u000A\u000B\u000C\u000D\u0085\u2028\u2029"
+_space_chars = "\u0020\u0009\u00A0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F"
+# _empty_chars = ""  # Not managed here
+
+REGEX_EMPTY_TAGS = (
+    r"<(\L<tag>)>(["
+         + _newline_chars 
+         + _space_chars 
+         + r"]*)</(?1)>")
+
+WHITESPACE_ONLY_STR_RE = "^[" + _newline_chars + _space_chars + "]*$"
 
 # ==============================================================================
 # Annotation codes projection to Unicode chars
@@ -257,6 +268,7 @@ def simplify_unicode_charset(text: str) -> str:
 
 # ==============================================================================
 # Check OCR reference charset
+# TODO extract codepoint ranges to some contant list
 def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_all: bool=False) -> bool:
     """Check the string passed as parameter contains only acceptable
     unicode code points for the alignment.
@@ -354,7 +366,7 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
 def fix_manual_ner_xml(ner_xml_orig: str) -> str:
     # Get a clean line
     fixed = remove_unicode_bom(ner_xml_orig)
-    fixed = fixed.rstrip()  # removes any training whitespace and newline char
+    fixed = fixed.strip() # remove leading and trailing whitespaces
 
     # Sanity check
     if not check_xml(fixed, taglist=TAG_LIST):
@@ -380,10 +392,44 @@ def fix_manual_ner_xml(ner_xml_orig: str) -> str:
     # Recreate string (recombine chunks and tags)
     final_list = []
     tags.append("")
+    has_empty_tags = False
     for c, t in zip(chunks, tags):
+        # If we have an empty chunk, remove the tags
+        removetag_empty = (t.startswith("</")  # on closing tag
+            and regex.match(WHITESPACE_ONLY_STR_RE, c, flags=regex.MULTILINE)  # empty content
+            and len(final_list) > 1  # not at the start of list (should always be true)
+            and len(final_list[-1]) > 2  # should always be true
+            and not final_list[-1].startswith("</")  # remove only if previous tag
+            and final_list[-1].startswith("<")  #  is an opening tag
+            )
+        # Also remove touching tags if they are the same
+        removetag_touching = (not t.startswith("</")  # on opening tag
+            and len(c) == 0  # and empty chunk
+            and len(final_list) > 1  # not at the start of list
+            and len(final_list[-1]) > 2  # can extract substring
+            and final_list[-1][2:] == t[1:])  # same tag values
+        removetag = removetag_empty or removetag_touching
+        reason = "Empty" if removetag_empty else "Touching"
+        if removetag:
+            prev = final_list.pop() # we checked tag order previously and don't change it here
+            print(f"Remove tag pair: {prev}-{t}. Reason: {reason}")
+            has_empty_tags = True
         final_list.append(c)
-        final_list.append(t)
+        if not removetag:
+            final_list.append(t)
     fixed_final = "".join(final_list)
+
+    # Strip one last time as we may have changed some content
+    fixed_final = fixed_final.strip()
+
+    if has_empty_tags:
+        print("Removed tag pair(s) in this entry:")
+        print(f" IN:\t{ner_xml_orig}")
+        print(f"OUT:\t{fixed_final}")
+
+    # Check/remove for empty tags
+    if xml_contains_empty_tags(fixed_final, tag_list=TAG_LIST):
+        raise ValueError("Found empty tag(s). Should have been fixed before.")
 
     # Final charset check
     if not check_alignment_charset(fixed_final):
@@ -411,7 +457,7 @@ def xml_unescape(xml: str, ps_to_nl: bool=True) -> str:
     # with extra chars
     unesc = xml
     if ps_to_nl:
-        unesc = unesc.replace("\u2029", "\n")  # use &#20209; instead?
+        unesc = unesc.replace("\u2029", "\n")  # use &#2029; instead?
     unesc = unesc.replace("&apos;", "'")
     unesc = unesc.replace("&quot;", "\"")
     unesc = unesc.replace("&gt;", ">")
@@ -666,7 +712,7 @@ def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) ->
             right = A[p-1] + 1
             if left+1 == right:
                 print(f"Error: empty tag {tag} after alignment.")
-                empty_tag = True
+                empty_tag = True # FIXME check string content instead
         else:
             right = A[p]
         sub = chr_list[left:right]
@@ -780,11 +826,18 @@ def remove_unicode_bom(text: str) -> str:
 
 
 
-
-# 8<----------------------------------
+# ==============================================================================
+# other tools
 
 def remove_xml_tags_and_entities(xml: str) -> str:
     # We reuse existing functions here
     chunks, _tags = chop_on_tags(xml, tag_list=TAG_LIST)
     chunks = list(map(xml_unescape, chunks))
     return "".join(chunks)
+
+def xml_contains_empty_tags(unescaped_xml: str, tag_list=TAG_LIST) -> bool:
+    mm = regex.search(REGEX_EMPTY_TAGS, unescaped_xml, tag=tag_list, flags=regex.MULTILINE)
+    return mm is not None
+
+def xml_remove_empty_tags(unescaped_xml: str, tag_list=TAG_LIST) -> bool:
+    return regex.sub(REGEX_EMPTY_TAGS, r'\2', unescaped_xml, tag=tag_list, flags=regex.MULTILINE)
