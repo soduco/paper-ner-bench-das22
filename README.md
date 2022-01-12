@@ -15,19 +15,16 @@ Structure:
 - main latex file for the paper is `src-latex/main-paper.tex`
 - sub-parts are under `src-latex/parts/` to limit edition conflicts ← edit `.tex` files here
 
-
 ## Code
 Code is in `src/` for the most part. I guess some of the code is still on python notebooks ?
 
-
-c
 Depending on the size of the dataset, we will either share it with GitHub, or with Zenodo.
 
 Pour l'instant l'asset des images + vignettes est ici:
 https://cloud.lrde.epita.fr/s/a8CXFxz4954SDMw
 
-## Models
-Huggingface models are shared don Huggingface Hub:
+## Models
+Huggingface models are shared on Huggingface Hub:
 - CamemBERT simple: ::TODO:: 
 - CamemBERT pretrained: https://huggingface.co/HueyNemud/berties-pretrained-das22
 Users can simple import those models in Python using `model.from_pretrained('berties-pretrained-das22')`
