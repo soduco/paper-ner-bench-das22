@@ -155,8 +155,49 @@ get_accuracy_stats (std::wstring ref, std::wstring prediction)
   auto data = std::make_unique<Accdata> ();
   process_synclist (texts, &synclist, data.get());
 
+  list_empty(&A, nullptr);
+  list_empty(&B, nullptr);
+
   return data;
 }
+
+std::unique_ptr<Accdata>
+get_accuracy_summary(const std::vector<std::wstring>& ref, const std::vector<std::wstring>& prediction)
+{
+
+
+
+  if (ref.size() != prediction.size())
+    throw std::runtime_error("Incompatible list size.");
+
+  std::size_t n = ref.size();
+
+  std::unique_ptr<Accdata> stats = get_accuracy_stats(ref[0], prediction[0]);
+
+  Text A;
+  Text B;
+
+  for (std::size_t i = 1; i < n; ++i)
+  {
+    list_initialize (&A);
+    list_initialize (&B);
+    text_from_string (&A, ref[i]);        // 16 bit fixed encoding only for now
+    text_from_string (&B, prediction[i]); // 16 bit fixed encoding only for now
+    Synclist synclist;
+    Text texts[2] = { A, B };
+    fastukk_sync (&synclist, texts);
+    process_synclist (texts, &synclist, stats.get());
+    list_empty(&synclist, [](void* x) {
+      Sync* e = (Sync*)x;
+      if (e->substr) free(e->substr);
+      if (e->match) free(e->match);
+    });
+    list_empty(&A, nullptr);
+    list_empty(&B, nullptr);
+  }
+  return stats;
+}
+
 
 std::wstring
 print_accurary_report (Accdata *data)
@@ -239,5 +280,5 @@ init_accuracy (py::module &m)
     .def_readonly ("false_marks", &Accdata::false_marks, "number of false marks")
     .def ("__repr__", &print_accurary_report);
   m.def ("compute_accurary_stats", &get_accuracy_stats);
-  m.def ("accurary_summary", &accuracy_summary);
+  m.def ("compute_accurary_summary", &get_accuracy_summary);
 }

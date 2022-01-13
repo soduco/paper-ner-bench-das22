@@ -143,6 +143,7 @@ void list_empty(void *list_, void (*process_item)(void*))
     {
 	item = list->first;
 	list_remove(list, item);
-	(*process_item)(item);
+    if (process_item)
+	    (*process_item)(item);
     }
 }
