@@ -1,63 +1,77 @@
 % !TeX root = ../main-paper.tex
 \section{Dataset}
 
-In this work, we  aim  at  producing  structured  spatio-temporal  data  from the information contained in the 19th century Parisian trade directories.
-To do this, it is therefore necessary to extract the text from the scans of the directories to be processed and to identify the entries in the various indexing lists used.
-Then, in each of these entries, the named entities they contain have to be extracted to produce structured spatio-temporal data representing the evolution over time of the people and businesses listed in these directories, their descriptions and their locations.
-Both of these extraction tasks require data to train and evaluate the OCR and NER approaches identified as potentially relevant: Tesseract and PERO OCR for the OCR task and Spacy, and CamemBERT - pre-trained or fine-tuned - neural models for the NER task.
+%In this work, we  aim  at  producing  structured  spatio-temporal  data  from the information contained in the XIX\textsuperscript{th} century Parisian trade directories.
+%To do this, it is therefore necessary to extract the text from the scans of the directories to be processed and to identify the entries in the various indexing lists used.
+%Then, in each of these entries, the named entities they contain have to be extracted to produce structured spatio-temporal data representing the evolution over time of the people and businesses listed in these directories, their descriptions and their locations.
+%Both of these extraction tasks require data to train and evaluate the OCR and NER approaches identified as potentially relevant: Tesseract and PERO OCR for the OCR task and Spacy and CamemBERT - pre-trained or fine-tuned - neural models for the NER task.
 
 \subsection{The 19th century Parisian trade directories}
 
+The XIX\textsuperscript{th} century directories we have to process are stored in different libraries in Paris\footnote{Citer les bibliothèques sources?}. They have been scanned independently from each other and are available in digital format with various levels of quality. Moreover, they cover a wide period and ave been produced by different publishers and printers. Their contents, indexes, layouts, methods of printing, etc. vary thus from one directory to another (see Figure \ref{fig:directories}).
+
+
+\begin{figure}[htb!]
+	   \center{\includegraphics[width=\textwidth]
+	       {./images/DirectoryExcerpts.png}}
+	  \caption{\label{fig:directories} Examples of directory layouts and contents}
+\end{figure}
+
+
+In this work, we therefore made a selection among the available directories, trying our best to retain copies representative of the diversity of existing directories and of sufficient quality to produce a reliable training data set. The Table \ref{tab:directories} lists the directories selected, their layout, the structure of their entries, and the number of annotated entries according to the indexes considered. 
+
+
+
 \begin{table}[h!]
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Directory publisher or name}} & \multicolumn{1}{c|}{\textbf{Year}} & \multicolumn{1}{c|}{\textbf{\# Col}} & \multicolumn{1}{c|}{\textbf{Index}} & \multicolumn{1}{c|}{\textbf{Entry structure}}                                                                                                       
+\multicolumn{1}{|c|}{\textbf{Directory publisher or name}} & \multicolumn{1}{c|}{\textbf{Year}} & \multicolumn{1}{c|}{\textbf{\# Col}} & \multicolumn{1}{c|}{\textbf{Index}} & \multicolumn{1}{c|}{\textbf{Entry structure}} & \multicolumn{1}{c|}{\textbf{\# Ann}}                                                                                                      
 \\ \hline
-Favre \& Duchesne & 1798 & 1 & by activity & {N [A], SN, SNUM — SEC.} 
+Favre \& Duchesne & 1798 & 1 & by activity & {N [A], SN, SNUM - SEC.} & 233
 \\ \hline
-Duverneuil et La Tynna & 1801 & 1 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & {N, SN, SNUM. SEC.} 
+Duverneuil et La Tynna & 1801 & 1 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & {N, SN, SNUM. SEC.} & \begin{tabular}[c]{@{}l@{}} 136 \\ 103\end{tabular}
 \\ \hline
-{Notables communaux de la Seine} & 1801 & 1 & by name & {N, [A,] SN[, SNUM].}
+{Notables communaux de la Seine} & 1801 & 1 & by name & {N, [A,] SN[, SNUM].} & 92
 \\ \hline
-Duverneuil et La Tynna & 1805 &	2 &	\begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F)], SN, SNUM. — SEC.\\ N [(C)], [(A),] SN, SNUM. — SEC.\end{tabular}
+Duverneuil et La Tynna & 1805 &	2 &	\begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F)], SN, SNUM. - SEC.\\ N [(C)], [(A),] SN, SNUM. - SEC.\end{tabular} & \begin{tabular}[c]{@{}l@{}} 155 \\ 221 \end{tabular}
 \\ \hline
-Duverneuil et La Tynna & 1806 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F)], SN, SNUM.\\ N [(C)], SN, SNUM.[ — SEC.]\end{tabular}.
+Duverneuil et La Tynna & 1806 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F)], SN, SNUM.\\ N [(C)], SN, SNUM.[ - SEC.]\end{tabular}. & \begin{tabular}[c]{@{}l@{}} 186\\ 0\end{tabular}
 \\ \hline
-La Tynna & 1813	& 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N,[A,] SN[, SNUM].\\ N, [(T)] A, SN[, SNUM] [, D].\end{tabular}.
+La Tynna & 1813	& 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N,[A,] SN[, SNUM].\\ N, [(T)] A, SN[, SNUM] [, D].\end{tabular} & \begin{tabular}[c]{@{}l@{}} 135 \\ 177 \end{tabular}
 \\ \hline
-Panckoucke Comm Dulac & 1820 & 1 & by name & N [(F)], A, [(T),] SN, SNUM[, P] .
+Panckoucke Commerces (Dulac) & 1820 & 1 & by name & N [(F)], A, [(T),] SN, SNUM[, P]. & 0
 \\ \hline
-Panckoucke hab Dulac & 1820	& 1 & by name & N [(T)], [A,] SN, SNUM [, D].
+Panckoucke Habitants (Dulac) & 1820	& 1 & by name & N [(T)], [A,] SN, SNUM [, D]. & 0
 \\ \hline
-Bottin1 & 1820 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F \textbar C)][T], [P], SN, SNUM.\\N [(F \textbar C)][T], A, SN, SNUM. CR\end{tabular}.
+Bottin (serie 1: 1819-1838) & 1820 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F \textbar C)][T], [P], SN, SNUM.\\N [(F \textbar C)][T], A, SN, SNUM. CR\end{tabular} & \begin{tabular}[c]{@{}l@{}} 128 \\ 151 \end{tabular}
 \\ \hline
-Bottin1 & 1827 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular}.
+Bottin (serie 1: 1819-1838) & 1827 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}} 228 \\ 285 \end{tabular}
 \\ \hline
-Deflandre & 1828 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F \textbar C)][T], [P], SN, SNUM. \\N [(F \textbar C)][T], A, SN, SNUM.\end{tabular}.
+Deflandre & 1828 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F \textbar C)][T], [P], SN, SNUM. \\N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}115\\ 229\end{tabular}
 \\ \hline
-Deflandre & 1829 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular}.
+Deflandre & 1829 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}177\\ 236\end{tabular}
 \\ \hline 
-Bottin1 & 1837 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], [A], SN, SNUM.\end{tabular}.
+Bottin (serie 1: 1819-1838) & 1837 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], [A], SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}158\\ 557\end{tabular}
 \\ \hline
-Cambon almgene & 1841 & 2 &	\begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular}.
+Cambon - Almanach général & 1841 & 2 &	\begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}182\\ 486\end{tabular}
 \\ \hline
-Didot & 1841a &	\begin{tabular}[c]{@{}l@{}}3\\ 4\end{tabular} &	\begin{tabular}[c]{@{}l@{}}by activity \\ by name \end{tabular} & 	\begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM. \\ N [(F \textbar C)][T], [A], SN, SNUM. \end{tabular}
+Didot & 1841a &	\begin{tabular}[c]{@{}l@{}}3\\ 4\end{tabular} &	\begin{tabular}[c]{@{}l@{}}by activity \\ by name \end{tabular} & 	\begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM. \\ N [(F \textbar C)][T], [A], SN, SNUM. \end{tabular} & \begin{tabular}[c]{@{}l@{}}246\\ 843\end{tabular}
 \\ \hline
-Didot & 1851a & \begin{tabular}[c]{@{}l@{}l@{}}4\\ 4\\ 5\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}by activity\\ by name\\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], [A], SN, SNUM.\\SNUM N [(F \textbar C)][T], [A].\end{tabular}
+Didot & 1851a & \begin{tabular}[c]{@{}l@{}l@{}}4\\ 4\\ 5\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}by activity\\ by name\\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], [A], SN, SNUM.\\SNUM N [(F \textbar C)][T], [A].\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}309\\ 961\\ 0\end{tabular}
 \\ \hline
-Didot & 1854a & \begin{tabular}[c]{@{}l@{}l@{}}4\\ 3\\ 5\end{tabular} &	\begin{tabular}[c]{@{}l@{}l@{}} by activity \\ by name \\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}} N [(F \textbar C)], [P], SN, SNUM [,T].\\ N [(F \textbar C)][T], [A], SN, SNUM.\\ SNUM N [(F \textbar C)][T], [A].\end{tabular}
+Didot & 1854a & \begin{tabular}[c]{@{}l@{}l@{}}4\\ 3\\ 5\end{tabular} &	\begin{tabular}[c]{@{}l@{}l@{}} by activity \\ by name \\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}} N [(F \textbar C)], [P], SN, SNUM [,T].\\ N [(F \textbar C)][T], [A], SN, SNUM.\\ SNUM N [(F \textbar C)][T], [A].\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}106\\ 362\\ 0\end{tabular}
 \\ \hline
-Bottin3 & 1854a & \begin{tabular}[c]{@{}l@{}l@{}}3\\ 2\\ 4\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}} by activity \\ by name \\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}N [(F \textbar C)], [P], SN, SNUM [,T].\\ N [(F \textbar C)][T], [A], SN, SNUM.\\ SNUM N [(F \textbar C)], [A] [,T].\end{tabular}
+Bottin (serie 3: 1854-1856) & 1854a & \begin{tabular}[c]{@{}l@{}l@{}}3\\ 2\\ 4\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}} by activity \\ by name \\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}N [(F \textbar C)], [P], SN, SNUM [,T].\\ N [(F \textbar C)][T], [A], SN, SNUM.\\ SNUM N [(F \textbar C)], [A] [,T].\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}253\\ 633\\ 0\end{tabular}
 \\ \hline
-DidotBottin & 1860a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM.
+Didot-Bottin & 1860a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM. & 378
 \\ \hline
-DidotBottin & 1861a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM.
+Didot-Bottin & 1861a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM. & 402
 \\ \hline
 \end{tabular}%
 }
-\caption{The directories used to build our dataset. Entry structure is described as follows: N - entry name (person or business); F - first name; T - honorary title; C - civility; A - activity; P - precision; SN - street name; SNUM - street number; SEC - section; D - district; CR - cross-reference}
-\label{tab:my-table}
+\caption{The directories used to build our dataset. Letters next to year of publication are used to identify the volume of the directory. \# Col stands for "Number of columns", and \# Ann stands for "Number of annotated entries". Entry structure is described as follows: N - entry name (person or business); F - first name; T - honorary title; C - civility; A - activity; P - precision; SN - street name; SNUM - street number; SEC - section; D - district; CR - cross-reference}
+\label{tab:directories}
 \end{table}
 
 \subsection{Groundtruth data extraction}
