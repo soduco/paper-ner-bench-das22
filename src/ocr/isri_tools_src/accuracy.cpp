@@ -206,14 +206,16 @@ print_accurary_report (Accdata *data)
   int old_desc = dup (fileno (stdout));
   dup2 (fileno(tmp), fileno (stdout));
   write_accrpt (data, nullptr);
+  fflush(stdout);
   dup2 (old_desc, fileno (stdout));
 
+  fflush(tmp);
   rewind(tmp);
   std::wstring result;
+  // The file 'tmp' is encoded in latin-1 -> codepoint are compatible with utf-16 but not utf-8 
   wchar_t c;
-  while ((c = fgetwc(tmp)) != EOF)
+  while ((c = fgetc(tmp)) != EOF)
     result.push_back(c);
-
   fclose(tmp);
   return result;
 }
