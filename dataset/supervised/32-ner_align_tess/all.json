@@ -40,55 +40,55 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 306,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Dufen . chareutier, x. Montmartre ; 89. 818",
-    "ner_xml": "<PER>Dufen</PER> . <ACT>chareutier</ACT>, <LOC>x. Montmartre</LOC> ; <CARDINAL>89</CARDINAL>. <CARDINAL>818</CARDINAL>",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 312,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafey fils, \u00e9fjoulter, passage d\u00e9 la R\u00e9tnion\na a \" a84",
-    "ner_xml": "<PER>Dafey</PER> fils, <ACT>\u00e9fjoulter</ACT>, <LOC>passage d\u00e9 la R\u00e9tni</LOC>on\u2029<CARDINAL>a </CARDINAL>a &quot; a84",
+    "text_ocr": "Dufen . chareutier, x. Montmartre ; 89. 818",
+    "ner_xml": "<PER>Dufen</PER> . <ACT>chareutier</ACT>, <LOC>x. Montmartre</LOC> ; <CARDINAL>89</CARDINAL>. 818",
     "has_valid_ner_xml": true
   },
   {
     "id": 314,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafey, Boucher 'x: S.-Lonis-au-Marais, 3.\na",
-    "ner_xml": "<PER>Dafey</PER>, <ACT>Boucher</ACT> &apos;<LOC>x: S.-Lonis-au-Marais</LOC>,<CARDINAL> 3</CARDINAL>.\u2029a",
+    "text_ocr": "Dafey fils, \u00e9fjoulter, passage d\u00e9 la R\u00e9tnion\na a \" a84",
+    "ner_xml": "<PER>Dafey fils</PER>, <ACT>\u00e9fjoulter</ACT>, <LOC>passage d\u00e9 la R\u00e9tnion</LOC>\u2029a<CARDINAL> a</CARDINAL> &quot; a84",
     "has_valid_ner_xml": true
   },
   {
     "id": 316,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dofey, march, de vins, \". S.-Honor\u00e9, e",
-    "ner_xml": "<PER>Dofey</PER>, <ACT>march, </ACT>de <LOC>vins, &quot;. S.-Honor\u00e9</LOC>,<CARDINAL></CARDINAL> e",
-    "has_valid_ner_xml": false
+    "text_ocr": "Dafey, Boucher 'x: S.-Lonis-au-Marais, 3.\na",
+    "ner_xml": "<PER>Dafey</PER>, <ACT>Boucher</ACT> &apos;<LOC>x: S.-Lonis-au-Marais</LOC>, <CARDINAL>3</CARDINAL>.\u2029a",
+    "has_valid_ner_xml": true
   },
   {
     "id": 321,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Daoffaud, macon, 5. S.-Honor\u00e9, 353. 402",
-    "ner_xml": "<PER>Daoffaud</PER>, <ACT>macon</ACT>, <LOC>5. S.-Honor\u00e9</LOC>, <CARDINAL>353</CARDINAL>. 402",
+    "text_ocr": "Daffand , bijoutier ,.r. S.-Martin, 107. a84",
+    "ner_xml": "<PER>Daffand</PER> , <ACT>bijoutier</ACT> ,.<LOC>r. S.-Martin</LOC>, <CARDINAL>107</CARDINAL>. a84",
     "has_valid_ner_xml": true
   },
   {
     "id": 323,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Daflant, c'audronnier, v, de la RARES\nGe OO a x",
-    "ner_xml": "<PER>Daflant</PER>, <ACT>c&apos;audron</ACT>nie<LOC>r, v, de la RARE</LOC>S\u2029<CARDINAL>Ge O</CARDINAL>O a x",
+    "text_ocr": "Daoffaud, macon, 5. S.-Honor\u00e9, 353. 402",
+    "ner_xml": "<PER>Daoffaud</PER>, <ACT>macon</ACT>, <LOC>5. S.-Honor\u00e9</LOC>, <CARDINAL>353.</CARDINAL> 402",
     "has_valid_ner_xml": true
   },
   {
     "id": 325,
+    "book": "Bottin1_1820",
+    "page": 107,
+    "text_ocr": "Daflant, c'audronnier, v, de la RARES\nGe OO a x",
+    "ner_xml": "<PER>Daflant</PER>, <ACT>c&apos;audronnier</ACT>, <LOC>v, de la RARES\u2029Ge</LOC> <CARDINAL>O</CARDINAL>O a x",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 327,
     "book": "Bottin1_1820",
     "page": 107,
     "text_ocr": "Dutils, limonadier, x. des Colonnes, 6. 39\u00f1",
@@ -96,263 +96,255 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 327,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Doflocq, architecte, r. Basse-Porte-S.-De-\nmis, 28. u 259",
-    "ner_xml": "<PER>Dofloc</PER>q, <ACT>architecte</ACT>, <LOC>r. Basse-Porte-S</LOC>.-De-\u2029<CARDINAL>m</CARDINAL>is, 28. u 259",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 329,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": ":",
-    "ner_xml": "<PER></PER>:<ACT></ACT><LOC></LOC><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
-  },
-  {
-    "id": 331,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Dofl\u00f4t ; loueur de carrosses 5% de Paradise\n Po\u00f1ssorini\u00e8re, 22, . $0\u00f1",
-    "ner_xml": "<PER>Dofl\u00f4t </PER>; <ACT>loueur de carrosses 5% de </ACT>Pa<LOC>radise\u2029 Po\u00f1ssorini\u00e8</LOC>re, <CARDINAL>22</CARDINAL>, <CARDINAL>. $</CARDINAL>0\u00f1",
+    "text_ocr": "Doflocq, architecte, r. Basse-Porte-S.-De-\nmis, 28. u 259",
+    "ner_xml": "<PER>Doflocq</PER>, <ACT>architecte</ACT>, <LOC>r. Basse-Porte-S.-De-\u2029mis</LOC>, <CARDINAL>28</CARDINAL>. u 259",
     "has_valid_ner_xml": true
   },
   {
     "id": 339,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "DUREE PAR PARCS) ARE ea ra\n4 29",
-    "ner_xml": "<PER>DUREE</PER> <ACT>PAR PARCS) A</ACT><LOC>RE ea ra\u20294</LOC> <CARDINAL>29</CARDINAL>",
+    "text_ocr": "Dofl\u00f4t ; loueur de carrosses 5% de Paradise\n Po\u00f1ssorini\u00e8re, 22, . $0\u00f1",
+    "ner_xml": "<PER>Dofl\u00f4t</PER> ; <ACT>loueur de carrosses</ACT> <LOC>5% de Paradise\u2029 Po\u00f1ssorini\u00e8re</LOC>, <CARDINAL>22</CARDINAL>, . $0\u00f1",
     "has_valid_ner_xml": true
   },
   {
     "id": 342,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dutort fils ; Boitier (exp. 1819.), r. J.-I-\nRousseau, 28.' 298",
-    "ner_xml": "<PER>Dutort</PER> fils ; <ACT>Boitier</ACT> (exp. <LOC>1819.), r. J.-I-\u2029Roussea</LOC>u, <CARDINAL>28.</CARDINAL>&apos; 298",
+    "text_ocr": "DUREE PAR PARCS) ARE ea ra\n4 29",
+    "ner_xml": "<PER>DURE</PER>E <ACT>PAR</ACT> <LOC>PARCS) ARE ea ra</LOC>\u2029<CARDINAL>4</CARDINAL> 29",
     "has_valid_ner_xml": true
   },
   {
     "id": 346,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufort, tabletier , r. J\u00e9an-Pain-Mollet, le\n\u00c0 ST 6",
-    "ner_xml": "<PER>Dufort, ta</PER><ACT>bletier , r. </ACT>J\u00e9<LOC>an-Pain-Mollet</LOC>, <CARDINAL>le</CARDINAL>\u2029\u00c0 ST 6",
+    "text_ocr": "Dutort fils ; Boitier (exp. 1819.), r. J.-I-\nRousseau, 28.' 298",
+    "ner_xml": "<PER>Dutort fils</PER> ; <ACT>Boitier (exp. 1819.)</ACT>, <LOC>r. J.-I-\u2029Rousseau</LOC>, <CARDINAL>28</CARDINAL>.&apos; 298",
     "has_valid_ner_xml": true
   },
   {
     "id": 350,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafoss\u00e9, teinturier, r. dn Faub.-Montmar-\nse, 63. Fe ., 485",
-    "ner_xml": "<PER>Dafoss</PER>\u00e9, <ACT>teinturier</ACT>, <LOC>r. dn Faub.-Montmar-\u2029se,</LOC> 63. <CARDINAL>Fe</CARDINAL> ., 485",
+    "text_ocr": "Dufort, tabletier , r. J\u00e9an-Pain-Mollet, le\n\u00c0 ST 6",
+    "ner_xml": "<PER>Dufort</PER>, <ACT>tabletier</ACT> , <LOC>r. J\u00e9an-Pain-Mollet</LOC>, <CARDINAL>le</CARDINAL>\u2029\u00c0 ST 6",
     "has_valid_ner_xml": true
   },
   {
     "id": 354,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour , march. de planches ,r. Chapos ,\n28. 3 + ho",
-    "ner_xml": "<PER>Dufour </PER>, <ACT>march. de </ACT>pl<LOC>anches ,r. Chapos ,\u202928</LOC>. <CARDINAL>3 </CARDINAL>+ ho",
+    "text_ocr": "Dafoss\u00e9, teinturier, r. dn Faub.-Montmar-\nse, 63. Fe ., 485",
+    "ner_xml": "<PER>Dafoss\u00e9</PER>, <ACT>teinturier</ACT>, <LOC>r. dn Faub.-Montmar-\u2029se</LOC>, <CARDINAL>63</CARDINAL>. Fe ., 485",
     "has_valid_ner_xml": true
   },
   {
     "id": 360,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dofonr et Besnard , march, de bois \u00e0 braler,\nqui c la Tournelle, 17, etr. des Foss\u00e9s-\nBernard, 11, a 207 .",
-    "ner_xml": "<PER>Dofonr</PER> et Besnard , <ACT>march, de bois \u00e0 braler,\u2029qui c la Tournelle,</ACT> 17, et<LOC>r. des Foss\u00e9s-\u2029Bern</LOC>ard,<CARDINAL> 11</CARDINAL>, a 207 .",
+    "text_ocr": "Dufour , march. de planches ,r. Chapos ,\n28. 3 + ho",
+    "ner_xml": "<PER>Dufour</PER> , <ACT>march. de planches</ACT> ,<LOC>r. Chapos</LOC> ,<CARDINAL>\u202928</CARDINAL>. 3 + ho",
     "has_valid_ner_xml": true
   },
   {
     "id": 363,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour rs march, de bois \u00e0 br\u00e9ler, r,\nde la P\u00e9pini\u00e8re , 53. 201",
-    "ner_xml": "<PER>Dufour rs</PER> <ACT>march, de bois \u00e0 br\u00e9ler</ACT>,<LOC> r,\u2029de la P\u00e9pini\u00e8</LOC><CARDINAL></CARDINAL><LOC>re ,</LOC> <CARDINAL>53</CARDINAL>. 201",
-    "has_valid_ner_xml": false
+    "text_ocr": "Dofonr et Besnard , march, de bois \u00e0 braler,\nqui c la Tournelle, 17, etr. des Foss\u00e9s-\nBernard, 11, a 207 .",
+    "ner_xml": "<PER>Dofonr et Besnard</PER> , <ACT>march, de bois \u00e0 braler</ACT>,<LOC>\u2029qui c la Tournelle</LOC>, <CARDINAL>17</CARDINAL>, et<LOC>r. des Foss\u00e9s-\u2029Bernard</LOC>, <CARDINAL>11</CARDINAL>, a 207 .",
+    "has_valid_ner_xml": true
   },
   {
     "id": 367,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour (Mad), march. de chapeaux de\np\u00fcille, LA da ca + Son",
-    "ner_xml": "<PER>Dufour (Mad)</PER>, <ACT>march. de chapeaux de\u2029</ACT>p\u00fc<LOC>ille, LA da ca</LOC> <CARDINAL>+</CARDINAL> Son",
+    "text_ocr": "Dufour rs march, de bois \u00e0 br\u00e9ler, r,\nde la P\u00e9pini\u00e8re , 53. 201",
+    "ner_xml": "<PER>Dufour rs</PER> <ACT>march, de bois \u00e0 br\u00e9ler</ACT>, <LOC>r,\u2029de la P\u00e9pini\u00e8re</LOC> , <CARDINAL>53</CARDINAL>. 201",
     "has_valid_ner_xml": true
   },
   {
     "id": 369,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour, chapelier , r. S.-Honor\u00e9, 385. 300",
-    "ner_xml": "<PER>Dufour,</PER> <ACT>chapelier , r</ACT>. <LOC>S.-Honor\u00e9</LOC>, <CARDINAL>38</CARDINAL>5. 300",
+    "text_ocr": "Dufour (Mad), march. de chapeaux de\np\u00fcille, LA da ca + Son",
+    "ner_xml": "<PER>Dufour (Mad)</PER>, <ACT>march. de chapeaux de\u2029p\u00fcille</ACT>, <LOC>LA da ca</LOC> <CARDINAL>+</CARDINAL> Son",
     "has_valid_ner_xml": true
   },
   {
     "id": 372,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour, cirier, r. de l'Arbre-Sec, 66. '\u00b0 316",
-    "ner_xml": "<PER>Dufour</PER>, <ACT>cirier</ACT>, <LOC>r. de l&apos;Arbre</LOC>-Sec, <CARDINAL>66</CARDINAL>. &apos;\u00b0 316",
+    "text_ocr": "Dufour, chapelier , r. S.-Honor\u00e9, 385. 300",
+    "ner_xml": "<PER>Dufour</PER>, <ACT>chapelier</ACT> , <LOC>r. S.-Honor\u00e9</LOC>, <CARDINAL>385</CARDINAL>. 300",
     "has_valid_ner_xml": true
   },
   {
     "id": 374,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dalonr et \u00a3a., commiss., r. des Uountures-\nS.Gervais, 28 : +. + \" \" Bad",
-    "ner_xml": "<PER>Dalonr</PER> et \u00a3a., <ACT>commiss</ACT>., <LOC>r. des Uountures-\u2029S.Ger</LOC>vais, <CARDINAL>28</CARDINAL> : +. + &quot; &quot; Bad",
+    "text_ocr": "Dufour, cirier, r. de l'Arbre-Sec, 66. '\u00b0 316",
+    "ner_xml": "<PER>Dufour</PER>, <ACT>cirier</ACT>, <LOC>r. de l&apos;Arbre-Sec</LOC>, <CARDINAL>66</CARDINAL>. &apos;\u00b0 316",
     "has_valid_ner_xml": true
   },
   {
     "id": 376,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dofour, corroyeur, r.'des Vertus, 111 327",
-    "ner_xml": "<PER>Dofour, cor</PER>r<ACT>oyeur,</ACT> <LOC>r.&apos;des Vertus, 11</LOC><CARDINAL>1</CARDINAL> 327",
+    "text_ocr": "Dalonr et \u00a3a., commiss., r. des Uountures-\nS.Gervais, 28 : +. + \" \" Bad",
+    "ner_xml": "<PER>Dalonr et \u00a3a.</PER>, <ACT>commiss.</ACT>, <LOC>r. des Uountures-\u2029S.Gervais</LOC>, <CARDINAL>28</CARDINAL> : +. + &quot; &quot; Bad",
     "has_valid_ner_xml": true
   },
   {
     "id": 379,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour (Gharles), \u00e9picier, r. 5.-Denis, 507.\n; | Ne",
-    "ner_xml": "<PER>Dufour</PER> (<ACT>Gharles), \u00e9picier</ACT>, <LOC>r. 5.-Denis, 507</LOC>.\u2029<CARDINAL>; </CARDINAL>| Ne",
+    "text_ocr": "Dofour, corroyeur, r.'des Vertus, 111 327",
+    "ner_xml": "<PER>Dofour</PER>, <ACT>corroyeur</ACT>, <LOC>r.&apos;des Vertus</LOC>, <CARDINAL>11</CARDINAL>1 327",
     "has_valid_ner_xml": true
   },
   {
     "id": 381,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufonr , fab. d'\u00e9ventails (+ 1819), r\nRue _ ps 8 Bd",
-    "ner_xml": "<PER>Dufonr , fab. d&apos;</PER>\u00e9v<ACT>entails (</ACT>+ <LOC>1819), r\u2029Rue</LOC> <CARDINAL>_ p</CARDINAL>s 8 Bd",
+    "text_ocr": "Dufour (Gharles), \u00e9picier, r. 5.-Denis, 507.\n; | Ne",
+    "ner_xml": "<PER>Dufour (Gharles)</PER>, <ACT>\u00e9picier</ACT>, <LOC>r. 5.-Denis</LOC>, <CARDINAL>507</CARDINAL>.\u2029; | Ne",
     "has_valid_ner_xml": true
   },
   {
     "id": 385,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour , faiencier, r. S.-Anne, 50. '362",
-    "ner_xml": "<PER>Dufour</PER> , <ACT>faiencier, r</ACT>. <LOC>S.-Anne</LOC>, <CARDINAL>50</CARDINAL>. &apos;362",
+    "text_ocr": "Dufonr , fab. d'\u00e9ventails (+ 1819), r\nRue _ ps 8 Bd",
+    "ner_xml": "<PER>Dufonr</PER> , <ACT>fab. d&apos;\u00e9ventails (+ 1819)</ACT>, <LOC>r\u2029Rue _ p</LOC>s <CARDINAL>8</CARDINAL> Bd",
     "has_valid_ner_xml": true
   },
   {
     "id": 388,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour, \u00c0. garni, v. Yentadour ,7. 378",
-    "ner_xml": "<PER>Dufour</PER>, <ACT>\u00c0. garni</ACT>, <LOC>v. Yentadou</LOC>r <CARDINAL>,7</CARDINAL>. 378",
+    "text_ocr": "Dufour , faiencier, r. S.-Anne, 50. '362",
+    "ner_xml": "<PER>Dufour</PER> , <ACT>faiencier</ACT>, <LOC>r. S.-Anne</LOC>, <CARDINAL>50</CARDINAL>. &apos;362",
     "has_valid_ner_xml": true
   },
   {
     "id": 390,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafonr (Gabriel), libraire, r. de Vaugirard,\n2\u00c0. \" UE \u00e0 - ga",
-    "ner_xml": "<PER>Dafonr</PER> (<ACT>Gabriel), librai</ACT>re, <LOC>r. de Vaugir</LOC>ard,\u2029<CARDINAL>2</CARDINAL>\u00c0. &quot; UE \u00e0 - ga",
+    "text_ocr": "Dufour, \u00c0. garni, v. Yentadour ,7. 378",
+    "ner_xml": "<PER>Dufour</PER>, <ACT>\u00c0. garni</ACT>, <LOC>v. Yentadour</LOC> ,<CARDINAL>7</CARDINAL>. 378",
     "has_valid_ner_xml": true
   },
   {
     "id": 392,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dulour, ma\u00e7on, r. S.-Jean-Baptist\u00e9, 4: 402",
-    "ner_xml": "<PER>Dulour, ma\u00e7on</PER>, <ACT>r</ACT>. <LOC>S.-Jean-Baptist\u00e9</LOC>,<CARDINAL> 4</CARDINAL>: 402",
+    "text_ocr": "Dafonr (Gabriel), libraire, r. de Vaugirard,\n2\u00c0. \" UE \u00e0 - ga",
+    "ner_xml": "<PER>Dafonr (Gabriel)</PER>, <ACT>libraire</ACT>, <LOC>r. de Vaugirard</LOC>,<CARDINAL>\u20292\u00c0</CARDINAL>. &quot; UE \u00e0 - ga",
     "has_valid_ner_xml": true
   },
   {
     "id": 395,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Duofoar ; architecte , v: de Chartres-5.-Ho-\nnor\u00e9, ra. (Elig.) + 278, 4oa",
-    "ner_xml": "<PER>Duofoar</PER> ; <ACT>archi</ACT>tecte , <LOC>v: de Chartres-5.-Ho-\u2029nor\u00e9, ra. (Eli</LOC>g.) <CARDINAL>+</CARDINAL> 278, 4oa",
+    "text_ocr": "Dulour, ma\u00e7on, r. S.-Jean-Baptist\u00e9, 4: 402",
+    "ner_xml": "<PER>Dulour</PER>, <ACT>ma\u00e7on</ACT>, <LOC>r. S.-Jean-Baptist\u00e9</LOC>, <CARDINAL>4</CARDINAL>: 402",
     "has_valid_ner_xml": true
   },
   {
     "id": 397,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour (Mad.), nouveuut\u00e9s , r, Nenve-des-\nPetits-Champs, 4. | + fan",
-    "ner_xml": "<PER>Dufour</PER> (Mad.)<ACT>, nouveuut\u00e9</ACT>s , <LOC>r, Nenve-des-\u2029Petits-Cha</LOC>mp<CARDINAL>s</CARDINAL>, <TITRE>4.</TITRE> | + fan",
+    "text_ocr": "Duofoar ; architecte , v: de Chartres-5.-Ho-\nnor\u00e9, ra. (Elig.) + 278, 4oa",
+    "ner_xml": "<PER>Duofoar</PER> ; <ACT>architecte</ACT> , <LOC>v: de Chartres-5.-Ho-\u2029nor\u00e9</LOC>, <CARDINAL>ra</CARDINAL>. <TITRE>(Elig.)</TITRE> + 278, 4oa",
     "has_valid_ner_xml": true
   },
   {
     "id": 399,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafour Chabrol, papetier, r. S,-Martia ,\n130. % # 437",
-    "ner_xml": "<PER>Dafour Chabro</PER>l, <ACT>papetier</ACT>, <LOC>r. S,-Martia ,\u2029130. </LOC>% <CARDINAL>#</CARDINAL> 437",
+    "text_ocr": "Dufour (Mad.), nouveuut\u00e9s , r, Nenve-des-\nPetits-Champs, 4. | + fan",
+    "ner_xml": "<PER>Dufour (Mad.)</PER>, <ACT>nouveuut\u00e9s</ACT> , <LOC>r, Nenve-des-\u2029Petits-Champs</LOC>, <CARDINAL>4</CARDINAL>. | + fan",
     "has_valid_ner_xml": true
   },
   {
     "id": 402,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour (1.) et c5. ,! fab. de pupiers peints ;\n\"\u20ac Gien re Beanvean onto y pe",
-    "ner_xml": "<PER>Dufour (1.) et c5. ,! fab. d</PER>e <ACT>pupiers peint</ACT>s ;\u2029<LOC>&quot;\u20ac Gien re Bean</LOC>vean<CARDINAL> ont</CARDINAL>o y pe",
+    "text_ocr": "Dafour Chabrol, papetier, r. S,-Martia ,\n130. % # 437",
+    "ner_xml": "<PER>Dafour Chabrol</PER>, <ACT>papetier</ACT>, <LOC>r. S,-Martia</LOC> ,\u2029<CARDINAL>130</CARDINAL>. % # 437",
     "has_valid_ner_xml": true
   },
   {
     "id": 405,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufouret co. , fab. de schats ;x: Ste.-Apol-\nn\u00e9, + *  37r, 495",
-    "ner_xml": "<PER>Dufouret co</PER>. , <ACT>fab. de schats</ACT><TITRE> ;x</TITRE>: <LOC>Ste.-Apol-\u2029n\u00e9, + *  37</LOC>r<CARDINAL></CARDINAL>, 495",
-    "has_valid_ner_xml": false
+    "text_ocr": "Dufour (1.) et c5. ,! fab. de pupiers peints ;\n\"\u20ac Gien re Beanvean onto y pe",
+    "ner_xml": "<PER>Dufour (1.) et c5</PER>. ,! <ACT>fab. de pupiers peints</ACT> ;<TITRE>\u2029&quot;\u20ac Gien</TITRE> <LOC>re Beanvean onto</LOC> <CARDINAL>y</CARDINAL> pe",
+    "has_valid_ner_xml": true
   },
   {
     "id": 409,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Duiour, #afch. de ins, +, (les F'osses-5.-\nGermain LAurerrois, 35. 7",
-    "ner_xml": "<PER>Duiour, #afch.</PER> de <ACT>ins, +, (les F&apos;os</ACT>se<LOC>s-5.-\u2029Germain LAurerrois</LOC>, 3<CARDINAL>5</CARDINAL>. 7",
+    "text_ocr": "Dufouret co. , fab. de schats ;x: Ste.-Apol-\nn\u00e9, + *  37r, 495",
+    "ner_xml": "<PER>Dufouret co.</PER> , <ACT>fab. de schats</ACT> ;x<LOC>: Ste.-Apol-\u2029n\u00e9</LOC>, <CARDINAL>+</CARDINAL> *  37r, 495",
     "has_valid_ner_xml": true
   },
   {
     "id": 419,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafonrnsntelle reaussier, +. Lique-\n* tonne, 4\u00b0 Qu peaussiens + ta",
-    "ner_xml": "<PER>Dafonr</PER>ns<ACT>ntelle reauss</ACT>ie<LOC>r, +. Lique-\u2029* tonne, 4\u00b0 Qu peaussiens</LOC> <CARDINAL>+</CARDINAL> ta",
+    "text_ocr": "Duiour, #afch. de ins, +, (les F'osses-5.-\nGermain LAurerrois, 35. 7",
+    "ner_xml": "<PER>Duiour</PER>, <ACT>#afch. de ins</ACT>, <LOC>+, (les F&apos;osses-5.-\u2029Germain LAurerrois</LOC>, <CARDINAL>35</CARDINAL>. 7",
     "has_valid_ner_xml": true
   },
   {
     "id": 422,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafourmantelle (Lonis), peaussier, r. dn\nDR es + FR 4e",
-    "ner_xml": "<PER>Dafourmantelle (Lonis)</PER>, <ACT>peaussier</ACT>, <LOC>r. dn\u2029DR es +</LOC> <CARDINAL>FR </CARDINAL>4e",
+    "text_ocr": "Dafonrnsntelle reaussier, +. Lique-\n* tonne, 4\u00b0 Qu peaussiens + ta",
+    "ner_xml": "<PER>Dafonrnsntelle r</PER><ACT>eaussier</ACT>, <LOC>+. Lique-\u2029* tonne</LOC>, <CARDINAL>4\u00b0 </CARDINAL>Qu peaussiens + ta",
     "has_valid_ner_xml": true
   },
   {
     "id": 425,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufonrmantelle fiu\u00e9 , march. de peaux, +.\nSR qe Une: SAPesr)",
-    "ner_xml": "<PER>Dufonrmantelle fiu\u00e9 </PER>, <ACT>mar</ACT>ch<LOC>. de peaux, +.\u2029SR qe Une</LOC>: <CARDINAL>SA</CARDINAL>Pesr)",
-    "has_valid_ner_xml": true
+    "text_ocr": "Dafourmantelle (Lonis), peaussier, r. dn\nDR es + FR 4e",
+    "ner_xml": "<PER>Dafourmantelle (Lonis)</PER>, <ACT>peaussier</ACT>, <LOC>r. dn\u2029DR es + FR</LOC> <CARDINAL></CARDINAL>4e",
+    "has_valid_ner_xml": false
   },
   {
     "id": 428,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Daf\u00f4u: t\u00e9ile } aussi\u00e9r, Y, de k\nVite omade re P ' L\u00c9",
-    "ner_xml": "<PER>Daf\u00f4u: t\u00e9ile } aussi\u00e9</PER>r, <ACT>Y, de k\u2029Vit</ACT>e <LOC>omade re</LOC> P <CARDINAL>&apos;</CARDINAL> L\u00c9",
+    "text_ocr": "Dufonrmantelle fiu\u00e9 , march. de peaux, +.\nSR qe Une: SAPesr)",
+    "ner_xml": "<PER>Dufonrmantelle fiu\u00e9</PER> , <ACT>march. de peaux</ACT>, <LOC>+.\u2029SR qe Un</LOC>e: <CARDINAL>SA</CARDINAL>Pesr)",
     "has_valid_ner_xml": true
   },
   {
     "id": 431,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufonrmantelle (Jacques), perussier,, r.\nDRE D ADO Du D RENE, \u00a9",
-    "ner_xml": "<PER>Dufonrmantelle (Jacques</PER>), <ACT>perussier</ACT>,, <LOC>r.\u2029DRE D ADO Du D RENE</LOC>, <CARDINAL>\u00a9</CARDINAL>",
+    "text_ocr": "Daf\u00f4u: t\u00e9ile } aussi\u00e9r, Y, de k\nVite omade re P ' L\u00c9",
+    "ner_xml": "<PER>Daf\u00f4u: t\u00e9ile }</PER> <ACT>aussi\u00e9r</ACT>, <LOC>Y, de k\u2029Vite omade re</LOC> <CARDINAL>P </CARDINAL>&apos; L\u00c9",
     "has_valid_ner_xml": true
   },
   {
     "id": 433,
+    "book": "Bottin1_1820",
+    "page": 107,
+    "text_ocr": "Dufonrmantelle (Jacques), perussier,, r.\nDRE D ADO Du D RENE, \u00a9",
+    "ner_xml": "<PER>Dufonrmantelle (Jacques)</PER>, <ACT>perussier</ACT>,, <LOC>r.\u2029DRE D ADO </LOC>Du <CARDINAL>D </CARDINAL>RENE, \u00a9",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 437,
     "book": "Bottin1_1820",
     "page": 107,
     "text_ocr": "Dufraisue, tailleur, x. Richelieu, 4. 4vo",
@@ -360,47 +352,47 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 437,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Dufresne (.-G.), colrtier de commerce, r.\nS.-Denis , 07. ss 332",
-    "ner_xml": "<PER>Dufresne</PER> (.-G.), colr<ACT>tier de commer</ACT>ce, <LOC>r.\u2029S.-Denis </LOC>, <CARDINAL>0</CARDINAL>7. ss 332",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 441,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dnfresne, fab. de crayons (exp. 1819),T:\nde Ja Contellerte 51 , - E 336",
-    "ner_xml": "<PER>Dnfresne, fab. de </PER>cr<ACT>ayons (exp. 1819),T:\u2029de</ACT> <LOC>Ja Contelle</LOC>rte <CARDINAL>51</CARDINAL> , - E 336",
+    "text_ocr": "Dufresne (.-G.), colrtier de commerce, r.\nS.-Denis , 07. ss 332",
+    "ner_xml": "<PER>Dufresne (.-G.)</PER>, <ACT>colrtier de commerce</ACT>, <LOC>r.\u2029S.-Denis</LOC> , <CARDINAL>07</CARDINAL>. ss 332",
     "has_valid_ner_xml": true
   },
   {
     "id": 444,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufresne, \u00e9picier, v. du Murcb\u00e9-nux-Pui-\nr\u00e9es, 12 D _35a",
-    "ner_xml": "<PER>Dufresne</PER>, <ACT>\u00e9picier, v. du Mu</ACT><LOC>rcb\u00e9-nux-Pui-\u2029r\u00e9es</LOC>, <CARDINAL>12</CARDINAL> D _35a",
+    "text_ocr": "Dnfresne, fab. de crayons (exp. 1819),T:\nde Ja Contellerte 51 , - E 336",
+    "ner_xml": "<PER>Dnfresne</PER>, <ACT>fab. de crayons (exp. 1819)</ACT>,T<LOC>:\u2029de Ja Contellerte</LOC> 5<CARDINAL>1 </CARDINAL>, - E 336",
     "has_valid_ner_xml": true
   },
   {
     "id": 446,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufresne (Mad), ling\u00e8re, r. S.: Denis, \u00ff",
-    "ner_xml": "<PER>Dufresne</PER> <ACT>(Mad)</ACT>, <LOC>ling\u00e8re, r. S.: Denis</LOC>, <CARDINAL>\u00ff</CARDINAL>",
+    "text_ocr": "Dufresne, \u00e9picier, v. du Murcb\u00e9-nux-Pui-\nr\u00e9es, 12 D _35a",
+    "ner_xml": "<PER>Dufresne</PER>, <ACT>\u00e9picier</ACT>, <LOC>v. du Murcb\u00e9-nux-Pui-\u2029r\u00e9es</LOC>, <CARDINAL>12</CARDINAL> D _35a",
     "has_valid_ner_xml": true
   },
   {
     "id": 448,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Duuro\u00e9, menuisier, x, de la M\u00fcrtelierie, 159:",
-    "ner_xml": "<PER>Duuro\u00e9, menuisier</PER>, <ACT>x, de l</ACT>a <LOC>M\u00fcrtelierie</LOC>, <CARDINAL>15</CARDINAL>9:",
+    "text_ocr": "Dufresne (Mad), ling\u00e8re, r. S.: Denis, \u00ff",
+    "ner_xml": "<PER>Dufresne (Mad)</PER>, <ACT>ling\u00e8re</ACT>, <LOC>r. S.: Denis</LOC>, <CARDINAL>\u00ff</CARDINAL>",
     "has_valid_ner_xml": true
   },
   {
     "id": 450,
+    "book": "Bottin1_1820",
+    "page": 107,
+    "text_ocr": "Duuro\u00e9, menuisier, x, de la M\u00fcrtelierie, 159:",
+    "ner_xml": "<PER>Duuro\u00e9</PER>, <ACT>menuisier</ACT>, <LOC>x, de la M\u00fcrtelierie</LOC>, <CARDINAL>159</CARDINAL>:",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 451,
     "book": "Bottin1_1820",
     "page": 107,
     "text_ocr": "Dacrot, parfumeur, v: S:-Mecri, 38. Et",
@@ -408,31 +400,31 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 451,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "'mn: em\nDudngnon, march. depl\u00e2tre, x. des Murais-\n! SGermoio set , 403",
-    "ner_xml": "&apos;mn: em\u2029<PER>Dudngnon</PER>, <ACT>march. depl\u00e2tr</ACT>e, <LOC>x. des Murais-\u2029! SGermoi</LOC>o <CARDINAL>se</CARDINAL>t , 403",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 452,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Duerot, potier de terre, r. Montorgueil eu",
-    "ner_xml": "<PER>Duerot</PER>, <ACT>potier de terre</ACT>, <LOC>r. Montorgueil</LOC> <CARDINAL>e</CARDINAL>u",
-    "has_valid_ner_xml": true
+    "text_ocr": "'mn: em\nDudngnon, march. depl\u00e2tre, x. des Murais-\n! SGermoio set , 403",
+    "ner_xml": "&apos;mn: em\u2029<PER>Dudngnon</PER>, <ACT>march. depl\u00e2tre</ACT>, <LOC>x. des Murais-\u2029! SGermoio</LOC> set <CARDINAL></CARDINAL>, 403",
+    "has_valid_ner_xml": false
   },
   {
     "id": 453,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Duez, menuisier, | re de la Tixerandories 5ri\n, em 0",
-    "ner_xml": "<PER>Duez</PER>, <ACT>menuisier, | re de la</ACT> T<LOC>ixerandories </LOC>5r<CARDINAL>i\u2029</CARDINAL>, em 0",
+    "text_ocr": "Duerot, potier de terre, r. Montorgueil eu",
+    "ner_xml": "<PER>Duerot</PER>, <ACT>potier de terre</ACT>, <LOC>r. Montorgueil</LOC> <CARDINAL>eu</CARDINAL>",
     "has_valid_ner_xml": true
   },
   {
     "id": 456,
+    "book": "Bottin1_1820",
+    "page": 107,
+    "text_ocr": "Dofs\u00efllet ; chaudronnier, r. Vieille-du-Tem-\n. ple, r07. _ Ba4",
+    "ner_xml": "<PER>Dofs\u00efllet</PER> ; <ACT>chaudronnier</ACT>, <LOC>r. Vieille-du-Tem-\u2029. ple</LOC>, <CARDINAL>r07</CARDINAL>. _ Ba4",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 457,
     "book": "Bottin1_1820",
     "page": 107,
     "text_ocr": "Dofsre (Pierre), libraire, 4, Voltaire,19. 302",
@@ -440,87 +432,79 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 457,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "D\u00fcfay, Gbraire, r. Montmartre, Sa B\n& do Saumans 38. A # 3e.",
-    "ner_xml": "<PER>D\u00fcfay, Gbraire,</PER> r. <ACT>Montmartre</ACT>, <LOC>Sa B\u2029&amp; do Sauma</LOC>ns <CARDINAL>38</CARDINAL>. A # 3e.",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 458,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dofay-Coqueret, quinca\u00efllier,r. Ph\u00e9lipeaux,\nET ner gr Fe",
-    "ner_xml": "<PER>Dofay</PER>-C<ACT>oquere</ACT>t, <LOC>quinca\u00efllier</LOC>,<CARDINAL>r</CARDINAL>. <LOC>Ph\u00e9lipeaux,\u2029ET n</LOC>er <CARDINAL>gr</CARDINAL> Fe",
-    "has_valid_ner_xml": true
-  },
-  {
-    "id": 459,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Daflos , horloger, r. du Faub.-S.-Maitin ,\nEn 7 7 0S Xe CR FRE \u00e0",
-    "ner_xml": "<PER>Daflo</PER>s <ACT>, horloger</ACT>, <LOC>r. du Faub.-S.-Maitin ,\u2029En 7 7 0S Xe </LOC>CR <CARDINAL>FR</CARDINAL>E <CARDINAL>\u00e0</CARDINAL>",
+    "text_ocr": "D\u00fcfay, Gbraire, r. Montmartre, Sa B\n& do Saumans 38. A # 3e.",
+    "ner_xml": "<PER>D\u00fcfay</PER>, <ACT>Gbraire</ACT>, <LOC>r. Montmartre</LOC>,<CARDINAL> Sa</CARDINAL> <LOC>B\u2029&amp; do Sauman</LOC>s <CARDINAL>38</CARDINAL>. A # 3e.",
     "has_valid_ner_xml": true
   },
   {
     "id": 460,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dollos, papetier, \". Po\u00efssonni\u00e8t\u00e9 0. \u00c23r",
-    "ner_xml": "<PER>Dollos</PER>, <ACT>papetier</ACT>, <LOC>&quot;. Po\u00efssonni\u00e8</LOC>t\u00e9<CARDINAL> 0</CARDINAL>. \u00c23r",
+    "text_ocr": "Dofay-Coqueret, quinca\u00efllier,r. Ph\u00e9lipeaux,\nET ner gr Fe",
+    "ner_xml": "<PER>Dofay-Coqueret</PER>, <ACT>quinca\u00efllier</ACT>,<LOC>r. Ph\u00e9lipeaux</LOC>,<CARDINAL>\u2029ET</CARDINAL> ner gr Fe",
     "has_valid_ner_xml": true
   },
   {
     "id": 464,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Daflot\n\u00e0 ) quincaili\n#4 ROLE 7 quai de l'Ecole\n! cole, 10.\n458",
-    "ner_xml": "<PER>Daflot\u2029</PER>\u00e0 <ACT>) quincaili\u2029#4 ROLE </ACT>7 <LOC>quai de l&apos;Ecole\u2029! cole</LOC>, <CARDINAL>10</CARDINAL>.\u2029458",
+    "text_ocr": "Datl\u00e9cq, march. de Bois \u00e0 brdler, r. de\n= T'Areade , 13. ee",
+    "ner_xml": "<PER>Datl\u00e9cq</PER>, <ACT>march. de Bois \u00e0 brdler</ACT>, <LOC>r. de\u2029= T&apos;Areade</LOC> , <CARDINAL>13</CARDINAL>. ee",
     "has_valid_ner_xml": true
   },
   {
     "id": 465,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dfort a\u00een\u00e9 , bottiers r: Pagevin, 7. 295",
-    "ner_xml": "<PER>Dfor</PER>t <ACT>a\u00een\u00e9 , bottiers r</ACT>: <LOC>Pagevin</LOC>, <CARDINAL>7</CARDINAL>. 295",
+    "text_ocr": "Duflas ; rouennere, r. B\u00f4nrg-P'Abb\u00e9, p\u00e2ss,\nns Peas 8 Luc # pis",
+    "ner_xml": "<PER>Duflas</PER> ; <ACT>rouennere, r. B\u00f4nrg-P&apos;Abb\u00e9</ACT>, <LOC>p\u00e2ss,\u2029ns Peas 8 </LOC>Lu<CARDINAL>c </CARDINAL># pis",
     "has_valid_ner_xml": true
   },
   {
     "id": 466,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour, ag. d'affaires ; \". du Chaume , 1\nCe A 97",
-    "ner_xml": "<PER>Dufour</PER>, <ACT>ag. d&apos;affaires</ACT> ; <LOC>&quot;. du Chaume </LOC>, <CARDINAL>1\u2029</CARDINAL>Ce A 97",
+    "text_ocr": "Daflot\n\u00e0 ) quincaili\n#4 ROLE 7 quai de l'Ecole\n! cole, 10.\n458",
+    "ner_xml": "<PER>Daflot</PER>\u2029\u00e0 ) <ACT>quincaili\u2029#4 R</ACT>OLE 7 <LOC>quai de l&apos;Ecole</LOC>\u2029! cole, <CARDINAL>10</CARDINAL>.\u2029458",
     "has_valid_ner_xml": true
   },
   {
     "id": 467,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
+    "text_ocr": "Dfort a\u00een\u00e9 , bottiers r: Pagevin, 7. 295",
+    "ner_xml": "<PER>Dfort a\u00een\u00e9</PER> , <ACT>bottier</ACT>s <LOC>r: Pagevin</LOC>, <CARDINAL>7</CARDINAL>. 295",
+    "has_valid_ner_xml": true
   },
   {
     "id": 468,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour ,.mxarch, de v\u00e8ns, x. des Bo\u00fbcherivs-\n| SuGormain , Br. \"ss 7 &g8",
-    "ner_xml": "<PER>Dufour</PER> ,.mx<ACT>arch, de v\u00e8ns</ACT>, <LOC>x. des Bo\u00fbcherivs-\u2029| SuGorma</LOC>in , <CARDINAL>Br</CARDINAL>. &quot;ss 7 &amp;g8",
-    "has_valid_ner_xml": true
-  },
-  {
-    "id": 469,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Dufr\u00e9noy ; rrarch. de vins ,r. Ga\u00e9rin-Bois-\nsean, 4 498",
-    "ner_xml": "<PER>Dufr\u00e9noy </PER>; <ACT>rrarch. de vins</ACT> ,<LOC>r. Ga\u00e9rin-Bois-\u2029sean</LOC>, <CARDINAL>4</CARDINAL> <CARDINAL>498</CARDINAL>",
+    "text_ocr": "Dufour, ag. d'affaires ; \". du Chaume , 1\nCe A 97",
+    "ner_xml": "<PER>Dufour</PER>, <ACT>ag. d&apos;affaires</ACT> ; <LOC>&quot;. du Chaume</LOC> , <CARDINAL>1\u2029</CARDINAL>Ce A 97",
     "has_valid_ner_xml": true
   },
   {
     "id": 470,
+    "book": "Bottin1_1820",
+    "page": 107,
+    "text_ocr": "Dufour ,.mxarch, de v\u00e8ns, x. des Bo\u00fbcherivs-\n| SuGormain , Br. \"ss 7 &g8",
+    "ner_xml": "<PER>Dufour</PER> ,.<ACT>mxarch, de v\u00e8ns</ACT>, <LOC>x. des Bo\u00fbcherivs-\u2029| SuGormain</LOC> , <CARDINAL>Br</CARDINAL>. &quot;ss 7 &amp;g8",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 472,
+    "book": "Bottin1_1820",
+    "page": 107,
+    "text_ocr": "Dufr\u00e9noy ; rrarch. de vins ,r. Ga\u00e9rin-Bois-\nsean, 4 498",
+    "ner_xml": "<PER>Dufr\u00e9noy</PER> ; <ACT>rrarch. de vins</ACT> ,<LOC>r. Ga\u00e9rin-Bois-\u2029sean</LOC>, <CARDINAL>4</CARDINAL> 498",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 473,
     "book": "Bottin1_1820",
     "page": 107,
     "text_ocr": "HDofay, papetier, +. S.eMartin, 20. 457",
@@ -528,43 +512,27 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 472,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Dulay, march. de toiles , r. des Mauvaises-\n Patates, \"az. nt + 487",
-    "ner_xml": "<PER>Dulay</PER>, <ACT>march. de toiles</ACT> , <LOC>r. des Mauvaises-\u2029 Pat</LOC>ates, <CARDINAL>&quot;a</CARDINAL>z. nt + 487",
-    "has_valid_ner_xml": true
-  },
-  {
-    "id": 473,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "Dofour , march. de vins , r.Ste.-Marguerite-\nS:-G\u00e9emain , 6. 7 8 Log",
-    "ner_xml": "<PER>Dofou</PER>r , <ACT>march. de vins</ACT> , <LOC>r.Ste.-Marguerite-\u2029S:-G\u00e9emain</LOC> , <CARDINAL>6</CARDINAL>. 7 8 Log",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 474,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dafrenel, plumassicr, v. S.-D\u00e9nis : 305, 453",
-    "ner_xml": "<PER>Dafre</PER>ne<ACT>l, plumassicr</ACT>, <LOC>v. S.-D\u00e9nis </LOC>: <CARDINAL>30</CARDINAL>5, 453",
+    "text_ocr": "Dulay, march. de toiles , r. des Mauvaises-\n Patates, \"az. nt + 487",
+    "ner_xml": "<PER>Dulay</PER>, <ACT>march. de toiles</ACT> , <LOC>r. des Mauvaises-\u2029 Patates</LOC>, <CARDINAL>&quot;a</CARDINAL>z. nt + 487",
     "has_valid_ner_xml": true
   },
   {
     "id": 475,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufour, march. de vins, r. Ste.-Marguerite.\nS.-Germain , 6.",
-    "ner_xml": "<PER>Dufour</PER>, <ACT>march. de vins</ACT>, <LOC>r. Ste.-Marguerite.\u2029S.-Germain</LOC> , <CARDINAL>6</CARDINAL>.",
+    "text_ocr": "Dofour , march. de vins , r.Ste.-Marguerite-\nS:-G\u00e9emain , 6. 7 8 Log",
+    "ner_xml": "<PER>Dofour</PER> , <ACT>march. de vins</ACT> , <LOC>r.Ste.-Marguerite-\u2029S:-G\u00e9emain</LOC> , <CARDINAL>6</CARDINAL>. 7 8 Log",
     "has_valid_ner_xml": true
   },
   {
     "id": 476,
     "book": "Bottin1_1820",
     "page": 107,
-    "text_ocr": "Dufrenel, plumassier, r. S.Denis, 307.  453",
-    "ner_xml": "<PER>Dufrenel</PER>, <ACT>plumassier</ACT>, <LOC>r. S.Denis</LOC>, <CARDINAL>307</CARDINAL>.  453",
+    "text_ocr": "Dafrenel, plumassicr, v. S.-D\u00e9nis : 305, 453",
+    "ner_xml": "<PER>Dafrenel</PER>, <ACT>plumassicr</ACT>, <LOC>v. S.-D\u00e9nis</LOC> : <CARDINAL>305</CARDINAL>, 453",
     "has_valid_ner_xml": true
   },
   {
@@ -616,119 +584,119 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 289,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "Migeon, charpentier, x, de Vaugirard ; pa",
-    "ner_xml": "<PER>Migeon</PER>, <ACT>charpentier</ACT>, <LOC>x, de Vaugira</LOC>rd <CARDINAL></CARDINAL>; <CARDINAL>pa</CARDINAL>",
-    "has_valid_ner_xml": false
-  },
-  {
-    "id": 293,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "Migaan , \u00e9picier, r. de la Chanss\u00e9o-d'Antin,\nAt. 356",
-    "ner_xml": "<PER>Migaan , \u00e9picie</PER>r, <ACT>r. de la Chanss\u00e9o</ACT>-d<LOC>&apos;Antin,\u2029</LOC>At. <CARDINAL>35</CARDINAL>6",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 298,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": ", ve. des\nee Conte, es",
-    "ner_xml": "<PER>, ve</PER>. <ACT>des\u2029ee</ACT> <LOC>Conte</LOC>, <CARDINAL>es</CARDINAL>",
-    "has_valid_ner_xml": true
+    "text_ocr": "Migeon, charpentier, x, de Vaugirard ; pa",
+    "ner_xml": "<PER>Migeon</PER>, <ACT>charpentier</ACT>, <LOC>x, de Vaugirard</LOC> <CARDINAL></CARDINAL>; pa",
+    "has_valid_ner_xml": false
   },
   {
     "id": 302,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Migneret, nprimeur, r, du Dons 20.\nee nm + \"386, 303",
-    "ner_xml": "<PER>Migner</PER>et, <ACT>nprimeur</ACT>, <LOC>r, du Dons 20.\u2029ee nm + &quot;3</LOC>8<CARDINAL>6</CARDINAL>, 303",
+    "text_ocr": "Migaan , \u00e9picier, r. de la Chanss\u00e9o-d'Antin,\nAt. 356",
+    "ner_xml": "<PER>Migaan</PER> , <ACT>\u00e9picier</ACT>, <LOC>r. de la Chanss\u00e9o-d&apos;Antin</LOC>,<CARDINAL>\u2029At</CARDINAL>. 356",
     "has_valid_ner_xml": true
   },
   {
     "id": 312,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "- Migneron (Mad.), fleuriste, r. du Caire , 3.\nLe h 453",
-    "ner_xml": "- <PER>Migneron (Mad.)</PER>, <ACT>fleurist</ACT>e, <LOC>r. du Caire </LOC>, <CARDINAL>3</CARDINAL>.\u2029<LOC>Le h</LOC> 453",
-    "has_valid_ner_xml": true
+    "text_ocr": ", ve. des\nee Conte, es",
+    "ner_xml": "<PER></PER>, <ACT>ve</ACT>. <LOC>des\u2029ee Conte</LOC>, <CARDINAL>e</CARDINAL><LOC>s</LOC>",
+    "has_valid_ner_xml": false
   },
   {
     "id": 314,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "- Mignolet, horloger, r. S.-Anne ; 50. 36",
-    "ner_xml": "- <PER>Mignolet</PER>, <ACT>horloger</ACT>, <LOC>r. S.-Ann</LOC>e <CARDINAL></CARDINAL>; 50. 36",
-    "has_valid_ner_xml": false
+    "text_ocr": "Migneret, nprimeur, r, du Dons 20.\nee nm + \"386, 303",
+    "ner_xml": "<PER>Migneret</PER>, <ACT>nprimeur</ACT>, <LOC>r, du Don</LOC>s <CARDINAL>20</CARDINAL>.\u2029ee nm + &quot;386, 303",
+    "has_valid_ner_xml": true
   },
   {
     "id": 316,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mignon jeune, chapelier, r. Geulroy-l'An-\nnca ne Rp 0j 80",
-    "ner_xml": "<PER>Mignon jeune, </PER>ch<ACT>apelier</ACT>, <LOC>r. Geulroy-l&apos;An-\u2029nca ne</LOC> Rp <CARDINAL>0j</CARDINAL> 80",
+    "text_ocr": "- Migneron (Mad.), fleuriste, r. du Caire , 3.\nLe h 453",
+    "ner_xml": "- <PER>Migneron (Mad.)</PER>, <ACT>fleuriste</ACT>, <LOC>r. du Caire</LOC> , <CARDINAL>3.</CARDINAL>\u2029Le h 453",
     "has_valid_ner_xml": true
   },
   {
     "id": 318,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "\"PSEue, (Fran\u00e7ois); comruiss., 4 die",
-    "ner_xml": "<PER>&quot;PSEue</PER>, <ACT>(Fran\u00e7oi</ACT>s)<LOC>; comruis</LOC>s., <CARDINAL>4</CARDINAL> die",
+    "text_ocr": "- Mignolet, horloger, r. S.-Anne ; 50. 36",
+    "ner_xml": "- <PER>Mignolet</PER>, <ACT>horloger</ACT>, <LOC>r. S.-Anne</LOC> ; <CARDINAL>50</CARDINAL>. 36",
     "has_valid_ner_xml": true
   },
   {
     "id": 320,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "| Migaon \" serrurier ; v. Cassette, an. (kg)",
-    "ner_xml": "| <PER>Migaon &quot; se</PER>rr<ACT>urier</ACT> ; <LOC>v. Cassette</LOC>, <CARDINAL>an</CARDINAL>. (kg)",
+    "text_ocr": "Mignon jeune, chapelier, r. Geulroy-l'An-\nnca ne Rp 0j 80",
+    "ner_xml": "<PER>Mignon jeune</PER>, <ACT>chapelier</ACT>, <LOC>r. Geulroy-l&apos;An-\u2029nca n</LOC>e <CARDINAL>Rp</CARDINAL> 0j 80",
     "has_valid_ner_xml": true
   },
   {
     "id": 322,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "- Mignon, seiFurier, r. Joqnelet, 7.  4na",
-    "ner_xml": "- <PER>Mignon, seiFurier</PER>, <ACT>r.</ACT> <LOC>Joqnelet</LOC>, <CARDINAL>7</CARDINAL>.  4na",
-    "has_valid_ner_xml": true
+    "text_ocr": "\"PSEue, (Fran\u00e7ois); comruiss., 4 die",
+    "ner_xml": "<PER>&quot;PSEue, (Fran\u00e7ois)</PER>; <ACT>comruiss.</ACT>, <LOC>4 die</LOC><CARDINAL></CARDINAL>",
+    "has_valid_ner_xml": false
   },
   {
     "id": 324,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "| ARRSESS, fondeur en caracl\u00e8tes, +. des\n5. 5 368",
-    "ner_xml": "<PER>| ARRS</PER>ES<ACT>S, fondeur</ACT> <LOC>en caracl\u00e8tes</LOC>, <CARDINAL>+</CARDINAL>. <TITRE>des\u20295. </TITRE>5 368",
+    "text_ocr": "| Migaon \" serrurier ; v. Cassette, an. (kg)",
+    "ner_xml": "| <PER>Migaon</PER> &quot; <ACT>serrurier</ACT> ; <LOC>v. Cassette</LOC>, <CARDINAL>an</CARDINAL>. <TITRE>(kg)</TITRE>",
     "has_valid_ner_xml": true
   },
   {
     "id": 328,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "! Miguot, h\u00f4tel garni, % de la Jamienng,",
-    "ner_xml": "! <PER>Miguot</PER>, <ACT>h\u00f4tel garni, </ACT>% <LOC>de la Jamien</LOC>ng<CARDINAL></CARDINAL>,",
-    "has_valid_ner_xml": false
+    "text_ocr": "- Mignon, seiFurier, r. Joqnelet, 7.  4na",
+    "ner_xml": "- <PER>Mignon</PER>, <ACT>seiFurier</ACT>, <LOC>r. Joqnelet</LOC>, <CARDINAL>7</CARDINAL>.  4na",
+    "has_valid_ner_xml": true
   },
   {
     "id": 330,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mignot, march. de vins, +, Louvois, go.\n: : 3717: on",
-    "ner_xml": "<PER>Mignot</PER>, <ACT>march. de vins, +, Louvois</ACT>, <LOC>go.\u2029: : 3717</LOC>: <CARDINAL>o</CARDINAL>n",
+    "text_ocr": "| ARRSESS, fondeur en caracl\u00e8tes, +. des\n5. 5 368",
+    "ner_xml": "<PER>| ARRSES</PER>S, <ACT>fondeur en caracl\u00e8tes</ACT>, <LOC>+. des\u20295</LOC>. <CARDINAL>5</CARDINAL> 368",
     "has_valid_ner_xml": true
   },
   {
     "id": 332,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milerin, marche. de vins, x, Croixdes-Petiis-\n Chomps, 13, h Ga",
-    "ner_xml": "<PER>Mileri</PER>n, <ACT>marche. de vins</ACT>, <LOC>x, Croixdes-Petiis-\u2029 Cho</LOC>mps,<CARDINAL> 13</CARDINAL>, h Ga",
-    "has_valid_ner_xml": true
+    "text_ocr": "! Miguot, h\u00f4tel garni, % de la Jamienng,",
+    "ner_xml": "! <PER>Miguot</PER>, <ACT>h\u00f4tel garni</ACT>, <LOC>% de la Jamienng</LOC>,<CARDINAL></CARDINAL>",
+    "has_valid_ner_xml": false
   },
   {
     "id": 334,
+    "book": "Bottin1_1820",
+    "page": 201,
+    "text_ocr": "Mignot, march. de vins, +, Louvois, go.\n: : 3717: on",
+    "ner_xml": "<PER>Mignot</PER>, <ACT>march. de vins</ACT>, <LOC>+, Louvois</LOC>, go.\u2029: : 37<CARDINAL>17</CARDINAL>: on",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 359,
+    "book": "Bottin1_1820",
+    "page": 201,
+    "text_ocr": "Milerin, marche. de vins, x, Croixdes-Petiis-\n Chomps, 13, h Ga",
+    "ner_xml": "<PER>Milerin</PER>, <ACT>marche. de vins</ACT>, <LOC>x, Croixdes-Petiis-\u2029 Chomps</LOC>, <CARDINAL>13</CARDINAL>, h Ga",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 362,
     "book": "Bottin1_1820",
     "page": 201,
     "text_ocr": "Milet, ad. d'eaux-de-vie, re Comtesse-\nd'Artois, 33 i 34",
@@ -736,419 +704,395 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 359,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "Milet (V.\u00b0), m\u00e8d, de lers peints, boulev.\nD pee Mae POPEREE PORRERS ROME",
-    "ner_xml": "<PER>Milet (</PER>V.\u00b0), <ACT>m\u00e8d, de lers peints</ACT>, <LOC>boulev.\u2029D pee Mae POPEREE PO</LOC>RR<CARDINAL>ER</CARDINAL>S ROME",
-    "has_valid_ner_xml": true
-  },
-  {
-    "id": 362,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "Milet, pdtissier, r. $,-Germa\u00efn-PAuxerrois,\n27, * 445",
-    "ner_xml": "<PER>Milet</PER>, <ACT>pdtissier</ACT>, <LOC>r. $,-Germa\u00efn-PAuxerrois</LOC>,\u2029<CARDINAL>27</CARDINAL>, * 445",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 366,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Miler, vernisseur, r. du Faub.-S.-Dens,\nHE 6 . x dax",
-    "ner_xml": "<PER>Miler</PER>, <ACT>vernisseur</ACT>, <LOC>r. du Faub.-S.-Dens,\u2029H</LOC>E<CARDINAL> 6 </CARDINAL>. x dax",
+    "text_ocr": "Milet, pdtissier, r. $,-Germa\u00efn-PAuxerrois,\n27, * 445",
+    "ner_xml": "<PER>Milet</PER>, <ACT>pdtissier</ACT>, <LOC>r. $,-Germa\u00efn-PAuxerrois</LOC>,<CARDINAL>\u202927</CARDINAL>, * 445",
     "has_valid_ner_xml": true
   },
   {
     "id": 368,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milhet, \u00e9picier, r. de la Heaumeri\u00e9, 1. 356",
-    "ner_xml": "<PER>Milhet</PER>, <ACT>\u00e9picier</ACT>, <LOC>r. de la Heaumeri\u00e9</LOC>,<CARDINAL> 1</CARDINAL>. 356",
+    "text_ocr": "Milet, serrurter, r. : Neuve-Sa\u00efnt-Martiu,\n4 | hra",
+    "ner_xml": "<PER>Milet</PER>, <ACT>serrurter</ACT>, <LOC>r. : Neuve-Sa\u00efnt-Martiu</LOC>,<CARDINAL>\u20294 </CARDINAL>| hra",
     "has_valid_ner_xml": true
   },
   {
     "id": 370,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milhomunie, med, de levures, r. Neuve-5.-\n Denis,28, : 5 : 209",
-    "ner_xml": "<PER>Milhomunie</PER>, <ACT>med, de levur</ACT>es, <LOC>r. Neuve-5.-\u2029 Denis</LOC>,28,<CARDINAL> : </CARDINAL>5 : 209",
+    "text_ocr": "Miler, vernisseur, r. du Faub.-S.-Dens,\nHE 6 . x dax",
+    "ner_xml": "<PER>Miler</PER>, <ACT>vernisseur</ACT>, <LOC>r. du Faub.-S.-Dens</LOC>,<CARDINAL>\u2029HE 6</CARDINAL> . x dax",
     "has_valid_ner_xml": true
   },
   {
     "id": 373,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mihotti, Soufanger; r. du Fauh.-5.-Hono-\nr\u00e9, 195, ' 209",
-    "ner_xml": "<PER>Mihot</PER>ti, <ACT>Soufanger</ACT>; <LOC>r. du Fauh.-5.-Hono-\u2029r\u00e9</LOC>, <CARDINAL>1</CARDINAL>95, &apos; 209",
+    "text_ocr": "Milhet, \u00e9picier, r. de la Heaumeri\u00e9, 1. 356",
+    "ner_xml": "<PER>Milhet</PER>, <ACT>\u00e9picier</ACT>, <LOC>r. de la Heaumeri\u00e9</LOC>, <CARDINAL>1</CARDINAL>. 356",
     "has_valid_ner_xml": true
   },
   {
     "id": 375,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milius (C.-P.), md. de couleurs, v. des\nBlancs-Ma\u00f1teaux , 25. 333 ,. 428",
-    "ner_xml": "<PER>Milius (</PER>C.-P.), <ACT>md. de couleurs</ACT>, <LOC>v. des\u2029Blancs-Ma\u00f1teaux</LOC> , <CARDINAL>25</CARDINAL>. 333 ,. 428",
+    "text_ocr": "Milhomunie, med, de levures, r. Neuve-5.-\n Denis,28, : 5 : 209",
+    "ner_xml": "<PER>Milhomunie</PER>, <ACT>med, de levures</ACT>, <LOC>r. Neuve-5.-\u2029 Denis</LOC>,<CARDINAL>28</CARDINAL>, : 5 : 209",
     "has_valid_ner_xml": true
   },
   {
     "id": 377,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Millan, fab. de boy\u00e4ux , labrt \u00e0 Gh-\n\u00c9D Gars an 'bas Asni\u00e8res \u00e0\nd\u00e9t, r. Beaujolois-du-Palais-Royul; 16,\n(exp: 1810.) 304, 327, \u00a3or, F1,",
-    "ner_xml": "<PER>Millan, </PER>fab. de <ACT>boy\u00e4ux , labrt \u00e0 Gh-\u2029\u00c9D Gar</ACT>s an &apos;bas Asni\u00e8<LOC>res \u00e0\u2029d\u00e9t, r. Beaujolois-du-Palais-Royul; 16,\u2029(e</LOC>xp: <CARDINAL>1810.) 304, 327</CARDINAL>, \u00a3or, F1,",
+    "text_ocr": "Mihotti, Soufanger; r. du Fauh.-5.-Hono-\nr\u00e9, 195, ' 209",
+    "ner_xml": "<PER>Mihotti</PER>, <ACT>Soufanger</ACT>; <LOC>r. du Fauh.-5.-Hono-\u2029r\u00e9</LOC>, <CARDINAL>195</CARDINAL>, &apos; 209",
     "has_valid_ner_xml": true
   },
   {
     "id": 381,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mijareaet s\u00e9mentier, r. Saint-Denis\nPis Pas ne L\u00c9",
-    "ner_xml": "<PER>Mijareaet s\u00e9</PER><ACT>mentier</ACT>, <LOC>r. Saint-Denis\u2029Pi</LOC>s <CARDINAL>Pa</CARDINAL>s ne L\u00c9",
+    "text_ocr": "Milius (C.-P.), md. de couleurs, v. des\nBlancs-Ma\u00f1teaux , 25. 333 ,. 428",
+    "ner_xml": "<PER>Milius (C.-P.)</PER>, <ACT>md. de couleurs</ACT>, <LOC>v. des\u2029Blancs-Ma\u00f1teaux</LOC> , <CARDINAL>25</CARDINAL>. 333 ,. 428",
     "has_valid_ner_xml": true
   },
   {
     "id": 384,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Millaud , accordeur, +. de l'Echiquier, re\nno",
-    "ner_xml": "<PER>Millau</PER><ACT>d , accordeur, +</ACT>. de <LOC>l&apos;Echiquier</LOC>, <CARDINAL>r</CARDINAL><TITRE>e\u2029no</TITRE>",
+    "text_ocr": "Millan, fab. de boy\u00e4ux , labrt \u00e0 Gh-\n\u00c9D Gars an 'bas Asni\u00e8res \u00e0\nd\u00e9t, r. Beaujolois-du-Palais-Royul; 16,\n(exp: 1810.) 304, 327, \u00a3or, F1,",
+    "ner_xml": "<PER>Millan</PER>, <ACT>fab. de boy\u00e4ux , labrt \u00e0 Gh-\u2029\u00c9D Gars an &apos;bas Asni\u00e8res</ACT> \u00e0\u2029d\u00e9t, <LOC>r. Beaujolois-du-Palais-Royul</LOC>; <CARDINAL>16</CARDINAL>,<TITRE>\u2029(exp: 1810.)</TITRE> 304, 327, \u00a3or, F1,",
     "has_valid_ner_xml": true
   },
   {
     "id": 389,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Miile , confiseur, r, S -Martin, 42. 326",
-    "ner_xml": "<PER>Miile </PER>, <ACT>confiseur</ACT>, <LOC>r, S -Martin</LOC>,<CARDINAL> 42</CARDINAL>. 326",
+    "text_ocr": "Mijareaet s\u00e9mentier, r. Saint-Denis\nPis Pas ne L\u00c9",
+    "ner_xml": "<PER>Mijareaet</PER> <ACT>s\u00e9mentier</ACT>, <LOC>r. Saint-Denis</LOC>\u2029Pis<CARDINAL> Pas</CARDINAL> ne L\u00c9",
     "has_valid_ner_xml": true
   },
   {
     "id": 392,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mille , rnarch. de meubles , r. du Cim\u00e9ti\u00e8re\u2014\nS.-Nicolas , 9. \" . 483",
-    "ner_xml": "<PER>Mille </PER>, rn<ACT>arch. de meub</ACT>les , <LOC>r. du Cim\u00e9ti\u00e8re\u2014\u2029S.-Nicolas</LOC> , <CARDINAL>9.</CARDINAL> &quot; . 483",
+    "text_ocr": "Millaud , accordeur, +. de l'Echiquier, re\nno",
+    "ner_xml": "<PER>Millaud</PER> , <ACT>accordeur</ACT>, <LOC>+. de l&apos;Echiquier</LOC>, <CARDINAL>re</CARDINAL>\u2029no",
     "has_valid_ner_xml": true
   },
   {
     "id": 396,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milieret, nd, de vins, rue du March\u00e9-5.-\nHonor\u00e9. &. + \"6oa",
-    "ner_xml": "<PER>Milie</PER>ret, <ACT>nd, de vi</ACT>ns, <LOC>rue du March\u00e9-5.-\u2029Hon</LOC>o<CARDINAL>r\u00e9</CARDINAL>. &amp;. + &quot;6oa",
+    "text_ocr": "Miile , confiseur, r, S -Martin, 42. 326",
+    "ner_xml": "<PER>Miile</PER> , <ACT>confiseur</ACT>, <LOC>r, S -Martin</LOC>, <CARDINAL>42</CARDINAL>. 326",
     "has_valid_ner_xml": true
   },
   {
     "id": 398,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Millerin, march. de vins, t, Buffanlt, r, 5on",
-    "ner_xml": "<PER>Mille</PER>rin, <ACT>march. de vins</ACT>, <LOC>t, Buffanlt</LOC>, <CARDINAL>r</CARDINAL>, 5on",
+    "text_ocr": "Mille , rnarch. de meubles , r. du Cim\u00e9ti\u00e8re\u2014\nS.-Nicolas , 9. \" . 483",
+    "ner_xml": "<PER>Mille</PER> , <ACT>rnarch. de meubles</ACT> , <LOC>r. du Cim\u00e9ti\u00e8re\u2014\u2029S.-Nicolas</LOC> , <CARDINAL>9</CARDINAL>. &quot; . 483",
     "has_valid_ner_xml": true
   },
   {
     "id": 403,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milleriot (V\u00ae), md. de vins en gros; Tue\nnos ete, Bu +0 4gf",
-    "ner_xml": "<PER>Millerio</PER>t (V\u00ae), <ACT>md. de vins</ACT> <LOC>en gros; Tue\u2029nos ete</LOC>, <CARDINAL>B</CARDINAL>u +0 4gf",
+    "text_ocr": "Milieret, nd, de vins, rue du March\u00e9-5.-\nHonor\u00e9. &. + \"6oa",
+    "ner_xml": "<PER>Milieret</PER>, <ACT>nd, de vins</ACT>, <LOC>rue du March\u00e9-5.-\u2029Honor\u00e9</LOC>. <CARDINAL>&amp;</CARDINAL>. + &quot;6oa",
     "has_valid_ner_xml": true
   },
   {
     "id": 405,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Millet, bonnetier ; x. S.-Honor\u00e9., 368. 294",
-    "ner_xml": "<PER>Millet</PER>, <ACT>bonnetier ; x</ACT>. <LOC>S.-Honor\u00e9.</LOC>, <CARDINAL>3</CARDINAL>68. 294",
+    "text_ocr": "Millerin, march. de vins, t, Buffanlt, r, 5on",
+    "ner_xml": "<PER>Millerin</PER>, <ACT>march. de vins</ACT>, <LOC>t, Buffanlt</LOC>, <CARDINAL>r</CARDINAL>, 5on",
     "has_valid_ner_xml": true
   },
   {
     "id": 407,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "ESRI E EAU Fer san\n4, \u00e0",
-    "ner_xml": "<PER>ESRI E</PER> <ACT>EAU Fer</ACT> <LOC>san</LOC>\u2029<CARDINAL>4</CARDINAL>, \u00e0",
+    "text_ocr": "Milleriot (V\u00ae), md. de vins en gros; Tue\nnos ete, Bu +0 4gf",
+    "ner_xml": "<PER>Milleriot (V\u00ae)</PER>, <ACT>md. de vins en gros</ACT>; <LOC>Tue\u2029nos ete, Bu</LOC> <CARDINAL>+0</CARDINAL> 4gf",
     "has_valid_ner_xml": true
   },
   {
     "id": 409,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milli\u00e9, loueur de voitures, r. Mazarine \"26e\nJ \u00e0 Bol!",
-    "ner_xml": "<PER>Milli\u00e9</PER>, <ACT>loueur de voitures</ACT>, <LOC>r. Mazarine &quot;26e</LOC>\u2029<CARDINAL>J \u00e0</CARDINAL> Bol!",
+    "text_ocr": "Millet, bonnetier ; x. S.-Honor\u00e9., 368. 294",
+    "ner_xml": "<PER>Millet</PER>, <ACT>bonnetier</ACT> ; <LOC>x. S.-Honor\u00e9</LOC>., <CARDINAL>368</CARDINAL>. 294",
     "has_valid_ner_xml": true
   },
   {
     "id": 413,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milliet Stillitre, commiss, en soieries, rue\n-;* Maucons\u00e6il, 16. \u00c9 Bai, 474",
-    "ner_xml": "<PER>Milliet Stilli</PER>tr<ACT>e, commi</ACT>ss, <LOC>en soieries, rue\u2029-;* Maucons</LOC>\u00e6il,<CARDINAL> 1</CARDINAL>6. \u00c9 Bai, 474",
+    "text_ocr": "ESRI E EAU Fer san\n4, \u00e0",
+    "ner_xml": "<PER>ESRI</PER> <ACT>E EAU</ACT> <LOC>Fer san</LOC><CARDINAL>\u20294</CARDINAL>, \u00e0",
     "has_valid_ner_xml": true
   },
   {
     "id": 422,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Micheton, mercier, x. S.-Denis,10o 414",
-    "ner_xml": "<PER>Miche</PER>t<ACT>on, mercier</ACT>, <LOC>x. S.-Deni</LOC>s,1<CARDINAL>0o</CARDINAL> 414",
+    "text_ocr": "Milli\u00e9, loueur de voitures, r. Mazarine \"26e\nJ \u00e0 Bol!",
+    "ner_xml": "<PER>Milli\u00e9</PER>, <ACT>loueur de voitures</ACT>, <LOC>r. Mazarine</LOC> &quot;26e\u2029<CARDINAL>J </CARDINAL>\u00e0 Bol!",
     "has_valid_ner_xml": true
   },
   {
     "id": 425,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Michon de Tarare, n\u00e9g., r. de la Heaornerie,\nab S3r. {a8",
-    "ner_xml": "<PER>Michon d</PER>e <ACT>Tarare</ACT>, <LOC>n\u00e9g., r. de la Heaornerie</LOC>,\u2029<CARDINAL>ab </CARDINAL>S3r. {a8",
+    "text_ocr": "Micheton, mercier, x. S.-Denis,10o 414",
+    "ner_xml": "<PER>Micheton</PER>, <ACT>mercier</ACT>, <LOC>x. S.-Denis</LOC>,<CARDINAL>10o</CARDINAL> 414",
     "has_valid_ner_xml": true
   },
   {
     "id": 426,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Michonet, foueur.de voilures , r, des Filles-\nS.-Thomas, 17. 505",
-    "ner_xml": "<PER>Michonet, foueu</PER>r.d<ACT>e voilure</ACT>s , <LOC>r, des Filles-\u2029S.-Tho</LOC>mas,<CARDINAL> 17</CARDINAL>. 505",
+    "text_ocr": "Michon (V2), \u00e9pici\u00e8re, r: de l'Arbre-Sec,\n20 36",
+    "ner_xml": "<PER>Michon (V2)</PER>, <ACT>\u00e9pici\u00e8re</ACT>, <LOC>r: de l&apos;Arbre-Sec</LOC>,<CARDINAL>\u202920</CARDINAL> 36",
     "has_valid_ner_xml": true
   },
   {
     "id": 427,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Micha , \u00e9ijoutier, r, des Gravilliers, 46, 286",
-    "ner_xml": "<PER>Micha , \u00e9ijout</PER>i<ACT>er,</ACT> <LOC>r, des Gravillie</LOC>r<CARDINAL>s</CARDINAL>, 46, 286",
+    "text_ocr": "Michon de Tarare, n\u00e9g., r. de la Heaornerie,\nab S3r. {a8",
+    "ner_xml": "<PER>Michon de Tarare</PER>, <ACT>n\u00e9g.</ACT>, <LOC>r. de la Heaornerie</LOC>,<CARDINAL>\u2029ab</CARDINAL> S3r. {a8",
     "has_valid_ner_xml": true
   },
   {
     "id": 428,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Micol a\u00een\u00e9, ag. d'affaires, commiss., v. S.\u2014\nPAL GG dafaie Semi en",
-    "ner_xml": "<PER>Micol a\u00een\u00e9,</PER> ag. <ACT>d&apos;affaires, commiss</ACT>., <LOC>v. S.\u2014\u2029PAL GG dafaie S</LOC>em<CARDINAL>i</CARDINAL> en",
+    "text_ocr": "Michonet, foueur.de voilures , r, des Filles-\nS.-Thomas, 17. 505",
+    "ner_xml": "<PER>Michonet</PER>, <ACT>foueur.de voilures</ACT> , <LOC>r, des Filles-\u2029S.-Thomas</LOC>, <CARDINAL>17</CARDINAL>. 505",
     "has_valid_ner_xml": true
   },
   {
     "id": 429,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mieden \" boucher, x. da Temple, 44. (Bis)",
-    "ner_xml": "<PER>Miede</PER>n <ACT>&quot; boucher</ACT>, <LOC>x. da Temple</LOC>, <CARDINAL>44</CARDINAL>. (Bis)",
+    "text_ocr": "Micha , \u00e9ijoutier, r, des Gravilliers, 46, 286",
+    "ner_xml": "<PER>Micha</PER> , <ACT>\u00e9ijoutier</ACT>, <LOC>r, des Gravilliers</LOC>, <CARDINAL>46</CARDINAL>, 286",
     "has_valid_ner_xml": true
   },
   {
     "id": 430,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mien\u00f1nay, tailleur, r. Vivienne, 1S. {ro",
-    "ner_xml": "<PER>Mien\u00f1n</PER><ACT>ay, tailleur,</ACT> <LOC>r. Vivienne</LOC>, <CARDINAL>1S</CARDINAL>. {ro",
+    "text_ocr": "Micol a\u00een\u00e9, ag. d'affaires, commiss., v. S.\u2014\nPAL GG dafaie Semi en",
+    "ner_xml": "<PER>Micol a\u00een\u00e9</PER>, <ACT>ag. d&apos;affaires, commiss.</ACT>, <LOC>v. S.\u2014\u2029PAL</LOC> <CARDINAL>GG</CARDINAL> dafaie Semi en",
     "has_valid_ner_xml": true
   },
   {
     "id": 431,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Migault, mercier, x, S.-Antoine , 6 411",
-    "ner_xml": "<PER>Migaul</PER>t, <ACT>mercier</ACT>, <LOC>x, S.-Antoine</LOC> <CARDINAL></CARDINAL>, <TITRE>6</TITRE> 411",
-    "has_valid_ner_xml": false
+    "text_ocr": "Mieden \" boucher, x. da Temple, 44. (Bis)",
+    "ner_xml": "<PER>Mieden</PER> &quot; <ACT>boucher</ACT>, <LOC>x. da Temple</LOC>, <CARDINAL>44</CARDINAL>. <TITRE>(Bis)</TITRE>",
+    "has_valid_ner_xml": true
   },
   {
     "id": 432,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mignard (Gh. Bern. . en \u00e9picerie , v. di\nRise Pers n\u00e9g-en\u00e9phiense vi de",
-    "ner_xml": "<PER>Mignard (Gh. Bern. </PER>. <ACT>en \u00e9picerie </ACT>, <LOC>v. di\u2029Rise Pers n\u00e9g-en\u00e9</LOC>ph<CARDINAL>ie</CARDINAL>nse vi de",
+    "text_ocr": "Mien\u00f1nay, tailleur, r. Vivienne, 1S. {ro",
+    "ner_xml": "<PER>Mien\u00f1nay</PER>, <ACT>tailleur</ACT>, <LOC>r. Vivienne</LOC>, <CARDINAL>1S</CARDINAL>. {ro",
     "has_valid_ner_xml": true
   },
   {
     "id": 433,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Migoard, passementier, v. Bt\u00e9ntorguei, 22",
-    "ner_xml": "<PER>Migoard</PER>, passe<ACT>mentier</ACT>, <LOC>v. Bt\u00e9ntorgue</LOC>i, <CARDINAL>2</CARDINAL>2",
+    "text_ocr": "Migault, mercier, x, S.-Antoine , 6 411",
+    "ner_xml": "<PER>Migault</PER>, <ACT>mercier</ACT>, <LOC>x, S.-Antoine</LOC> , <CARDINAL>6</CARDINAL> 411",
     "has_valid_ner_xml": true
   },
   {
     "id": 434,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Migoard Billinge, f4b. d'acier & Belleville\nre ulead, a\u00f9. (@), s.*e. 1897;\n\" M. H. 1806, exp. 1810.) 396",
-    "ner_xml": "<PER>Migoard Billinge, f4</PER>b. <ACT>d&apos;acier &amp; Belleville\u2029re ule</ACT>ad, a\u00f9. <LOC>(@), s.*e. 1897</LOC>;\u2029<CARDINAL>&quot;</CARDINAL> M. <CARDINAL>H</CARDINAL>. <TITRE>1806, e</TITRE>xp. 1810.) 396",
+    "text_ocr": "Mignard (Gh. Bern. . en \u00e9picerie , v. di\nRise Pers n\u00e9g-en\u00e9phiense vi de",
+    "ner_xml": "<PER>Mignard (Gh. Bern.</PER> <ACT>. en \u00e9picerie</ACT> , <LOC>v. di\u2029Rise</LOC> <CARDINAL>P</CARDINAL>ers <CARDINAL>n</CARDINAL>\u00e9g<TITRE>-en\u00e9phiens</TITRE>e vi de",
     "has_valid_ner_xml": true
   },
   {
     "id": 435,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "sr orloger, r. de Grenelle-5.\u2014\n: 30 A _ 1 376",
-    "ner_xml": "<PER>sr</PER> <ACT>orloger</ACT>, <LOC>r. de Grenell</LOC>e-5.\u2014\u2029<CARDINAL>: </CARDINAL>30 A _ 1 376",
+    "text_ocr": "Migoard, passementier, v. Bt\u00e9ntorguei, 22",
+    "ner_xml": "<PER>Migoard</PER>, <ACT>passementier</ACT>, <LOC>v. Bt\u00e9ntorguei</LOC>, <CARDINAL>22</CARDINAL>",
     "has_valid_ner_xml": true
   },
   {
     "id": 436,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "\"Migneaux, Lourrelier , r, de Charonne ; 63,\n+ L CO $gd",
-    "ner_xml": "&quot;<PER>Migne</PER>au<ACT>x, Lourrelie</ACT><LOC>r , r</LOC>, <CARDINAL>de</CARDINAL> <TITRE>Charonne ; 63,\u2029+ L CO</TITRE> $gd",
+    "text_ocr": "Migoard Billinge, f4b. d'acier & Belleville\nre ulead, a\u00f9. (@), s.*e. 1897;\n\" M. H. 1806, exp. 1810.) 396",
+    "ner_xml": "<PER>Migoard Billinge</PER>, <ACT>f4b. d&apos;acier &amp; Belleville</ACT><LOC>\u2029re ulead</LOC>, <CARDINAL>a\u00f9</CARDINAL>. <TITRE>(@), s.*e. 1897;\u2029&quot; M. H. 1806, exp. 1810.)</TITRE> 396",
     "has_valid_ner_xml": true
   },
   {
     "id": 437,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mignot, march. de vins, q. de B\u00e9thune, a:\nd ge \u00e0 me # a",
-    "ner_xml": "<PER>Mignot, march</PER>. <ACT>de vins</ACT>, <LOC>q. de B\u00e9thune, a:\u2029d ge \u00e0</LOC> <CARDINAL>me</CARDINAL> # a",
+    "text_ocr": "sr orloger, r. de Grenelle-5.\u2014\n: 30 A _ 1 376",
+    "ner_xml": "<PER>sr</PER> <ACT>orloger</ACT>, <LOC>r. de Grenelle-5.\u2014\u2029: 30 A</LOC> <CARDINAL>_ </CARDINAL>1 376",
     "has_valid_ner_xml": true
   },
   {
     "id": 438,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Miguet, \u00e9ricier, r. Choisent, 1. \" '356",
-    "ner_xml": "<PER>Miguet</PER>, <ACT>\u00e9ricier</ACT>, <LOC>r. Choisent</LOC>, <CARDINAL>1.</CARDINAL> &quot; &apos;356",
+    "text_ocr": "\"Migneaux, Lourrelier , r, de Charonne ; 63,\n+ L CO $gd",
+    "ner_xml": "&quot;<PER>Migneaux</PER>, <ACT>Lourrelier</ACT> , <LOC>r, de Charonne</LOC> ; <CARDINAL>63,</CARDINAL>\u2029+ L CO $gd",
     "has_valid_ner_xml": true
   },
   {
     "id": 439,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Miguet jeune, \u00e9p\u00e9cier, E ere se",
-    "ner_xml": "<PER>Miguet</PER> <ACT>jeune, \u00e9p\u00e9cier</ACT>, <LOC>E ere</LOC> <CARDINAL>se</CARDINAL>",
-    "has_valid_ner_xml": true
-  },
-  {
-    "id": 440,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "Miguet , \u00e9nicier, r: Molar,6. \u00a9 : 356",
-    "ner_xml": "<PER>Miguet</PER> , <ACT>\u00e9nicier</ACT>, <LOC>r: Molar,6</LOC>. <CARDINAL>\u00a9 </CARDINAL>:<CARDINAL> 356</CARDINAL>",
+    "text_ocr": "Mignot, march. de vins, q. de B\u00e9thune, a:\nd ge \u00e0 me # a",
+    "ner_xml": "<PER>Mignot</PER>, <ACT>march. de vins</ACT>, <LOC>q. de B\u00e9thune</LOC>, <CARDINAL>a:</CARDINAL>\u2029d ge \u00e0 me # a",
     "has_valid_ner_xml": true
   },
   {
     "id": 441,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mil, vitrier, r, des Martyrs, 20. [Ets \u00e0",
-    "ner_xml": "<PER>Mil</PER>, <ACT>vitrier</ACT>, <LOC>r, des Mart</LOC>yrs, <CARDINAL>2</CARDINAL>0. [Ets \u00e0",
+    "text_ocr": "Miguet, \u00e9ricier, r. Choisent, 1. \" '356",
+    "ner_xml": "<PER>Miguet</PER>, <ACT>\u00e9ricier</ACT>, <LOC>r. Choisent</LOC>, <CARDINAL>1</CARDINAL>. &quot; &apos;356",
     "has_valid_ner_xml": true
   },
   {
     "id": 442,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mila fr\u00e8res, fab. de lampes , v. de la Pur,\n1 & \u00eb & .  &6!",
-    "ner_xml": "<PER>Mila fr\u00e8res, fa</PER>b. d<ACT>e lampes</ACT> , <LOC>v. de la Pur,\u20291 &amp; \u00eb </LOC>&amp;<CARDINAL> </CARDINAL>.  &amp;6!",
+    "text_ocr": "Miguet jeune, \u00e9p\u00e9cier, E ere se",
+    "ner_xml": "<PER>Miguet jeune</PER>, <ACT>\u00e9p\u00e9cier</ACT>, <LOC>E ere se</LOC><CARDINAL></CARDINAL>",
     "has_valid_ner_xml": false
   },
   {
     "id": 443,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milcent, peintre en b\u00e9timens, r. Dulfaok,\nLT, \u00eb 418",
-    "ner_xml": "<PER>Milcent</PER>, p<ACT>eintre en b\u00e9timen</ACT>s, <LOC>r. Dulfao</LOC>k,\u2029<CARDINAL>L</CARDINAL>T, \u00eb 418",
+    "text_ocr": "Miguet , \u00e9nicier, r: Molar,6. \u00a9 : 356",
+    "ner_xml": "<PER>Miguet</PER> , <ACT>\u00e9nicier</ACT>, <LOC>r: Molar</LOC>,6. <CARDINAL>\u00a9</CARDINAL> : 356",
     "has_valid_ner_xml": true
   },
   {
     "id": 444,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milcent, tapissier ,r. Ga\u00efllon, 7.  : 483",
-    "ner_xml": "<PER>Mil</PER>cent, <ACT>tapissier</ACT> ,<LOC>r. Ga\u00efllon</LOC>, <CARDINAL>7</CARDINAL>.<TITRE>  :</TITRE> 483",
+    "text_ocr": "Mil, vitrier, r, des Martyrs, 20. [Ets \u00e0",
+    "ner_xml": "<PER>Mil</PER>, <ACT>vitrier</ACT>, <LOC>r, des Martyrs</LOC>, <CARDINAL>20</CARDINAL>.<TITRE> [Ets</TITRE> \u00e0",
     "has_valid_ner_xml": true
   },
   {
     "id": 445,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mile, fh. de vinairre, x. Glahgay\u00e9 6, 340",
-    "ner_xml": "<PER>Mile</PER>, <ACT>fh. de vinairre</ACT>, <LOC>x. Glahgay\u00e9</LOC><CARDINAL> 6</CARDINAL>, 340",
+    "text_ocr": "Mila fr\u00e8res, fab. de lampes , v. de la Pur,\n1 & \u00eb & .  &6!",
+    "ner_xml": "<PER>Mila fr\u00e8res</PER>, <ACT>fab. de lampes</ACT> , <LOC>v. de la Pur</LOC>,<CARDINAL>\u20291 </CARDINAL>&amp; \u00eb &amp; .  &amp;6!",
     "has_valid_ner_xml": true
   },
   {
     "id": 446,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Millet. cartonnier.v/au Maire. 36. 306",
-    "ner_xml": "<PER>Millet</PER>. <ACT>cartonnier</ACT>.v<LOC>/au Maire</LOC>.<CARDINAL> 36</CARDINAL>. 306",
+    "text_ocr": "Milcent, peintre en b\u00e9timens, r. Dulfaok,\nLT, \u00eb 418",
+    "ner_xml": "<PER>Milcent</PER>, <ACT>peintre en b\u00e9timens</ACT>, <LOC>r. Dulfaok</LOC>,<CARDINAL>\u2029LT</CARDINAL>, \u00eb 418",
     "has_valid_ner_xml": true
   },
   {
     "id": 447,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Millet, papetier , x, Montmartre, 78. 438",
-    "ner_xml": "<PER>Millet</PER>, <ACT>papetier</ACT> , <LOC>x, Montmartre</LOC>, <CARDINAL>7</CARDINAL>8. 438",
+    "text_ocr": "Milcent, tapissier ,r. Ga\u00efllon, 7.  : 483",
+    "ner_xml": "<PER>Milcent</PER>, <ACT>tapissier</ACT> ,<LOC>r. Ga\u00efllon</LOC>, <CARDINAL>7</CARDINAL>.  : 483",
     "has_valid_ner_xml": true
   },
   {
     "id": 448,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Miller-Bouvier , md. de toiles ,r, S.-Dents,\n10% Y MES 2% \u2014 48%",
-    "ner_xml": "<PER>Mille</PER>r-Bouvier , <ACT>md. de toiles ,r</ACT>, <LOC>S.-Dents,\u202910% Y</LOC> MES <CARDINAL>2</CARDINAL>% \u2014 48%",
+    "text_ocr": "Mile, fh. de vinairre, x. Glahgay\u00e9 6, 340",
+    "ner_xml": "<PER>Mile</PER>, <ACT>fh. de vinairre</ACT>, <LOC>x. Glahgay</LOC>\u00e9 <CARDINAL>6</CARDINAL>, 340",
     "has_valid_ner_xml": true
   },
   {
     "id": 449,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Millet Goebaut (J.), tarneur, r: du Fa\u00fcb.-\n& Martin, s0/. : \u00e0 480",
-    "ner_xml": "<PER>Millet</PER> G<ACT>oebaut (J.), tarneur</ACT>, <LOC>r: du Fa\u00fcb.-\u2029&amp; Martin</LOC>, <CARDINAL>s0</CARDINAL>/. : \u00e0 480",
+    "text_ocr": "Millet. cartonnier.v/au Maire. 36. 306",
+    "ner_xml": "<PER>Millet</PER>. <ACT>cartonnier</ACT>.v<LOC>/au Maire</LOC>. <CARDINAL>36</CARDINAL>. 306",
     "has_valid_ner_xml": true
   },
   {
     "id": 450,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Mill\u00e9voye, \u00e9mprim. en taille-douce, r. du\nFoin-S.-Jacques, 15.4 \u00b0 . 387",
-    "ner_xml": "<PER>Mill\u00e9v</PER>oye, \u00e9m<ACT>prim. en taille-</ACT>douce, <LOC>r. du\u2029Foin-S.-Jacque</LOC>s, <CARDINAL>15</CARDINAL>.4 \u00b0 . 387",
+    "text_ocr": "Millet, papetier , x, Montmartre, 78. 438",
+    "ner_xml": "<PER>Millet</PER>, <ACT>papetier</ACT> , <LOC>x, Montmartre</LOC>, <CARDINAL>78</CARDINAL>. 438",
     "has_valid_ner_xml": true
   },
   {
     "id": 451,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milli\u00e9, \u00e9picier, r, des Quatre-Fils-au-Marais,\nHAS OPIUEONS 13 Mer QURE PIE Be ares",
-    "ner_xml": "<PER>Milli\u00e9, \u00e9picier</PER>, <ACT>r, des Quatre-Fils-au-Marais</ACT>,\u2029<LOC>HAS OPIUEONS</LOC><CARDINAL> 13 </CARDINAL>Mer QURE PIE Be ares",
+    "text_ocr": "Miller-Bouvier , md. de toiles ,r, S.-Dents,\n10% Y MES 2% \u2014 48%",
+    "ner_xml": "<PER>Miller-Bouvier</PER> , <ACT>md. de toiles</ACT> ,<LOC>r, S.-Dents</LOC>,<CARDINAL>\u202910% Y MES 2</CARDINAL>% \u2014 48%",
     "has_valid_ner_xml": true
   },
   {
     "id": 452,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "_Miere, ag. d'affaires, r. Cl\u00e9ry , 84.",
-    "ner_xml": "_<PER>Miere, ag. d&apos;af</PER>f<ACT>aires</ACT>, <LOC>r. Cl\u00e9ry ,</LOC> <CARDINAL>84</CARDINAL>.",
+    "text_ocr": "Millet Goebaut (J.), tarneur, r: du Fa\u00fcb.-\n& Martin, s0/. : \u00e0 480",
+    "ner_xml": "<PER>Millet Goebaut (J.)</PER>, <ACT>tarneur</ACT>, <LOC>r: du Fa\u00fcb.-\u2029&amp; Martin</LOC>, <CARDINAL>s0/</CARDINAL>. : \u00e0 480",
     "has_valid_ner_xml": true
   },
   {
     "id": 453,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Migont, limoradier, ave\u00f1ne de Nerill\u00ff, 15.",
-    "ner_xml": "<PER>Migont</PER>, l<ACT>imoradier, ave\u00f1ne</ACT> <LOC>de Nerill\u00ff</LOC>, <CARDINAL>15</CARDINAL>.",
+    "text_ocr": "Mill\u00e9voye, \u00e9mprim. en taille-douce, r. du\nFoin-S.-Jacques, 15.4 \u00b0 . 387",
+    "ner_xml": "<PER>Mill\u00e9voye</PER>, <ACT>\u00e9mprim. en taille-douce</ACT>, <LOC>r. du\u2029Foin-S.-Jacques</LOC>, <CARDINAL>15</CARDINAL>.4 \u00b0 . 387",
     "has_valid_ner_xml": true
   },
   {
     "id": 454,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Milli\u00e9, \u00e9picier, r. des Quatre-Fils-au-Marais,\n16. 356",
-    "ner_xml": "<PER>Milli\u00e9</PER>, <ACT>\u00e9picier</ACT>, <LOC>r. des Quatre-Fils-au-Marais</LOC>,<CARDINAL>\u202916</CARDINAL>. 356",
+    "text_ocr": "Milli\u00e9, \u00e9picier, r, des Quatre-Fils-au-Marais,\nHAS OPIUEONS 13 Mer QURE PIE Be ares",
+    "ner_xml": "<PER>Milli\u00e9</PER>, <ACT>\u00e9picier</ACT>, <LOC>r, des Quatre-Fils-au-Marais</LOC>,<CARDINAL>\u2029HAS OPIUEONS 13</CARDINAL> Mer QURE PIE Be ares",
     "has_valid_ner_xml": true
   },
   {
     "id": 455,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Miege, ag. d'affaires, r. Cl\u00e9ry, 84.",
-    "ner_xml": "<PER>Miege</PER>, <ACT>ag. d&apos;affaires</ACT>, <LOC>r. Cl\u00e9ry</LOC>, <CARDINAL>84</CARDINAL>.",
+    "text_ocr": "_Miere, ag. d'affaires, r. Cl\u00e9ry , 84.",
+    "ner_xml": "_<PER>Miere</PER>, <ACT>ag. d&apos;affaires</ACT>, <LOC>r. Cl\u00e9ry</LOC> , <CARDINAL>84</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 456,
     "book": "Bottin1_1820",
     "page": 201,
-    "text_ocr": "Migout, limonadier, avenue de Neuilly, 15.\n306",
-    "ner_xml": "<PER>Migout</PER>, <ACT>limonadier</ACT>, <LOC>avenue de Neuilly</LOC>, <CARDINAL>15</CARDINAL>.\u2029306",
+    "text_ocr": "Migont, limoradier, ave\u00f1ne de Nerill\u00ff, 15.",
+    "ner_xml": "<PER>Migont</PER>, <ACT>limoradier</ACT>, <LOC>ave\u00f1ne de Nerill\u00ff</LOC>, <CARDINAL>15</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
@@ -4227,12 +4171,20 @@
     "id": 525,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaulx, Aortoger,; S.-Honor\u00e9; 299-",
-    "ner_xml": "<PER>Devaulx, Aortoger,</PER>; <ACT>S.-Honor\u00e9</ACT>; <LOC>299-</LOC><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
+    "text_ocr": "Devaugrigneuse (Mad), pensionuat, Perle, 3.",
+    "ner_xml": "<PER>Devaugrigneuse (Mad)</PER>, <ACT>pensionuat</ACT>, <LOC>Perle</LOC>, <CARDINAL>3</CARDINAL>.",
+    "has_valid_ner_xml": true
   },
   {
     "id": 527,
+    "book": "Bottin1_1827",
+    "page": 117,
+    "text_ocr": "Devaulx, Aortoger,; S.-Honor\u00e9; 299-",
+    "ner_xml": "<PER>Devaulx</PER>, <ACT>Aortoger</ACT>,; <LOC>S.-Honor\u00e9</LOC>; <CARDINAL>299</CARDINAL>-",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 529,
     "book": "Bottin1_1827",
     "page": 117,
     "text_ocr": "D\u00e9vaureix, asou\u00e9, Chabaunais, 3,",
@@ -4240,71 +4192,71 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 529,
-    "book": "Bottin1_1827",
-    "page": 117,
-    "text_ocr": "Devauversin.' Caire,' 33.",
-    "ner_xml": "<PER>Devauversin</PER>.&apos;<ACT></ACT> <LOC>Caire,&apos;</LOC> <CARDINAL>3</CARDINAL>3.",
-    "has_valid_ner_xml": false
-  },
-  {
     "id": 534,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaux /Mad.), F\u00a3.-Montimartre, 1 3.",
-    "ner_xml": "<PER>Devaux /Mad</PER>.), <LOC>F\u00a3.-Montimartre</LOC>, <CARDINAL>1 3</CARDINAL>.",
+    "text_ocr": "Devauversin.' Caire,' 33.",
+    "ner_xml": "<PER>Devauversin</PER>.&apos; <LOC>Caire</LOC>,&apos; <CARDINAL>33</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 536,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "D\u00e9va\u00fcx (B') O. %, Fe.-S Honor\u00e9, 35,",
-    "ner_xml": "<PER>D\u00e9va\u00fcx (B&apos;) O. </PER>%, <LOC>Fe.-S Honor\u00e9</LOC>, <CARDINAL>35</CARDINAL>,",
+    "text_ocr": "Devaux /Mad.), F\u00a3.-Montimartre, 1 3.",
+    "ner_xml": "<PER>Devaux /Mad.)</PER>, <LOC>F\u00a3.-Montimartre</LOC>, <CARDINAL>1 3</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 538,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaux, S.-Nicaise, 8,",
-    "ner_xml": "<PER>Devaux</PER><TITRE>, S</TITRE>.<LOC>-Nicaise</LOC>, <CARDINAL>8</CARDINAL>,",
+    "text_ocr": "D\u00e9va\u00fcx (B') O. %, Fe.-S Honor\u00e9, 35,",
+    "ner_xml": "<PER>D\u00e9va\u00fcx (B&apos;)</PER> <TITRE>O. %</TITRE>, <LOC>Fe.-S Honor\u00e9</LOC>, <CARDINAL>35</CARDINAL>,",
     "has_valid_ner_xml": true
   },
   {
     "id": 540,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaux, r'\u00e9dact, \u00e0 La justice, Bouloi, 8.",
-    "ner_xml": "<PER>Devaux</PER>, <LOC>r&apos;\u00e9dact, \u00e0 La justice</LOC>, Bouloi, <CARDINAL>8</CARDINAL>.",
+    "text_ocr": "Devaux, S.-Nicaise, 8,",
+    "ner_xml": "<PER>Devaux</PER>, <LOC>S.-Nicaise</LOC>, <CARDINAL>8</CARDINAL>,",
     "has_valid_ner_xml": true
   },
   {
     "id": 542,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "D\u00e9vaux, propr., Vieilles-Tuilcrics, $r.",
-    "ner_xml": "<PER>D\u00e9vaux</PER>, p<ACT>ropr., Vieilles-Tuilcr</ACT>ic<LOC>s</LOC>, <CARDINAL>$</CARDINAL>r.",
+    "text_ocr": "Devaux, r'\u00e9dact, \u00e0 La justice, Bouloi, 8.",
+    "ner_xml": "<PER>Devaux</PER>, <ACT>r&apos;\u00e9dact, \u00e0 La justice</ACT>, <LOC>Bouloi</LOC>, <CARDINAL>8</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 544,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaux, de\u00e9pute, S.-Honor\u00e9, 368.",
-    "ner_xml": "<PER>Devaux</PER>, <ACT>de\u00e9put</ACT>e, <LOC>S.-Honor\u00e9</LOC>, <CARDINAL>36</CARDINAL>8.",
+    "text_ocr": "D\u00e9vaux, propr., Vieilles-Tuilcrics, $r.",
+    "ner_xml": "<PER>D\u00e9vaux</PER>, <ACT>propr.</ACT>, <LOC>Vieilles-Tuilcrics</LOC>, <CARDINAL>$r</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 546,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaux, Lottier, N\u00b0-Ori\u00e9ans, 26. :",
-    "ner_xml": "<PER>Devaux</PER>, <ACT>Lottie</ACT>r, <LOC>N\u00b0-Ori\u00e9an</LOC>s, <CARDINAL>26.</CARDINAL> :",
+    "text_ocr": "Devaux, de\u00e9pute, S.-Honor\u00e9, 368.",
+    "ner_xml": "<PER>Devaux</PER>, <ACT>de\u00e9pute</ACT>, <LOC>S.-Honor\u00e9</LOC>, <CARDINAL>368</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 548,
+    "book": "Bottin1_1827",
+    "page": 117,
+    "text_ocr": "Devaux, Lottier, N\u00b0-Ori\u00e9ans, 26. :",
+    "ner_xml": "<PER>Devaux</PER>, <ACT>Lottier</ACT>, <LOC>N\u00b0-Ori\u00e9ans</LOC>, <CARDINAL>26</CARDINAL>. :",
+    "has_valid_ner_xml": true
+  },
+  {
+    "id": 550,
     "book": "Bottin1_1827",
     "page": 117,
     "text_ocr": "Devaux, oucher, Bretagne, 9,",
@@ -4312,83 +4264,75 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 550,
-    "book": "Bottin1_1827",
-    "page": 117,
-    "text_ocr": "Devaux, boucher, Jouy, 22.",
-    "ner_xml": "<PER>Devaux</PER>, <ACT>boucher</ACT>, <LOC>Jouy</LOC>, <CARDINAL>2</CARDINAL>2.",
-    "has_valid_ner_xml": true
-  },
-  {
     "id": 552,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaux, Loucher, Galande, 23.",
-    "ner_xml": "<PER>Devaux</PER>, <ACT>Loucher</ACT>, <LOC>Gala</LOC>nde, <CARDINAL>23</CARDINAL>.",
+    "text_ocr": "Devaux, boucher, Jouy, 22.",
+    "ner_xml": "<PER>Devaux</PER>, <ACT>boucher</ACT>, <LOC>Jouy</LOC>, <CARDINAL>22</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 554,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "D\u00e9vraux, doucher, marche anx Foiruesx, 45.",
-    "ner_xml": "<PER>D\u00e9vraux</PER>, <ACT>doucher</ACT>, <LOC>marche anx Foirue</LOC>sx, <CARDINAL>45</CARDINAL>.",
+    "text_ocr": "Devaux, Loucher, Galande, 23.",
+    "ner_xml": "<PER>Devaux</PER>, <ACT>Loucher</ACT>, <LOC>Galande</LOC>, <CARDINAL>23</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 556,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Dethorre, huissier, Tixeranderie, 46.",
-    "ner_xml": "<PER>Dethor</PER>re, <ACT>huissier</ACT>, <LOC>Tixeranderie</LOC>, <CARDINAL>46</CARDINAL>.",
+    "text_ocr": "D\u00e9vraux, doucher, marche anx Foiruesx, 45.",
+    "ner_xml": "<PER>D\u00e9vraux</PER>, <ACT>doucher</ACT>, <LOC>marche anx Foirues</LOC>x, <CARDINAL>45</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 560,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Detourbet-(Mad.}, jouets d'enfans ,. pass. de l'Op\u00e9ra,\ngalerie de l'Horloge, 22, io",
-    "ner_xml": "<PER>Detourbe</PER>t-(Mad.}, <ACT>jouets d&apos;enfans ,. pass. de l&apos;Op\u00e9r</ACT>a,\u2029<LOC>galerie de l&apos;Horloge</LOC>, <CARDINAL>22</CARDINAL>, io",
+    "text_ocr": "Dethorre, huissier, Tixeranderie, 46.",
+    "ner_xml": "<PER>Dethorre</PER>, <ACT>huissier</ACT>, <LOC>Tixeranderie</LOC>, <CARDINAL>46</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 561,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaudichon, anc. commiss. cont. dir., Meslay, 5d,",
-    "ner_xml": "<PER>Devaudichon, anc</PER>. <ACT>commiss</ACT>. <LOC>cont. dir., Meslay</LOC>, <CARDINAL>5d</CARDINAL>,",
+    "text_ocr": "Detourbet-(Mad.}, jouets d'enfans ,. pass. de l'Op\u00e9ra,\ngalerie de l'Horloge, 22, io",
+    "ner_xml": "<PER>Detourbet-(Mad.}</PER>, <ACT>jouets d&apos;enfans</ACT> ,. <LOC>pass. de l&apos;Op\u00e9ra,\u2029galerie de l&apos;Horloge</LOC>, <CARDINAL>22</CARDINAL>, io",
     "has_valid_ner_xml": true
   },
   {
     "id": 562,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaudav /Mad.), Pigalle, 33.",
-    "ner_xml": "<PER>Devaud</PER><ACT>av /Mad.), Piga</ACT>ll<LOC>e</LOC>, <CARDINAL>33</CARDINAL>.",
+    "text_ocr": "Devaudichon, anc. commiss. cont. dir., Meslay, 5d,",
+    "ner_xml": "<PER>Devaudichon</PER>, <ACT>anc. commiss. cont. dir.</ACT>, <LOC>Meslay</LOC>, <CARDINAL>5d</CARDINAL>,",
     "has_valid_ner_xml": true
   },
   {
     "id": 563,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Devaux (SFA ct Hernandez, dentistes, N\u00b0-Viviens\nmoe, en facc ln Bourse. un $ LOGE",
-    "ner_xml": "<PER>Devaux (SFA ct Hernandez, </PER>dentistes, <LOC>N\u00b0-Viviens\u2029moe, en facc ln Bourse</LOC>. <CARDINAL>un</CARDINAL> $ LOGE",
+    "text_ocr": "Devaudav /Mad.), Pigalle, 33.",
+    "ner_xml": "<PER>Devaudav /Mad.)</PER>, <LOC>Pigalle</LOC>, <CARDINAL>33</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {
     "id": 564,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Dsurmont, fL.'et fub. de coton, Rortcfoin, 13.",
-    "ner_xml": "<PER>Dsurmont, fL.&apos;et fub</PER>. <ACT>de coton</ACT>, <LOC>Rortcfoin, 13</LOC>.",
+    "text_ocr": "Devaux (SFA ct Hernandez, dentistes, N\u00b0-Viviens\nmoe, en facc ln Bourse. un $ LOGE",
+    "ner_xml": "<PER>Devaux (SFA ct Hernandez</PER>, <ACT>dentistes</ACT>, <LOC>N\u00b0-Viviens\u2029moe, en facc ln Bourse</LOC>. un $ LOGE",
     "has_valid_ner_xml": true
   },
   {
     "id": 565,
     "book": "Bottin1_1827",
     "page": 117,
-    "text_ocr": "Desurmont, fil. et fab. de coton, Portefoin, 13.",
-    "ner_xml": "<PER>Desurmont</PER>, <ACT>fil. et fab. de coton</ACT>, <LOC>Portefoin</LOC>, <CARDINAL>13</CARDINAL>.",
+    "text_ocr": "Dsurmont, fL.'et fub. de coton, Rortcfoin, 13.",
+    "ner_xml": "<PER>Dsurmont</PER>, <ACT>fL.&apos;et fub. de coton</ACT>, <LOC>Rortcfoin</LOC>, <CARDINAL>13</CARDINAL>.",
     "has_valid_ner_xml": true
   },
   {

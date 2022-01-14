@@ -40,14 +40,6 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 306,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
-  },
-  {
     "id": 312,
     "book": "Bottin1_1820",
     "page": 107,
@@ -110,14 +102,6 @@
     "text_ocr": "\u2014\nT\nDullocu, architecte, r. Basse-Porte-S.De-\n\u2014\nRis, 28.",
     "ner_xml": "\u2014\u2029T\u2029<PER>Dullocu</PER>, <ACT>architecte</ACT>, <LOC>r. Basse-Porte-S.De-\u2029\u2014\u2029Ris</LOC>, <CARDINAL>28</CARDINAL>.",
     "has_valid_ner_xml": true
-  },
-  {
-    "id": 331,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
   },
   {
     "id": 339,
@@ -456,14 +440,6 @@
     "has_valid_ner_xml": true
   },
   {
-    "id": 459,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
-  },
-  {
     "id": 460,
     "book": "Bottin1_1820",
     "page": 107,
@@ -510,14 +486,6 @@
     "text_ocr": "Dufour, ag. d'affaires, r. du Chaume, 15.\n275",
     "ner_xml": "<PER>Dufour</PER>, <ACT>ag. d&apos;affaires</ACT>, <LOC>r. du Chaume</LOC>, <CARDINAL>15</CARDINAL>.\u2029275",
     "has_valid_ner_xml": true
-  },
-  {
-    "id": 469,
-    "book": "Bottin1_1820",
-    "page": 107,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
   },
   {
     "id": 470,
@@ -614,22 +582,6 @@
     "text_ocr": "Midant, cordonnter, r. an Maire, 30.",
     "ner_xml": "<PER>Midant</PER>, <ACT>cordonnter</ACT>, <LOC>r. an Maire</LOC>, <CARDINAL>30</CARDINAL>.",
     "has_valid_ner_xml": true
-  },
-  {
-    "id": 289,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
-  },
-  {
-    "id": 293,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
   },
   {
     "id": 298,
@@ -1014,14 +966,6 @@
     "text_ocr": "1 \u2014\nMignot, march. de vins, \u2020. de B\u00e9thune, 28.\n592\nFr\n\u2014\n1",
     "ner_xml": "1 \u2014\u2029<PER>Mignot</PER>, <ACT>march. de vins</ACT>, <LOC>\u2020. de B\u00e9thune</LOC>, <CARDINAL>28.</CARDINAL>\u2029592\u2029Fr\u2029\u2014\u20291",
     "has_valid_ner_xml": true
-  },
-  {
-    "id": 440,
-    "book": "Bottin1_1820",
-    "page": 201,
-    "text_ocr": "",
-    "ner_xml": "<PER></PER><ACT></ACT><LOC></LOC><CARDINAL></CARDINAL><CARDINAL></CARDINAL>",
-    "has_valid_ner_xml": false
   },
   {
     "id": 441,
