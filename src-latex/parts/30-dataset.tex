@@ -12,15 +12,13 @@ The XIX\textsuperscript{th} century directories we have to process are stored in
 
 
 \begin{figure}[htb!]
-	   \center{\includegraphics[width=\textwidth]
-	       {./images/DirectoryExcerpts.png}}
-	  \caption{\label{fig:directories} Examples of directory layouts and contents}
+	   \center{\includegraphics[width=0.9\textwidth]
+	       {./images/DirectoryExcerpts2.png}}
+	  \caption{\label{fig:directories} Examples of directory layouts and contents: 1) Duverneuil et La Tynna 1806 - index by name; 2) Deflandre 1828 - index by activity ; 3) Bottin 1851 –  index by street name}
 \end{figure}
 
 
-In this work, we therefore made a selection among the available directories, trying our best to retain copies representative of the diversity of existing directories and of sufficient quality to produce a reliable training data set. The Table \ref{tab:directories} lists the directories selected, their layout, the structure of their entries, and the number of annotated entries according to the indexes considered. 
-
-
+In this work, we therefore made a selection among the available directories, trying our best to retain copies representative of the diversity of existing directories and of sufficient quality to produce a reliable training data set. The Table \ref{tab:directories} lists the directories selected, their layout, the structure of their entries, and the number of annotated entries according to the indexes considered. For example, the Didot directory of 1854 is organised according to three indexes: by name, by activity, and by street name. The structure of the following entry is characteristic of its index by name: "Batton (D.-A.) *, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47." This entry begins with a person's name, followed by the initials of their first name in parentheses.The star symbol indicates that this person was awarded the Légion d'Honneur. The following part of this entry represents the person's activity,i.e. their profession, or social status, here "professor at the Conservatory of music and declamation". The street name and number where the person lives or carries out their activity are written at the end of the entry. These pieces of information constituting the structure of the entries are the basic data that we want to extract, deduplicate and structure in order to build a spatio-temporal database of XIX\textsuperscript{th} century Parisian inhabitants and businesses. With the exception of some potentially wordy activity descriptions, most of these pieces of information correspond to named entities. However, as Table \ref{tab:directories} shows, while most entries contain the same types of named entities, the order in which they appear and the way they are written vary from one directory to another. This argues for a supervised, rather than rule-based, NER approach. This requires annotated data.
 
 \begin{table}[h!]
 \resizebox{\textwidth}{!}{%
@@ -70,11 +68,13 @@ Didot-Bottin & 1861a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM. & 402
 \\ \hline
 \end{tabular}%
 }
-\caption{The directories used to build our dataset. Letters next to year of publication are used to identify the volume of the directory. \# Col stands for "Number of columns", and \# Ann stands for "Number of annotated entries". Entry structure is described as follows: N - entry name (person or business); F - first name; T - honorary title; C - civility; A - activity; P - precision; SN - street name; SNUM - street number; SEC - section; D - district; CR - cross-reference}
+\caption{The directories used to build our dataset. Letters next to year of publication are used to identify the volume of the directory. \# Col stands for "Number of columns", and \# Ann stands for "Number of annotated entries". Entry structure is described as follows: N - entry name (person or business); F - first name; T - honorary title; C - civility; A - activity; P - precision; SN - street name; SNUM - street number; SEC - section; D - district; CR - cross-reference; bracketed elements are optional.}
 \label{tab:directories}
 \end{table}
 
 \subsection{Groundtruth data extraction}
+
+
 
 \subsection{Assessing the groundtruth quality}
 
