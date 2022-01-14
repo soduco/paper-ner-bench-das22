@@ -74,8 +74,25 @@ Didot-Bottin & 1861a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM. & 402
 
 \subsection{Groundtruth data extraction}
 
-Présenter ici l'outil d'annotation et le guide d'annotation suivi.
+In order to have a ground truth corpus representative of the diversity of the directories to be processed, we annotated a few pages of each of the major directory series for which we have digitised copies. To that purpose, we used an annotation tool developed for our project and whose graphical user interface (GUI) is presented in Figure \ref{fig:annotator}. This tool loads images of directory pages. Then, it automatically detects each entry in a given page and builds a box around it : these boxes are shown in the left panel of the GUI. Then the text of each entry is extracted using an OCR tool and finally the named entities searched are annotated using a NER tool: the results are displayed respectively in the first and second tabs of the right panel of the GUI. The entry detection, OCR and NER tasks are performed automatically but as they are prone to errors, their results can be corrected manually through the GUI of the annotation tool. In the end, for each page processed, the bounding boxes of the entries that make it up, the exact text contained in each box, and the named entities that are mentioned are stored in a JSON file.
 
+\begin{figure}[htb!]
+	   \center{\includegraphics[width=0.9\textwidth]
+	       {./images/Annot2.png}}
+	  \caption{\label{fig:annotator} GUI for corpus annotation}
+\end{figure}
+
+The annotated named entities are as follows:
+\begin{itemize}
+    \item PER: a person name or a business name, usually referred to as several person names. Firts names, initials, or civility mentions are included. E.g.: "Alibert (Prosper)", "Allamand frères et Hersent", "Heurtemotte (Vve)", etc.
+    \item TITLE: an honorary title, either written or represented by special glyphs. E.g.: "élig.", \scalerel*{\includegraphics{./images/LH.png}}{H} which stand for the Légion d'Honneur, \scalerel*{\includegraphics{./images/GMLondon.png}}{H} which stands for the Great Medal at the London exhibition, .etc.
+    \item ACT: the activity of the person (profession or social status) or the type of business. E.g.: "horlogerie", "export en tous genres", "Conseiller d'Etat", "propriétaire", etc.
+    \item LOC: a street name or a district name. E.g.: "r. de la Jussienne", "Au Marais", etc.
+    \item CARD: a street number, as part of an address. E.g. "16", "5 bis", etc.
+    \item FT: a geographic entity type, used to give more details on a location. E.g.: "boutique", "atelier", "fab.", etc.
+\end{itemize}
+
+Thus, the extracted corpus contains both the bounding boxes of directory entries, their exact text and the named entities they contain. It can therefore be used to train and improve the entry detection, OCR and NER tools.
 
 \subsection{Assessing the groundtruth quality}
 
