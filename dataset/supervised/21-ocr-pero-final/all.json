@@ -60,18 +60,6 @@
     "page": 107
   },
   {
-    "id": 306,
-    "text_ocr": "",
-    "box": [
-      517,
-      560,
-      -2,
-      17
-    ],
-    "book": "Bottin1_1820",
-    "page": 107
-  },
-  {
     "id": 312,
     "text_ocr": "Y\n\u261e\nDnten,charentier, 1. Montmartre, 89. 318",
     "box": [
@@ -163,18 +151,6 @@
       889,
       393,
       43
-    ],
-    "book": "Bottin1_1820",
-    "page": 107
-  },
-  {
-    "id": 331,
-    "text_ocr": "",
-    "box": [
-      512,
-      934,
-      5,
-      84
     ],
     "book": "Bottin1_1820",
     "page": 107
@@ -684,18 +660,6 @@
     "page": 107
   },
   {
-    "id": 459,
-    "text_ocr": "",
-    "box": [
-      517,
-      573,
-      0,
-      85
-    ],
-    "book": "Bottin1_1820",
-    "page": 107
-  },
-  {
     "id": 460,
     "text_ocr": "Dnfay-Coqueret, quincatllier, r. Phelipeaux,\n28.\nAO",
     "box": [
@@ -763,18 +727,6 @@
       58,
       392,
       50
-    ],
-    "book": "Bottin1_1820",
-    "page": 107
-  },
-  {
-    "id": 469,
-    "text_ocr": "",
-    "box": [
-      931,
-      770,
-      1,
-      90
     ],
     "book": "Bottin1_1820",
     "page": 107
@@ -919,30 +871,6 @@
       416,
       390,
       19
-    ],
-    "book": "Bottin1_1820",
-    "page": 201
-  },
-  {
-    "id": 289,
-    "text_ocr": "",
-    "box": [
-      509,
-      417,
-      0,
-      21
-    ],
-    "book": "Bottin1_1820",
-    "page": 201
-  },
-  {
-    "id": 293,
-    "text_ocr": "",
-    "box": [
-      505,
-      472,
-      0,
-      25
     ],
     "book": "Bottin1_1820",
     "page": 201
@@ -1519,18 +1447,6 @@
       1225,
       390,
       41
-    ],
-    "book": "Bottin1_1820",
-    "page": 201
-  },
-  {
-    "id": 440,
-    "text_ocr": "",
-    "box": [
-      510,
-      1260,
-      0,
-      74
     ],
     "book": "Bottin1_1820",
     "page": 201
