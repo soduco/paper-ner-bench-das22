@@ -1,6 +1,30 @@
 % !TeX root = ../main-paper.tex
 \section{Results}
 
+\subsection{OCR evaluation}
+
+\begin{figure}
+
+\subcaptionbox{}[.5\linewidth]{
+\begin{tabular}{rll}
+          & CER & CER$_{norm.}$ \\
+\midrule
+Pero      & 3.78\% & 3.76\% \\   
+Tesseract & 6.56\% & 6.45\% \\
+\bottomrule
+\end{tabular}
+
+\bigskip
+
+\includegraphics[width=\linewidth]{images/ocr-eval-2.pdf}
+}
+\subcaptionbox{}[.5\linewidth]{
+\includegraphics[width=\linewidth]{images/ocr-eval-1.pdf}
+}
+\caption{Character error rates at entry-level for Pero OCR and Tesseract. (a) Global CER and distribution of the CER per entry. (b):
+joint plot of the dataset showing that the two systems do not fail on the same entries.}  
+\end{figure}
+
 \subsection{Experiment 1: NER sensibility to the number of training samples}
 
 Qualitative results
