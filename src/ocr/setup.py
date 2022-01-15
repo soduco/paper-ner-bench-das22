@@ -27,5 +27,7 @@ sourcefiles = [
 ext = Pybind11Extension("isri_tools", sourcefiles)
 
 setup(
+    name="isri_tools",
+    version="20210115_1751",
     ext_modules = [ext]
 )
