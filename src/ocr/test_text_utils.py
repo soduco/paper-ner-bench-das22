@@ -1,6 +1,7 @@
 
 from text_utils import (
-    UNICODE_SIMPLIFICATIONS_SINGLE_CHAR, 
+    UNICODE_SIMPLIFICATIONS_SINGLE_CHAR,
+    charset_stats, 
     simplify_unicode_charset,
     check_alignment_charset,
     add_tags_prediction,
@@ -100,3 +101,23 @@ def test_fix_manual_ner_xml():
     XML = "<PER>Dufay</PER>, <ACT>papetier</ACT>, <LOC>r. S.-Martin</LOC>, <CARDINAL>20</CARDINAL>. <CARDINAL>437</CARDINAL>"
     XML2 = fix_manual_ner_xml(XML)
     assert(XML2 == XML)
+
+
+def test_charset_stats():
+    import pandas as pd
+    in1 = ["abc"]
+    res1 = charset_stats(in1)
+    assert(isinstance(res1, pd.DataFrame))
+    assert(set(res1["ord"]) == set(ord(x) for x in in1[0]))
+
+    # check invalid chars
+    from itertools import chain
+    in2 = ["abc", "def\n\uffff\ud800"]
+    res2 = charset_stats(in2)
+    assert(isinstance(res2, pd.DataFrame))
+    assert(set(res2["ord"]) == set(ord(x) for x in chain(*in2)))
+
+    # check generator input
+    res3 = charset_stats(s.upper() for s in in2)
+    assert(isinstance(res3, pd.DataFrame))
+    assert(set(res3["ord"]) == set(ord(x.upper()) for x in chain(*in2)))

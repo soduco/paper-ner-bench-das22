@@ -6,12 +6,13 @@
 from collections import Counter
 import io
 import logging
-from typing import List, Tuple
+from typing import List, Tuple, Iterable
 import unicodedata
 from warnings import warn
 
 import isri_tools
 import numpy as np
+import pandas as pd
 import regex
 
 # ==============================================================================
@@ -269,6 +270,10 @@ def simplify_unicode_charset(text: str) -> str:
 # ==============================================================================
 # Check OCR reference charset
 # TODO extract codepoint ranges to some contant list
+
+def _unichr2str(unichar: str) -> str:
+    return unicodedata.name(unichar, repr(unichar))
+
 def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_all: bool=False) -> bool:
     """Check the string passed as parameter contains only acceptable
     unicode code points for the alignment.
@@ -285,8 +290,6 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
     Returns:
         bool: Return True if the text has a valid charset, False otherwise.
     """
-    def _unichr2str(unichar: str) -> str:
-        return unicodedata.name(unichar, repr(unichar))
 
     def _char_str(char_str):
         codepoint = ord(char_str)
@@ -846,3 +849,13 @@ def xml_contains_empty_tags(unescaped_xml: str, tag_list=TAG_LIST) -> bool:
 
 def xml_remove_empty_tags(unescaped_xml: str, tag_list=TAG_LIST) -> bool:
     return regex.sub(REGEX_EMPTY_TAGS, r'\2', unescaped_xml, tag=tag_list, flags=regex.MULTILINE)
+
+def charset_stats(texts: Iterable[str]) -> pd.DataFrame:
+    c = Counter()
+    for t in texts:
+        c.update(t)
+    
+    return pd.DataFrame(
+        ((repr(char), ord(char), _unichr2str(char), unicodedata.category(char), count) for char, count in c.most_common()),
+        columns=("repr", "ord", "name", "category", "count")
+    )
