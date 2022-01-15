@@ -274,7 +274,11 @@ def simplify_unicode_charset(text: str) -> str:
 def _unichr2str(unichar: str) -> str:
     return unicodedata.name(unichar, repr(unichar))
 
-def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_all: bool=False) -> bool:
+def check_alignment_charset(
+        text_to_align: str,
+        dump_charset: bool=False, 
+        show_all: bool=False,
+        strict: bool=False) -> bool:
     """Check the string passed as parameter contains only acceptable
     unicode code points for the alignment.
 
@@ -286,6 +290,7 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
         text_to_align (str): text to check before alignment
         dump_charset (bool): whether to dump the charset or not (debug)
         show_all (bool): whether to print info for all chars (not only problematic ones) (debug)
+        strict (bool): consider suspect chars are errors
 
     Returns:
         bool: Return True if the text has a valid charset, False otherwise.
@@ -330,6 +335,8 @@ def check_alignment_charset(text_to_align: str, dump_charset: bool=False, show_a
             ):
             print(f"Suspect char@{pos:03d}: {char_str} ({hex(ord(char))} {_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
+            if strict:
+                errors += 1
         elif show_all:
             print(f"  Valid char@{pos:03d}: {char_str} ({hex(ord(char))} {_unichr2str(char)}"
                   f" -- cat.: {unicodedata.category(char)})")
