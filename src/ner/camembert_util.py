@@ -28,12 +28,12 @@ LABELS_ID = {
 
 
 # Entry point
-def init_model(model_name, training_config, save_model_path=None):
+def init_model(model_name, training_config):
     logger.info(f"Model {model_name}")
-    tokenizer = AutoTokenizer.from_pretrained(model_name)  # model_name is implicit    
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     
-    output_path = save_model_path or "/tmp/bert-model"    
-    training_args = TrainingArguments(output_path, **training_config)
+    #output_path = save_model_path or "/tmp/bert-model"    
+    training_args = TrainingArguments(**training_config)
 
     # Load the model
     model = AutoModelForTokenClassification.from_pretrained(
@@ -46,7 +46,7 @@ def init_model(model_name, training_config, save_model_path=None):
     return model, tokenizer, training_args
 
 # Main loop
-def train_eval_loop(model, training_args, tokenizer, train, dev, test):
+def train_eval_loop(model, training_args, tokenizer, train, dev, test, patience=3):
     data_collator = DataCollatorForTokenClassification(tokenizer)
     trainer = Trainer(
         model,
@@ -57,7 +57,7 @@ def train_eval_loop(model, training_args, tokenizer, train, dev, test):
         tokenizer=tokenizer,
         compute_metrics=compute_metrics,
         callbacks=[
-            EarlyStoppingCallback(early_stopping_patience=3)
+            EarlyStoppingCallback(early_stopping_patience=patience)
         ],
     )
     trainer.train()
