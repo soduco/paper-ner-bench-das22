@@ -1,4 +1,0 @@
-BERT
-jq -r ' . | [ .[] ]  | @csv' $(l -1v ./*_test.json)
-
-jq -r 'with_entries(select([.key] | inside( ["ents_p","ents_r","ents_f"] ) ) ) | [ .[] ]  | @csv' $(l -1v ./*_test.json)
