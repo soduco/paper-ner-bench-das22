@@ -30,33 +30,3 @@ You will also need the SpaCy pipeline optimized for the French language:
 # /!\ 546MB
 python -m spacy download fr_core_news_lg
 ```
-
-2. Set the location of the data directory.
-```bash
-# Set $DATADIR
-export DATADIR=/path/to/paper-ner-bech-das-22/dataset
-
-# Activate debug in you want more verbose output
-export DEBUG=1
-```
-
-3. Build the gold dataset in CSV from the set of directory pages in JSON
-```
-./build_gold.sh
-``` 
-
-4. Create the datasets required to evaluate the three models and save them in $DATADIR.
-```
-./init_experiments.sh
-```
-
-### Experiment 1 
-Models and metrics will be saved in `experiment_1/`
-One execution of the script = 1 run.
-Copy the metrics folder between runs or it will be overwritten.
-```
-./experiment_1.sh
-``` 
-
-### Experiment 2
- :construction: :construction:
