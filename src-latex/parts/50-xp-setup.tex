@@ -38,7 +38,27 @@ extraction, we rely on the same technique as for the OCR evaluation. The predict
 text and the tags are projected in the alignment. Then, the CER \nathalie{non ici ce sont la précision, le rappel et la F-mesure qui sont calculées} is computed between each entity of the alignment and the
 groundtruth as illustrated on \cref{fig.eval-ocr-ner}.
 
-\subsection{Experiment 1: NER sensibility to the number of training samples}
+
+\begin{figure}[tb]
+    \includegraphics[width=\linewidth]{figs/eval-ocr-ner.pdf}
+    \label{fig.eval-ocr-ner}
+    \caption{OCR and NER evaluation protocol example.}
+\end{figure}
+
+
+
+
+
+\bertrand{Move after section Cases studies? }
+\begin{itemize}
+    \item NER quality: Precision, Recall, F1 score (idea: stick with standard spacy/sklearn metrics) \nathalie{Dans la plupart des articles que j'ai lus, c'est toujours une F-mesure qui est utilisée et parfois la précision et le rappel sont ajoutés.}
+    \item OCR accuracy: outputs from standard tools (beware of unknown glyphs: do we need any special care?) \nathalie{Pour l'instant, j'ai croisé: CER, WER, Levenshtein et Jaccard. J'ai encore un état de l'art à lire sur le sujet: il y aura probablement d'autres mesures mentionnées.}
+    
+    \nathalie{Pour la partie Experiment 2: dans la litérature j'ai vu des courbes F-Mesure(CER) ou F-Mesure(WER) et des diagrammes avec F-Mesure calculée sur des sous-ensembles du corpus classés par score de Levenshtein.}
+\end{itemize}
+
+\subsection{Cases studies}
+\subsubsection{Experiment 1: NER sensibility to the number of training samples}
 The first experiment evaluates the performances of the three models on training sets of different sizes.
 To do so, we split the gold reference into a training set, a development set, and a test set. The training set is then gradually reduced in size while maintaining the relative frequency of directories within.
 The training and testing procedure is the same for the three models.
