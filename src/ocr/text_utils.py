@@ -117,8 +117,8 @@ UNICODE_SIMPLIFICATIONS_SINGLE_CHAR = str.maketrans({
     "\u2044": "/", # ⁄ FRACTION SLASH U+2044
 
     # quotes and brackets
-    "«": "\"", # U+00AB
-    "»": "\"", # U+00BB
+    "\u00AB": "\"", # « U+00AB
+    "\u00BB": "\"", # » U+00BB
     "\u2018": "\'", # ‘ LEFT SINGLE QUOTATION MARK
     "\u2019": "\'", # ’ RIGHT SINGLE QUOTATION MARK
     "\u201A": ",", # ‚ SINGLE LOW-9 QUOTATION MARK
@@ -754,71 +754,95 @@ def add_tags_prediction(ner_xml_final: str, text_ocr_final: str, debug=False) ->
 
 
 # ==============================================================================
-# TODO OCR eval
+# OCR eval
+# Expected input: OCR text with minimal simplifications already performed
+# Output: OCR text with many simplifications (suppressed, changed and expended chars)
+# Transformation: 1 char -> 0+ chars (can change line length)
 
-# TODO OCR equivalences
-# TODO case insensitive or not
-# TODO check charset
-# TODO call isri bindings
-
-
-
-OCR_EQUIVALENCE_MAP = [
-# ¹ U+00B9 to U+0031  1   <---- use NFKC for this?
-# ² U+00B2 to U+0032  2
-# ³ U+00B3 to U+0033  3
-# µ U+00B5 to U+03BC  μ
-    # ("\u00BA", "\u006F"), # º U+00BA to U+006F  o
-    # …   U+2026 to U+002E U+002E U+002E    ...  <-------- ???
-
+OCR_EQUIVALENCE_MAP = str.maketrans({
+    "\u00BA": "\u006F",  # º U+00BA to U+006F  o
+    # "\u2026": "...",  # …   U+2026 to U+002E U+002E U+002E  # Already done
 # ™   U+2122 to U+0054 U+004D   TM
-    # ("\uFB00", "ff"),  # Replace ff, fi, fl, ffi, ffl ligatures with separated 
-    # ("\uFB01", "fi"),  # chars. before Unicode normalization inserts
-    # ("\uFB02", "fl"),  # "200c ZERO WIDTH NON-JOINER"
-    # ("\uFB03", "ffi"), # (actually not wrote to UTF-8 output so not done here)
-    # ("\uFB04", "ffl"),
+    "\uFB00": "ff",  # Replace ff, fi, fl, ffi, ffl ligatures with separated 
+    "\uFB01": "fi",  # chars. before Unicode normalization inserts
+    "\uFB02": "fl",  # "200c ZERO WIDTH NON-JOINER"
+    "\uFB03": "ffi", # (actually not wrote to UTF-8 output so not done here)
+    "\uFB04": "ffl",
 # ¼ U+00BC to U+0031 U+002F U+0034  1/4 # done by FRACTION SLASH replace after norm.
 # ½ U+00BD to U+0031 U+002F U+0032  1/2 # done by FRACTION SLASH replace after norm.
 # ¾ U+00BE to U+0033 U+002F U+0034  3/4 # done by FRACTION SLASH replace after norm.
-    # ("Æ", "AE"), # U+00C6
-    # ("æ", "ae"), # U+00E6
-    # ("Œ", "OE"), # U+0152
-    # ("œ", "oe"), # U+0153
-
-    ("\u2014", "\u002D"), # — EM DASH  # /!\ kept because we have special chars like this
-
-    # TODO equivalence for cyrillic chars? maybe not, this is due to bad word script decision
-
-    # TODO remove accents? -> extra map
-    ("À", "A"),
-    ("Ç", "C"),
-    ("É", "E"),
-    ("È", "E"),
-    ("Ê", "E"),
-    ("Ë", "E"),
-    ("Î", "I"),
-    ("Ï", "I"),
-    ("Ô", "O"),
-    ("Ö", "O"),
-    ("Û", "U"),
-    ("Ü", "U"),
-    ("à", "a"),
-    ("ç", "c"),
-    ("é", "e"),
-    ("è", "e"),
-    ("ê", "e"),
-    ("ë", "e"),
-    ("î", "i"),
-    ("ï", "i"),
-    ("ô", "o"),
-    ("ö", "o"),
-    ("û", "u"),
-    ("ü", "u"),
-    # ("@", "a"),
-]
+    "Æ": "AE", # U+00C6
+    "æ": "ae", # U+00E6
+    "Œ": "OE", # U+0152
+    "œ": "oe", # U+0153
+    # "\u2014": "\u002D", # — EM DASH  # /!\ kept because we have special chars like this
+    "\u2029": "\n",
+})
 
 
+def ocr_simplifications_for_evaluation(
+        text: str, 
+        normalize_spaces: bool=False,
+        normalize_dashes: bool=False,
+        normalize_brackets: bool=False,
+        normalize_quotes: bool=False,
+        normalize_punctuation: bool=False,
+        remove_accents: bool=False,
+        casefold: bool=False,
+        skip_charset_norm=False,
+        ) -> str:
+    # Make sure the original GT simplifications are applied
+    if not skip_charset_norm:
+        text = simplify_unicode_charset(text)
+    # Basic equivalences
+    text = text.translate(OCR_EQUIVALENCE_MAP)
+    if remove_accents:
+        # Extract diacritics as separate compose characters
+        text = NFD(text)
+    if casefold:
+        text = text.casefold()
+    if remove_accents: # Once again (may not be necessary with Latin scripts)
+        text = NFD(text)
+    categories = [unicodedata.category(c) for c in text]
+    res = []
+    # https://www.unicode.org/reports/tr44/#General_Category_Values
+    for char, cat in zip(text, categories):
+        if cat.startswith("Z") or char == "\n":  # Spaces
+            if normalize_spaces:
+                char = " "  # project
+        elif cat.startswith("M"):  # Marks (accents are "Mn")
+            if remove_accents:
+                char = ""  # discard
+        elif cat == "Pd":  # a dash or hyphen punctuation mark
+            if normalize_dashes:
+                char = "-"
+        elif cat == "Ps":  # an opening punctuation mark (of a pair)
+            if normalize_brackets:
+                char = "("
+        elif cat == "Pe":  # a closing punctuation mark (of a pair)
+            if normalize_brackets:
+                char = ")"
+        elif cat == "Pi":  # an initial quotation mark
+            if normalize_quotes:
+                char = "\""
+        elif cat == "Pf":  # a final quotation mark
+            if normalize_quotes:
+                char = "\""
+        elif cat == "Po" and char != "\"":  # comas, dots, etc.
+            if normalize_punctuation:
+                char = "."
+        elif cat in ["Cc", "Cf", "Cs", "Cn"]:
+            raise ValueError(f"Unsupported category: {cat}.")
+        #else: char = char
+        res.append(char)
+    return "".join(res)
 
+
+def NFD(s):
+    return unicodedata.normalize('NFD', s)
+
+# def NFKD(s):
+#     return unicodedata.normalize('NFKD', s)
 
 
 # ==============================================================================

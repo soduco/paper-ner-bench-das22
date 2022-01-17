@@ -1,7 +1,8 @@
 
 from text_utils import (
     UNICODE_SIMPLIFICATIONS_SINGLE_CHAR,
-    charset_stats, 
+    charset_stats,
+    ocr_simplifications_for_evaluation, 
     simplify_unicode_charset,
     check_alignment_charset,
     add_tags_prediction,
@@ -121,3 +122,33 @@ def test_charset_stats():
     res3 = charset_stats(s.upper() for s in in2)
     assert(isinstance(res3, pd.DataFrame))
     assert(set(res3["ord"]) == set(ord(x.upper()) for x in chain(*in2)))
+
+def test_ocr_simplifications_for_evaluation():
+    text = "Pinchon («J.A.”) [\u00e9l. de Vincent \u043Bet\u2029 \ufb03Augustin}, rue CaumÆœrtin,\nno. —744."
+    expected = "pinchon (\"j.a.\") (el. de vincent \u043Bet  ffiaugustin). rue caumaeoertin. no. -744."
+    output = ocr_simplifications_for_evaluation(
+                text,
+                normalize_spaces=True,
+                normalize_brackets=True,
+                normalize_dashes=True,
+                normalize_punctuation=True,
+                normalize_quotes=True,
+                casefold=True,
+                remove_accents=True,
+                skip_charset_norm=False)
+    assert(output == expected)
+
+    # idempotence
+    expected = "pinchon (\"j.a.\") (el. de vincent \u043Bet  ffiaugustin). rue caumaeoertin. no. -744."
+    output = ocr_simplifications_for_evaluation(
+                expected,
+                normalize_spaces=True,
+                normalize_brackets=True,
+                normalize_dashes=True,
+                normalize_punctuation=True,
+                normalize_quotes=True,
+                casefold=True,
+                remove_accents=True,
+                skip_charset_norm=False)
+    assert(output == expected)
+
