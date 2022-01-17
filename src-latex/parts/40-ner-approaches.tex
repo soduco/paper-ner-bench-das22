@@ -3,10 +3,6 @@
 
 Previous work on the influence of OCR errors on NER models shows that it is preferable to reuse a model trained on modern data and adapt it to OCRised historical texts using supervised or unsupervised approaches. This is why, in our tests, we have selected two deep learning-based NER approaches trained on French texts: Spacy 3 NER pipeline and CamemBERT. 
 
-\subsubsection{Regexp}
-::TODO::
-Needed for experiment 2 ?
-
 \subsubsection{Spacy 3 NER pipeline}
 The \textit{of the shelf} NLP library SpaCY offers a named entity recognition tool based on an ad hoc architecture which has not been yet published but is explained by the developers on their website. Although the latest version of SpaCy (v3) leverages BERT models, we could not use them as no NER pipeline is available for the French language at the time of our experiments\footnote{https://spacy.io/models/fr}.
 The vanilla NER pipeline is two-fold. Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}.
@@ -16,8 +12,7 @@ The classification layer relies on a finite-state machine whose transition proba
 In 2018~\cite{won2018} compared SpaCy's vanilla NER performance on historical texts about places with several other software packages (Stanford-NER, Ner-Tagger, Edinburgh Geopoarser and Polyglot). Results showed SpaCy to be average with a F1-score of 0.57.
 The SpaCy developers claimed an accuracy of 0.85 for the English NER pipeline \textit{en\_core\_web\_lg} on the OntoNotes 5.0 corpus\footnote{https://spacy.io/usage/facts-figures}.
 
-\subsubsection{CamemBERT \& CamemBERT+pretrained on raw entries}
-::TODO::
+\subsubsection{CamemBERT \& CamemBERT pretrained on raw entries}
 
 Language model embeddings pretrained using Transformers, like BERT, have become a new paradigm for NER\cite{li2020}. Indeed, these embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec and they can be further fine-tuned for NER task by adding an additional output layer. Moreover, they can also be further pretrained in an unsupervised way on historical texts for domain adaptation.
 

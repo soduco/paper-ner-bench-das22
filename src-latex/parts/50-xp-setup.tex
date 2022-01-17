@@ -48,15 +48,23 @@ To reduce the evaluation bias, we start by leaving out 3 directories (1690 entri
 Then a stratified sampling based on the entry directory name is applied to the remaining set to create a training (6373 entries, ~71\% of the gold reference) and a development set (709 entries, ~8\%).
 This sampling procedure is a convenient way to shape both sets to reflect the diversity of directories within the gold reference.
 
-To generate smaller training sets we start from the initial training set and attractively split it in half using the same stratified sampling strategy.
+To generate smaller training sets we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as before.
 We stop if there is only one entry left in a directory or if the current train set contains less than 30 entries.
 Applying this procedure to the initial training set produced 8 training sets containing 49, 99, 199, 398, 796, 1593, 3186 and 6373 entries.
 
 % Move to metrics ?
-All metrics are evaluated on the test set, yet the biased model performances on the development sets are add in the paper material as additional information.
+All metrics are evaluated on the test set, yet the biased model performances on the development sets are added in the article material as additional information.
 
 
-\subsection{Experiment 2: NER in the presence of noisy OCR texts}
+
+
+
+\subsection{Experiment 2: NER in noisy OCRed texts}
+This experiment aims to evaluate the impact of the OCR used on the quality of the NER results. To this end, we use directory entries whose text has been extracted, corrected and annotated manually (see Section 3). This reference text is aligned with the text produced on the same entries by Tesseract and PERO OCR. The named entities annotated in the reference text are then projected into the OCRed texts. To make sure that all training, development and test datasets contain the same annotations, only the entries for which the same number of annotations are found in the reference text and in the OCRised texts are kept.Finally, the reference text is divided into three datasets, using the same method as in Experiment 1. Two additional test files are generated with exactly the same entries as the test file produced from the reference text: one from the text produced by PERO OCR and one from that produced by Tesseract.
+
+In this experiment, the two best models of Experiment 1 are kept. Both of them are fine-tuned on the training dataset produced from the reference text. One of them is also pretrained on 845000 entries automatically extracted by PERO OCR. 
+
+
 
 \begin{itemize}
 \item At least 1 run per dataset, more if possible.
