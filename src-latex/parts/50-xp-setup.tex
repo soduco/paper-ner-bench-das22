@@ -32,11 +32,22 @@ In this benchmark, we consider 3 OCR systems well-known for the historical docum
 \edwin{FIXME: add ref papier eval OCR + ISRI, eval KRAKEN}
 
 
-Next, a NER system extracts the named entities from the text of each entry outputed by the OCR and the \textbf{NER Q.A.}
+Next, a NER system extracts the named entities from the text of each entry output by the OCR and the \textbf{NER Q.A.}
 is performed. The NER system outputs a text with tags that enclose the entities. To assess the quality of the entity
-extraction, we rely on the same technique as for the OCR evaluation. The predicted text is aligned with the reference
-text and the tags are projected in the alignment. Then, the CER \nathalie{non ici ce sont la précision, le rappel et la F-mesure qui sont calculées} is computed between each entity of the alignment and the
-groundtruth as illustrated on \cref{fig.eval-ocr-ner}.
+extraction, we rely on a technique similar as for the OCR evaluation. The predicted text is aligned with the reference
+text and the tags are projected in the alignment. Then, the precision, recall and F-measure are computed considering
+only the exact matches between entities.
+
+\begin{align}
+    \mathrm{precision} &= \frac{\text{\#exact matches}}{\text{\#entries in prediction}} & \mathrm{recall} &= \frac{\text{\#exact matches}}{\text{\#entries in reference}}
+\end{align}
+
+
+The whole process is illustrated on~\cref{fig.eval-ocr-ner}. The OCR text and the GOLD text are first aligned to
+evaluate the OCR accuracy. As there are 11 mismatches over 56 aligned characters, the CER is thus 24\%. This alignment
+is then used to back-project the GOLD tags to build the tagged NER reference string. Finally, the NER system runs on the
+OCR text; its output is compared to the NER reference string. There is only 2 over 3 tags matching in the prediction (precision),
+while only 2 over 4 entities are matching in the reference (recall). It follows an overall f-score of 0.4.
 
 
 \begin{figure}[tb]
