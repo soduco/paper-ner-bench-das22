@@ -35,13 +35,13 @@ Quantitative results: table + graph ideally (with training set size info)
 
 \begin{table}[h!]
 \centering
-\caption{Experimental results of the NER models performances when trained on varying numbers of examples}
+\caption{NER performances at entry-level for SpaCy NER, CamemBERT and CamemBERT-pretrained when fine-tuned with an increasing number of examples.}
 \begin{tabular}{llrrrrrrrr}
-       & Trainset Size &  49   &  99   &  199  &  398  &  796  &  1593 &  3186 &  6373 \\
+       & Number of training examples &  49   &  99   &  199  &  398  &  796  &  1593 &  3186 &  6373 \\
        & \% & 0.8   & 1.6   & 3.1   & 6.2   & 12.5  & 25.0  & 50.0  & 100.0 \\
 \midrule\bottomrule
-\multirow{3}{*}{\rotatebox{90}{F1 score}} & Camembert &  89.5 &  90.5 &  92.7 &  93.3 &  94.1 &  94.9 &  94.6 &  95.1 \\
-       & Camembert-pretrained &  92.4 &  92.9 &  93.7 &  93.8 &  93.8 &  94.0 &  94.6 &  94.4 \\
+\multirow{3}{*}{\rotatebox{90}{F1 score}} & Camembert &  89.5 &  90.5 &  92.7 &  93.3 &  \textbf{94.1} &  \textbf{94.9} &  \textbf{94.6} &  \textbf{95.1} \\
+       & Camembert-pretrained &  \textbf{92.4} &  \textbf{92.9} & \textbf{93.7} &  \textbf{93.8} &  93.8 &  94.0 &  \textbf{94.6} &  94.4 \\
        & SpaCy NER &  87.0 &  89.0 &  90.3 &  91.9 &  92.1 &  92.8 &  93.2 &  93.5 \\
 \cline{1-10}
 \multirow{3}{*}{\rotatebox{90}{Precision}} & Camembert &  87.4 &  88.7 &  91.5 &  92.7 &  93.3 &  94.9 &  93.9 &  95.1 \\
@@ -59,8 +59,7 @@ Quantitative results: table + graph ideally (with training set size info)
 \begin{figure}[h!]
 	   \center{\includegraphics[width=\textwidth]
 	       {images/experiment-1-models-performances.pdf}}
-	  \vspace{3in}
-	  \caption{\label{fig:f1-vs-trainsize} Models F1 score on unseen data vs trainset size}
+	  \caption{\label{fig:f1-vs-trainsize} Precision, recall and f1 score from table~\ref{tab:experiment-1-models-performances}}.
 \end{figure}
 	                                        
 
@@ -74,6 +73,8 @@ Quantitative results: table + graph ideally (with OCR noise, same format as prev
 
 Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy, clean} datasets
 
+\begin{table}
+\caption{CamemBERT and CamemBERT-pretrained NER performances at entry-level on manually corrected and noisy OCRerd entries when fine-tuned on manually corrected entries.}
 \begin{tabular}{lrrrrrr}
 {} & \multicolumn{3}{c}{Camembert.pretrained} & \multicolumn{3}{c}{Camembert} \\
 {} &                  ref & pero-ocr & tesseract &       ref & pero-ocr & tesseract \\
@@ -83,24 +84,7 @@ Recall    &                 96.5 &     92.6 &      91.3 &      96.6 &     92.5 &
 F1 score        &                 96.5 &     92.9 &      90.8 &      96.4 &     92.5 &      90.5 \\
 \bottomrule
 \end{tabular}
-
-
-\begin{table}[h!]
-\caption{Camembert vs noise}
-\centering
-\begin{tabular}{ll|cc|c}
- & & \multicolumn{2}{c|}{Training data} & \\
- & & noisy & clean &   \\ 
-\cline{1-4}
-\multirow{3}{*}{Test data}& noisy gold (Tesseract) & f1 & f1 & \\
-                            & noisy gold (Pero-OCR) & f1 & f1 & \\ 
-                            & reference gold & f1 & f1 & \\ 
-                            & reference gold & f1 & f1 & \\
-\cline{1-4}
-\end{tabular}
 \end{table}
-
-
 
 Opt. use synthetic text perturbation as well? Maybe not interesting and too artificial if we have access to 2+ OCR systems.
 (original OCR from BNF, Tesseract 4, Pero OCR…)

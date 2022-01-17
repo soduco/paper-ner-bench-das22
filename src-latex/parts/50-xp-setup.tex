@@ -53,25 +53,24 @@ We stop if there is only one entry left in a directory or if the current train s
 Applying this procedure to the initial training set produced 8 training sets containing 49, 99, 199, 398, 796, 1593, 3186 and 6373 entries.
 
 % Move to metrics ?
-All metrics are evaluated on the test set, yet the biased model performances on the development sets are added in the article material as additional information.
+All metrics are evaluated on the test set, yet the biased model performances on the development sets are added in the article material for information.
 
 
 
 
 
 \subsection{Experiment 2: NER in noisy OCRed texts}
-This experiment aims to evaluate the impact of the OCR used on the quality of the NER results. To this end, we use directory entries whose text has been extracted, corrected and annotated manually (see Section 3). This reference text is aligned with the text produced on the same entries by Tesseract and PERO OCR. The named entities annotated in the reference text are then projected into the OCRed texts. To make sure that all training, development and test datasets contain the same annotations, only the entries for which the same number of annotations are found in the reference text and in the OCRised texts are kept.Finally, the reference text is divided into three datasets, using the same method as in Experiment 1. Two additional test files are generated with exactly the same entries as the test file produced from the reference text: one from the text produced by PERO OCR and one from that produced by Tesseract.
-
-In this experiment, the two best models of Experiment 1 are kept. Both of them are fine-tuned on the training dataset produced from the reference text. One of them is also pretrained on 845000 entries automatically extracted by PERO OCR. 
+This experiment aims to evaluate the impact of the OCR used on the quality of the NER results. To this end, we use directory entries whose text has been extracted, corrected and annotated manually (see Section 3). This reference text is aligned with the text produced on the same entries by Tesseract and PERO OCR. The named entities annotated in the reference text are then projected into the OCRed texts. To make sure that all training, development and test datasets contain the same annotations, only the entries for which the same number of annotations are found in the reference text and in the OCRised texts are kept. Finally, the reference text is divided into three datasets, using the same method as in Experiment 1. Two additional test files are generated with exactly the same entries as the test file produced from the reference text: one from the text produced by PERO OCR and one from that produced by Tesseract.
 
 
 
-\begin{itemize}
-\item At least 1 run per dataset, more if possible.
-\item Only use the best model; should be CamemBERT+pretrained
-\item Train on reference gold, evaluate on reference gold AND ocr-gold (2 datasets)
-\item split train/dev/test the same way than experiment 1. Use the exact same splitting for datasets so the clean test set, pero test set and tesseract test sets contains the same entries.
-\end{itemize}
+
+%\begin{itemize}
+%\item At least 1 run per dataset, more if possible.
+%\item Only use the best model; should be CamemBERT+pretrained
+%\item Train on reference gold, evaluate on reference gold AND ocr-gold (2 datasets)
+%\item split train/dev/test the same way than experiment 1. Use the exact same splitting %for datasets so the clean test set, pero test set and tesseract test sets contains the %same entries.
+%\end{itemize}
  
  
 %\begin{itemize}
@@ -83,9 +82,9 @@ In this experiment, the two best models of Experiment 1 are kept. Both of them a
 
 
 
-\subsection{Parameters for each method}
+%\subsection{Parameters for each method}
 
-\subsection{OCR systems}
+\subsection{OCR systems parameters}
 \begin{itemize}
     \item original OCR
     \item Tesseract 4
@@ -101,8 +100,6 @@ tok2vec(words embeddings + encoding) + attention layer  +  transition-based mode
 \paragraph{Huggingface CamemBERT}
 CamemBERT + linear classifier as decision layer
 
+EX1: Pour chaque modèle train sur les 8 datasets * 5 runs, avec mêmes paramètres pour l’entraînement: early stopping  (patience = 3)
 
-
-we use spacy  for the CNN implementation and Huggingface for BERT.
-
-will we use FLAIR as well? $\rightarrow$ No
+Ex 2: On garde CamemBERT et CamemBERT pretrained fine-tuned sur le train clean (patience = 5), validé avec dev clean. Teste les deux modèles sur les trois datasets de test.
