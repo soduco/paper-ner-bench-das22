@@ -19,7 +19,7 @@ Language model embeddings pretrained using Transformers, like BERT, have become 
 As our directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus. We started from the CamemBERT-ner model already fine-tuned on WikiNER-fr corpus and published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}}. Its output layer is a linear model with a Softmax function.
 
 For our experiments, two models are derived. One is produced by fine-tuning this generic model on our ground truth dataset.
-The second is created by adapting the embeddings of this model using raw directory texts, randomly selected and extracted with PERO OCR. The base model is pretrained on these texts for two tasks, namely, Next Sentence Prediction (NSP) and Masked Language Model (MLM). Finally, the resulting model is also fine-tuned using our ground truth corpus.
+The second is created by adapting the embeddings of this model using 845 000 raw directory entries, randomly selected and extracted with PERO OCR. The base model is pretrained on these texts for two tasks, namely, Next Sentence Prediction (NSP) and Masked Language Model (MLM). Finally, the resulting model is also fine-tuned using our ground truth corpus.
 
 % Other possibilities:
 %1. Traditional ML based:
