@@ -1,23 +1,14 @@
 % !TeX root = ../main-paper.tex
-\section{Experimental Setup}
+\section{Experiment 1: NER sensibility to the number of training samples}
 
-\subsection{Metrics}
-\bertrand{Move after section Cases studies? }
-\begin{itemize}
-    \item NER quality: Precision, Recall, F1 score (idea: stick with standard spacy/sklearn metrics) \nathalie{Dans la plupart des articles que j'ai lus, c'est toujours une F-mesure qui est utilisée et parfois la précision et le rappel sont ajoutés.}
-    \item OCR accuracy: outputs from standard tools (beware of unknown glyphs: do we need any special care?) \nathalie{Pour l'instant, j'ai croisé: CER, WER, Levenshtein et Jaccard. J'ai encore un état de l'art à lire sur le sujet: il y aura probablement d'autres mesures mentionnées.}
-    
-    \nathalie{Pour la partie Experiment 2: dans la litérature j'ai vu des courbes F-Mesure(CER) ou F-Mesure(WER) et des diagrammes avec F-Mesure calculée sur des sous-ensembles du corpus classés par score de Levenshtein.}
-\end{itemize}
-
-\subsection{Cases studies}
+\subsection{Case studies}
 \subsubsection{Experiment 1: NER sensibility to the number of training samples}
 The first experiment evaluates the performances of the three models on training sets of different sizes.
-To do so we split the gold reference into a training set, a development set and a test set. The training set is then gradually reduced in size while maintaining the relative frequency of directories within.
+To do so, we split the gold reference into a training set, a development set, and a test set. The training set is then gradually reduced in size while maintaining the relative frequency of directories within.
 The training and testing procedure is the same for the three models.
 
-As the form an structure of entries varies across directories collections and through time, the models may learn to overfit on a subset of directories with specific features.
-To reduce the evaluation bias we start by leaving out 3 directories (1690 entries, ~20\%) from the gold reference to test each model on unseen directories.
+As the form and structure of entries varies across directory collections and through time, the model may learn to overfit on a subset of directories with specific features.
+To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, ~20\%) from the gold reference to test each model on unseen directories.
 Then a stratified sampling based on the entry directory name is applied to the remaining set to create a training (6373 entries, ~71\% of the gold reference) and a development set (709 entries, ~8\%).
 This sampling procedure is a convenient way to shape both sets to reflect the diversity of directories within the gold reference.
 
