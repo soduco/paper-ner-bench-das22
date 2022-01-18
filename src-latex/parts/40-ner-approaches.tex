@@ -11,6 +11,7 @@ As words are processed sequentially, their vectors are concatenated with those o
 The classification layer relies on a finite-state machine whose transition probabilities are learned using a multilayer perceptron.
 In 2018~\cite{won2018} compared SpaCy's vanilla NER performance on historical texts about places with several other software packages (Stanford-NER, Ner-Tagger, Edinburgh Geopoarser and Polyglot). Results showed SpaCy to be average with a F1-score of 0.57.
 The SpaCy developers claimed an accuracy of 0.85 for the English NER pipeline \textit{en\_core\_web\_lg} on the OntoNotes 5.0 corpus\footnote{https://spacy.io/usage/facts-figures}.
+For our experiments, the French model \textit{fr\_core\_news\_lg} is fine-tuned using our ground truth corpus.
 
 \subsubsection{CamemBERT \& CamemBERT pretrained on raw entries}
 
