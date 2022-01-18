@@ -1,30 +1,28 @@
 	
 \documentclass[varwidth, border=15pt]{standalone}
-\usepackage{caption}
 \usepackage{subcaption}
-\usepackage[labelformat=parens,labelsep=quad,skip=3pt]{caption}
 \usepackage{graphicx}
 
 \usepackage{tabularx} % Addition
 \usepackage{multirow} % Addition
 \usepackage{booktabs} % Addition
-\usepackage[export]{adjustbox}
+\usepackage[export]{adjustbox} % Addition
 
 \begin{document}
 \begin{figure}[t]
 	\centering
 
-\begin{tabularx}{0.5\textwidth}{llrrr}
-& &  \rotatebox{90}{Bert$_{reference}$} &  \rotatebox{90}{Bert-ptrn$_{reference}$} &  \rotatebox{90}{Bert-ptrn$_{pero-ocr}$} \\
-\midrule
-\multirow{3}{*}{\rotatebox{90}{Test set}} & reference & 96.4  & \textbf{96.5} &                    95.2 \\
-& pero-ocr  & 92.5 &                     92.9 &                   \textbf{94.1} \\
-& tesseract &  90.5 &                     90.8 &                    \textbf{91.2} \\
-\bottomrule
+\begin{tabularx}{0.5\textwidth}{llrrrr}
+ & &	\rotatebox{90}{Bert$_{reference}$} &	\rotatebox{90}{Bert-ptrn$_{reference}$} &	\rotatebox{90}{Bert$_{pero-ocr}$} &	\rotatebox{90}{Bert-ptrn$_{pero-ocr}$} \\
+\cmidrule{1-6}
+\multirow{3}{*}{\rotatebox{90}{Test set}} & reference & 	96.4 & 					\textbf{96.5} & 						95.4 &					95.2 \\
+& 											 pero-ocr  & 	92.5 & 					92.9 & 						93.6 & 					\textbf{94.1} \\
+& 											 tesseract &  	90.5 & 					90.8 & 						90.2 & 					\textbf{91.2} \\
+\cmidrule{1-6}
 \end{tabularx}
      \begin{subfigure}{1\textwidth}
      \centering
-         \includegraphics[width=0.8\textwidth,valign=t]{experiment_2_f1_with_noise_graph.pdf}
+         \includegraphics[width=0.8\textwidth,valign=t]{../images/experiment_2_f1_with_noise_graph.pdf}
      \end{subfigure}
 \end{figure}
 \end{document}
