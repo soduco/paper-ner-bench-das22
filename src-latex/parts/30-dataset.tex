@@ -17,8 +17,11 @@ The directories to be processed are stored in different libraries in Paris\footn
 	  \caption{\label{fig:directories} Examples of directory layouts and contents: 1) Duverneuil et La Tynna 1806 - index by name; 2) Deflandre 1828 - index by activity ; 3) Bottin 1851 –  index by street name}
 \end{figure}
 
+For training as testing purposes, our groundtruth dataset must be as representative as possible of the diversity of the available directories. The Table \ref{tab:directories} lists the directories selected, their layout, the structure of their entries, and the number of annotated entries according to the considered index.
 
-In this work, we made a selection among the available directories, trying our best to retain copies representative of the diversity of existing directories and of sufficient quality to produce a reliable training data set. The Table \ref{tab:directories} lists the directories selected, their layout, the structure of their entries, and the number of annotated entries according to the indexes considered. For example, the Didot directory of 1854 is organised according to three indexes: by name, by activity, and by street name. The structure of the following entry is characteristic of its index by name: "Batton (D.-A.) *, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47." This entry begins with a person's name, followed by the initials of their first name in parentheses.The star symbol indicates that this person was awarded the Légion d'Honneur. The following part of this entry represents the person's activity,i.e. their profession, or social status, here "professor at the Conservatory of music and declamation". The street name and number where the person lives or carries out their activity are written at the end of the entry. These pieces of information constituting the structure of the entries are the basic data that we want to extract, deduplicate and structure in order to build a spatio-temporal database of XIX\textsuperscript{th} century Parisian inhabitants and businesses. With the exception of some potentially wordy activity descriptions, most of these pieces of information correspond to named entities. However, as Table \ref{tab:directories} shows, while most entries contain the same types of named entities, the order in which they appear and the way they are written vary from one directory to another. This argues for a supervised, rather than rule-based, NER approach, which requires annotated data.
+For example, the Didot directory of 1854 is organised according to three indexes: by name, by activity, and by street name. The structure of the following entry is characteristic of its index by name: "Batton (D.-A.) \scalerel*{\includegraphics{./images/LH.png}}{H}, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47." This entry begins with a person's name, followed by the initials of their first name in parentheses.The symbol indicates that this person was awarded the Légion d'Honneur. The following part of this entry represents the person's activity,i.e. their profession, or social status, here "professor at the Conservatory of music and declamation". The street name and number where the person lives or carries out their activity are written at the end of the entry.
+
+These pieces of information constituting the structure of the entries are the basic data that we want to extract, deduplicate and structure in order to build a spatio-temporal database of XIX\textsuperscript{th} century Parisian inhabitants and businesses. With the exception of some potentially wordy activity descriptions, they correspond to named entities. However, as Table \ref{tab:directories} shows, while most entries contain the same types of named entities, their order and the way they are written vary from one directory or index to another. To provide examples of each entry structure, pages from each type have thus been annotated\footnote{In this work, the street name index entries have not been included as they are very different from the others. The strategy to be adopted to process them without loss of quality for the NER model will be the subject of future work.}.
 
 \begin{table}[h!]
 \resizebox{\textwidth}{!}{%
@@ -95,10 +98,9 @@ The annotated named entities are as follows:
 Thus, the extracted corpus contains both the bounding boxes of directory entries, their exact text and the named entities they contain. It can therefore be used to train and improve the entry detection, OCR and NER tools.
 
 \subsection{Assessing the groundtruth quality}
+\nathalie{On va utiliser cette sous-section ou pas?}
+Our dataset is thus made of excerpts TODO interesting points to detail:
 
-Our dataset is thus made of excerpts 
-
-TODO interesting points to detail:
 \begin{itemize}
     \item statistics about entry lengths (histogram of number of char / tokens par entry)
     \item entities we considered and how we annotated them (how we assessed gold's quality)

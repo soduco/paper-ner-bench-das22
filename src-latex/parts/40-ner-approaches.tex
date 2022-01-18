@@ -1,7 +1,7 @@
 % !TeX root = ../main-paper.tex
 \section{NER Approaches}
 
-Previous work on the influence of OCR errors on NER models shows that it is preferable to reuse a model trained on modern data and adapt it to OCRised historical texts using supervised or unsupervised approaches. This is why, in our tests, we have selected two deep learning-based NER approaches trained on French texts: Spacy 3 NER pipeline and CamemBERT. 
+In our tests, we have selected two deep learning-based NER models trained on French texts: Spacy 3 NER pipeline and CamemBERT. They are adapted to  historical texts as follows.
 
 \subsubsection{Spacy 3 NER pipeline}
 The \textit{of the shelf} NLP library SpaCY offers a named entity recognition tool based on an ad hoc architecture which has not been yet published but is explained by the developers on their website. Although the latest version of SpaCy (v3) leverages BERT models, we could not use them as no NER pipeline is available for the French language at the time of our experiments\footnote{https://spacy.io/models/fr}.
