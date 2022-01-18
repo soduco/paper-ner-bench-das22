@@ -1,23 +1,32 @@
 % !TeX root = ../main-paper.tex
 \section{NER Approaches}
+We select twe deep-learning based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
+In the case of CamemBERT, we also create an additional model pre-trained on a collection of unannotated directories entries extracted with Pero-OCR.
+The three models are then fine-tuned for named entity recognition in historical directories following a procedure detailed in sections~\ref{subsection:experiment-1} and ~\ref{subsection:experiment-2}.
 
-In our tests, we have selected two deep learning-based NER models trained on French texts: Spacy 3 NER pipeline and CamemBERT. They are adapted to  historical texts as follows.
-
-\subsubsection{Spacy 3 NER pipeline}
-The \textit{of the shelf} NLP library SpaCY offers a named entity recognition tool based on an ad hoc architecture which has not been yet published but is explained by the developers on their website. Although the latest version of SpaCy (v3) leverages BERT models, we could not use them as no NER pipeline is available for the French language at the time of our experiments\footnote{https://spacy.io/models/fr}.
-The vanilla NER pipeline is two-fold. Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}.
+\subsubsection{SpaCy NER pipeline}
+Spacy is a software library that offers NLP components assembled in modular pipelines specialised by language.
+Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer.
+Hence we rely on SpaCy's ad hoc pipelines trained on French corpora and capable of named entity recognition.
+% deep-sequoia and wikiner-fr, capable of named entity recognition.\textit{fr\_core\_news\_lg}\footnote{https://spacy.io/models/fr} trained two corpora in French: deep-sequoia and wikiner-fr, capable of named entity recognition.
+The global architecture of these pipelines have not been yet published but is explained by the developers on their website.
+Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}.
 The decision layer is an adaptation of the transition-based model presented in~\cite{lample2016}.
-As words are processed sequentially, their vectors are concatenated with those of the last known entities to encode the nearby predicted semantics as a dynamic attention mechanism.
+As words are processed sequentially, their vectors are concatenated with those of the last known entities to encode the nearby predicted semantics.
 The classification layer relies on a finite-state machine whose transition probabilities are learned using a multilayer perceptron.
-In 2018~\cite{won2018} compared SpaCy's vanilla NER performance on historical texts about places with several other software packages (Stanford-NER, Ner-Tagger, Edinburgh Geopoarser and Polyglot). Results showed SpaCy to be average with a F1-score of 0.57.
-The SpaCy developers claimed an accuracy of 0.85 for the English NER pipeline \textit{en\_core\_web\_lg} on the OntoNotes 5.0 corpus\footnote{https://spacy.io/usage/facts-figures}.
-For our experiments, the French model \textit{fr\_core\_news\_lg} is fine-tuned using our ground truth corpus.
+\bertrand{Drop the next sentences if we need space}
+In 2018~\cite{won2018} evaluated SpaCy's NER ability to detect place names in five corpora of ancient letters written in English.
+They measured an average F1 score of 0.57.
+The SpaCy developers claim an accuracy of 0.85 for the English NER pipeline \textit{en\_core\_web\_lg} on the OntoNotes 5.0 corpus\footnote{https://spacy.io/usage/facts-figures}.
+%For our experiments, the French model \textit{fr\_core\_news\_lg} is fine-tuned using our ground truth corpus.
 
-\subsubsection{CamemBERT \& CamemBERT pretrained on raw entries}
+\subsubsection{CamemBERT}
+Language model based on Transformers, like BERT, have become a new paradigm for NER\cite{li2020}. 
+The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer. 
+They can also be pretrained in an unsupervised way on historical texts for domain adaptation.
 
-Language model embeddings pretrained using Transformers, like BERT, have become a new paradigm for NER\cite{li2020}. Indeed, these embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec and they can be further fine-tuned for NER task by adding an additional output layer. Moreover, they can also be further pretrained in an unsupervised way on historical texts for domain adaptation.
-
-As our directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus. We started from the CamemBERT-ner model already fine-tuned on WikiNER-fr corpus and published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}}. Its output layer is a linear model with a Softmax function.
+As our directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus.
+\bertrand{WIP}
 
 For our experiments, two models are derived. One is produced by fine-tuning this generic model on our ground truth dataset.
 The second is created by adapting the embeddings of this model using 845 000 raw directory entries, randomly selected and extracted with PERO OCR. The base model is pretrained on these texts for two tasks, namely, Next Sentence Prediction (NSP) and Masked Language Model (MLM). Finally, the resulting model is also fine-tuned using our ground truth corpus.
