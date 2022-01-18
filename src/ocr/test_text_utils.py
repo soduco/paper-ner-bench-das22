@@ -152,3 +152,63 @@ def test_ocr_simplifications_for_evaluation():
                 skip_charset_norm=False)
     assert(output == expected)
 
+    # special casefold case: casefold changes string length
+    text = "aA\u0130bBéÉ"  # U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE
+    output = ocr_simplifications_for_evaluation( text, casefold=True, remove_accents=False)
+    expected = "aa\u0069\u0307bbéé"
+    assert(output == expected)
+
+    text = "aA\u0130bBéÉ"  # U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE
+    output = ocr_simplifications_for_evaluation( text, casefold=False, remove_accents=True)
+    expected = "aAIbBeE"
+    assert(output == expected)
+
+    text = "aA\u0130bBéÉ"  # U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE
+    output = ocr_simplifications_for_evaluation( text, casefold=True, remove_accents=True)
+    expected = "aaibbee"
+    assert(output == expected)
+
+    # More space normalization
+    text = " aaa  aa   ( aaaaa a 2 )\u2029\n   aaa aa.\n  * "
+    output = ocr_simplifications_for_evaluation(text, 
+                normalize_spaces=False,
+                deduplicate_spaces=False,
+                apply_french_spacing_rules=False,
+                skip_charset_norm=True)
+    # no change requested but newline normalization is not optional yet
+    expected = " aaa  aa   ( aaaaa a 2 )\n\n   aaa aa.\n  * "
+    assert(output == expected)
+
+    output = ocr_simplifications_for_evaluation(text, 
+                normalize_spaces=False,
+                deduplicate_spaces=True,
+                apply_french_spacing_rules=False,
+                skip_charset_norm=True)
+    expected = "aaa aa ( aaaaa a 2 )\naaa aa.\n*"
+    assert(output == expected)
+
+    output = ocr_simplifications_for_evaluation(text, 
+                normalize_spaces=False,
+                deduplicate_spaces=False,
+                apply_french_spacing_rules=True,
+                skip_charset_norm=True)
+    expected = " aaa  aa (aaaaa a 2) aaa aa.\n  * "
+    assert(output == expected)
+
+    output = ocr_simplifications_for_evaluation(text, 
+                normalize_spaces=False,
+                deduplicate_spaces=True,
+                apply_french_spacing_rules=True,
+                skip_charset_norm=True)
+    expected = "aaa aa (aaaaa a 2) aaa aa.\n*"
+    assert(output == expected)
+
+    output = ocr_simplifications_for_evaluation(text, 
+                normalize_spaces=True,
+                deduplicate_spaces=True,
+                apply_french_spacing_rules=True,
+                skip_charset_norm=True)
+    expected = "aaa aa (aaaaa a 2) aaa aa. *"
+    assert(output == expected)
+
+

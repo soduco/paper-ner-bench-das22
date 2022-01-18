@@ -789,6 +789,8 @@ def ocr_simplifications_for_evaluation(
         normalize_punctuation: bool=False,
         remove_accents: bool=False,
         casefold: bool=False,
+        deduplicate_spaces: bool=False,
+        apply_french_spacing_rules: bool=False,
         skip_charset_norm=False,
         ) -> str:
     # Make sure the original GT simplifications are applied
@@ -801,8 +803,8 @@ def ocr_simplifications_for_evaluation(
         text = NFD(text)
     if casefold:
         text = text.casefold()
-    if remove_accents: # Once again (may not be necessary with Latin scripts)
-        text = NFD(text)
+        if remove_accents: # Once again (may not be necessary with Latin scripts)
+            text = NFD(text)
     categories = [unicodedata.category(c) for c in text]
     res = []
     # https://www.unicode.org/reports/tr44/#General_Category_Values
@@ -835,7 +837,34 @@ def ocr_simplifications_for_evaluation(
             raise ValueError(f"Unsupported category: {cat}.")
         #else: char = char
         res.append(char)
-    return "".join(res)
+    res = "".join(res)
+    # We perform whitespace de-duplication and removal once the text is clean
+    if deduplicate_spaces:
+        # keep only first space
+        res = regex.sub(r"(\s)\s*", r"\1", res)
+    if apply_french_spacing_rules:
+        # 1 space before "double punctuation"
+        res = regex.sub(r"(\w)\s*([;:!?])", r"\1 \2", res)
+        # no space before "single punctuation"
+        res = regex.sub(r"(\w)\s*([.,])", r"\1\2", res)
+        # 1 space after punctuation
+        res = regex.sub(r"([.,;:!?])\s*(\w)", r"\1 \2", res)
+        # opening/initial punctuation marks: 1 space before, no space after
+        res = regex.sub(r"(\p{Open_Punctuation}|p{Initial_Punctuation})\s*(\w)", r"\1\2", res)
+        res = regex.sub(r"(\w)\s*(\p{Open_Punctuation}|p{Initial_Punctuation})", r"\1 \2", res)
+        # closing/final punctuation marks: no space before, 1 space after
+        res = regex.sub(r"(\p{Close_Punctuation}|p{Final_Punctuation})\s*(\w)", r"\1 \2", res)
+        res = regex.sub(r"(\w)\s*(\p{Close_Punctuation}|p{Final_Punctuation})", r"\1\2", res)
+        # EXTRA
+        # remove spaces around dashes
+        res = regex.sub(r"(\w)\s*(\p{Dash_Punctuation})", r"\1\2", res)
+        res = regex.sub(r"(\p{Dash_Punctuation})\s*(\w)", r"\1\2", res)
+        # remove spaces between symbols?
+
+    # Finally, remove spaces at begining / end of line
+    if deduplicate_spaces:
+        res = res.strip()
+    return res
 
 
 def NFD(s):
