@@ -109,10 +109,24 @@ The second experiment assesses the impact of the OCR used on the quality of the 
 
 \subsubsection{OCR systems parameters}
 \nathalie{Y a-t-il des précisions à ajouter sur la façon dont ont été utilisés les OCR? Ou bien ce sont les versions "sur étagère" qui ont servi?}
+\joseph{Totalement sur l'étagère. On a normalisé un peu les données après, c'est tout.}
 \begin{itemize}
-    \item Tesseract 4
-    \item Pero
+    \item Tesseract 4.1.1 (newest version: 5, released Nov. 2021)
+    \item Pero OCR version from git repo, master branch updated on Sep 15, 2021 % 8b20f29    
+    \item other?  % kraken if times allows
 \end{itemize}
+
+Pero OCR uses ParseNet \joseph{TODO ref} as internal layout parser for line detection.
+Pero OCR uses an LSTM engine \joseph{TODO check + ref} for text line recognition.
+Pero OCR generally works very well, as long as the bounding boxes of the regions to recognize are not too tightly adjusted.
+Trained on newspapers in European languages by its development team.
+Can output results in Latin, Greek and Cyrillic scripts, as well as some commonly-used typographic symbols.
+
+% PERO refs
+% O Kodym, M Hradiš: Page Layout Analysis System for Unconstrained Historic Documents. ICDAR, 2021.
+% M Kišš, K Beneš, M Hradiš: AT-ST: Self-Training Adaptation Strategy for OCR in Domains with Limited Transcriptions. ICDAR, 2021.
+% J Kohút, M Hradiš: TS-Net: OCR Trained to Switch Between Text Transcription Styles. ICDAR, 2021.
+
 
 \subsubsection{Spacy}
 We use the French model \textit{fr\_core\_news\_lg} provided by Spacy\mcite{spacy} library and leverage the library utilities to fine-tune it with various training and validation datasets derived from our ground truth dataset (see section 5.2 for details). The base model is fine-tuned in turn with each of the 8 generated training datasets, using the same training parameters. Early stopping is activated with patience parameters set at 1600. For each size of training dataset, 5 runs are performed, always with the same parameters, and the mean value of each performance score is computed.
