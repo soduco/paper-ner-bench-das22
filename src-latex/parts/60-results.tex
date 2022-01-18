@@ -76,7 +76,7 @@ Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy,
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{src-latex/figs/eval-ner-exp2.pdf}
-    \caption{F1 scores (in \%) of NER predictions in presence of OCR noise in the training and testing data, either manually corrected or OCRed with Pero-OCR and Tesseract. The type of examples used to train the NER task is noted in indice after the model name (e.g. Bert$_{reference}$). Results show that best performances on OCRed entries are obtained when the BERT model has been pretrained and fine-tuned for NER on examples affected with similar OCR errors.}
+    \caption{F1 scores (in \%) of NER predictions in presence of OCR noise in the training and testing examples, either manually corrected or raw from Pero-OCR and Tesseract. The type of examples used to train the NER task is noted in indice after the model name (e.g. Bert$_{reference}$). Results show that best performances on OCRed entries are obtained when the BERT model has been pretrained and fine-tuned for NER on examples affected with similar OCR errors.}
     \label{fig:exp_2_eval_ner}
 \end{figure}
 Opt. use synthetic text perturbation as well? Maybe not interesting and too artificial if we have access to 2+ OCR systems.
