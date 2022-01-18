@@ -8,7 +8,7 @@
 
 \subsection{The  XIX\textsuperscript{th} century Parisian trade directories}
 
-The directories to be processed are stored in different libraries in Paris\footnote{\textcolor{green}{Citer les bibliothèques sources?}}. They have been scanned independently and with various levels of quality. Moreover, they cover a wide period and have been produced by different publishers and printers. Therefore, their contents, indexes, layouts, methods of printing, etc. may vary a lot from one directory to another (see Figure \ref{fig:directories}).
+The directories to be processed are stored in different libraries in Paris\footnote{\textcolor{green}{Citer les bibliothèques sources?} \joseph{est-ce nécessaire ici ? Est-ce que ça peut être dans une annexe ?}}. They have been scanned independently and with various levels of quality. Moreover, they cover a wide period and have been produced by different publishers and printers. Therefore, their contents, indexes, layouts, methods of printing, etc. may vary a lot from one directory to another (see Figure \ref{fig:directories}).
 
 
 \begin{figure}[htb!]
@@ -77,12 +77,12 @@ Didot-Bottin & 1861a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM. & 402
 
 \subsection{Groundtruth data extraction}
 
-To build our ground truth corpus, we annotate a few pages of each of the major directory series for which we have digitised copies, using a tool developed for our project (see Figure \ref{fig:annotator}). First, the image of a given directory page is loaded. Second, entries are automatically detected and boxes are drawn around them as shown in the left panel of the Graphical User Interface (GUI). Then the text of each entry is extracted by an OCR tool and finally named entities are annotated by a NER tool: the results are displayed respectively in the first and second tabs of the right panel of the GUI. The entry detection, OCR and NER tasks are performed automatically. But as they are prone to errors, their results can be corrected manually through the GUI. In the end, the entry bounding boxes, their text, and the named entities are stored in a JSON file.
+To build our ground truth corpus, we annotate 78 pages randomly sampled from each of the major directory series for which we have digitised copies, using a tool developed for our project (see Figure \ref{fig:annotator}). First, the image of a given directory page is loaded. Second, entries are automatically detected and boxes are drawn around them as shown in the left panel of the Graphical User Interface (GUI). Then the text of each entry is extracted by an OCR tool and finally named entities are annotated by a NER tool: the results are displayed respectively in the first and second tabs of the right panel of the GUI. The entry detection, OCR and NER tasks are performed automatically. But as they are prone to errors, their results can be corrected manually through the GUI. In the end, the entry bounding boxes, their text, and the named entities are stored in a JSON file.
 
 \begin{figure}[htb!]
 	   \center{\includegraphics[width=0.9\textwidth]
 	       {./images/Annot2.png}}
-	  \caption{\label{fig:annotator} GUI for corpus annotation}
+	  \caption{\label{fig:annotator} GUI for corpus annotation \joseph{remove GUI-related details?}}
 \end{figure}
 
 The annotated named entities are as follows:
@@ -96,9 +96,11 @@ The annotated named entities are as follows:
 \end{itemize}
 
 Thus, the extracted corpus contains both the bounding boxes of directory entries, their exact text and the named entities they contain. It can therefore be used to train and improve the entry detection, OCR and NER tools.
+% book, page, box, text_ocr, ner_xml (+uid within a page)
 
 \subsection{Assessing the groundtruth quality}
 \nathalie{On va utiliser cette sous-section ou pas?}
+\joseph{Pas vraiment car on n'a pas eu le temps de faire ça, mais on peut parler de l'étage d'extraction d'entrées qui est validé manuellement, et des quelques règles de simplification du charset pour homogénéiser entre les annotateurs / pallier des ambiguïtés dans les règles d'annotation (qu'on pourrait encore améliorer)}
 Our dataset is thus made of excerpts TODO interesting points to detail:
 
 \begin{itemize}
