@@ -1,15 +1,18 @@
 % !TeX root = ../main-paper.tex
 \section{NER Approaches}
-We select twe deep-learning based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
-In the case of CamemBERT, we also create an additional model pre-trained on a collection of unannotated directories entries extracted with Pero-OCR.
-The three models are then fine-tuned for named entity recognition in historical directories following a procedure detailed in sections~\ref{subsection:experiment-1} and ~\ref{subsection:experiment-2}.
+We select two deep-learning based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
+We also create an additional CamemBERT model pre-trained on a collection of unannotated directories entries extracted with Pero-OCR.
+The NER layer of each three models is then fine-tuned on historical directories as detailed in sections~\ref{subsection:experiment-1} and ~\ref{subsection:experiment-2}.
 
-\subsubsection{SpaCy NER pipeline}
+\paragraph{Naming conventions} The short name of each model, indicated in square brackets, is used to refer to it from now on.
+
+
+\subsubsection{SpaCy NER pipeline~[SpaCy NER]}
 Spacy is a software library that offers NLP components assembled in modular pipelines specialised by language.
-Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer.
+Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (jan. 2022).
 Hence we rely on SpaCy's ad hoc pipelines trained on French corpora and capable of named entity recognition.
 % deep-sequoia and wikiner-fr, capable of named entity recognition.\textit{fr\_core\_news\_lg}\footnote{https://spacy.io/models/fr} trained two corpora in French: deep-sequoia and wikiner-fr, capable of named entity recognition.
-The global architecture of these pipelines have not been yet published but is explained by the developers on their website.
+The global architecture of these pipelines have not been yet published but are explained by the developers on their website.
 Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}.
 The decision layer is an adaptation of the transition-based model presented in~\cite{lample2016}.
 As words are processed sequentially, their vectors are concatenated with those of the last known entities to encode the nearby predicted semantics.
@@ -20,16 +23,16 @@ They measured an average F1 score of 0.57.
 The SpaCy developers claim an accuracy of 0.85 for the English NER pipeline \textit{en\_core\_web\_lg} on the OntoNotes 5.0 corpus\footnote{https://spacy.io/usage/facts-figures}.
 %For our experiments, the French model \textit{fr\_core\_news\_lg} is fine-tuned using our ground truth corpus.
 
-\subsubsection{CamemBERT}
+\subsubsection{CamemBERT~[CmBERT]}
 Language model based on Transformers, like BERT, have become a new paradigm for NER\cite{li2020}. 
 The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer. 
 They can also be pretrained in an unsupervised way on historical texts for domain adaptation.
-
-As our directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus.
+As the directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus.
 \bertrand{WIP}
+\subsubsection{CamemBERT pretrained on directories~[CmBERT+ptrn]}
+In order to evaluate the benefits of pre-training the language model on OCR texts from domain-related documents, we adapt the CmBERT embeddings using \num{845.000} entries randomly selected wihtin the collection of directories and extracted with Pero-OCR.
+We achieve this by training the CmBERT model for 3 epochs on two unsupervised tasks: next sentence prediction and masked language model.
 
-For our experiments, two models are derived. One is produced by fine-tuning this generic model on our ground truth dataset.
-The second is created by adapting the embeddings of this model using 845 000 raw directory entries, randomly selected and extracted with PERO OCR. The base model is pretrained on these texts for two tasks, namely, Next Sentence Prediction (NSP) and Masked Language Model (MLM). Finally, the resulting model is also fine-tuned using our ground truth corpus.
 
 % Other possibilities:
 %1. Traditional ML based:
