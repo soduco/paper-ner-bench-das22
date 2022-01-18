@@ -73,19 +73,12 @@ Quantitative results: table + graph ideally (with OCR noise, same format as prev
 
 Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy, clean} datasets
 
-\begin{table}
-\caption{CamemBERT and CamemBERT-pretrained NER performances at entry-level on manually corrected and noisy OCRerd entries when fine-tuned on manually corrected entries.}
-\begin{tabular}{lrrrrrrrrr}
-Model & \multicolumn{3}{c}{Camembert.pretrained} & \multicolumn{3}{c}{Camembert} & \multicolumn{3}{c}{Camembert.pretrained} \\
-Train set & \multicolumn{3}{c}{ref} & \multicolumn{3}{c}{ref} & \multicolumn{3}{c}{pero-ocr} \\
-Test set &                  ref & pero-ocr & tesseract &       ref & pero-ocr & tesseract &                  ref & pero-ocr & tesseract \\
-\midrule
-Precision &                 96.5 &     93.3 &      90.3 &      96.1 &     92.4 &      89.7 &                 94.3 &     93.6 &      89.9 \\
-Recall    &                 96.5 &     92.6 &      91.3 &      96.6 &     92.5 &      91.2 &                 96.1 &     94.5 &      92.5 \\
-F1 score        &                 96.5 &     92.9 &      90.8 &      96.4 &     92.5 &      90.5 &                 95.2 &     94.1 &      91.2 \\
-\end{tabular}
-\end{table}
-
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{src-latex/figs/eval-ner-exp2.pdf}
+    \caption{F1 scores (in \%) of NER predictions in presence of OCR noise in the training and testing data, either manually corrected or OCRed with Pero-OCR and Tesseract. The type of examples used to train the NER task is noted in indice after the model name (e.g. Bert$_{reference}$). Results show that best performances on OCRed entries are obtained when the BERT model has been pretrained and fine-tuned for NER on examples affected with similar OCR errors.}
+    \label{fig:exp_2_eval_ner}
+\end{figure}
 Opt. use synthetic text perturbation as well? Maybe not interesting and too artificial if we have access to 2+ OCR systems.
 (original OCR from BNF, Tesseract 4, Pero OCR…)
 
