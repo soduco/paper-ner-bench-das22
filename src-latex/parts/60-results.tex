@@ -37,7 +37,7 @@ Quantitative results: table + graph ideally (with training set size info)
 \centering
 \caption{NER performances at entry-level for SpaCy NER, CamemBERT and CamemBERT-pretrained when fine-tuned with an increasing number of examples.}
 \begin{tabular}{llrrrrrrrr}
-       & Number of training examples &  49   &  99   &  199  &  398  &  796  &  1593 &  3186 &  6373 \\
+       & Training examples &  49   &  99   &  199  &  398  &  796  &  1593 &  3186 &  6373 \\
        & \% & 0.8   & 1.6   & 3.1   & 6.2   & 12.5  & 25.0  & 50.0  & 100.0 \\
 \midrule\bottomrule
 \multirow{3}{*}{\rotatebox{90}{F1 score}} & Camembert &  89.5 &  90.5 &  92.7 &  93.3 &  \textbf{94.1} &  \textbf{94.9} &  \textbf{94.6} &  \textbf{95.1} \\
@@ -75,14 +75,14 @@ Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy,
 
 \begin{table}
 \caption{CamemBERT and CamemBERT-pretrained NER performances at entry-level on manually corrected and noisy OCRerd entries when fine-tuned on manually corrected entries.}
-\begin{tabular}{lrrrrrr}
-{} & \multicolumn{3}{c}{Camembert.pretrained} & \multicolumn{3}{c}{Camembert} \\
-{} &                  ref & pero-ocr & tesseract &       ref & pero-ocr & tesseract \\
+\begin{tabular}{lrrrrrrrrr}
+Model & \multicolumn{3}{c}{Camembert.pretrained} & \multicolumn{3}{c}{Camembert} & \multicolumn{3}{c}{Camembert.pretrained} \\
+Train set & \multicolumn{3}{c}{ref} & \multicolumn{3}{c}{ref} & \multicolumn{3}{c}{pero-ocr} \\
+Test set &                  ref & pero-ocr & tesseract &       ref & pero-ocr & tesseract &                  ref & pero-ocr & tesseract \\
 \midrule
-Precision &                 96.5 &     93.3 &      90.3 &      96.1 &     92.4 &      89.7 \\
-Recall    &                 96.5 &     92.6 &      91.3 &      96.6 &     92.5 &      91.2 \\
-F1 score        &                 96.5 &     92.9 &      90.8 &      96.4 &     92.5 &      90.5 \\
-\bottomrule
+Precision &                 96.5 &     93.3 &      90.3 &      96.1 &     92.4 &      89.7 &                 94.3 &     93.6 &      89.9 \\
+Recall    &                 96.5 &     92.6 &      91.3 &      96.6 &     92.5 &      91.2 &                 96.1 &     94.5 &      92.5 \\
+F1 score        &                 96.5 &     92.9 &      90.8 &      96.4 &     92.5 &      90.5 &                 95.2 &     94.1 &      91.2 \\
 \end{tabular}
 \end{table}
 
