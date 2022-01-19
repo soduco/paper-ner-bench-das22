@@ -49,7 +49,6 @@ is then used to back-project the GOLD tags to build the tagged NER reference str
 OCR text; its output is compared to the NER reference string. There is only 2 over 3 tags matching in the prediction (precision),
 while only 2 over 4 entities are matched in the reference (recall). It follows an overall f-score of 0.4.
 
-
 \begin{figure}[tb]
     \includegraphics[width=\linewidth]{figs/eval-ocr-ner.pdf}
     \label{fig.eval-ocr-ner}
@@ -57,30 +56,35 @@ while only 2 over 4 entities are matched in the reference (recall). It follows a
 \end{figure}
 
 
-
 \subsection{Experiment 1: NER sensibility to the number of training examples}
 \label{subsection:experiment-1}
-The first experiment evaluates the performances of the three models on training sets of different sizes.
-To do so, we split the gold reference into a training set, a development set, and a test set. The training set is then gradually reduced in size while maintaining the relative frequency of directories within.
-The training and testing procedure is the same for the three models.
+\bertrand{Find a better name ?}
+The constitution of annotated example sets to train a NER model on a target domain a is a critical preliminary step.
+Often done manually, possibly from bootstrapped annotations, this task is tedious, time consuming and error prone.
+The ability of a model to perform well even with few training examples is a pratical criteria to consider.
+In this first experiment, we investigate the performance of the three models when fine-tuned for NER on training sets of decreasing sizes.
 
-As the form and structure of entries varies across directory collections and through time, the model may learn to overfit on a subset of directories with specific features.
-To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, ~20\%) from the gold reference to test each model on unseen directories.
-Then a stratified sampling based on the entry directory name is applied to the remaining set to create a training (6373 entries, ~71\% of the gold reference) and a development set (709 entries, ~8\%).
-This sampling procedure is a convenient way to shape both sets to reflect the diversity of directories within the gold reference.
+To do so, we split the gold reference of manually annotated entries into a training set, a development set, and a test set. 
+The training set is then gradually reduced in size while maintaining the relative frequency of directories within it.
 
+As the organisation and structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features.
+To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, $\approx 19\%$) from the gold reference to test each model on unseen directories.
+Then, a stratified sampling based on the source directory of each entry is run on the remaining set to create a training (6373 entries, $\approx 73\%$ of the gold reference) and a development set (709 entries, $\approx 8\%$).
+This sampling procedure is a convenient way to shape both sets so they reflect the diversity of directories within the gold reference.
+The development set is used to evaluate the models performance during the training phase.
 To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as before.
-We stop if there is only one entry left in a directory or if the current train set contains less than 30 entries.
-Applying this procedure to the initial training set produced 8 training sets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
+We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries.
+Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
 
-% Move to metrics ?
-All metrics are evaluated on the test set, yet the biased model performances on the development sets are added in the article material for information.
-
-
+All tree models are fine-tuned for NER against every training subset.
+The performance metrics are measured against the test set after each training.
 
 
+% Move to results
+%All metrics are evaluated on the test set, yet the biased model performances on the development sets are added in the article material for information.
 
-\subsection{Experiment 1: NER on texts with OCR noise}
+
+\subsection{Experiment 2: NER on entries with OCR noise}
 \label{subsection:experiment-2}
 The second experiment assesses the impact of the OCR on the quality of the NER results. To this end, we use directory entries whose text has been extracted, corrected, and annotated manually (see Section 3). This reference text is aligned with the text produced on the same entries by Tesseract and PERO OCR. The named entities annotated in the reference text are then projected into the OCRed texts. To make sure that all training, development, and test datasets contain the same annotations, only the entries for which the same number of annotations are found in the reference text and in the OCRised texts are kept. Finally, the reference text and the PERO OCR text are divided into three datasets, using the same method as in Experiment 1. An additional test file is generated from the text produced by Tesseract with the same entries as the test files produced from the reference and PERO OCR texts.
 
