@@ -27,13 +27,17 @@ Kraken    & 15.72\% & 15.46\% \\
 joint plot of the dataset showing that the two systems do not fail on the same entries.}  
 \end{figure}
 
-\subsection{Experiment 1: NER sensibility to the number of training samples}
+\subsection{Experiment 1: NER sensibility to the number of training examples}
+Table \ref{tab:experiment-1-models-performances} and Figure \ref{fig:f1-vs-trainsize} show the mean F1 score, precision, and recall computed on the test dataset, for 5 fine tunings of each model and for each of the 8 training subsets.
+CmBERT, CmBERT+ptrn and SpaCy NER display the same behaviour: performances increase dramatically with the number of training examples and rapidly reach an area of slower progress around 1000 examples.
+The F1 score increases by 4.6 points between 49 and 796 examples for CmBERT (resp. 1.6 for CmBERT+ptrn and 5.1 for SpaCy NER) but only by 1 point between 796 and 6373 examples (resp. 0.6 and 1.4).
+The models derived from CamemBERT always outperform the Spacy model.
 
-Qualitative results
-\textbf{TODO random samples of results + selection of failure cases}
+It appears that pretraining the CamemBERT model on OCRed texts seems worth it only when a the training set used to fine-tune the NER layer is small.
+This effect might be due to the differences in nature between the training subsets, whose texts are manually corrected, and the noisy OCR texts used to pretrain CamemBERT.
+Indeed, the learned embeddings from the pretraining are specialized on noisy texts and therefore less adapted to clean texts.
+The pretraining aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counter-productive when the texts do not contain these types of errors.
 
-
-Quantitative results: table + graph ideally (with training set size info)
 
 \begin{table}[h!]
 \centering
@@ -66,14 +70,15 @@ Quantitative results: table + graph ideally (with training set size info)
 	                                        
 
 
-\subsection{Experiment 2: NER in the presence of noisy OCR texts}
+\subsection{Experiment 2: NER in the presence of noisy OCRed texts}
+CmBERT and CmBERT+ptrn are fine-tuned on the training sets from reference-gold (manually corrected entries) and pero-gold to produce 4 different models.
+Their F1 score measured against the test tests from reference-gold, pero-gold and tesseract-gold are given in \cref{fig:exp_2_eval_ner}.
+The results clearly show that models perform best when both the pre-training and the NER fine-tuning share the same characteristics (here, OCR noise) as the texts to be processed.
 
-Qualitative results
-\textbf{TODO random samples of results + selection of failure cases}
-
-Quantitative results: table + graph ideally (with OCR noise, same format as previous)
-
-Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy, clean} datasets
+In our tests, pre-training the model brings a slight gain in performance ($\approx 0.5\%$).
+We did not pre-train or fine-tune with texts extracted with Tesseract.
+However, despite a loss of performance the model pre-trained and fine-tuned with pero-gold still gives the best results.
+This is probably due to the fact that the texts produced by Pero-OCR feature characteristics intermediary between human transcriptions and Tesseract.
 
 \begin{figure}
     \centering
@@ -81,8 +86,6 @@ Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy,
     \caption{F1 scores (in \%) of NER predictions in presence of OCR noise in the training and testing examples, either manually corrected or raw from Pero-OCR and Tesseract. The type of examples used to train the NER task is noted in indice after the model name (e.g. Bert$_{reference}$). Results show that best performances on OCRed entries are obtained when the BERT model has been pretrained and fine-tuned for NER on examples affected with similar OCR errors.}
     \label{fig:exp_2_eval_ner}
 \end{figure}
-Opt. use synthetic text perturbation as well? Maybe not interesting and too artificial if we have access to 2+ OCR systems.
-(original OCR from BNF, Tesseract 4, Pero OCR…)
 
 
 \subsection{Discussion}
