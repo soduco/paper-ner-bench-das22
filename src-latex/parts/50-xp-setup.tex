@@ -126,7 +126,7 @@ Can output results in Latin, Greek and Cyrillic scripts, as well as some commonl
 
 
 \subsubsection{Spacy}
-We use the French pipeline \textit{fr\_core\_news\_lg} provided by SpaCy\mcite{spacy}, already trained for NER on the deep-sequoia and wikiner-fr corpora.
+We use the French pipeline \textit{fr\_core\_news\_lg} provided by SpaCy v.3.2.1\mcite{spacy}, already trained for NER on the deep-sequoia and wikiner-fr corpora.
 The default NER labels known to the pipeline are PER, ORG, MISC and LOC.
 In experiment 1 the base model is fine-tuned on every of the 8 training sets using the same training parameters.
 Early stopping is activated with a patience value of 1600 training steps without improvement of the f1 score.
@@ -141,10 +141,10 @@ Early stopping is activated with a patience value of 1600 training steps without
 %tok2vec(words embeddings + encoding) + attention layer  +  transition-based %model.
 
 \subsubsection{Huggingface CamemBERT}
-Experiments 1 and 2 rely on the implementation of transformers provided by the software library Huggingface.
+Experiments 1 and 2 rely on the implementation of transformers provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
 Our baseline CmBERT model is CamemBERT model published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
 Its NER head is a linear model with a Softmax function.
-CmBERT and CmBERT+ptrn are always fine-tuned using the same parameters, with at most 5000 training steps and an early stopping condition set to 3 evaluations in experiment 1 (5 in experiment 2) without improvement of the f1 score. Evaluations are run every 100 steps.
+CmBERT and CmBERT+ptrn are always fine-tuned using the same parameters, with at most 5000 training steps and an early stopping condition set to 3 evaluations in experiment 1 (5 in experiment 2) without improvement of the f1 score. Evaluations are performed every 100 steps.
 
 
 Details can be found for both the SpaCy NER and the CamemBERT NER models in the source code publicly available on the GitHub repository \bertrand{LIEN GITHUB}.
