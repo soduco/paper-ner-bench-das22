@@ -57,7 +57,7 @@ while only 2 over 4 entities are matched in the reference (recall). It follows a
 
 
 \subsection{Experiment 1: NER sensibility to the number of training examples}
-\label{subsection:experiment-1}
+\label{subsection:experiment-1-setup}
 \bertrand{Find a better name ?}
 The constitution of annotated example sets to train a NER model on a target domain a is a critical preliminary step.
 Often done manually, possibly from bootstrapped annotations, this task is tedious, time consuming and error prone.
@@ -76,7 +76,7 @@ To generate smaller training sets, we start from the initial training set and it
 We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries.
 Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
 
-All tree models are fine-tuned for NER against every training subset.
+All tree models are fine-tuned for NER on each training subset.
 The performance metrics are measured against the test set after each training.
 
 
@@ -84,8 +84,29 @@ The performance metrics are measured against the test set after each training.
 %All metrics are evaluated on the test set, yet the biased model performances on the development sets are added in the article material for information.
 
 
-\subsection{Experiment 2: NER on entries with OCR noise}
-\label{subsection:experiment-2}
+\subsection{Experiment 2: Impact of OCR nosie on named entity recognition}
+\label{subsection:experiment-2-setup}
+Noise introduced by OCR is known to impede the named entity recognition process (see section~\ref{subsection:stoa-ner-on-historical-texts}).
+In this second experiment, we are interested in two questions:
+\begin{itemize}
+    \item which model is the most robust to OCR noise ?
+    \item what is most appropriate strategy to fine-tune the NER layer if the texts to label are noisy
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 The second experiment assesses the impact of the OCR on the quality of the NER results. To this end, we use directory entries whose text has been extracted, corrected, and annotated manually (see Section 3). This reference text is aligned with the text produced on the same entries by Tesseract and PERO OCR. The named entities annotated in the reference text are then projected into the OCRed texts. To make sure that all training, development, and test datasets contain the same annotations, only the entries for which the same number of annotations are found in the reference text and in the OCRised texts are kept. Finally, the reference text and the PERO OCR text are divided into three datasets, using the same method as in Experiment 1. An additional test file is generated from the text produced by Tesseract with the same entries as the test files produced from the reference and PERO OCR texts.
 
 

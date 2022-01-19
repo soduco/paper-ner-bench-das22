@@ -85,16 +85,23 @@ To build our ground truth corpus, we annotate 78 pages randomly sampled from eac
 	  \caption{\label{fig:annotator} GUI for corpus annotation \joseph{remove GUI-related details?}}
 \end{figure}
 
+\bertrand{Show an example for each entity ? Or even a full entry with its entities highlighted ?}
 The annotated named entities are as follows:
 \begin{itemize}
     \item PER: a person name or a business name, usually referred to as several person names. Firts names, initials, or civility mentions are included. E.g.: "Alibert (Prosper)", "Allamand frères et Hersent", "Heurtemotte (Vve)", etc.
-    \item TITLE: an honorary title, either written or represented by special glyphs. E.g.: "élig.", \scalerel*{\includegraphics{./images/LH.png}}{H} which stand for the Légion d'Honneur, \scalerel*{\includegraphics{./images/GMLondon.png}}{H} which stands for the Great Medal at the London exhibition, .etc.
-    \item ACT: the activity of the person (profession or social status) or the type of business. E.g.: "horlogerie", "export en tous genres", "Conseiller d'Etat", "propriétaire", etc.
-    \item LOC: a street name or a district name. E.g.: "r. de la Jussienne", "Au Marais", etc.
-    \item CARD: a street number, as part of an address. E.g. "16", "5 bis", etc.
-    \item FT: a geographic entity type, used to give more details on a location. E.g.: "boutique", "atelier", "fab.", etc.
+    \item TITLE: an honorary title, either text, glyphs or a combination of the two. E.g: "O. \scalerel*{\includegraphics{./images/LH.png}}{H}" for "Officier de la Légion d'Honneur" or "\scalerel*{\includegraphics{./images/GMLondon.png}}{H}" to represent the Great Medal at the London exhibition.
+    \item ACT: the profession or social status of a person summarized in the single concept of activity. E.g.: "horlogerie", "export en tous genres", "Conseiller d'Etat", "propriétaire".
+    \item LOC: mostly street names ("r. de la Jussienne"), but may also be neighborhoods ("Marais du Temple") or any indirect spatial references ("au Palais Royal").
+    \item CARDINAL: a street number, as part of an address ("16", "5 bis"), or a range of numbers (e.g. "23-25" or "5 à 9").
+    \item FT: a geographic entity type, used to give more details on a location, e.g. "boutique", "atelier", "fab." or "dépôt".
 \end{itemize}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/examples_labeled_entries.pdf}
+    \caption{Two manually annotated dictionary entries showing the different labels used in the corpus.}
+    \label{fig:my_label}
+\end{figure}
 Thus, the extracted corpus contains both the bounding boxes of directory entries, their exact text and the named entities they contain. It can therefore be used to train and improve the entry detection, OCR and NER tools.
 % book, page, box, text_ocr, ner_xml (+uid within a page)
 
