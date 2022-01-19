@@ -13,10 +13,10 @@
 	\centering
 
 \begin{tabularx}{0.5\textwidth}{llrrrr}
- & &	\rotatebox{90}{Bert$_{reference}$} &	\rotatebox{90}{Bert-ptrn$_{reference}$} &	\rotatebox{90}{Bert$_{pero-ocr}$} &	\rotatebox{90}{Bert-ptrn$_{pero-ocr}$} \\
+ & &	\rotatebox{90}{CmBERT$_{reference}$} &	\rotatebox{90}{CmBERT+ptrn$_{reference}$} &	\rotatebox{90}{CmBERT$_{pero}$} &	\rotatebox{90}{CmBERT+ptrn$_{pero}$} \\
 \cmidrule{1-6}
 \multirow{3}{*}{\rotatebox{90}{Test set}} & reference & 	96.4 & 					\textbf{96.5} & 						95.4 &					95.2 \\
-& 											 pero-ocr  & 	92.5 & 					92.9 & 						93.6 & 					\textbf{94.1} \\
+& 											 pero& 	92.5 & 					92.9 & 						93.6 & 					\textbf{94.1} \\
 & 											 tesseract &  	90.5 & 					90.8 & 						90.2 & 					\textbf{91.2} \\
 \cmidrule{1-6}
 \end{tabularx}
@@ -26,5 +26,3 @@
      \end{subfigure}
 \end{figure}
 \end{document}
-
-%      \caption{F1 scores (in \%) of NER predictions in presence of OCR noise in the training and testing data, either manually corrected or OCRed with Pero-OCR and Tesseract. The type of examples used to train the NER task is noted in indice after the model name (e.g. Bert$_{reference}$). Results show that the best performances on OCRed entries are obtained when the BERT model has been pretrained and fine-tuned for NER on examples affected with similar OCR errors.}

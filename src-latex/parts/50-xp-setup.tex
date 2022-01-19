@@ -125,7 +125,7 @@ Can output results in Latin, Greek and Cyrillic scripts, as well as some commonl
 % J Kohút, M Hradiš: TS-Net: OCR Trained to Switch Between Text Transcription Styles. ICDAR, 2021.
 
 
-\subsubsection{Spacy}
+\subsubsection{SpaCy}
 We use the French pipeline \textit{fr\_core\_news\_lg} provided by SpaCy v.3.2.1\mcite{spacy}, already trained for NER on the deep-sequoia and wikiner-fr corpora.
 The default NER labels known to the pipeline are PER, ORG, MISC and LOC.
 In experiment 1 the base model is fine-tuned on every of the 8 training sets using the same training parameters.
@@ -147,7 +147,7 @@ Its NER head is a linear model with a Softmax function.
 CmBERT and CmBERT+ptrn are always fine-tuned using the same parameters, with at most 5000 training steps and an early stopping condition set to 3 evaluations in experiment 1 (5 in experiment 2) without improvement of the f1 score. Evaluations are performed every 100 steps.
 
 
-Details can be found for both the SpaCy NER and the CamemBERT NER models in the source code publicly available on the GitHub repository \bertrand{LIEN GITHUB}.
+Details can be found for all models in the source code publicly available on the GitHub repository \bertrand{LIEN GITHUB}.
 
 %$BERT_{reference}$ The base model is fine-tuned in turn on each of the training datasets generated from the groundtruth corpus. Training parameters are set depending on the considered experiment: early stopping is activated with the patience parameter set at 3 for experiment 1 and at 5 for experiment 2.
 
