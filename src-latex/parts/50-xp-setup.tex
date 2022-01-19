@@ -81,54 +81,27 @@ The performance metrics are measured against the test set after each training.
 
 
 % Move to results
-%All metrics are evaluated on the test set, yet the biased model performances on the development sets are added in the article material for information.
+%All metrics are evaluated on the test set, yet the biased metrics on the development set are added in the article material as additional information.
 
 
 \subsection{Experiment 2: Impact of OCR nosie on named entity recognition}
 \label{subsection:experiment-2-setup}
+\bertrand{Assume that we use Kraken too. If not, adapt in consequence.}
 Noise introduced by OCR is known to impede the named entity recognition process (see section~\ref{subsection:stoa-ner-on-historical-texts}).
-In this second experiment, we are interested in two questions:
-\begin{itemize}
-    \item which model is the most robust to OCR noise ?
-    \item what is most appropriate strategy to fine-tune the NER layer if the texts to label are noisy
-\end{itemize}
+%The second experiment assesses the impact of the OCR on the quality of the NER results.
+The second experiment addresses two questions (1) which model is the most robust to OCR noise and (2) what is the most appropriate strategy to fine-tune the NER layer if the input texts to label are noisy ?
+To this end, we leverage the labeled OCR datasets produced following to the method explained in Section 5, in addition to the gold reference.
 
+First and foremost, to make sure that the datasets contain the same entries a preprocessing step must be performed.
+Indeed, entries where the OCR produced an empty string and those for which no entity could be projected from the gold reference text are ignored.
+To overcome this problem we filter each dataset by keeping only the entries common to all.
+At the cost of losing  5\% of the gold references entries, we thus have four new annotated datasets containing the exact same entries.
+They are denoted hereafter {reference, pero, tesseract, kraken}-gold.
+Finally each is is split into a training, a dev and a test subset following the procedure presented in\cref{subsection:experiment-1-setup}.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-The second experiment assesses the impact of the OCR on the quality of the NER results. To this end, we use directory entries whose text has been extracted, corrected, and annotated manually (see Section 3). This reference text is aligned with the text produced on the same entries by Tesseract and PERO OCR. The named entities annotated in the reference text are then projected into the OCRed texts. To make sure that all training, development, and test datasets contain the same annotations, only the entries for which the same number of annotations are found in the reference text and in the OCRised texts are kept. Finally, the reference text and the PERO OCR text are divided into three datasets, using the same method as in Experiment 1. An additional test file is generated from the text produced by Tesseract with the same entries as the test files produced from the reference and PERO OCR texts.
-
-
-
-
-%\begin{itemize}
-%\item At least 1 run per dataset, more if possible.
-%\item Only use the best model; should be CamemBERT+pretrained
-%\item Train on reference gold, evaluate on reference gold AND ocr-gold (2 datasets)
-%\item split train/dev/test the same way than experiment 1. Use the exact same splitting %for datasets so the clean test set, pero test set and tesseract test sets contains the %same entries.
-%\end{itemize}
- 
- 
-%\begin{itemize}
-%\item All : leave out 3 directories (~20\% of the dataset) as test data. Then apply stratified sampling based on the directory of each entry to split the remaining into a train set (~72\%) and a dev set (~8\%).
-%\item Spacy CNN : No limit on epochs, instead use patience 1600.
-%\item CamemBERT: 3 epochs.
-%\item CamemBERT pretrained: 3 epochs, pretraining on MLM + NSP with ~20000 raw texts extracted with Pero-OCR.
-%\end{itemize}
-
-
-
+We fine-tune CmBERT and CmBERT+ptrn on reference-gold and pero-gold to create two versions of each model: the former trained on manually corrected entries and the latter on OCR entries.
+SpaCy NER is left aside as results from experiment 1 show that it is outperformed by BERT models.
+Performance metrics are computed for each of the four resulting NER models against the test sets created from reference-gold, pero-gold, tesseract-gold and kraken-gold.
 
 \subsection{Implementation details}
 
