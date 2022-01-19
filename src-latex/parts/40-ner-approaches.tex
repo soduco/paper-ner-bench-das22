@@ -2,7 +2,7 @@
 \section{NER Approaches}
 We select two deep-learning-based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
 We also create an additional CamemBERT model pretrained on a collection of unannotated directory entries extracted with Pero-OCR.
-The NER layer of each three models is then fine-tuned on historical directories as detailed in\cref{subsection:experiment-1-setup} and\cref{subsection:experiment-2-setup}.
+The NER layer of each three models is then fine-tuned on historical directories as detailed in \cref{subsection:experiment-1-setup} and \cref{subsection:experiment-2-setup}.
 
 \paragraph{Naming conventions} The short name of each model, indicated in square brackets, is used to refer to it from now on.
 
@@ -10,7 +10,7 @@ The NER layer of each three models is then fine-tuned on historical directories 
 \subsubsection{SpaCy NER pipeline~[SpaCy NER]}
 Spacy is a software library that offers NLP components assembled in modular pipelines specialised by language.
 Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (jan. 2022).
-Hence we rely on SpaCy's ad hoc pipelines trained on French corpora and capable of named entity recognition.
+Hence, we rely on SpaCy's ad hoc pipeline trained on French corpora and capable of named entity recognition.
 % deep-sequoia and wikiner-fr, capable of named entity recognition.\textit{fr\_core\_news\_lg}\footnote{https://spacy.io/models/fr} trained two corpora in French: deep-sequoia and wikiner-fr, capable of named entity recognition.
 The global architecture of these pipelines have not been yet published but are explained by the developers on their website.
 Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}.

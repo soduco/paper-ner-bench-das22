@@ -86,7 +86,6 @@ The performance metrics are measured against the test set after each training.
 
 \subsection{Experiment 2: Impact of OCR nosie on named entity recognition}
 \label{subsection:experiment-2-setup}
-\bertrand{Assume that we use Kraken too. If not, adapt in consequence.}
 Noise introduced by OCR is known to impede the named entity recognition process (see section~\ref{subsection:stoa-ner-on-historical-texts}).
 %The second experiment assesses the impact of the OCR on the quality of the NER results.
 The second experiment addresses two questions (1) which model is the most robust to OCR noise and (2) what is the most appropriate strategy to fine-tune the NER layer if the input texts to label are noisy ?
@@ -96,12 +95,12 @@ First and foremost, to make sure that the datasets contain the same entries a pr
 Indeed, entries where the OCR produced an empty string and those for which no entity could be projected from the gold reference text are ignored.
 To overcome this problem we filter each dataset by keeping only the entries common to all.
 At the cost of losing  5\% of the gold references entries, we thus have four new annotated datasets containing the exact same entries.
-They are denoted hereafter {reference, pero, tesseract, kraken}-gold.
+They are denoted hereafter {reference, pero, tesseract}-gold.
 Finally each is is split into a training, a dev and a test subset following the procedure presented in\cref{subsection:experiment-1-setup}.
 
 We fine-tune CmBERT and CmBERT+ptrn on reference-gold and pero-gold to create two versions of each model: the former trained on manually corrected entries and the latter on OCR entries.
 SpaCy NER is left aside as results from experiment 1 show that it is outperformed by BERT models.
-Performance metrics are computed for each of the four resulting NER models against the test sets created from reference-gold, pero-gold, tesseract-gold and kraken-gold.
+Performance metrics are computed for each of the four resulting NER models against the test sets created from reference-gold, pero-gold and tesseract-gold.
 
 \subsection{Implementation details}
 
@@ -127,20 +126,34 @@ Can output results in Latin, Greek and Cyrillic scripts, as well as some commonl
 
 
 \subsubsection{Spacy}
-We use the French model \textit{fr\_core\_news\_lg} provided by Spacy\mcite{spacy} library and leverage the library utilities to fine-tune it on various training and validation datasets derived from our ground truth dataset (see Section 5.2 for details). The base model is fine-tuned in turn on each of the 8 generated training datasets, using the same training parameters. Early stopping is activated with patience parameters set at 1600. For each size of the training dataset, 5 runs are performed, always with the same parameters, and the mean value of each performance score is computed.
+We use the French pipeline \textit{fr\_core\_news\_lg} provided by SpaCy\mcite{spacy}, already trained for NER on the deep-sequoia and wikiner-fr corpora.
+The default NER labels known to the pipeline are PER, ORG, MISC and LOC.
+In experiment 1 the base model is fine-tuned on every of the 8 training sets using the same training parameters.
+Early stopping is activated with a patience value of 1600 training steps without improvement of the f1 score.
+
+
+% \bertrand{Move to results}
+%For each size of the training dataset, 5 runs are performed, always with the same parameters, and the mean value of each performance score is computed.
+
+%library and leverage the library utilities to fine-tune it on various training and validation datasets derived from our ground truth dataset (see Section 5.2 for details). The base model is fine-tuned in turn on each of the 8 generated training datasets, using the same training parameters. Early stopping is activated with patience parameters set at 1600. For each size of the training dataset, 5 runs are performed, always with the same parameters, and the mean value of each performance score is computed.
 
 %and Huggingface for the BERT 
 %tok2vec(words embeddings + encoding) + attention layer  +  transition-based %model.
 
 \subsubsection{Huggingface CamemBERT}
-We start from the CamemBERT-ner model already fine-tuned on WikiNER-fr corpus and published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}}. Its output layer is a linear model with a Softmax function. Four NER models are derived from this base model: 
+Experiments 1 and 2 rely on the implementation of transformers provided by the software library Huggingface.
+Our baseline CmBERT model is CamemBERT model published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
+Its NER head is a linear model with a Softmax function.
+CmBERT and CmBERT+ptrn are always fine-tuned using the same parameters, with at most 5000 training steps and an early stopping condition set to 3 evaluations in experiment 1 (5 in experiment 2) without improvement of the f1 score. Evaluations are run every 100 steps.
 
-$BERT_{reference}$ The base model is fine-tuned in turn on each of the training datasets generated from the groundtruth corpus. Training parameters are set depending on the considered experiment: early stopping is activated with the patience parameter set at 3 for experiment 1 and at 5 for experiment 2.
 
-$BERT_{pero-ocr}$ This model is used for experiment 2 only. The base model is fine-tuned on the training dataset generated by projecting the named entity annotations on the text extracted by PERO OCR, using the same parameters as for the $BERT_{reference}$ model.
+Details can be found for both the SpaCy NER and the CamemBERT NER models in the source code publicly available on the GitHub repository \bertrand{LIEN GITHUB}.
 
-$BERT_{ptrn-reference}$ The base model is pretrained using 845000 entries extracted by PERO OCR with the Next  Sentence  Prediction  (NSP) and  Masked  Language  Model(MLM) tasks. Then it is fine-tuned with the same parameters and on the same training datasets generated from the groundtruth corpus as the $BERT_{reference}$ model.
+%$BERT_{reference}$ The base model is fine-tuned in turn on each of the training datasets generated from the groundtruth corpus. Training parameters are set depending on the considered experiment: early stopping is activated with the patience parameter set at 3 for experiment 1 and at 5 for experiment 2.
 
-$BERT_{ptrn-pero-ocr}$ This model is used for experiment 2 only. The base model is pretrained like the $BERT_{ptrn-reference}$ model and it is fine-tuned with the same parameters and on the same training datasets as the $BERT_{pero-ocr}$ model.
+%$BERT_{pero-ocr}$ This model is used for experiment 2 only. The base model is fine-tuned on the training dataset generated by projecting the named entity annotations on the text extracted by PERO OCR, using the same parameters as for the $BERT_{reference}$ model.
 
-The source code of all our experiments is publicly available on the following repository \url{lien github}.
+%$BERT_{ptrn-reference}$ The base model is pretrained using 845000 entries extracted by PERO OCR with the Next  Sentence  Prediction  (NSP) and  Masked  Language  Model(MLM) tasks. Then it is fine-tuned with the same parameters and on the same training datasets generated from the groundtruth corpus as the $BERT_{reference}$ model.
+
+%$BERT_{ptrn-pero-ocr}$ This model is used for experiment 2 only. The base model is pretrained like the $BERT_{ptrn-reference}$ model and it is fine-tuned with the same parameters and on the same training datasets as the $BERT_{pero-ocr}$ model.
+
