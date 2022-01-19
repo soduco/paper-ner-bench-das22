@@ -69393,7 +69393,7 @@
   },
   {
     "id": 261,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bully, rue du colombier.",
     "ner_xml": "<PER>Bully</PER>, <LOC>rue du colombier</LOC>.",
@@ -69401,7 +69401,7 @@
   },
   {
     "id": 352,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bunal p\u00e8re, receveur de l'enregistrement, rue de l'observance.",
     "ner_xml": "<PER>Bunal p\u00e8re</PER>, <ACT>receveur de l&apos;enregistrement</ACT>, <LOC>rue de l&apos;observance</LOC>.",
@@ -69409,7 +69409,7 @@
   },
   {
     "id": 353,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bunel, chirurgien, rue de cl\u00e9ry.",
     "ner_xml": "<PER>Bunel</PER>, <ACT>chirurgien</ACT>, <LOC>rue de cl\u00e9ry</LOC>.",
@@ -69417,7 +69417,7 @@
   },
   {
     "id": 266,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bunon, brasseur, avenue de neuilly.",
     "ner_xml": "<PER>Bunon</PER>, <ACT>brasseur</ACT>, <LOC>avenue de neuilly</LOC>.",
@@ -69425,7 +69425,7 @@
   },
   {
     "id": 268,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buquet, secr\u00e9taire en chef, onzieme municipalit\u00e9.",
     "ner_xml": "<PER>Buquet</PER>, <ACT>secr\u00e9taire en chef</ACT>, <LOC>onzieme municipalit\u00e9</LOC>.",
@@ -69433,7 +69433,7 @@
   },
   {
     "id": 270,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buquet, employ\u00e9, rue du foin jacques.",
     "ner_xml": "<PER>Buquet</PER>, <ACT>employ\u00e9</ACT>, <LOC>rue du foin jacques</LOC>.",
@@ -69441,7 +69441,7 @@
   },
   {
     "id": 272,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Burard, chirurgien, rue sulpice.",
     "ner_xml": "<PER>Burard</PER>, <ACT>chirurgien</ACT>, <LOC>rue sulpice</LOC>.",
@@ -69449,7 +69449,7 @@
   },
   {
     "id": 274,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buzard, rue du petit lion.",
     "ner_xml": "<PER>Buzard</PER>, <LOC>rue du petit lion</LOC>.",
@@ -69457,7 +69457,7 @@
   },
   {
     "id": 276,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Burdin jeune, officier de sant\u00e9, porte antoine.",
     "ner_xml": "<PER>Burdin jeune</PER>, <ACT>officier de sant\u00e9</ACT>, <LOC>porte antoine</LOC>.",
@@ -69465,7 +69465,7 @@
   },
   {
     "id": 278,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bureau, homme de loi, rue des lavandi\u00e8res.",
     "ner_xml": "<PER>Bureau</PER>, <ACT>homme de loi</ACT>, <LOC>rue des lavandi\u00e8res</LOC>.",
@@ -69473,7 +69473,7 @@
   },
   {
     "id": 280,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bureau , marchand, boulevard claude.",
     "ner_xml": "<PER>Bureau</PER> , <ACT>marchand</ACT>, <LOC>boulevard claude</LOC>.",
@@ -69481,7 +69481,7 @@
   },
   {
     "id": 282,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bureau (Claude ) , chef de bataillon aux invalides, 10\u00b0. municip.",
     "ner_xml": "<PER>Bureau (Claude )</PER> , <ACT>chef de bataillon aux invalides</ACT>, <LOC>10\u00b0. municip</LOC>.",
@@ -69489,7 +69489,7 @@
   },
   {
     "id": 284,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buret fils, \u00e9crivain, rue de la jussienne.",
     "ner_xml": "<PER>Buret fils</PER>, <ACT>\u00e9crivain</ACT>, <LOC>rue de la jussienne</LOC>.",
@@ -69497,7 +69497,7 @@
   },
   {
     "id": 286,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Burion p\u00e8re , gazier, passage de boulogne.",
     "ner_xml": "<PER>Burion p\u00e8re</PER> , <ACT>gazier</ACT>, <LOC>passage de boulogne</LOC>.",
@@ -69505,7 +69505,7 @@
   },
   {
     "id": 288,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buron , ancien architecte , rue culture-catherine.",
     "ner_xml": "<PER>Buron</PER> , <ACT>ancien architecte</ACT> , <LOC>rue culture-catherine</LOC>.",
@@ -69513,7 +69513,7 @@
   },
   {
     "id": 290,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Bussy , commissaire aux poudres, \u00e0 l'arsenal.",
     "ner_xml": "<PER>Bussy</PER> , <ACT>commissaire aux poudres</ACT>, <LOC>\u00e0 l&apos;arsenal</LOC>.",
@@ -69521,7 +69521,7 @@
   },
   {
     "id": 292,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Butay, employ\u00e9, rue montmartre.",
     "ner_xml": "<PER>Butay</PER>, <ACT>employ\u00e9</ACT>, <LOC>rue montmartre</LOC>.",
@@ -69529,7 +69529,7 @@
   },
   {
     "id": 294,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Butel, physicien, rue de la libert\u00e9.",
     "ner_xml": "<PER>Butel</PER>, <ACT>physicien</ACT>, <LOC>rue de la libert\u00e9</LOC>.",
@@ -69537,7 +69537,7 @@
   },
   {
     "id": 296,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buteny, instituteur, rue de s\u00e8ves.",
     "ner_xml": "<PER>Buteny</PER>, <ACT>instituteur</ACT>, <LOC>rue de s\u00e8ves</LOC>.",
@@ -69545,7 +69545,7 @@
   },
   {
     "id": 298,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Butez, rue de charonne.",
     "ner_xml": "<PER>Butez</PER>, <LOC>rue de charonne</LOC>.",
@@ -69553,7 +69553,7 @@
   },
   {
     "id": 300,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buzenet, rue du colombier.",
     "ner_xml": "<PER>Buzenet</PER>, <LOC>rue du colombier</LOC>.",
@@ -69561,7 +69561,7 @@
   },
   {
     "id": 302,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Buzenet, rue galande , n. 21.",
     "ner_xml": "<PER>Buzenet</PER>, <LOC>rue galande</LOC> , n. <CARDINAL>21</CARDINAL>.",
@@ -69569,7 +69569,7 @@
   },
   {
     "id": 304,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cabal Castel, notaire, rue ventadour.",
     "ner_xml": "<PER>Cabal Castel</PER>, <ACT>notaire</ACT>, <LOC>rue ventadour</LOC>.",
@@ -69577,7 +69577,7 @@
   },
   {
     "id": 306,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cabanne, militaire aux invalides, dixi\u00e8me municipalit\u00e9.",
     "ner_xml": "<PER>Cabanne</PER>, <ACT>militaire aux invalides</ACT>, <LOC>dixi\u00e8me municipalit\u00e9</LOC>.",
@@ -69585,7 +69585,7 @@
   },
   {
     "id": 308,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cabart, rue de la loi, n. 1272.",
     "ner_xml": "<PER>Cabart</PER>, <LOC>rue de la loi</LOC>, n. <CARDINAL>1272</CARDINAL>.",
@@ -69593,7 +69593,7 @@
   },
   {
     "id": 310,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cabasson, bijoutier, palais du tribunat.",
     "ner_xml": "<PER>Cabasson</PER>, <ACT>bijoutier</ACT>, <LOC>palais du tribunat</LOC>.",
@@ -69601,7 +69601,7 @@
   },
   {
     "id": 312,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Caboche, liquidateur des postes, rue car\u00eame-prenant.",
     "ner_xml": "<PER>Caboche</PER>, <ACT>liquidateur des postes</ACT>, <LOC>rue car\u00eame-prenant</LOC>.",
@@ -69609,7 +69609,7 @@
   },
   {
     "id": 314,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cabot, quai de la m\u00e9gisserie.",
     "ner_xml": "<PER>Cabot</PER>, <LOC>quai de la m\u00e9gisserie</LOC>.",
@@ -69617,7 +69617,7 @@
   },
   {
     "id": 316,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cabauzet, \u00e0 la salp\u00e9tri\u00e8re.",
     "ner_xml": "<PER>Cabauzet</PER>, <LOC>\u00e0 la salp\u00e9tri\u00e8re</LOC>.",
@@ -69625,7 +69625,7 @@
   },
   {
     "id": 318,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Caccia p\u00e8re, banquier, rue m\u00e9ry",
     "ner_xml": "<PER>Caccia p\u00e8re</PER>, <ACT>banquier</ACT>, <LOC>rue m\u00e9ry</LOC>",
@@ -69633,7 +69633,7 @@
   },
   {
     "id": 320,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cacheleux, mercier, rue galande, n. 75.",
     "ner_xml": "<PER>Cacheleux</PER>, <ACT>mercier</ACT>, <LOC>rue galande</LOC>, n. <CARDINAL>75</CARDINAL>.",
@@ -69641,7 +69641,7 @@
   },
   {
     "id": 322,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadet (dominique ), instituteur, rue de la verrerie, n. 8.",
     "ner_xml": "<PER>Cadet (dominique )</PER>, <ACT>instituteur</ACT>, <LOC>rue de la verrerie</LOC>, n. <CARDINAL>8</CARDINAL>.",
@@ -69649,7 +69649,7 @@
   },
   {
     "id": 324,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadet Chambine p\u00e8re, direc. des ponts et ch., 3\u00b0. municip.",
     "ner_xml": "<PER>Cadet Chambine p\u00e8re</PER>, <ACT>direc. des ponts et ch.</ACT>, <LOC>3\u00b0. municip</LOC>.",
@@ -69657,7 +69657,7 @@
   },
   {
     "id": 326,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadet Cambine fils, rue des foss\u00e9s-montmartre.",
     "ner_xml": "<PER>Cadet Cambine fils</PER>, <LOC>rue des foss\u00e9s-montmartre</LOC>.",
@@ -69665,7 +69665,7 @@
   },
   {
     "id": 328,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadet-de-Vaux, de l'institut, quatri\u00e8me municipalit\u00e9.",
     "ner_xml": "<PER>Cadet-de-Vaux</PER>, <ACT>de l&apos;institut</ACT>, <LOC>quatri\u00e8me municipalit\u00e9</LOC>.",
@@ -69673,7 +69673,7 @@
   },
   {
     "id": 330,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadet Gassicourt, apothicaire, rue honor\u00e9.",
     "ner_xml": "<PER>Cadet Gassicourt</PER>, <ACT>apothicaire</ACT>, <LOC>rue honor\u00e9</LOC>.",
@@ -69681,7 +69681,7 @@
   },
   {
     "id": 332,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadet, miroitier, rue antoine.",
     "ner_xml": "<PER>Cadet</PER>, <ACT>miroitier</ACT>, <LOC>rue antoine</LOC>.",
@@ -69689,7 +69689,7 @@
   },
   {
     "id": 334,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadonnier, serrurier, cour nationale du palais.",
     "ner_xml": "<PER>Cadonnier</PER>, <ACT>serrurier</ACT>, <LOC>cour nationale du palais</LOC>.",
@@ -69697,7 +69697,7 @@
   },
   {
     "id": 336,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cadot, limonadier, rue du Four, n. 40.",
     "ner_xml": "<PER>Cadot</PER>, <ACT>limonadier</ACT>, <LOC>rue du Four</LOC>, n. <CARDINAL>40</CARDINAL>.",
@@ -69705,7 +69705,7 @@
   },
   {
     "id": 338,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Caffard Durviller, notaire, rue jean-\njacques.",
     "ner_xml": "<PER>Caffard Durviller</PER>, <ACT>notaire</ACT>, <LOC>rue jean-\u2029jacques</LOC>.",
@@ -69713,7 +69713,7 @@
   },
   {
     "id": 340,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Citarelli, chef de l'\u00e9tat major, dixi\u00e8me municipalit\u00e9.",
     "ner_xml": "<PER>Citarelli</PER>, <ACT>chef de l&apos;\u00e9tat major,</ACT> <LOC>dixi\u00e8me municipalit\u00e9</LOC>.",
@@ -69721,7 +69721,7 @@
   },
   {
     "id": 342,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Caffin, employ\u00e9, cour des forges.",
     "ner_xml": "<PER>Caffin</PER>, <ACT>employ\u00e9</ACT>, <LOC>cour des forges</LOC>.",
@@ -69729,7 +69729,7 @@
   },
   {
     "id": 344,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Caffin, quatri\u00e8me municipalit\u00e9",
     "ner_xml": "<PER>Caffin</PER>, <LOC>quatri\u00e8me municipalit\u00e9</LOC>",
@@ -69737,7 +69737,7 @@
   },
   {
     "id": 346,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Cahours , bonnetier, rue planche-mibray",
     "ner_xml": "<PER>Cahours</PER> , <ACT>bonnetier</ACT>, <LOC>rue planche-mibray</LOC>",
@@ -69745,7 +69745,7 @@
   },
   {
     "id": 348,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Caign\u00e9 , notaire, rue de la harpe.",
     "ner_xml": "<PER>Caign\u00e9</PER> , <ACT>notaire</ACT>, <LOC>rue de la harpe</LOC>.",
@@ -69753,7 +69753,7 @@
   },
   {
     "id": 350,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 57,
     "text_ocr": "Caillard, archiviste des archives extr., dixi\u00e8me municipalit\u00e9.",
     "ner_xml": "<PER>Caillard</PER>, <ACT>archiviste des archives extr.</ACT>, <LOC>dixi\u00e8me municipalit\u00e9</LOC>.",
@@ -69761,7 +69761,7 @@
   },
   {
     "id": 261,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lakanal, membre de l'institut, au louvre.",
     "ner_xml": "<PER>Lakanal</PER>, <ACT>membre de l&apos;institut</ACT>, <LOC>au louvre</LOC>.",
@@ -69769,7 +69769,7 @@
   },
   {
     "id": 263,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalande, employ\u00e9 \u00e0 la justice, douzi\u00e8me municipalit\u00e9.",
     "ner_xml": "<PER>Lalande</PER>, <ACT>employ\u00e9 \u00e0 la justice</ACT>, <LOC>douzi\u00e8me municipalit\u00e9</LOC>.",
@@ -69777,7 +69777,7 @@
   },
   {
     "id": 265,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalande, astronome, coll\u00e8ge de france.",
     "ner_xml": "<PER>Lalande</PER>, <ACT>astronome</ACT>, <LOC>coll\u00e8ge de france</LOC>.",
@@ -69785,7 +69785,7 @@
   },
   {
     "id": 267,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalande, boulevard du temple.",
     "ner_xml": "<PER>Lalande</PER>, <LOC>boulevard du temple</LOC>.",
@@ -69793,7 +69793,7 @@
   },
   {
     "id": 271,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalande, chef \u00e0 la liquidation, place vend\u00f4me.",
     "ner_xml": "<PER>Lalande</PER>, <ACT>chef \u00e0 la liquidation</ACT>, <LOC>place vend\u00f4me</LOC>.",
@@ -69801,7 +69801,7 @@
   },
   {
     "id": 273,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalanne , n\u00e9gociant, rue vivienne.",
     "ner_xml": "<PER>Lalanne</PER> , <ACT>n\u00e9gociant</ACT>, <LOC>rue vivienne</LOC>.",
@@ -69809,7 +69809,7 @@
   },
   {
     "id": 275,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalanne, marchand, rue des mauvaises paroles.",
     "ner_xml": "<PER>Lalanne</PER>, <ACT>marchand</ACT>, <LOC>rue des mauvaises paroles</LOC>.",
@@ -69817,7 +69817,7 @@
   },
   {
     "id": 277,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalausse, ex-magistrat, faubourg poissonni\u00e8re,",
     "ner_xml": "<PER>Lalausse</PER>, <ACT>ex-magistrat</ACT>, <LOC>faubourg poissonni\u00e8re</LOC>,",
@@ -69825,7 +69825,7 @@
   },
   {
     "id": 279,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalaurencie, rue des pr\u00eatres-paul",
     "ner_xml": "<PER>Lalaurencie</PER>, <LOC>rue des pr\u00eatres-paul</LOC>",
@@ -69833,7 +69833,7 @@
   },
   {
     "id": 281,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalegne, rue du the\u00e2tre-fran\u00e7ais.",
     "ner_xml": "<PER>Lalegne</PER>, <LOC>rue du the\u00e2tre-fran\u00e7ais</LOC>.",
@@ -69841,7 +69841,7 @@
   },
   {
     "id": 283,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lal\u00e9man , rue vivienne.",
     "ner_xml": "<PER>Lal\u00e9man</PER> , <LOC>rue vivienne</LOC>.",
@@ -69849,7 +69849,7 @@
   },
   {
     "id": 285,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalende, rue garenci\u00e8re.",
     "ner_xml": "<PER>Lalende</PER>, <LOC>rue garenci\u00e8re</LOC>.",
@@ -69857,7 +69857,7 @@
   },
   {
     "id": 287,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lall\u00e9e p\u00e8re, corroyeur, rue de cl\u00e9ry",
     "ner_xml": "<PER>Lall\u00e9e p\u00e8re</PER>, <ACT>corroyeur</ACT>, <LOC>rue de cl\u00e9ry</LOC>",
@@ -69865,7 +69865,7 @@
   },
   {
     "id": 289,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, vitrier, vieille rue du temple.",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>vitrier</ACT>, <LOC>vieille rue du temple</LOC>.",
@@ -69873,7 +69873,7 @@
   },
   {
     "id": 291,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, tanneur, rue censier.",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>tanneur</ACT>, <LOC>rue censier</LOC>.",
@@ -69881,7 +69881,7 @@
   },
   {
     "id": 293,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, chapelier, faubourg du temple.",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>chapelier</ACT>, <LOC>faubourg du temple</LOC>.",
@@ -69889,7 +69889,7 @@
   },
   {
     "id": 295,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, notaire, rue neuve-eustache.",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>notaire</ACT>, <LOC>rue neuve-eustache</LOC>.",
@@ -69897,7 +69897,7 @@
   },
   {
     "id": 297,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand , rue de la grande truanderie.",
     "ner_xml": "<PER>Lallemand</PER> , <LOC>rue de la grande truanderie</LOC>.",
@@ -69905,7 +69905,7 @@
   },
   {
     "id": 299,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, chef des bureaux de l'int\u00e9rieur, rue de grenelle.",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>chef des bureaux de l&apos;int\u00e9rieur</ACT>, <LOC>rue de grenelle</LOC>.",
@@ -69913,7 +69913,7 @@
   },
   {
     "id": 301,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, mercier, rue montorgueuil",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>mercier</ACT>, <LOC>rue montorgueuil</LOC>",
@@ -69921,7 +69921,7 @@
   },
   {
     "id": 303,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand , invalide, dixieme municipalit\u00e9.",
     "ner_xml": "<PER>Lallemand</PER> , <ACT>invalide</ACT>, <LOC>dixieme municipalit\u00e9</LOC>.",
@@ -69929,7 +69929,7 @@
   },
   {
     "id": 305,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, chirurgien en chef \u00e0 la salp\u00e9tri\u00e8re, 12\u00b0. municip.",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>chirurgien en chef \u00e0 la salp\u00e9tri\u00e8re</ACT>, <LOC>12\u00b0. municip</LOC>.",
@@ -69937,7 +69937,7 @@
   },
   {
     "id": 307,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, rue neuve-des-capucines.",
     "ner_xml": "<PER>Lallemand</PER>, <LOC>rue neuve-des-capucines</LOC>.",
@@ -69945,7 +69945,7 @@
   },
   {
     "id": 309,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand , fondeur , rue jean-robert.",
     "ner_xml": "<PER>Lallemand</PER> , <ACT>fondeur</ACT> , <LOC>rue jean-robert</LOC>.",
@@ -69953,7 +69953,7 @@
   },
   {
     "id": 311,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemand, serrurier, rue martin.",
     "ner_xml": "<PER>Lallemand</PER>, <ACT>serrurier</ACT>, <LOC>rue martin</LOC>.",
@@ -69961,7 +69961,7 @@
   },
   {
     "id": 313,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemant, employ\u00e9 au corps l\u00e9gislatif, 10\u00b0 municipalit\u00e9.",
     "ner_xml": "<PER>Lallemant</PER>, <ACT>employ\u00e9 au corps l\u00e9gislatif</ACT>, <LOC>10\u00b0 municipalit\u00e9</LOC>.",
@@ -69969,7 +69969,7 @@
   },
   {
     "id": 315,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemant, chef du bureau des nourrices, rue de grammont",
     "ner_xml": "<PER>Lallemant</PER>, <ACT>chef du bureau des nourrices</ACT>, <LOC>rue de grammont</LOC>",
@@ -69977,7 +69977,7 @@
   },
   {
     "id": 317,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lallemant-de-Villigny, anc. payeur de rentes, rue pastourelle.",
     "ner_xml": "<PER>Lallemant-de-Villigny</PER>, <ACT>anc. payeur de rentes</ACT>, <LOC>rue pastourelle</LOC>.",
@@ -69985,7 +69985,7 @@
   },
   {
     "id": 319,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalliat, employ\u00e9 aux finances , rue neuve des petits-champs.",
     "ner_xml": "<PER>Lalliat</PER>, <ACT>employ\u00e9 aux finances</ACT> , <LOC>rue neuve des petits-champs</LOC>.",
@@ -69993,7 +69993,7 @@
   },
   {
     "id": 321,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Laloge ain\u00e9 , marchand de vin, quai bernard.",
     "ner_xml": "<PER>Laloge ain\u00e9</PER> , <ACT>marchand de vin</ACT>, <LOC>quai bernard</LOC>.",
@@ -70001,7 +70001,7 @@
   },
   {
     "id": 323,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalou, rue saint-avoie.",
     "ner_xml": "<PER>Lalou</PER>, <LOC>rue saint-avoie</LOC>.",
@@ -70009,7 +70009,7 @@
   },
   {
     "id": 325,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalouette , medecin, rue jacob.",
     "ner_xml": "<PER>Lalouette</PER> , <ACT>medecin</ACT>, <LOC>rue jacob.</LOC>",
@@ -70017,7 +70017,7 @@
   },
   {
     "id": 327,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lalouette, employ\u00e9, rue honor\u00e9.",
     "ner_xml": "<PER>Lalouette</PER>, <ACT>employ\u00e9</ACT>, <LOC>rue honor\u00e9</LOC>.",
@@ -70025,7 +70025,7 @@
   },
   {
     "id": 329,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamaigni\u00e8re, juge de paix \u00e0 chaillot, premi\u00e8re municipalit\u00e9.",
     "ner_xml": "<PER>Lamaigni\u00e8re</PER>, <ACT>juge de paix \u00e0 chaillot</ACT>, <LOC>premi\u00e8re municipalit\u00e9</LOC>.",
@@ -70033,7 +70033,7 @@
   },
   {
     "id": 331,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamaigu\u00e8res, employ\u00e9, avenue de neuilly.",
     "ner_xml": "<PER>Lamaigu\u00e8res</PER>, <ACT>employ\u00e9</ACT>, <LOC>avenue de neuilly</LOC>.",
@@ -70041,7 +70041,7 @@
   },
   {
     "id": 333,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamaille, marchand, rue montorgueil.",
     "ner_xml": "<PER>Lamaille</PER>, <ACT>marchand</ACT>, <LOC>rue montorgueil</LOC>.",
@@ -70049,7 +70049,7 @@
   },
   {
     "id": 335,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamalle, d\u00e9fenseur officieux, rue de l'\u00e9chelle.",
     "ner_xml": "<PER>Lamalle</PER>, <ACT>d\u00e9fenseur officieux</ACT>, <LOC>rue de l&apos;\u00e9chelle</LOC>.",
@@ -70057,7 +70057,7 @@
   },
   {
     "id": 337,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamalmaison , homme de loi, rue jean-pain-mollet.",
     "ner_xml": "<PER>Lamalmaison</PER> , <ACT>homme de loi</ACT>, <LOC>rue jean-pain-mollet</LOC>.",
@@ -70065,7 +70065,7 @@
   },
   {
     "id": 339,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamand\u00e9 fils , ingenieur, rue belle-chasse.",
     "ner_xml": "<PER>Lamand\u00e9 fils</PER> , <ACT>ingenieur</ACT>, <LOC>rue belle-chasse</LOC>.",
@@ -70073,7 +70073,7 @@
   },
   {
     "id": 341,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamarche , marchand de vin , rue lazare.",
     "ner_xml": "<PER>Lamarche</PER> , <ACT>marchand de vin</ACT> , <LOC>rue lazare</LOC>.",
@@ -70081,7 +70081,7 @@
   },
   {
     "id": 343,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamarche, geographe , rue du foin.",
     "ner_xml": "<PER>Lamarche</PER>, <ACT>geographe</ACT> , <LOC>rue du foin</LOC>.",
@@ -70089,7 +70089,7 @@
   },
   {
     "id": 345,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamarck, membre de l'institut, quatrieme municipalite.",
     "ner_xml": "<PER>Lamarck</PER>, <ACT>membre de l&apos;institut</ACT>, <LOC>quatrieme municipalite</LOC>.",
@@ -70097,7 +70097,7 @@
   },
   {
     "id": 347,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamare , notaire, rue du faubourg honore.",
     "ner_xml": "<PER>Lamare</PER> , <ACT>notaire</ACT>, <LOC>rue du faubourg honore</LOC>.",
@@ -70105,7 +70105,7 @@
   },
   {
     "id": 349,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamarre, carrier, rue mouffetard.",
     "ner_xml": "<PER>Lamarre</PER>, <ACT>carrier</ACT>, <LOC>rue mouffetard</LOC>.",
@@ -70113,7 +70113,7 @@
   },
   {
     "id": 351,
-    "book": "notables_communaux_seine_1801",
+    "book": "Notables_communaux_seine_1801",
     "page": 144,
     "text_ocr": "Lamarre, clerc de notaire, rue \u00e9galit\u00e9.",
     "ner_xml": "<PER>Lamarre</PER>, <ACT>clerc de notaire</ACT>, <LOC>rue \u00e9galit\u00e9</LOC>.",
