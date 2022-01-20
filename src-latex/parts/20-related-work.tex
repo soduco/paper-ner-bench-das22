@@ -2,27 +2,33 @@
 \section{OCR and NER on historical texts}
 \label{sec:related-work}
 
-\joseph{Suggestion pour réduire la présentation de l'état de l'art : l'orienter exclusivement vers une justification des systèmes que nous avons retenus pour cet article.}
-
 The directory processing pipeline presented in \cite{bell2020automated} includes an OCR step, done with Tesseract, and a NER step to identify company names and addresses, performed using regular expressions.
 This section reviews existing OCR and NER approaches with historical texts and presents some works assessing the effects of OCR quality on the NER performance and the proposed solutions. 
 
 \subsection{Optical Character Recognition on historical texts}
+Among the large amount of OCR solutions, being either open, free or paid software, available as libraries, Python packages, binaries or cloud API, not all options seem suitable for historical document processing.
+We chose to avoid in our study paid and closed-source solutions.
+This notably discards Transkribus~\cite{transkribus}, which relies on the commercial system ABBYY's Finereader as well as on two handwritten transcription engines, to process text.
+% for Transkribus HTR engines, there is one closed source and one apparently open source
+% we should test the open source one: https://github.com/jpuigcerver/pylaia
 
-Most of the current state-of-the-art OCR systems, like Tesseract \cite{smith2007overview}, OCRopus \cite{breuel2008ocropus} and PERO OCR \cite{kohut2021ts} are based on a pipeline of convolutional neural networks (CNNs) and long short-term memory networks (LSTM).
+
+Most of the current state-of-the-art open-source OCR systems, like Tesseract \cite{smith2007overview}, OCRopus \cite{breuel2008ocropus}, and the recent Kraken~\cite{kraken}, Calamari~\cite{wick_calamari_2020} and \peroocr \cite{kohut2021ts} are based on a pipeline of convolutional neural networks (CNNs) and long short-term memory networks (LSTM).
 Although this kind of model produces good results with modern texts, it faces several challenges with ancient texts, such as the lack of annotated data for learning, or different transcription styles in training data.
+%
+% \cite{martinek2019hybrid} propose an approach to generate synthetic annotated text for historical OCR training, based on manually collected characters from historical text images.
+% This work proposes to train an OCR system based on a CNN-LSTM network with synthetic data and then to fine-tune the model with some pages of real historical annotated text.
+% The results show that this approach gives state-of-the-art results. 
 
-\cite{martinek2019hybrid} propose an approach to generate synthetic annotated text for historical OCR training, based on manually collected characters from historical text images.
-This work proposes to train an OCR system based on a CNN-LSTM network with synthetic data and then to fine-tune the model with some pages of real historical annotated text.
-The results show that this approach gives state-of-the-art results. 
-
-To overcome the limitations due to different transcription styles in training data, PERO OCR adds a Transcription Style Block layer to a classical model based on a CNN and a Recurrent Neural Network components \cite{kohut2021ts}.
+To overcome the limitations due to different transcription styles in training data, \peroocr adds a Transcription Style Block layer to a classical model based on a CNN and a Recurrent Neural Network components \cite{kohut2021ts}.
 This block takes the image of the text and a Transcription Style Identifier as inputs and helps the network decide what kind of transcription style to use as output.
 
-\joseph{Move to implementation details for XP OCR or to pipeline summary}
-\nathalie{Pour l'instant je les ai déplacés dans le 2.3 pipeline summary}
+In this study, we consider Tesseract version 4, Kraken and \peroocr.
+They were selected because of their ease of use (in the case of Tesseract and Kraken)
+or because of their performance (in the case of \peroocr),
+but further work should include more systems from our initial selection.
 
-
+% Finally don't mention OCR-D as it relies on either Tesseract, Kraken, Ocropus or Calamari
 
 % PERO refs
 % O Kodym, M Hradiš: Page Layout Analysis System for Unconstrained Historic Documents. ICDAR, 2021.
