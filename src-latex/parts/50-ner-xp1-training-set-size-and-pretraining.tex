@@ -93,7 +93,7 @@ The metrics are measured for the 24 resulting NER models on the common test set 
 
 
 \subsection{Results and discussion}
-Table \ref{tab:experiment-1-models-performances} and Figure \ref{fig:f1-vs-trainsize} display the averaged precision, recall and F1-score for all models on the 8 subsets created from the groundtruth.
+Figure \ref{fig:f1-vs-trainsize} displays the averaged precision, recall and F1-score for all models on the 8 subsets created from the groundtruth.
 CmBERT, CmBERT+ptrn and SpaCy NER display the same behaviour: performances increase dramatically with the number of training examples and rapidly reach an area of slower progress around 1000 examples.
 The F1 score increases by 4.6 points between 49 and 796 examples for CmBERT (resp. 1.6 for CmBERT+ptrn and 5.1 for SpaCy NER) but only by 1 point between 796 and 6373 examples (resp. 0.6 and 1.4).
 The models derived from CamemBERT always outperform the Spacy model.
@@ -103,33 +103,33 @@ This effect might be due to the differences in nature between the training subse
 Indeed, the learned embeddings from the pret-raining are specialised on noisy texts and therefore less adapted to clean texts.
 The pre-training aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counter-productive when the texts do not contain these types of errors.
 
-
-\begin{table}[ht!]
-\centering
-\caption{\label{tab:experiment-1-models-performances} F1 score, precision and recall measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes.}
-\begin{tabular}{llrrrrrrrr}
-       & Training examples &  49   &  99   &  199  &  398  &  796  &  1593 &  3186 &  6373 \\
-       & \% & 0.8   & 1.6   & 3.1   & 6.2   & 12.5  & 25.0  & 50.0  & 100.0 \\
-\midrule\bottomrule
-\multirow{3}{*}{\rotatebox{90}{F1 score}} & CmBERT &  89.5 &  90.5 &  92.7 &  93.3 &  \textbf{94.1} &  \textbf{94.9} &  \textbf{94.6} &  \textbf{95.1} \\
-       & CmBERT-ptrn &  \textbf{92.2} &  \textbf{92.9} &  \textbf{93.6} &  \textbf{93.8} &  93.8 &  94.1 &  \textbf{94.6} &  94.4 \\
-       & SpaCy NER &  87.0 &  89.0 &  90.3 &  91.9 &  92.1 &  92.8 &  93.2 &  93.5 \\
-\cline{1-10}
-\multirow{3}{*}{\rotatebox{90}{Precision}} & CmBERT &  87.4 &  88.7 &  91.5 &  92.7 &  93.3 &  94.9 &  93.9 &  95.1 \\
-       & CmBERT-ptrn &  90.8 &  91.8 &  92.9 &  93.0 &  93.0 &  93.4 &  94.1 &  93.9 \\
-       & SpaCy NER &  85.6 &  87.7 &  90.0 &  92.0 &  92.4 &  92.8 &  93.1 &  93.7 \\
-\cline{1-10}
-\multirow{3}{*}{\rotatebox{90}{Recall}} & CmBERT &  91.6 &  92.5 &  93.9 &  93.9 &  94.9 &  94.9 &  95.4 &  95.1 \\
-       & CmBERT-ptrn &  93.6 &  94.0 &  94.4 &  94.6 &  94.6 &  94.8 &  95.0 &  94.9 \\
-       & SpaCy NER &  88.6 &  90.4 &  90.7 &  91.7 &  91.9 &  92.8 &  93.3 &  93.4 \\
-\end{tabular}
-\end{table}
+% MOVE THIS TABLE TO THE APPENDIX
+%\begin{table}[ht!]
+%\centering
+%\caption{\label{tab:experiment-1-models-performances} F1 score, precision and recall measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes.}
+%\begin{tabular}{llrrrrrrrr}
+%       & Training examples &  49   &  99   &  199  &  398  &  796  &  1593 &  3186 &  6373 \\
+%       & \% & 0.8   & 1.6   & 3.1   & 6.2   & 12.5  & 25.0  & 50.0  & 100.0 \\
+%\midrule\bottomrule
+%\multirow{3}{*}{\rotatebox{90}{F1 score}} & CmBERT &  89.5 &  90.5 &  92.7 &  93.3 &  \textbf{94.1} &  \textbf{94.9} &  \textbf{94.6} &  \textbf{95.1} \\
+%       & CmBERT-ptrn &  \textbf{92.2} &  \textbf{92.9} &  \textbf{93.6} &  \textbf{93.8} &  93.8 &  94.1 &  \textbf{94.6} &  94.4 \\
+%       & SpaCy NER &  87.0 &  89.0 &  90.3 &  91.9 &  92.1 &  92.8 &  93.2 &  93.5 \\
+%\cline{1-10}
+%\multirow{3}{*}{\rotatebox{90}{Precision}} & CmBERT &  87.4 &  88.7 &  91.5 &  92.7 &  93.3 &  94.9 &  93.9 &  95.1 \\
+%       & CmBERT-ptrn &  90.8 &  91.8 &  92.9 &  93.0 &  93.0 &  93.4 &  94.1 &  93.9 \\
+%       & SpaCy NER &  85.6 &  87.7 &  90.0 &  92.0 &  92.4 &  92.8 &  93.1 &  93.7 \\
+%\cline{1-10}
+%\multirow{3}{*}{\rotatebox{90}{Recall}} & CmBERT &  91.6 &  92.5 &  93.9 &  93.9 &  94.9 &  94.9 &  95.4 &  95.1 \\
+%       & CmBERT-ptrn &  93.6 &  94.0 &  94.4 &  94.6 &  94.6 &  94.8 &  95.0 &  94.9 \\
+%       & SpaCy NER &  88.6 &  90.4 &  90.7 &  91.7 &  91.9 &  92.8 &  93.3 &  93.4 \\
+%\end{tabular}
+%\end{table}
 
 
 \begin{figure}[ht!]
 	   \center{\includegraphics[width=\textwidth]
-	       {images/experiment-1-models-performances.pdf}}
-	  \caption{\label{fig:f1-vs-trainsize} Graph view of the metrics displayed in~\cref{tab:experiment-1-models-performances}. As SpaCy NER is outperformed by both BERT models from the start, CmBERT slightly surpasses the pre-trained version when the number of training examples becomes large.}.
+	       {figs/eval-ner-exp1.pdf}}
+	  \caption{\label{fig:f1-vs-trainsize} Metrics measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes. As SpaCy NER is outperformed by both BERT models from the start, CmBERT slightly surpasses the pre-trained version when the number of training examples becomes large. Values for precision and recall are available in the appendix.\bertrand{TODO!}}
 \end{figure}
 	                                        
 
