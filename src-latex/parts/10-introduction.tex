@@ -26,17 +26,17 @@ Being active research topics, OCR and named entity recognition (NER) are still d
 OCR approaches used for modern documents are likely to struggle even on printed historical documents due multiple causes related to text readability (low resolution scans, inconsistent printing rules, artifacts, show-through), document complexity (intricate and versatile page layout, use of ancient fonts \& special glyphs) and the variability inherent to the huge diversity of historical sources.
 On the other hand, NER approaches developed for modern texts suffer from the time gap between the contemporary entities and the entities mentioned in older texts, and also from the errors introduced into the text by the OCR step.
 
-In this article we focus on a peculiar category of historical printed books: city trade directories of Paris from the XIX\textsuperscript{th} century (1801 - 1854).
-They contain hundred-pages long lists of people, along with their activity and their address; a much valuable fine-grained knowledge to study the social dynamics of the city over time.
+In this article, we focus on a peculiar category of historical printed books: city trade directories of Paris from the XIX\textsuperscript{th} century (1801 - 1854).
+They contain hundred-pages long lists of people, along with their activity and their address, and provide valuable fine-grained knowledge to study the social dynamics of the city over time.
 Despite containing roughly the same information, the diversity in layouts, information organization and digitizing quality is challenging both for OCR and NER.
 
 In a recent work to locate potentially polluted urban soils \cite{bell2020automated}, trade directories were leveraged to identify and locate all the gas stations in the city of Providence during the XX\textsuperscript{th} century.
-The proposed information extraction pipeline extract texts with OCR, identify directories entries and recognizes business type and address within each entry.
-In the same way, we aim at producing structured spatio-temporal data from the Parisian trade directories.
+The proposed information extraction pipeline extracts texts with OCR, identifies directories entries and recognizes business type and address within each entry.
+In the same way, we aim at producing structured spatio-temporal data from Parisian trade directories.
 These directories originate from several publishers, their content is organized following different indexing methods (by name, by activity or by address), printed in various layouts, use different fonts.
-We therefore investigate several state-of-the-art OCR and NER approaches independently and in combination to assess their usability on the corpus.
+We therefore investigate several state-of-the-art OCR and NER approaches to assess their usability on the corpus.
 
-The contributions of this article are the following. \joseph{FIXME recheck le plan à la fin}
+The contributions of this article are the following.
 % Contributions
 \begin{enumerate*}[(i)]
     \item We review state of the art OCR and NER systems for historical documents (\cref{sec:related-work}).
