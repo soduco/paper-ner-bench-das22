@@ -60,7 +60,7 @@
 
 
 
-  \node [above left=0cm of A, font=\it] {OCR Prediction};
+  \node [above left=0cm of A, font=\it] {OCR-\emph{prediction}};
   \node [above left=0cm of B, font=\it] {GOLD};
 
   \draw[-latex] (A.west) -- ++ (-1,0) |- (C-3-1) node[pos=0.25,left] { Alignment };
@@ -71,8 +71,8 @@
 
 
   \draw[-latex] (C.south) -- ++(0,-1) node[midway,right,font=\small] {OCR Q.A.} node[below] {CER = 24\%};
-  \draw[-latex] (D.south) -- ++(0,-1) node[midway,right,font=\small] {NER reference.};
-  \draw[-latex] (C.south east) |- (E2) node[pos=0.75,below, font=\it] {NER Prediction};
+  \draw[-latex] (D.south) -- ++(0,-1) node[midway,right,font=\small] {NER-\emph{target}};
+  \draw[-latex] (C.south east) |- (E2) node[pos=0.75,below, font=\it] {NER-\emph{prediction}};
   \draw[-latex] (E2.south) -- ++(0,-1) node[midway,right,font=\small] {NER Q.A.}
   node[below] {Precision = 66\%, Recall = 50\%, F-score = 0.4};
 \end{tikzpicture}

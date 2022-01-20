@@ -35,104 +35,98 @@ These pieces of information constituting the structure of the entries are the ba
 
 
 \subsection{A dataset for OCR and NER evaluation}
-\joseph{TODO: separate entry detection, OCR and NER stages explicitely}
-
-First, the layout extraction and entry segmentation of the page are performed with a semi-automated system and
-checked by a human. Afterward, an OCR system runs on the thumbnails of each segmented entry to extract its text. An
-entry might span over multiple text lines but is always a single block. Thus, the most adapted mode is chosen when
-the OCR system allows for the detection mode (e.g. the \emph{block} mode for \emph{Tesseract}). 
-
-OCR: some basic charset normalization is performed after human annotation:
-- remove annotation codes for glyphs which have no character in unicode
-- alleviate some ambiguities in annotation rules (n° -> no, --- -> -, homogenize star and hand symbols allowed)
 
 
-The annotated named entities are as follows:
-
-\begin{itemize}
-    \item PER: a person name or a business name, usually referred to as several person names. Firts names, initials, or civility mentions are included. E.g.: "Alibert (Prosper)", "Allamand frères et Hersent", "Heurtemotte (Vve)", etc.
-    \item TITLE: an honorary title, either text, glyphs or a combination of the two. E.g: "O. \scalerel*{\includegraphics{./images/LH.png}}{H}" for "Officier de la Légion d'Honneur" or "\scalerel*{\includegraphics{./images/GMLondon.png}}{H}" to represent the Great Medal at the London exhibition.
-    \item ACT: the profession or social status of a person summarized in the single concept of activity. E.g.: "horlogerie", "export en tous genres", "Conseiller d'Etat", "propriétaire".
-    \item LOC: mostly street names ("r. de la Jussienne"), but may also be neighborhoods ("Marais du Temple") or any indirect spatial references ("au Palais Royal").
-    \item CARDINAL: a street number, as part of an address ("16", "5 bis"), or a range of numbers (e.g. "23-25" or "5 à 9").
-    \item FT: a geographic entity type, used to give more details on a location, e.g. "boutique", "atelier", "fab." or "dépôt".
-\end{itemize}
+\begin{figure}[tb]
+    \includegraphics[width=\linewidth]{figs/protocol.pdf}
+    \caption{Scheme of the data extraction pipeline with two quality control checkpoints. \joseph{Missing "Ground truth" for NER stage?}}
+    \label{fig.pipeline}
+\end{figure}
 
 
-Thus, the extracted corpus contains both the bounding boxes of directory entries, their exact text and the named entities they contain. It can therefore be used to train and improve the entry detection, OCR and NER tools.
+%\joseph{TODO: separate entry detection, OCR and NER stages explicitely}
+
+The simplified data extraction pipeline depicted in~\cref{fig.pipeline} processes the documents presented
+in~\cref{sec:dataset}. First, the layout extraction and entry segmentation of the page are performed with a
+semi-automated system and checked by a human. The resulting images, representing 8765 entries, are the inputs of a customizable two-stage pipeline.
+
+%1. Entrée/Sortie de l'OCR
+\textbf{OCR stage.} The first stage of the pipeline aims at extracting the raw text from the images. An OCR system runs
+on the thumbnails of each segmented entry to extract its text. An entry might span over multiple text lines but is
+always a single block. Thus, the most adapted mode is chosen when the OCR system allows for the detection mode (e.g. the
+\emph{block} mode for \emph{Tesseract}). The glyphs used in this dataset might be unknown to the OCR. Some of them, like
+\scalerel*{\includegraphics{./images/LH.png}}{H}, do not even have a unicode codepoint. Text normalization is thus required
+on the OCR outputs and consists in projecting Unicode characters onto the latin-1 \emph{charset} (whenever it makes
+sense), homogenize extra symbols (star and hand symbols) and alleviate some ambiguities (e.g. \emph{no} and \emph{n°}).
+
+At the end of this first stage, an OCR Quality Assessment (Q.A.) between the \emph{normalized} groundtruth text and the
+OCR output is performed.
+
+%\joseph{[DONE] a word about the charset, and existence of glyphs unknown to the OCR}
+%\joseph{[DONE] parler de l'étage d'extraction d'entrées qui est validé manuellement, et des quelques règles de simplification du charset pour homogénéiser entre les annotateurs / pallier des ambiguïtés dans les règles d'annotation (qu'on pourrait encore améliorer)}
+
+
+
+
+%2. Entrée/Sortie
+\textbf{NER Stage.} The second stage of the pipeline aims an extracting the named entities from a text with a NER
+system. This text originates from the OCR outputs in a real-word scenario but might be groundtruth text in order to
+evaluate the NER performance standalone. There are 5 type of entity to detect~(see.~\cref{tab.entities}).
+The NER system has to classify non-overlapping parts of the text into one of these entity (or none of them). A second
+Q.A. (namely NER Q.A.) is performed at the end of this stage between the groundtruth and the NER output.
+
+Note that the dataset used to assess the NER stage is subset of the entries. Indeed, we need to ensure that the datasets
+contain the same entries whichever the OCR used in the previous stage. Entries where the OCR produced an empty string
+and those for which no entity could be projected from the groundtruth have to be ignored. We filter the set of entries by
+keeping only the entries that are always valid at the end of the stage 1. At the cost of losing  5\% of the references
+entries, we thus have 8341 valid entries at the input of the stage 2.
+
+
+\begin{table}
+\small
+\begin{tabular}{llp{8cm}}
+Entity & Count & Description\\    
+PER & 8788 & a person name or a business name, usually referred to as several person names. First names, initials, or civility mentions are included. E.g.: "Alibert (Prosper)", "Allamand frères et Hersent", "Heurtemotte (Vve)", etc. \\
+TITLE & 483 & an honorary title, either text, glyphs or a combination of the two. E.g: "O. \scalerel*{\includegraphics{./images/LH.png}} {H}" for "Officier de la Légion d'Honneur" or "\scalerel*{\includegraphics{./images/GMLondon.png}}{H}" to represent the Great Medal at the London exhibition.\\
+ACT & 6472 & the profession or social status of a person summarized in the single concept of activity. E.g.: "horlogerie", "export en tous genres", "Conseiller d'Etat", "propriétaire".\\
+LOC & 9709 & mostly street names ("r. de la Jussienne"), but may also be neighborhoods ("Marais du Temple") or any indirect spatial references ("au Palais Royal").\\
+CARDINAL & 8747 & a street number, as part of an address ("16", "5 bis"), or a range of numbers (e.g. "23-25" or "5 à 9").\\
+FT & 43 & a geographic entity type, used to give more details on a location, e.g. "boutique", "atelier", "fab." or "dépôt". \\
+\end{tabular}
+\caption{Entities to recognize in the dataset.}
+\label{tab.entities}
+\end{table}
+
+
+
+
+% It can therefore be used to train and improve the entry detection, OCR and NER tools.
 % book, page, box, text_ocr, ner_xml (+uid within a page)
 
-\joseph{TODO intégrer dans les sections avant ?}
+%\joseph{TODO intégrer dans les sections avant ?}
+%
+%
+% valid ner (ref \& pero \& tess): 8341
+%
+%TODO average entry len (in char)
+%TODO average number of tags/entities per entry
+%TODO lists actual dataset content: set of entries. For each entry:
+%\begin{itemize*}
+%    \item ref to original book, page, region
+%    \item human transcription (OCR GT)
+%    \item human NER (NER GT)
+%    \item [GENERATED] OCR produced by Pero OCR, Tesseract v4, Kraken (precise model used)
+%    \item [GENERATED] NER GT aligned on text predictions from Pero OCR, Tesseract v4, Kraken
+%\end{itemize*}
 
-\begin{verbatim}
-[('<LOC>', 9709),
-('<PER>', 8788),
-('<CARDINAL>', 8747),
-('<ACT>', 6472),
-('<TITRE>', 483),
-('<FT>', 43)]
-\end{verbatim}
- 
- valid ocr: 8765 entries
- 
- valid ner (ref \& pero \& tess): 8341
-
-\joseph{parler de l'étage d'extraction d'entrées qui est validé manuellement, et des quelques règles de simplification du charset pour homogénéiser entre les annotateurs / pallier des ambiguïtés dans les règles d'annotation (qu'on pourrait encore améliorer)}
-
-TODO a word about the charset, and existence of glyphs unknown to the OCR
-
-TODO average entry len (in char)
-
-TODO average number of tags/entities per entry
-
-TODO lists actual dataset content: set of entries. For each entry:
-\begin{itemize*}
-    \item ref to original book, page, region
-    \item human transcription (OCR GT)
-    \item human NER (NER GT)
-    \item OCR produced by Pero OCR, Tesseract v4, Kraken (precise model used)
-    \item NER GT aligned on text predictions from Pero OCR, Tesseract v4, Kraken
-\end{itemize*}
+%\joseph{TODO expliquer qu'il faut faire la fusion des sous-datasets NER}
 
 
-\subsection{Focus on how NER GT was aligned on noisy OCR}
-
-\subsection{Metrics proposed}
-
-\Cref{fig.protocol} depicts the evaluation protocol used to assess the OCR and NER systems. Two quality evaluations
-are performed in the pipeline, respectively named \emph{OCR Q.A.} and \emph{NER Q.A.}.
-
-First, the layout extraction and entry segmentation of the page are performed with a semi-automated system and
-checked by a human. Afterward, an OCR system runs on the thumbnails of each segmented entry to extract its text. An
-entry might span over multiple text lines but is always a single block. Thus, the most adapted mode is chosen when
-the OCR system allows for the detection mode (e.g. the \emph{block} mode for \emph{Tesseract}). 
-
-\textbf{OCR Q.A.} is performed after some text normalization of the OCR system outputs. Text normalization consists in
-projecting Unicode characters onto the latin-1 \emph{charset} (whenever it makes sense) and removing extra symbols
-(hands, crosses). Then, the predicted text is aligned with the reference text using standard tools from Stephen V.
-Rice's thesis~\cite{santos.2019.wcmel,neudecker.2021.whdip}. The Character Error Rate (CER) is computed at the entry
-level and at the global level defined as the ratio between the number of errors (insertions/deletions/substitutions)
-over the reference text length. 
-
-In this benchmark, we consider 3 OCR systems well known for historical document analysis: Pero OCR, Tesseract, and Kraken. 
 
 
-Next, a NER system extracts the named entities from the text of each entry output by the OCR and the \textbf{NER Q.A.}
-is performed. The NER system outputs a text with tags that enclose the entities. To assess the quality of the entity
-extraction, we rely on a technique similar as for the OCR evaluation. The predicted text is aligned with the reference
-text and the tags are projected in the alignment. Then, the precision, recall, and f-measure (or f-score) are computed considering
-only the exact matches between entities. Precision and recall are defined by equation (2); the f-measure is their harmonic mean.
+%\subsection{Focus on how NER GT was aligned on noisy OCR}
 
-\begin{align}
-    \mathrm{precision} &= \frac{\text{\#exact matches}}{\text{\#entries in prediction}} & \mathrm{recall} &= \frac{\text{\#exact matches}}{\text{\#entries in reference}}
-\end{align}
-
-
-The whole process is illustrated on~\cref{fig.eval-ocr-ner}. The OCR text and the GOLD text are first aligned to
-evaluate the OCR accuracy. As there are 11 mismatches over 56 aligned characters, the CER is thus 24\%. This alignment
-is then used to back-project the GOLD tags to build the tagged NER reference string. Finally, the NER system runs on the
-OCR text; its output is compared to the NER reference string. There is only 2 over 3 tags matching in the prediction (precision),
-while only 2 over 4 entities are matched in the reference (recall). It follows an overall f-score of 0.4.
+\subsection{Metrics for OCR and NER Quality Assessment}
 
 \begin{figure}[tb]
     \includegraphics[width=\linewidth]{figs/eval-ocr-ner.pdf}
@@ -140,12 +134,38 @@ while only 2 over 4 entities are matched in the reference (recall). It follows a
     \label{fig.eval-ocr-ner}
 \end{figure}
 
+\textbf{OCR Q.A.}  The predicted text by the OCR system is aligned with the groundtruth text using standard tools from
+Stephen V. Rice's thesis~\cite{santos.2019.wcmel,neudecker.2021.whdip}. The Character Error Rate (CER) is computed at
+the entry level and at the global level defined as the ratio between the number of errors
+(insertions/deletions/substitutions) over the reference text length. 
+
+%In this benchmark, we consider 3 OCR systems well known for historical document analysis: Pero OCR, Tesseract, and Kraken. 
 
 
-\joseph{TODO expliquer qu'il faut faire la fusion des sous-datasets NER}
+\textbf{NER Q.A.}. The NER system outputs a text with tags that enclose the entities. To assess the quality of the
+entity extraction, we rely on a technique similar as for the OCR evaluation to build the \emph{NER-target}. The
+\emph{NER-target} is different from the groundtruth because it should not involve the errors committed during the
+previous stages. The OCR text is first aligned with the groundtruth text to form the NER-\emph{input} (where
+\emph{input} is a placeholder for \emph{pero} if the input text is from PERO, NER-\emph{tesseract},
+NER-\emph{reference}\ldots). The tags of the groundtruth are then projected in the alignment on NER-\emph{input} to
+provide the \emph{NER-target}. The NER system then runs on NER-\emph{input} and outputs the \emph{NER-prediction}. The
+precision, recall, and f-measure (or f-score) are computed considering only the exact matches between entities of the
+\emph{NER-target} and those from the \emph{NER-prediction}. Precision and recall are defined by \cref{eqn.prec-recall};
+the f-measure is their harmonic mean.
 
-First and foremost, to make sure that the datasets contain the same entries a preprocessing step must be performed.
-Indeed, entries where the OCR produced an empty string and those for which no entity could be projected from the gold reference text are ignored.
-To overcome this problem we filter each dataset by keeping only the entries common to all.
-At the cost of losing  5\% of the gold references entries, we thus have four new annotated datasets containing the exact same entries.
+\begin{align}
+    \mathrm{precision} &= \frac{\text{\#exact matches}}{\text{\#entries in prediction}} & \mathrm{recall} &= \frac{\text{\#exact matches}}{\text{\#entries in reference}}
+    \label{eqn.prec-recall}
+\end{align}
+
+
+The evaluation metrics are illustrated on~\cref{fig.eval-ocr-ner}. The OCR text and the groundtruth are first aligned to
+evaluate the OCR accuracy. As there are 11 mismatches over 56 aligned characters, the CER is thus 24\%. This alignment
+is then used to back-project the groundtruth tags to build the tagged NER-\emph{target}. Finally, the NER system runs on the
+OCR text; its output is compared to the NER groundtruth. There is only 2 over 3 tags matching in the prediction (precision),
+while only 2 over 4 entities are matched in the reference (recall). It follows an overall f-score of 0.4.
+
+
+
+
 
