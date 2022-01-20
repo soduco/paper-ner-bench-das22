@@ -1,21 +1,28 @@
 % !TeX root = ../main-paper.tex
-\section{Experiment 2: Impact of OCR nosie on named entity recognition}
+\section{Experiment 2: Impact of OCR noise on named entity recognition}
 \label{sec:ner-xp2}
-Noise introduced by OCR is known to impede the named entity recognition process (see section~\ref{subsection:stoa-ner-on-historical-texts}).
-%The second experiment assesses the impact of the OCR on the quality of the NER results.
-The second experiment addresses two questions (1) which model is the most robust to OCR noise and (2) what is the most appropriate strategy to fine-tune the NER layer if the input texts to label are noisy ?
+Noise introduced by OCR is known to have a negative impact on named entity recognition, because it alters the structure and lexicon of the input texts, moving them away from the language model known to the NER process.
+In real-life situations the models used are often trained on texts without such noise, even though the texts to be annotated are extracted with OCR.
+This raises the question of the most appropriate strategy to build a NER model tolerant to OCR noise.
+In this second experiment we address this question based on our benchmark.
 
-\subsection{Protocol}
 
-Dataset
+\subsection{Training and evaluation protocol}
+Only CmBERT and CmBERT+ptrn are considered since experiment 1 shows that SpaCy NER is systematically outperformed by these two models.
 
-To this end, we leverage the labeled OCR datasets produced following to the method explained in Section 5, in addition to the gold reference.
+We leverage the labeled datasets NER-reference, NER-pero and NER-tesseract created as explained in \cref{sec:dataset}.
+Kraken is left aside as it produces poor results that would require removing 500 entries from all datasets to keep the same set of valid entries.
 
-They are denoted hereafter {reference, pero, tesseract}-gold.
+Each dataset is split into a training, a development and a test set following the exact same protocol as described in \cref{sec:ner-xp1-protocol}, except this time we do not need to create smaller training sets.
+The train/dev/test sets are the same size for each NER set as they contain the same entries: 
+
+CmBERT and CmBERT+ptrn are fine-tuneon reference-gold and pero-gold to create two versions of each model: the former trained on manually corrected entries and the latter on OCR entries.
+SpaCy NER is left aside as results from experiment 1 show that it is outperformed by BERT models.
+Performance metrics are computed for each of the four resulting NER models against the test sets created from reference-gold, pero-gold and tesseract-gold.
+
+
+
 Finally each is is split into a training, a dev and a test subset following the procedure presented in\cref{subsection:experiment-1-setup}.
-
-
-\joseph{préciser qu'on ne prend que les données qui sont valides pour pero et tesseract (soit 8341 entrées). On ne considère pas kraken car pas le temps, on perd 500 entrées dans l'intersection, la qualité est pourrie}
 
 
 
