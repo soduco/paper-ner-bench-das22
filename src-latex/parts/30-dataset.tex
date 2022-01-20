@@ -19,6 +19,7 @@
 This section presents the historical sources that we selected and their contents. It also details the construction of the groundtruth dataset leveraged in our experiments and the metrics used to evaluate OCR and NER results.
 
 \subsection{A selection of Paris trade directories from 1798 to 1854}
+\label{sec:corpus}
 
 The directories are available from different libraries in Paris and have been digitised independently in various levels of quality. 
 They cover a large period of time and originate from several publishers.
@@ -47,7 +48,6 @@ Except for some potentially wordy activity descriptions, they correspond to name
 
 \subsection{A dataset for OCR and NER evaluation}
 
-
 \begin{figure}[tb]
     \includegraphics[width=\linewidth]{figs/protocol.pdf}
     \caption{Data extraction pipeline with two quality control checkpoints. }
@@ -58,7 +58,7 @@ Except for some potentially wordy activity descriptions, they correspond to name
 %\joseph{TODO: separate entry detection, OCR and NER stages explicitely}
 
 The simplified data extraction pipeline depicted in~\cref{fig.pipeline} processes the documents presented
-in~\cref{sec:dataset}. First, the page layout extraction and entry segmentation are performed with a
+in~\cref{sec:corpus}. First, the page layout extraction and entry segmentation are performed with a
 semi-automated system and checked by a human. The resulting images, representing 8765 entries, are the inputs of a customizable two-stage pipeline.
 
 %1. Entrée/Sortie de l'OCR
