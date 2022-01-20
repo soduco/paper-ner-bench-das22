@@ -33,19 +33,15 @@ This block takes the image of the text and a Transcription Style Identifier as i
 % J Kohút, M Hradiš: TS-Net: OCR Trained to Switch Between Text Transcription Styles. ICDAR, 2021.
 
 
-\subsection{Named Entity Recognition}
+\subsection{Named Entity Recognition in historical texts}
+\label{subsection:stoa-ner-on-historical-texts}
 
 Many approaches have been designed to recognize named entities, ranging from handcrafted rules to supervised approaches \cite{nadeau2007}.
 Rule based approaches look for portions of the text that match patterns like in \cite{bell2020automated,nouvel2011} or dictionary (gazetteers, author lists, etc.) entries like in \cite{mansouri2008,maurel2011}.
 Such kind of approaches achieve very good results when applied to a specialized domain corpus and when an exhaustive lexicon are available, but at high system engineering cost \cite{nadeau2007}. 
 
 Supervised approaches include both approaches implementing supervised learning algorithms with careful text feature engineering, and deep learning based approaches which automatically build their own features to classify tokens into named entity categories.
-In recent years, the latter have grown dramatically, yielding state-of-the-art performances as shown in the recent survey proposed by \cite{li2020}. This survey concludes that fine-tuning general-purpose contextualized language models with domain-specific data is very likely to give good performance for use cases with domain-specific texts and few training data. This strategy has been adopted by \cite{Labusch2020NamedED} to extract named entities in OCRed historical texts in German, French, and English. However, the NER performance decreased dramatically with OCRed texts is noted, especially for the English texts for which the OCR is of poorer quality. 
-
-\subsection{Improving Named Entity Recognition in historical texts}
-\label{subsection:stoa-ner-on-historical-texts}
-
-
+In recent years, the latter have grown dramatically, yielding state-of-the-art performances as shown in the recent survey proposed by \cite{li2020}. This survey concludes that fine-tuning general-purpose contextualized language models with domain-specific data is very likely to give good performance for use cases with domain-specific texts and few training data. This strategy has been adopted by \cite{Labusch2020NamedED} to extract named entities in OCRed historical texts in German, French, and English. However, the NER performance decreased dramatically for OCRed texts compared to the groundtruth dataset. This decrease went hand in hand with the drop of the OCR quality. 
 Several recent studies have focused on the extent to which the quality of the OCR affects the results produced by a NER model.
 \cite{van2020assessing} assess the impact of OCR on several NLP downstream tasks, including NER. They worked on a corpus published by a post-OCR correction software company, made of many journal articles with different levels of OCR errors and their respective ground truths.
 For each OCRed article, the Word Error Rate (WER) is computed and the English model \textit{en-core-web-lg} provided by Spacy\footnote{\url{https://spacy.io/}} library is used to perform NER on \textit{Person}, \textit{GPE}\footnote{Geopolitical Entity} and \textit{Date}.
