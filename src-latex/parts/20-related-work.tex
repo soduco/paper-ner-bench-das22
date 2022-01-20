@@ -17,7 +17,22 @@ The results show that this approach gives state-of-the-art results.
 To overcome the limitations due to different transcription styles in training data, PERO OCR adds a Transcription Style Block layer to a classical model based on a CNN and a Recurrent Neural Network components \cite{kohut2021ts}.
 This block takes the image of the text and a Transcription Style Identifier as inputs and helps the network decide what kind of transcription style to use as output.
 
-\nathalie{à compléter/retoucher?}
+\begin{itemize}
+    \item Tesseract 4.1.1 (newest version: 5, released Nov. 2021)
+    \item Pero OCR version from git repo, master branch updated on Sep 15, 2021 % 8b20f29    
+    \item other?  % kraken if times allows
+\end{itemize}
+Pero OCR uses ParseNet \joseph{TODO ref} as internal layout parser for line detection.
+Pero OCR uses an LSTM engine \joseph{TODO check + ref} for text line recognition.
+Pero OCR generally works very well, as long as the bounding boxes of the regions to recognize are not too tightly adjusted.
+Trained on newspapers in European languages by its development team.
+Can output results in Latin, Greek and Cyrillic scripts, as well as some commonly-used typographic symbols.
+
+% PERO refs
+% O Kodym, M Hradiš: Page Layout Analysis System for Unconstrained Historic Documents. ICDAR, 2021.
+% M Kišš, K Beneš, M Hradiš: AT-ST: Self-Training Adaptation Strategy for OCR in Domains with Limited Transcriptions. ICDAR, 2021.
+% J Kohút, M Hradiš: TS-Net: OCR Trained to Switch Between Text Transcription Styles. ICDAR, 2021.
+
 
 \subsection{Named Entity Recognition}
 
@@ -62,5 +77,54 @@ On the other hand, reusing a NER model trained on modern data and adapted to his
 
 
 
+
+\subsection{== À réintégrer depuis ancienne section 4 ==}
+We select two deep-learning-based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
+
+
+\subsubsection{spacy}
+Spacy is a software library that offers NLP components assembled in modular pipelines specialised by language.
+Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (jan. 2022).
+Hence, we rely on SpaCy's ad hoc pipeline trained on French corpora and capable of named entity recognition.
+% deep-sequoia and wikiner-fr, capable of named entity recognition.\textit{fr\_core\_news\_lg}\footnote{https://spacy.io/models/fr} trained two corpora in French: deep-sequoia and wikiner-fr, capable of named entity recognition.
+The global architecture of these pipelines have not been yet published but are explained by the developers on their website.
+Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}.
+The decision layer is an adaptation of the transition-based model presented in~\cite{lample2016}.
+As words are processed sequentially, their vectors are concatenated with those of the last known entities to encode the nearby predicted semantics.
+The classification layer relies on a finite-state machine whose transition probabilities are learned using a multilayer perceptron.
+% \bertrand{Drop the next sentences if we need space}
+% In 2018~\cite{won2018} evaluated SpaCy's NER ability to detect place names in five corpora of ancient letters written in English.
+% They measured an average F1 score of 0.57.
+% The SpaCy developers claim an accuracy of 0.85 for the English NER pipeline \textit{en\_core\_web\_lg} on the OntoNotes 5.0 corpus\footnote{https://spacy.io/usage/facts-figures}.
+%For our experiments, the French model \textit{fr\_core\_news\_lg} is fine-tuned using our ground truth corpus.
+
+
+% Other possibilities:
+%1. Traditional ML based:
+%    Conditional Random Fields (CRF) - https://pypi.org/project/sklearn-crfsuite/
+%    Maximum-entropy Markov model
+
+%2. Neural Networks based:
+%    LSTMs, bi-LSTM - https://github.com/flairNLP/flair
+%    CNNs (SpaCy uses CNN based architecture)
+%    Transformers (Spacy has recently launched it) - %https://spacy.io/universe/project/spacy-transformers
+
+
+\subsubsection{Transformers / Bert / Hugging face}
+Language model based on Transformers, like BERT, have become a new paradigm for NER\cite{li2020}. 
+The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer. 
+They can also be pretrained in an unsupervised way on historical texts for domain adaptation.
+As the directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus.
+\joseph{plutôt tourner ça pour dire qu'il existe des modèles FR / qu'on est limités par la dispo de modèles FR pré-entraînés ?}
+
+\subsection{Pipeline summary}
+
+\Cref{fig.protocol} depicts the evaluation protocol used to assess the OCR and NER systems. 
+
+\begin{figure}[tb]
+    \includegraphics[width=\linewidth]{figs/protocol.pdf}
+    \caption{Scheme of the evaluation protocol. \joseph{Missing "Ground truth" for NER stage?}}
+    \label{fig.protocol}
+    \end{figure}
 
 

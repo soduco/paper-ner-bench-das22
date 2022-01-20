@@ -1,0 +1,63 @@
+% !TeX root = ../main-paper.tex
+\section{OCR benchmark}
+
+\subsection{Dataset}
+input: image crops for each entry
+expected output: human transcription
+
+8765 entries used, \joseph{FIXME number of chars}
+
+\subsection{Metrics}
+\textbf{OCR Q.A.} is performed after some text normalization of the OCR system outputs. Text normalization consists in
+projecting Unicode characters onto the latin-1 \emph{charset} (whenever it makes sense) and removing extra symbols (hands,
+crosses). Then, the predicted text is aligned with the reference text using standard tools from Stephen V. Rice's
+thesis~\cite{santos.2019.wcmel,neudecker.2021.whdip} and the Character Error Rates (CER) are computed at the entry level
+and at the global level. 
+
+\begin{align}
+\mathrm{CER} &=  \frac{\#Errors}{\text{Reference Text Length}} & & \mathrm{CER}_\mathrm{norm} =  \frac{\#Errors}{\text{Alignment Length}} 
+\end{align}
+
+\subsection{Systems/Variants under test}
+In this benchmark, we consider 3 OCR systems well known for historical document analysis: Pero OCR, Tesseract, and Kraken. 
+
+\subsection{Protocol}
+
+\subsection{Results and discussion}
+
+\begin{figure}
+
+\subcaptionbox{}[.5\linewidth]{
+\begin{tabular}{rll}
+\toprule
+            & CER & CER$_{norm.}$ \\
+\midrule
+Pero-OCR  & 3.78\% & 3.76\% \\   
+Tesseract & 6.56\% & 6.45\% \\
+Kraken    & 15.72\% & 15.46\% \\  
+\bottomrule
+\end{tabular}
+
+\bigskip
+
+\includegraphics[width=\linewidth]{images/ocr-eval-2.pdf}
+}
+\subcaptionbox{}[.5\linewidth]{
+\includegraphics[width=\linewidth]{images/ocr-eval-1.pdf}
+}
+\caption{Character error rates at entry-level for Pero-OCR, Kraken and Tesseract. (a) Global CER and distribution of the CER per entry. (b)
+joint plot of the per-entry error rate showing that Pero-OCR and Tesseract do not fail on the same entries.}  
+\label{fig.ocr-results}
+\end{figure}
+
+\Cref{fig.ocr-results} compares the performance of the OCR systems on our dataset. We can see Kraken's performance are
+not as good as the two first OCR. This is partially due to the fact that the closest available model is for English text
+and so it misses French specific symbols. On the over hand, even when using a French model trained on French 19th
+documents, performance does not increase (and relaxing the character match rules does not help either). Tesseract and
+Pero-OCR are performing better on this dataset ``out-of-the-box''. With no fine-tuning, Pero-OCR gets the best accuracy
+with less than 4\% character errors. Many of them are even due to a bad line detection in case of multi-lines entries
+and are not related to the OCR system itself. \Cref{fig.ocr-results} (b) shows that errors from the two best OCR are not
+committed on the same entries (if so, all points would be on the diagonal line) and that combining the outputs of
+Pero-OCR and Tesseract would improve the overall recognition quality. Also, we will not consider Kraken in the following
+NER experiments because of its recognition rate is already low and cannot be artificially degraded in a controlled setup.
+

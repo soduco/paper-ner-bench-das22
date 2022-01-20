@@ -15,7 +15,7 @@ The directories to be processed are stored in different libraries in Paris\footn
 \begin{figure}[htb!]
 	   \center{\includegraphics[width=0.9\textwidth]
 	       {./images/DirectoryExcerpts2.png}}
-	  \caption{\label{fig:directories} Examples of directory layouts and contents: 1) Duverneuil et La Tynna 1806 - index by name; 2) Deflandre 1828 - index by activity ; 3) Bottin 1851 –  index by street name}
+	  \caption{\label{fig:directories} Examples of directory layouts and contents: 1) Duverneuil et La Tynna 1806 - index by name; 2) Deflandre 1828 - index by activity ; 3) Bottin 1851 - index by street name}
 \end{figure}
 
 For training as testing purposes, our groundtruth dataset must be as representative as possible of the diversity of the available directories. The Table \ref{tab:directories} lists the directories selected, their layout, the structure of their entries, and the number of annotated entries according to the considered index.
@@ -24,70 +24,21 @@ For example, the Didot directory of 1854 is organised according to three indexes
 
 These pieces of information constituting the structure of the entries are the basic data that we want to extract, deduplicate and structure in order to build a spatio-temporal database of XIX\textsuperscript{th} century Parisian inhabitants and businesses. With the exception of some potentially wordy activity descriptions, they correspond to named entities. However, as Table \ref{tab:directories} shows, while most entries contain the same types of named entities, their order and the way they are written vary from one directory or index to another. To provide examples of each entry structure, pages from each type have thus been annotated\footnote{In this work, the street name index entries have not been included as they are very different from the others. The strategy to be adopted to process them without loss of quality for the NER model will be the subject of future work.}.
 
-\begin{table}[h!]
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{|l|l|l|l|l|l|}
-\hline
-\multicolumn{1}{|c|}{\textbf{Directory publisher or name}} & \multicolumn{1}{c|}{\textbf{Year}} & \multicolumn{1}{c|}{\textbf{\# Col}} & \multicolumn{1}{c|}{\textbf{Index}} & \multicolumn{1}{c|}{\textbf{Entry structure}} & \multicolumn{1}{c|}{\textbf{\# Ann}}                                                                                                      
-\\ \hline
-Favre \& Duchesne & 1798 & 1 & by activity & {N [A], SN, SNUM - SEC.} & 233
-\\ \hline
-Duverneuil et La Tynna & 1801 & 1 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & {N, SN, SNUM. SEC.} & \begin{tabular}[c]{@{}l@{}} 136 \\ 103\end{tabular}
-\\ \hline
-{Notables communaux de la Seine} & 1801 & 1 & by name & {N, [A,] SN[, SNUM].} & 92
-\\ \hline
-Duverneuil et La Tynna & 1805 &	2 &	\begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F)], SN, SNUM. - SEC.\\ N [(C)], [(A),] SN, SNUM. - SEC.\end{tabular} & \begin{tabular}[c]{@{}l@{}} 155 \\ 221 \end{tabular}
-\\ \hline
-Duverneuil et La Tynna & 1806 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F)], SN, SNUM.\\ N [(C)], SN, SNUM.[ - SEC.]\end{tabular}. & \begin{tabular}[c]{@{}l@{}} 186\\ 0\end{tabular}
-\\ \hline
-La Tynna & 1813	& 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N,[A,] SN[, SNUM].\\ N, [(T)] A, SN[, SNUM] [, D].\end{tabular} & \begin{tabular}[c]{@{}l@{}} 135 \\ 177 \end{tabular}
-\\ \hline
-Panckoucke Commerces (Dulac) & 1820 & 1 & by name & N [(F)], A, [(T),] SN, SNUM[, P]. & 0
-\\ \hline
-Panckoucke Habitants (Dulac) & 1820	& 1 & by name & N [(T)], [A,] SN, SNUM [, D]. & 0
-\\ \hline
-Bottin (serie 1: 1819-1838) & 1820 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F \textbar C)][T], [P], SN, SNUM.\\N [(F \textbar C)][T], A, SN, SNUM. CR\end{tabular} & \begin{tabular}[c]{@{}l@{}} 128 \\ 151 \end{tabular}
-\\ \hline
-Bottin (serie 1: 1819-1838) & 1827 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}} 228 \\ 285 \end{tabular}
-\\ \hline
-Deflandre & 1828 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}} N [(F \textbar C)][T], [P], SN, SNUM. \\N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}115\\ 229\end{tabular}
-\\ \hline
-Deflandre & 1829 & 2 & \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}177\\ 236\end{tabular}
-\\ \hline 
-Bottin (serie 1: 1819-1838) & 1837 & 2	& \begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], [A], SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}158\\ 557\end{tabular}
-\\ \hline
-Cambon - Almanach général & 1841 & 2 &	\begin{tabular}[c]{@{}l@{}}by activity\\ by name\end{tabular} & \begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], A, SN, SNUM.\end{tabular} & \begin{tabular}[c]{@{}l@{}}182\\ 486\end{tabular}
-\\ \hline
-Didot & 1841a &	\begin{tabular}[c]{@{}l@{}}3\\ 4\end{tabular} &	\begin{tabular}[c]{@{}l@{}}by activity \\ by name \end{tabular} & 	\begin{tabular}[c]{@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM. \\ N [(F \textbar C)][T], [A], SN, SNUM. \end{tabular} & \begin{tabular}[c]{@{}l@{}}246\\ 843\end{tabular}
-\\ \hline
-Didot & 1851a & \begin{tabular}[c]{@{}l@{}l@{}}4\\ 4\\ 5\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}by activity\\ by name\\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}N [(F \textbar C)][T], [P], SN, SNUM.\\ N [(F \textbar C)][T], [A], SN, SNUM.\\SNUM N [(F \textbar C)][T], [A].\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}309\\ 961\\ 0\end{tabular}
-\\ \hline
-Didot & 1854a & \begin{tabular}[c]{@{}l@{}l@{}}4\\ 3\\ 5\end{tabular} &	\begin{tabular}[c]{@{}l@{}l@{}} by activity \\ by name \\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}} N [(F \textbar C)], [P], SN, SNUM [,T].\\ N [(F \textbar C)][T], [A], SN, SNUM.\\ SNUM N [(F \textbar C)][T], [A].\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}106\\ 362\\ 0\end{tabular}
-\\ \hline
-Bottin (serie 3: 1854-1856) & 1854a & \begin{tabular}[c]{@{}l@{}l@{}}3\\ 2\\ 4\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}} by activity \\ by name \\ by street name\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}N [(F \textbar C)], [P], SN, SNUM [,T].\\ N [(F \textbar C)][T], [A], SN, SNUM.\\ SNUM N [(F \textbar C)], [A] [,T].\end{tabular} & \begin{tabular}[c]{@{}l@{}l@{}}253\\ 633\\ 0\end{tabular}
-\\ \hline
-Didot-Bottin & 1860a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM. & 378
-\\ \hline
-Didot-Bottin & 1861a	& 3	& by name & N [(F \textbar C)][T], [A], SN, SNUM. & 402
-\\ \hline
-\end{tabular}%
-}
-\caption{The directories used to build our dataset. Letters next to year of publication are used to identify the volume of the directory. \# Col stands for "Number of columns", and \# Ann stands for "Number of annotated entries". Entry structure is described as follows: N - entry name (person or business); F - first name; T - honorary title; C - civility; A - activity; P - precision; SN - street name; SNUM - street number; SEC - section; D - district; CR - cross-reference; bracketed elements are optional.}
-\label{tab:directories}
-\end{table}
 
 \subsection{Groundtruth data extraction}
+\joseph{TODO: separate entry detection, OCR and NER stages explicitely}
 
-To build our ground truth corpus, we annotate 78 pages randomly sampled from each of the major directory series for which we have digitised copies, using a tool developed for our project (see Figure \ref{fig:annotator}). First, the image of a given directory page is loaded. Second, entries are automatically detected and boxes are drawn around them as shown in the left panel of the Graphical User Interface (GUI). Then the text of each entry is extracted by an OCR tool and finally named entities are annotated by a NER tool: the results are displayed respectively in the first and second tabs of the right panel of the GUI. The entry detection, OCR and NER tasks are performed automatically. But as they are prone to errors, their results can be corrected manually through the GUI. In the end, the entry bounding boxes, their text, and the named entities are stored in a JSON file.
+First, the layout extraction and entry segmentation of the page are performed with a semi-automated system and
+checked by a human. Afterward, an OCR system runs on the thumbnails of each segmented entry to extract its text. An
+entry might span over multiple text lines but is always a single block. Thus, the most adapted mode is chosen when
+the OCR system allows for the detection mode (e.g. the \emph{block} mode for \emph{Tesseract}). 
 
-\begin{figure}[htb!]
-	   \center{\includegraphics[width=0.9\textwidth]
-	       {./images/Annot2.png}}
-	  \caption{\label{fig:annotator} GUI for corpus annotation \joseph{remove GUI-related details?}}
-\end{figure}
+OCR: some basic charset normalization is performed after human annotation:
+- remove annotation codes for glyphs which have no character in unicode
+- alleviate some ambiguities in annotation rules (n° -> no, --- -> -, homogenize star and hand symbols allowed)
+
 
 The annotated named entities are as follows:
-\bertrand{Add a ref to Fig. \ref{fig:annotated-example}}
 
 \begin{itemize}
     \item PER: a person name or a business name, usually referred to as several person names. Firts names, initials, or civility mentions are included. E.g.: "Alibert (Prosper)", "Allamand frères et Hersent", "Heurtemotte (Vve)", etc.
@@ -98,25 +49,38 @@ The annotated named entities are as follows:
     \item FT: a geographic entity type, used to give more details on a location, e.g. "boutique", "atelier", "fab." or "dépôt".
 \end{itemize}
 
-\begin{figure}[htb!]
-    \centering
-    \includegraphics[width=\textwidth]{images/examples_labeled_entries.pdf}
-    \caption{\label{fig:annotated-example}Two annotated entries showing the different labels used in the corpus.}
-\end{figure}
+
 Thus, the extracted corpus contains both the bounding boxes of directory entries, their exact text and the named entities they contain. It can therefore be used to train and improve the entry detection, OCR and NER tools.
 % book, page, box, text_ocr, ner_xml (+uid within a page)
 
-\subsection{Assessing the groundtruth quality}
-\nathalie{On va utiliser cette sous-section ou pas?}
-\joseph{Pas vraiment car on n'a pas eu le temps de faire ça, mais on peut parler de l'étage d'extraction d'entrées qui est validé manuellement, et des quelques règles de simplification du charset pour homogénéiser entre les annotateurs / pallier des ambiguïtés dans les règles d'annotation (qu'on pourrait encore améliorer)}
-Our dataset is thus made of excerpts TODO interesting points to detail:
+\subsection{Summary}
+\joseph{TODO intégrer dans les sections avant ?}
 
-\begin{itemize}
-    \item statistics about entry lengths (histogram of number of char / tokens par entry)
-    \item entities we consider and how we annotated them (how we assessed gold's quality)
-    \item statistics on the distribution of entities across directories and their arrangement within entries
-    \item OCR data (automated systems and clean text + how we created the "clean" text + whether/how we assess clean text's quality)
-    \item Measure inter-annotator agreement ? 
-    \item Explain charset projection
-    \item \dots
-\end{itemize}
+\begin{verbatim}
+[('<LOC>', 9709),
+('<PER>', 8788),
+('<CARDINAL>', 8747),
+('<ACT>', 6472),
+('<TITRE>', 483),
+('<FT>', 43)]
+\end{verbatim}
+ 
+ valid ocr: 8765 entries
+ 
+ valid ner (ref \& pero \& tess): 8341
+
+\joseph{parler de l'étage d'extraction d'entrées qui est validé manuellement, et des quelques règles de simplification du charset pour homogénéiser entre les annotateurs / pallier des ambiguïtés dans les règles d'annotation (qu'on pourrait encore améliorer)}
+
+TODO a word about the charset, and existence of glyphs unknown to the OCR
+
+TODO average entry len (in char)
+
+TODO average number of tags/entities per entry
+
+TODO lists actual dataset content: set of entries. For each entry:
+\begin{itemize*}
+    \item ref to original book, page, region
+    \item human transcription (OCR ref)
+    \item human NER (NER ref)
+    \item OCR produced by Pero OCR, Tesseract v4, Kraken (precise model used)
+\end{itemize*}

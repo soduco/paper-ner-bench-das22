@@ -1,6 +1,13 @@
 % !TeX root = ../main-paper.tex
 \section{Conclusion}
 
+Interesting points to discuss:
+\begin{itemize}
+    \item can we train on noisy data? (without manual OCR correction?) => future work? cf Pero OCR training procedure?
+    \item do we need better OCR systems or better post-correction techniques (if NER is reliable enough)?
+    \item Construction of the lexicon and associated cost
+\end{itemize}
+
 Ideas for future work:
 \begin{itemize}
     \item Evaluate this: fine-tune Spacy NER on a few samples to generated a bootstrap dataset, feed it to BERT (cleaned or raw) to create an good model with minimal efforts ?
