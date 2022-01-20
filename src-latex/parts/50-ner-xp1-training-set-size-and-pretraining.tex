@@ -1,77 +1,103 @@
 % !TeX root = ../main-paper.tex
 \section{Experiment 1: NER sensibility to the number of training examples}
 \label{sec:ner-xp1}
-
 The constitution of annotated example sets to train a NER model on a target domain is a critical preliminary step.
 Often done manually, possibly from bootstrapped annotations, this task is tedious, time-consuming and error-prone.
 The ability of a model to perform well even with few training examples is a practical criteria to consider.
-In this first experiment, we investigate the performance of the three models when fine-tuned for NER on training sets of decreasing sizes.
+In this first experiment, we investigate the NER performance of SpaCy and CamemBERT when fine-tuned with a decreasing number of training examples.
 
 \subsection{Training and evaluation protocol}
+The following three models form our baseline for both NER experiments.
+Their short names written in square brackets will be used to reference them from now on.
+\begin{itemize}
+    \item \textbf{SpaCy NER pipeline for French~[SpaCy NER]}: We use the pipeline \textit{fr\_core\_news\_lg} provided by SpaCy v.3.2.1\mcite{spacy}, already trained for NER on the french corpora deep-sequoia and wikiner-fr.
+    We stress again that we use the CNN version of this pipeline, not the transformer-based available in SpaCy v3.
+    \item \textbf{Huggingface CamemBERT~[CmBERT]}: We rely on the implementation of BERT models provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
+We chose to reuse a CamemBERT model published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
+\item \textbf{CamemBERT pretrained on Paris directories~[CmBERT+ptrn]}: 
+In order to evaluate whether adapting the model to the domain lexicon brings a performance gain, we perform an unsupervised pre-training of CmBERT for next sentence prediciton and masked language modeling, using \num{845000} directories entries extracted from random pages with Pero-OCR.
+The model is trained for 3 epochs and is available online\footnote{\url{https://huggingface.co/HueyNemud/das22-10-camembert_pretrained}}.
+\end{itemize}
 
+Each model is then fine-tuned on subsets of the ground truth of increasing size.
+The NER metrics are eventually measured against a common test set.
+The procedure for creating these sets is as follows. 
 
+%First, we split the ground truth into a training set, a development set, and a test set. 
+%The training set is then gradually reduced in size while maintaining the relative frequency of directories within it.
+As the organisation and structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features. 
+To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, $\approx 19\%$) from the ground truth as a test set containing entries from unseen directories.
 
-
-
-\subsection{Dataset}
-input: ocr ref (human transcription)
-expected output: ner ref (human tagging)
-
-8765 entries, \joseph{FIXME XXXX entities to detect}
-
-\subsection{Metrics}
-
-
-
-\subsection{Systems/Variants under test}
-We select two deep-learning-based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
-We also create an additional CamemBERT model pretrained on a collection of unannotated directory entries extracted with Pero-OCR.
-The NER layer of each three models is then fine-tuned on historical directories as detailed in \cref{subsection:experiment-1-setup} and \cref{subsection:experiment-2-setup}
-
-\subsubsection{SpaCy}
-We use the French pipeline \textit{fr\_core\_news\_lg} provided by SpaCy v.3.2.1\mcite{spacy}, already trained for NER on the deep-sequoia and wikiner-fr corpora.
-The default NER labels known to the pipeline are PER, ORG, MISC and LOC.
-In experiment 1 the base model is fine-tuned on every of the 8 training sets using the same training parameters.
-Early stopping is activated with a patience value of 1600 training steps without improvement of the f1 score.
-
-\subsubsection{CamemBERT pretrained on directories~[CmBERT+ptrn]}
-In order to evaluate the benefits of pre-training the language model on OCR texts from domain-related documents, we adapt the CmBERT embeddings using \num{845.000} entries randomly selected wihtin the collection of directories and extracted with Pero-OCR.
-We achieve this by training the CmBERT model for 3 epochs on two unsupervised tasks: next sentence prediction and masked language model.
-
-
-\subsubsection{Huggingface CamemBERT}
-\label{sub:ner-xp1-sysytems-huggingcam}
-Experiments 1 and 2 rely on the implementation of transformers provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
-Our baseline CmBERT model is CamemBERT model published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
-Its NER head is a linear model with a Softmax function.
-CmBERT and CmBERT+ptrn are always fine-tuned using the same parameters, with at most 5000 training steps and an early stopping condition set to 3 evaluations in experiment 1 (5 in experiment 2) without improvement of the f1 score. Evaluations are performed every 100 steps.
-
-
-\subsection{Protocol}
-To do so, we split the gold reference of manually annotated entries into a training set, a development set, and a test set. 
-The training set is then gradually reduced in size while maintaining the relative frequency of directories within it.
-
-As the organization and structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features.
-To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, $\approx 19\%$) from the gold reference to test each model on unseen directories.
-Then, a stratified sampling based on the source directory of each entry is run on the remaining set to create a training (6373 entries, $\approx 73\%$ of the gold reference) and a development set (709 entries, $\approx 8\%$).
-This sampling procedure is a convenient way to shape both sets, so they reflect the diversity of directories within the gold reference.
+Then, a stratified sampling based on the source directory of each entry is run on the remainder to create a training set (6373 entries, $\approx 73\%$ of the gold reference) and a development set (709 entries, $\approx 8\%$).
 The development set is used to evaluate the model performance during the training phase.
-To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as before.
-We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries.
+This resampling procedure is a convenient way to shape both sets, so they reflect the diversity of directories within the ground truth.
+
+To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as for the train/dev split to maintain the relative frequency of directories. 
+We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries maintaining the relative frequency of directories within it
 Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
 
+The three models are trained 5 times on each of the 8 training subsets using an early stopping criterion based on the number of training steps without improvement of the F1-score. 
+This patience threshold is set at 1600 steps for SpaCY NER, and 3 evaluations (1 evaluation every 100 steps) for CmBERT and CmBERT+ptrn.
+The metrics are measured for the 24 resulting NER models on the common test and averaged over the runs.
 
-All tree models are fine-tuned for NER on each training subset.
-The performance metrics are measured against the test set after each training.
+
+
+
+%\subsection{Dataset}
+%input: ocr ref (human transcription)
+%expected output: ner ref (human tagging)
+
+%8765 entries, \joseph{FIXME XXXX entities to detect}
+
+%\subsection{Metrics}
+
+
+
+%\subsection{Systems/Variants under test}
+%We select two deep-learning-based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
+%We also create an additional CamemBERT model pretrained on a collection of unannotated directory entries extracted with Pero-OCR.
+%The NER layer of each three models is then fine-tuned on historical directories as detailed in \cref{subsection:experiment-1-setup} and \cref{subsection:experiment-2-setup}
+
+%\subsubsection{SpaCy}
+%We use the French pipeline \textit{fr\_core\_news\_lg} provided by SpaCy v.3.2.1\mcite{spacy}, already trained for NER on the deep-sequoia and wikiner-fr corpora.
+%The default NER labels known to the pipeline are PER, ORG, MISC and LOC.
+%In experiment 1 the base model is fine-tuned on every of the 8 training sets using the same training parameters.
+%Early stopping is activated with a patience value of 1600 training steps without improvement of the f1 score.
+
+%\subsubsection{CamemBERT pretrained on directories~[CmBERT+ptrn]}
+%In order to evaluate the benefits of pre-training the language model on OCR texts from domain-related documents, we adapt the CmBERT embeddings using \num{845.000} entries randomly selected wihtin the collection of directories and extracted with Pero-OCR.
+%We achieve this by training the CmBERT model for 3 epochs on two unsupervised tasks: next sentence prediction and masked language model.
+
+
+%\subsubsection{Huggingface CamemBERT}
+%\label{sub:ner-xp1-sysytems-huggingcam}
+%Experiments 1 and 2 rely on the implementation of transformers provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
+%Our baseline CmBERT model is CamemBERT model published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
+%Its NER head is a linear model with a Softmax function.
+%CmBERT and CmBERT+ptrn are always fine-tuned using the same parameters, with at most 5000 training steps and an early stopping condition set to 3 evaluations in experiment 1 (5 in experiment 2) without improvement of the f1 score. Evaluations are performed every 100 steps.
+
+
+%\subsection{Protocol}
+%To do so, we split the gold reference of manually annotated entries into a training set, a development set, and a test set. 
+%The training set is then gradually reduced in size while maintaining the relative frequency of directories within it.
+
+%As the organization and structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features.
+%To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, $\approx 19\%$) from the gold reference to test each model on unseen directories.
+%Then, a stratified sampling based on the source directory of each entry is run on the remaining set to create a training (6373 entries, $\approx 73\%$ of the gold reference) and a development set (709 entries, $\approx 8\%$).
+%This sampling procedure is a convenient way to shape both sets, so they reflect the diversity of directories within the gold reference.
+%The development set is used to evaluate the model performance during the training phase.
+%To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as before.
+%We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries.
+%Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, %398, 796, 1593, 3186, and 6373 entries.
+
 
 \subsection{Results and discussion}
-
-Table \ref{tab:experiment-1-models-performances} and Figure \ref{fig:f1-vs-trainsize} show the mean F1 score, precision, and recall computed on the test dataset, for 5 fine tunings of each model and for each of the 8 training subsets.
+Table \ref{tab:experiment-1-models-performances} and Figure \ref{fig:f1-vs-trainsize} display the averaged precision, recall and F1-score for all models on the 8 subsets of ground-truth examples.
 CmBERT, CmBERT+ptrn and SpaCy NER display the same behaviour: performances increase dramatically with the number of training examples and rapidly reach an area of slower progress around 1000 examples.
 The F1 score increases by 4.6 points between 49 and 796 examples for CmBERT (resp. 1.6 for CmBERT+ptrn and 5.1 for SpaCy NER) but only by 1 point between 796 and 6373 examples (resp. 0.6 and 1.4).
 The models derived from CamemBERT always outperform the Spacy model.
 
-It appears that pretraining the CamemBERT model on OCRed texts seems worth it only when a the training set used to fine-tune the NER layer is small.
+It appears that pretraining the CamemBERT model on OCR texts seems worth it only when a the training set used to fine-tune the NER layer is small.
 This effect might be due to the differences in nature between the training subsets, whose texts are manually corrected, and the noisy OCR texts used to pretrain CamemBERT.
 Indeed, the learned embeddings from the pretraining are specialized on noisy texts and therefore less adapted to clean texts.
 The pretraining aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counter-productive when the texts do not contain these types of errors.
@@ -103,7 +129,7 @@ The pretraining aims at adapting the model to the vocabulary of the domain and t
 \begin{figure}[h!]
 	   \center{\includegraphics[width=\textwidth]
 	       {images/experiment-1-models-performances.pdf}}
-	  \caption{\label{fig:f1-vs-trainsize} Precision, recall and f1 score from table~\ref{tab:experiment-1-models-performances}}.
+	  \caption{\label{fig:f1-vs-trainsize} Graph view of the metrics displayed in ~\ref{tab:experiment-1-models-performances}. As SpaCy NER is outperformed by BERT models from the start, CmBERT slightly surpasses the pre-trained version when the number of training samples grows.}.
 \end{figure}
 	                                        
 
