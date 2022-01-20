@@ -77,7 +77,7 @@ Q.A. (namely NER Q.A.) is performed at the end of this stage between the groundt
 Note that the dataset used to assess the NER stage is subset of the entries. Indeed, we need to ensure that the datasets
 contain the same entries whichever the OCR used in the previous stage. Entries where the OCR produced an empty string
 and those for which no entity could be projected from the groundtruth have to be ignored. We filter the set of entries by
-keeping only the entries that are always valid at the end of the stage 1. At the cost of losing  5\% of the references
+keeping only the entries that are always valid at the end of the stage 1. At the cost of losing 5\% of the references
 entries, we thus have 8341 valid entries at the input of the stage 2.
 
 
@@ -149,21 +149,18 @@ previous stages. The OCR text is first aligned with the groundtruth text to form
 NER-\emph{reference}\ldots). The tags of the groundtruth are then projected in the alignment on NER-\emph{input} to
 provide the \emph{NER-target}. The NER system then runs on NER-\emph{input} and outputs the \emph{NER-prediction}. The
 precision, recall, and f-measure (or f-score) are computed considering only the exact matches between entities of the
-\emph{NER-target} and those from the \emph{NER-prediction}. Precision and recall are defined by \cref{eqn.prec-recall};
+\emph{NER-target} and those from the \emph{NER-prediction}, i.e. pairs of entries for which the type, start and end positions are exactly the same.
+Precision is the ratio of exactly matches divided by the number of predicted entries,
+and recall is defined as the ratio of exact matches divided by the number of expected entries;
 the f-measure is their harmonic mean.
 
-\begin{align}
-    \mathrm{precision} &= \frac{\text{\#exact matches}}{\text{\#entries in prediction}} & \mathrm{recall} &= \frac{\text{\#exact matches}}{\text{\#entries in reference}}
-    \label{eqn.prec-recall}
-\end{align}
-
-
-The evaluation metrics are illustrated on~\cref{fig.eval-ocr-ner}. The OCR text and the groundtruth are first aligned to
+The evaluation process illustrated on~\cref{fig.eval-ocr-ner}. The OCR text and the groundtruth are first aligned to
 evaluate the OCR accuracy. As there are 11 mismatches over 56 aligned characters, the CER is thus 24\%. This alignment
 is then used to back-project the groundtruth tags to build the tagged NER-\emph{target}. Finally, the NER system runs on the
 OCR text; its output is compared to the NER groundtruth. There is only 2 over 3 tags matching in the prediction (precision),
 while only 2 over 4 entities are matched in the reference (recall). It follows an overall f-score of 0.4.
 
+\joseph{FIXME say we need to discard some entries}
 
 
 
