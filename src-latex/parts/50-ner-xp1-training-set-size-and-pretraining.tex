@@ -16,7 +16,7 @@ Their short names written in square brackets will be used to reference them from
     \item \textbf{Huggingface CamemBERT~[CmBERT]}: We rely on the implementation of BERT models provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
 We chose to reuse a CamemBERT model published on the Huggingface repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
 \item \textbf{CamemBERT pretrained on Paris directories~[CmBERT+ptrn]}: 
-In order to evaluate whether adapting CamemBERT to the domain increases its performances, we do an unsupervised pre-training of CmBERT for next sentence prediction and masked language modeling, using \num{845000} entries randomly sampled and OCRed with Pero.
+To evaluate whether adapting CamemBERT to the domain increases its performance, we do an unsupervised pre-training of CmBERT for next sentence prediction and masked language modeling, using \num{845000} entries randomly sampled and OCRed with PERO.
 The model is trained for 3 epochs and is available online\footnote{\url{https://huggingface.co/HueyNemud/das22-10-camembert_pretrained}}.
 \end{itemize}
 

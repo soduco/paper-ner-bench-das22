@@ -64,11 +64,11 @@ semi-automated system and checked by a human. The resulting images, representing
 on the thumbnails of each segmented entry to extract its text. An entry might span over multiple text lines but is
 always a single block. Thus, the most adapted mode is chosen when the OCR system allows for the detection mode (e.g. the
 \emph{block} mode for \emph{Tesseract}). The glyphs used in this dataset might be unknown to the OCR. Some of them, like
-\scalerel*{\includegraphics{./images/LH.png}}{H}, do not even have a unicode codepoint. Text normalization is thus required
+\scalerel*{\includegraphics{./images/LH.png}}{H}, do not even have a unicode codepoint. Text normalisation is thus required
 on the OCR outputs and consists in projecting Unicode characters onto the latin-1 \emph{charset} (whenever it makes
-sense), homogenize extra symbols (star and hand symbols) and alleviate some ambiguities (e.g. \emph{no} and \emph{n°}).
+sense), homogenise extra symbols (star and hand symbols) and alleviate some ambiguities (e.g. \emph{no} and \emph{n°}).
 
-At the end of this first stage, an OCR Quality Assessment (Q.A.) between the \emph{normalized} groundtruth text and the
+At the end of this first stage, an OCR Quality Assessment (Q.A.) between the \emph{normalised} groundtruth text and the
 OCR output is performed.
 
 %\joseph{[DONE] a word about the charset, and existence of glyphs unknown to the OCR}
@@ -92,17 +92,17 @@ entries, we thus have 8341 valid entries at the input of the stage 2.
 
 
 \begin{table}
-\caption{Entities to recognize in the dataset.}
+\caption{Entities to recognise in the dataset.}
 \label{tab.entities}
 \small
 \begin{tabular}{llp{8cm}}
 Entity & Count & Description\\    
-PER & 8788 & a person name or a business name, usually referred to as several person names. First names, initials, or civility mentions are included. E.g.: "Alibert (Prosper)", "Allamand frères et Hersent", "Heurtemotte (Vve)", etc. \\
-TITLE & 483 & an honorary title, either text, glyphs or a combination of the two. E.g: "O. \scalerel*{\includegraphics{./images/LH.png}} {H}" for "Officier de la Légion d'Honneur" or "\scalerel*{\includegraphics{./images/GMLondon.png}}{H}" to represent the Great Medal at the London exhibition.\\
-ACT & 6472 & the profession or social status of a person summarized in the single concept of activity. E.g.: "horlogerie", "export en tous genres", "Conseiller d'Etat", "propriétaire".\\
-LOC & 9709 & mostly street names ("r. de la Jussienne"), but may also be neighborhoods ("Marais du Temple") or any indirect spatial references ("au Palais Royal").\\
-CARDINAL & 8747 & a street number, as part of an address ("16", "5 bis"), or a range of numbers (e.g. "23-25" or "5 à 9").\\
-FT & 43 & a geographic entity type, used to give more details on a location, e.g. "boutique", "atelier", "fab." or "dépôt". \\
+PER & 8788 & a person name or a business name, usually referred to as several person names. First names, initials, or civility mentions are included. E.g.: \textit{Alibert (Prosper)}, \textit{Allamand frères et Hersent},\textit{Heurtemotte (Vve)}. \\
+TITLE & 483 & an honorary title, either text, glyphs or a combination of the two. E.g: O. \scalerel*{\includegraphics{./images/LH.png}} {H} for \textit{Officier de la Légion d'Honneur} or \scalerel*{\includegraphics{./images/GMLondon.png}}{H} for the Great Medal at the London exhibition.\\
+ACT & 6472 & the profession or social status of a person summarised in the single concept of activity. E.g.: \textit{horlogerie}, \textit{export en tous genres}, \textit{Conseiller d'État}, \textit{propriétaire}.\\
+LOC & 9709 & mostly street names (\textit{r. de la Jussienne}), but may also be neighbourhoods (\textit{Marais du Temple}) or any indirect spatial references (\textit{au Palais Royal}).\\
+CARDINAL & 8747 & a street number, as part of an address (16, 5 bis), or a range of numbers (e.g. 23-25 or 5 \textit{à} 9).\\
+FT & 43 & a geographic entity type, used to give more details on a location, e.g. \textit{boutique}, \textit{atelier}, \textit{fab.} or \textit{dépôt}. \\
 \end{tabular}
 \end{table}
 
@@ -173,6 +173,3 @@ while only 2 over 4 entities are matched in the reference (recall). It follows a
 A side effect of tag projection is that it can produce degenerated tags, i.e. empty or containing only spaces.
 In such cases, the corresponding entries must be removed from the dataset,
 and only the intersection of the sets of valid entries must be used to compare NER systems with multiple OCR predictions or references.
-
-
-
