@@ -14,15 +14,7 @@ expected output: ner ref (human tagging)
 8765 entries, \joseph{FIXME XXXX entities to detect}
 
 \subsection{Metrics}
-Next, a NER system extracts the named entities from the text of each entry output by the OCR and the \textbf{NER Q.A.}
-is performed. The NER system outputs a text with tags that enclose the entities. To assess the quality of the entity
-extraction, we rely on a technique similar as for the OCR evaluation. The predicted text is aligned with the reference
-text and the tags are projected in the alignment. Then, the precision, recall, and f-measure (or f-score) are computed considering
-only the exact matches between entities. Precision and recall are defined by equation (2); the f-measure is their harmonic mean.
 
-\begin{align}
-    \mathrm{precision} &= \frac{\text{\#exact matches}}{\text{\#entries in prediction}} & \mathrm{recall} &= \frac{\text{\#exact matches}}{\text{\#entries in reference}}
-\end{align}
 
 
 \subsection{Systems/Variants under test}

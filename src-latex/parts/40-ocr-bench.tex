@@ -2,24 +2,18 @@
 \section{OCR benchmark}
 \label{sec:ocr-xp}
 
-\subsection{Dataset}
-input: image crops for each entry
-expected output: human transcription
+\subsection{Protocol}
 
-8765 entries used, \joseph{FIXME number of chars}
+Dataset:
+- input: image crops for each entry
+- expected output: human transcription
+- 8765 entries used, \joseph{FIXME number of chars}
 
-\subsection{Metrics}
-\textbf{OCR Q.A.} is performed after some text normalization of the OCR system outputs. Text normalization consists in
-projecting Unicode characters onto the latin-1 \emph{charset} (whenever it makes sense) and removing extra symbols
-(hands, crosses). Then, the predicted text is aligned with the reference text using standard tools from Stephen V.
-Rice's thesis~\cite{santos.2019.wcmel,neudecker.2021.whdip}. The Character Error Rate (CER) is computed at the entry
-level and at the global level defined as the ratio between the number of errors (insertions/deletions/substitutions)
-over the reference text length. 
 
-\subsection{Systems/Variants under test}
+Systems
 In this benchmark, we consider 3 OCR systems well known for historical document analysis: Pero OCR, Tesseract, and Kraken. 
 
-\subsection{Protocol}
+
 
 \subsection{Results and discussion}
 
