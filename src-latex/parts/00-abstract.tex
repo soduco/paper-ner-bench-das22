@@ -1,10 +1,14 @@
 % !TeX root = ../main-paper.tex
-This paper features a comparison of three \bertrand{not four anymore ?}named entity recognition (NER) techniques which can be reasonably used in the context of historical document analysis.
-Such natural language processing techniques identify which class each text token belong to, like "person name", "location", "number" or "activity".
-Introducing a new public dataset built from 19th century French directories, 
-we perform a practical assessment of the accuracy of, and the annotation cost (considering various training set sizes) needed by each technique.
-We also study the impact of real OCR noise for several OCR systems on the performance of NER.
-Experiments suggest that FIXME APPROACH NAME is the most effective approach on the dataset we processed.
-FIXME add numerical results
-Results can be reproduced using data and code freely available at \url{https://github.com/soduco/paper-ner-bench-das22}
-and the latest version of is paper can be obtained at \url{TODO arxiv URL}.
+Named entity recognition (NER) is a necessary step in many pipelines targeting historical documents.
+Indeed, such natural language processing techniques identify which class each text token belongs to,
+e.g. ``person name'', ``location'', ``number''.
+Introducing a new public dataset built from 19th century French directories,
+we first assess how noisy modern, off-the-shelf OCR are.
+Then, we compare modern CNN- and Transformer-based NER techniques
+which can be reasonably used in the context of historical document analysis.
+We measure their requirements in terms of training data,
+the effects of OCR noise on their performance,
+and show how Transformer-based NER can benefit from unsupervised pre-training 
+and supervised fine-tuning on noisy data.
+Results can be reproduced using resources available at \url{https://github.com/soduco/paper-ner-bench-das22}.
+% The latest version of is paper can be obtained at \url{https://arxiv.org/abs/xxxx.xxxxx}.

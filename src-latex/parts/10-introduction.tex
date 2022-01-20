@@ -1,9 +1,21 @@
 % !TeX root = ../main-paper.tex
-\section{Introduction}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=.9\textwidth]{figs/overview-intro.pdf}
+    \caption{%
+    Overview of the pipeline under study.
+    From previously-extracted images of directory entries, 
+    we perform OCR and named entity recognition (NER) using different techniques.
+    We aim at answering the following questions:
+    \emph{How noisy are modern, out-of-the-box OCR systems?}
+    \emph{What is the behavior of NER when OCR is noisy?}
+    \emph{Can NER be made more robust to OCR noise?}
+    }
+    \label{<label>}
+\end{figure}
+\clearpage% force float flush!
 
-\textbf{TODO sample (simplified) pipeline of the information extraction process}
-\textbf{and/or}
-\textbf{TODO illustration a sample page (full image, large crop, entry crop with highlighted entities)}
+\section{Introduction}
 
 % General context + scope limitation
 The surge of historical documents digitized by cultural heritage institutions and made publicly available on the Web creates a vast knowledge source that can nourish numerous applications in the fields of social sciences, environmental studies or education.
