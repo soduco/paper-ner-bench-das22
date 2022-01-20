@@ -7,12 +7,12 @@
     title/.style={every node/.style={draw=none, font=\itshape}},
     qa/.style={circle, fill=DarkGreen, text width=5pt}
   };
-  \matrix[matrix of nodes, nodes={draw, align=center, text width=3cm, anchor=center}, column sep=2cm, row sep=.5cm, row 1/.style=title] (A)
+  \matrix[matrix of nodes, nodes={draw, align=center, text width=3cm, anchor=center}, column sep=2cm, row sep=.3cm, row 1/.style=title] (A)
   {
     & OCR systems &    & NER systems &    \\
     & |(pero)| Pero OCR        &    &    &    \\
     & |(tess)| Tesseract          &   & |(cam)| CamemBERT &   \\
-    |(a)| Layout \& Entry extraction & |(kraken)| Kraken           & |[qa] (b)|  & & |[qa] (c)|  \\
+    |(a)| Single-block Entry Image & |(kraken)| Kraken           & |[qa] (b)|  & & |[qa] (c)|  \\
     & |(gt)| \emph{GroundTruth}   &    & |(spacy)| Spacy       &    \\
   };
 
