@@ -43,34 +43,19 @@ Such kind of approaches achieve very good results when applied to a specialized 
 Supervised approaches include both approaches implementing supervised learning algorithms with careful text feature engineering, and deep learning based approaches which automatically build their own features to classify tokens into named entity categories.
 In recent years, the latter have grown dramatically, yielding state-of-the-art performances as shown in the recent survey proposed by \cite{li2020}. This survey concludes that fine-tuning general-purpose contextualized language models with domain-specific data is very likely to give good performance for use cases with domain-specific texts and few training data. This strategy has been adopted by \cite{Labusch2020NamedED} to extract named entities in OCRed historical texts in German, French, and English. However, the NER performance decreased dramatically for OCRed texts compared to the groundtruth dataset. This decrease went hand in hand with the drop of the OCR quality.
 
-Several recent studies have focused on the impact of OCR quality on NER results.
+Several recent studies have focused on the impact of OCR quality on NER results. Most of the time, they have evaluated NER approaches based on deep learning architectures as they seem to adapt more easily to OCR errors than rule-based or more classical supervised approaches.
 \cite{van2020assessing} use the English model \textit{en-core-web-lg} provided by Spacy\footnote{\url{https://spacy.io/}} library to perform NER on \textit{Person}, \textit{GPE}\footnote{Geopolitical Entity} and \textit{Date} on a corpus made of many journal articles with different levels of OCR errors.
 For each OCRed article, a ground truth text is available so that the Word Error Rate (WER) can be computed.
 The performance of the NER model with respect to OCR quality is eventually assessed by computing the F1-score for each NER class and each article, i.e., each WER value.
-\cite{hamdi2020assessing} performed a similar but more extensive evaluation on four different NER models: CoreNLP using Conditional Random Fields and three deep neural models, BLSTM-CNN, BLSTM-CRF, and BLSTM-CNN-CRF.
-They tested them on two well-known NER benchmark corpora: CoNLL-02 and CoNLL-03. They applied four different types of OCR noise to each corpus, with two levels of degradation and computed the WER and Character Error Rate (CER) for each degraded version.
-Finally, they applied each NER model to the progressively degraded versions of the corpus and computed the resulting F-measure.
-Overall, NER F-measure drops from 90\% to 50\% when the WER increase from 8\% to 50\%. However, models based on deep neural networks seem less sensitive to OCR errors.
-
-\cite{huynh2020use} and \cite{marz2021data} have proposed different approaches to reduce the negative impact of OCR errors on NER performance with historical texts.
-The former uses a spelling correction tool on several corpora with variable OCR error rates, to assess whether NER performance benefit from spelling corrections or not.
-As long as OCR errors remain low (CER<2\% and WER<10\%), the F-measure of NER results remains stable.
-It starts to decrease significantly when OCR errors exceed these thresholds.
+\cite{hamdi2020assessing} performed a similar but more extensive evaluation on four supervised NER models: CoreNLP using Conditional Random Fields and three deep neural models, BLSTM-CNN, BLSTM-CRF, and BLSTM-CNN-CRF.
+They tested them on CoNLL-02 and CoNLL-03 NER benchmark corpora, degraded by applying four different types of OCR noise. Overall, NER F-measure drops from 90\% to 50\% when the Word Error Rate increases from 8\% to 50\%. However, models based on deep neural networks seem less sensitive to OCR errors. 
+Two approaches have been proposed by \cite{huynh2020use} and \cite{marz2021data}  to reduce the negative impact of OCR errors on NER performance on historical texts.
+The former applies a spelling correction tool to several corpora with variable OCR error rates. 
+As long as OCR errors remain low ($CER<2\%$ and $WER<10\%$), this strategy makes it possible to maintain good NER results. However, the F1-score starts to decrease significantly when OCR errors exceed these thresholds.
 The latter work focuses on adapting the training data to facilitate the generalization of an off-the-shelf NER model from modern texts to historical texts.
-Three different NER models are tested on three historical corpora, in French, English, and Dutch. The best results are produced by a model trained on clean modern data, including embeddings computed with Flair on a historical corpus, and fine-tuned on a noisy historical ground truth.
+Finally, reusing a model trained on clean modern data, including embeddings computed on a historical corpus, and fine-tuned on a noisy historical ground truth has proven to be the most effective strategy.
 
-In conclusion, NER approaches based on deep learning seem to be more suitable for dealing with historical texts as they adapt more easily to OCR errors than rule-based approaches.
-Recent work in this area suggests that the impact of OCR quality on NER can be reduced by using different strategies.
-On the one hand, if the OCR error rate is kept below a certain threshold, the NER models remain little impacted: it is therefore important to reduce OCR errors as much as possible, but a low error rate may remain acceptable.
-On the other hand, reusing a NER model trained on modern data and adapted to historical texts using supervised or unsupervised approaches seems a good strategy. 
-
-
-
-
-\subsection{== À réintégrer depuis ancienne section 4 ==}
-
-A introduire en disant quo'n chercher à utiliser au plus des modèles simples à reprendre: déjà entraînés, dispos pour du français et adaptables
-We select two deep-learning-based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
+Based on those works, we adopt two French deep-learning-based language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
 
 
 \subsubsection{spacy}
