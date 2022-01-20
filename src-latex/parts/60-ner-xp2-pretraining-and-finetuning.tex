@@ -1,10 +1,9 @@
 % !TeX root = ../main-paper.tex
 \section{Experiment 2: Impact of OCR noise on named entity recognition}
 \label{sec:ner-xp2}
-Noise introduced by OCR is known to have a negative impact on named entity recognition, because it alters the structure and lexicon of the input texts, moving them away from the language model known to the NER process.
-In real-life situations the models used are often trained on texts without such noise, even though the texts to be annotated are extracted with OCR.
-This raises the question of the most appropriate strategy to build a NER model tolerant to OCR noise.
-In this second experiment we address this question based on our benchmark.
+Noise introduced by OCR is known to have a negative impact on NER, because it alters the structure and lexicon of the input texts, moving them away from the language model known to the NER process.
+In real-life situations, the models are often trained on texts without such noise, even though the texts to be annotated are extracted with OCR.
+In this second experiment, we aim at assessing the most appropriate strategy to build a NER model tolerant to OCR noise.
 
 
 \subsection{Training and evaluation protocol}
@@ -13,8 +12,8 @@ Only CmBERT and CmBERT+ptrn are considered since experiment 1 shows that SpaCy N
 We leverage the labeled sets of entries NER-\emph{reference}, NER-\emph{pero} and NER-\emph{tesseract} created as explained in \cref{sec:dataset}.
 Kraken is left aside as it produces poor results that would require removing 500 entries from all datasets to keep the same set of valid entries.
 
-Each dataset is split into a training, a development and a test set following the exact same protocol as described in \cref{sec:ner-xp1-protocol}, except this time we do not need to create smaller training sets.
-As the NER sets contain 8341 entries, the producing train sets (resp. development and test) contain 6004 entries - 72\% of the total (resp. 668 - 8\% and 1669 - 20\%).    
+Each dataset is split into training development, and test sets following the same protocol as described in \cref{sec:ner-xp1-protocol}, except this time we do not need to create smaller training sets.
+As the NER sets contain 8341 entries, the produced train sets (resp. development and test) contain 6004 entries - 72\% of the total (resp. 668 - 8\% and 1669 - 20\%).    
 
 CmBERT and CmBERT+ptrn are fine-tuned on the training sets built from NER-\emph{reference} and NER-\emph{pero}.
 The training parameters are mostly the same as in \cref{sec:ner-xp1-protocol}, only this time the patience threshold is set to 5 evaluations.
@@ -51,6 +50,6 @@ This OCR tool removes the characters recognised with low confidence, which is pr
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{images/experiment_2_f1_with_noise_graph.pdf}
-    \caption{\label{fig:exp_2_eval_ner}F1-scores of NER predictions in presence of OCR noise in the training and testing examples, grouped by test set. The dataset used to train the NER task is noted in indice after the model name (e.g. CmBERT$_{pero}$ means CmBERT fine-tuned on NER-\emph{pero}).}
+    \caption{\label{fig:exp_2_eval_ner}NER F1-scores in presence of OCR noise in the training and testing examples, grouped by test set. The dataset used to train the NER task is noted in indice after the model name (e.g. CmBERT$_{pero}$ means CmBERT fine-tuned on NER-\emph{pero}).}
 \end{figure}
 
