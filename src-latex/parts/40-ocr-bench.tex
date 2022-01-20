@@ -4,7 +4,7 @@
 
 This section focuses on the evaluation of the performance of the three open-source OCR systems we selected, as described in \cref{sec:pipeline-summary}: Tesseract v4, Kraken and \peroocr.
 The dataset used to perform this evaluation is composed of the $8,765$ entries (containing $424,764$ characters) from the dataset we previously introduced.
-The single-column, cropped images of entries are used as input of each OCR system after a simple background whitening.
+The single-column, cropped images of entries are used as input of each OCR system.
 As the pages were previously deskewed, the text is mostly horizontal except for a few cases.
 The expected output is the human transcription of these images provided in the dataset.
 Before computing the Character Error Rate (CER) for each entry, each text prediction is normalized with the same basic rules as the ones used to post-process human transcription: dashes, quotes, and character codes for some glyphs like stars or hands are normalized.
@@ -43,7 +43,7 @@ documents, the performance does not increase (and relaxing the character matchin
 \peroocr are performing better on this dataset ``out-of-the-box''. With no fine-tuning, \peroocr gets the best accuracy
 with less than 4\% character errors. Many of them are even due to a bad line detection in case of multi-lines entries
 and are not related to the OCR system itself. \Cref{fig.ocr-results} (b) shows that errors from the two best OCR are not
-committed to the same entries (if so, all points would be on the diagonal line) and that combining the outputs of
+committed on the same entries (if so, all points would be on the diagonal line) and that combining the outputs of
 \peroocr and Tesseract could improve the overall recognition quality. 
 In addition, we will not consider Kraken in the following NER experiments because its recognition rate is already too low.
 
