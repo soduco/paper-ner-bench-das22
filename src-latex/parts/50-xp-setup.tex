@@ -19,17 +19,16 @@ entry might span over multiple text lines but is always a single block. Thus, th
 the OCR system allows for the detection mode (e.g. the \emph{block} mode for \emph{Tesseract}). 
 
 \textbf{OCR Q.A.} is performed after some text normalization of the OCR system outputs. Text normalization consists in
-projecting Unicode characters onto the latin-1 charset (whenever it makes sense) and removing extra symbols (hands,
-crosses). Then, the predicted text is aligned with the reference text using standard tools and the Character Error Rates
-(CER) are computed at the entry level and at the global level. 
+projecting Unicode characters onto the latin-1 \emph{charset} (whenever it makes sense) and removing extra symbols (hands,
+crosses). Then, the predicted text is aligned with the reference text using standard tools from Stephen V. Rice's
+thesis~\cite{santos.2019.wcmel,neudecker.2021.whdip} and the Character Error Rates (CER) are computed at the entry level
+and at the global level. 
 
 \begin{align}
 \mathrm{CER} &=  \frac{\#Errors}{\text{Reference Text Length}} & & \mathrm{CER}_\mathrm{norm} =  \frac{\#Errors}{\text{Alignment Length}} 
 \end{align}
 
 In this benchmark, we consider 3 OCR systems well known for historical document analysis: Pero OCR, Tesseract, and Kraken. 
-
-\edwin{FIXME: add ref papier eval OCR + ISRI, eval KRAKEN}
 
 
 Next, a NER system extracts the named entities from the text of each entry output by the OCR and the \textbf{NER Q.A.}
@@ -59,19 +58,19 @@ while only 2 over 4 entities are matched in the reference (recall). It follows a
 \subsection{Experiment 1: NER sensibility to the number of training examples}
 \label{subsection:experiment-1-setup}
 \bertrand{Find a better name ?}
-The constitution of annotated example sets to train a NER model on a target domain a is a critical preliminary step.
-Often done manually, possibly from bootstrapped annotations, this task is tedious, time consuming and error prone.
-The ability of a model to perform well even with few training examples is a pratical criteria to consider.
+The constitution of annotated example sets to train a NER model on a target domain is a critical preliminary step.
+Often done manually, possibly from bootstrapped annotations, this task is tedious, time-consuming and error-prone.
+The ability of a model to perform well even with few training examples is a practical criteria to consider.
 In this first experiment, we investigate the performance of the three models when fine-tuned for NER on training sets of decreasing sizes.
 
 To do so, we split the gold reference of manually annotated entries into a training set, a development set, and a test set. 
 The training set is then gradually reduced in size while maintaining the relative frequency of directories within it.
 
-As the organisation and structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features.
+As the organization and structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features.
 To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, $\approx 19\%$) from the gold reference to test each model on unseen directories.
 Then, a stratified sampling based on the source directory of each entry is run on the remaining set to create a training (6373 entries, $\approx 73\%$ of the gold reference) and a development set (709 entries, $\approx 8\%$).
-This sampling procedure is a convenient way to shape both sets so they reflect the diversity of directories within the gold reference.
-The development set is used to evaluate the models performance during the training phase.
+This sampling procedure is a convenient way to shape both sets, so they reflect the diversity of directories within the gold reference.
+The development set is used to evaluate the model performance during the training phase.
 To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as before.
 We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries.
 Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.

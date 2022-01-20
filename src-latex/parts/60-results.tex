@@ -10,7 +10,7 @@
 \toprule
           & CER & CER$_{norm.}$ \\
 \midrule
-Pero      & 3.78\% & 3.76\% \\   
+Pero-OCR  & 3.78\% & 3.76\% \\   
 Tesseract & 6.56\% & 6.45\% \\
 Kraken    & 15.72\% & 15.46\% \\  
 \bottomrule
@@ -23,9 +23,22 @@ Kraken    & 15.72\% & 15.46\% \\
 \subcaptionbox{}[.5\linewidth]{
 \includegraphics[width=\linewidth]{images/ocr-eval-1.pdf}
 }
-\caption{Character error rates at entry-level for Pero OCR and Tesseract. (a) Global CER and distribution of the CER per entry. (b):
-joint plot of the dataset showing that the two systems do not fail on the same entries.}  
+\caption{Character error rates at entry-level for Pero-OCR, Kraken and Tesseract. (a) Global CER and distribution of the CER per entry. (b)
+joint plot of the per-entry error rate showing that Pero-OCR and Tesseract do not fail on the same entries.}  
+\label{fig.ocr-results}
 \end{figure}
+
+\Cref{fig.ocr-results} compares the performance of the OCR systems on our dataset. We can see Kraken's performance are
+not as good as the two first OCR. This is partially due to the fact that the closest available model is for English text
+and so it misses French specific symbols. On the over hand, even when using a French model trained on French 19th
+documents, performance does not increase (and relaxing the character match rules does not help either). Tesseract and
+Pero-OCR are performing better on this dataset ``out-of-the-box''. With no fine-tuning, Pero-OCR gets the best accuracy
+with less than 4\% character errors. Many of them are even due to a bad line detection in case of multi-lines entries
+and are not related to the OCR system itself. \Cref{fig.ocr-results} (b) shows that errors from the two best OCR are not
+committed on the same entries (if so, all points would be on the diagonal line) and that combining the outputs of
+Pero-OCR and Tesseract would improve the overall recognition quality. Also, we will not consider Kraken in the following
+NER experiments because of its recognition rate is already low and cannot be artificially degraded in a controlled setup.
+
 
 \subsection{Experiment 1: NER sensibility to the number of training examples}
 Table \ref{tab:experiment-1-models-performances} and Figure \ref{fig:f1-vs-trainsize} show the mean F1 score, precision, and recall computed on the test dataset, for 5 fine tunings of each model and for each of the 8 training subsets.
