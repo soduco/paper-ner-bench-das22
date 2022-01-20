@@ -34,13 +34,8 @@ We want our groundtruth dataset to be representative of the diversity of directo
 
 
 Directories contain lists of people with various information attached.
-<<<<<<< HEAD
 For instance, the directory published by \emph{Didot} in 1854 contains three redundant lists of people sorted by name, by activity and by street name.
-A typical example entry from this directory is "\textit{Batton (D.-A.) \scalerel*{\includegraphics{./images/LH.png}}{H}, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47.}".
-=======
-For instance the directory published by \emph{Didot} in 1854 contains three redundant lists of people sorted by name, by activity and by street name.
 A typical example entry from this directory is ``\textit{Batton (D.-A.) \scalerel*{\includegraphics{./images/LH.png}}{H}, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47.}''.
->>>>>>> Dataset: more stats
 It begins with the person's name and surname, here inside parentheses.
 The glyph denotes that this person was awarded the \textit{Légion d'Honneur}.
 Then comes a description of the person's activity, here his profession (professor at the Conservatory of music and declamation), but it can also be a social status.
@@ -97,12 +92,6 @@ Q.A. (namely, NER Q.A.) is performed at the end of this stage between the ground
 
 Note that the dataset used to assess the NER stage is a subset of the entries. Indeed, we need to ensure that the datasets
 contain the same entries whichever the OCR used in the previous stage. Entries where the OCR produced an empty string
-<<<<<<< HEAD
-and those for which no entity could be projected from the groundtruth have to be ignored. We filter the set of entries by
-keeping only the entries that are always valid at the end of stage 1. At the cost of losing 5\% of the references
-entries, we thus have 8341 valid entries at the input of stage 2.
-
-=======
 and those for which no entity could be projected from the groundtruth have to be ignored. 
 We filter the set of entries by keeping only the entries that are always valid at the end of the stage 1.
 %At the cost of losing 5\% of the references entries, we thus have 8341 valid entries at the input of the stage 2.
@@ -111,8 +100,7 @@ Therefore, the $8,765$ reference entries were manually annotated with $34,242$ e
 Projecting reference tagged entities on OCR predictions resulted in a variable loss of entries.
 For \peroocr, $8,392$ valid entries were generated, for Tesseract $8,700$ and for Kraken $7,990$.
 The resulting intersection of the sets of valid entries contained $7,725$ entries for the tree OCR systems (and the reference),
-or $8,341$ entries if we considered \peroocr and Tesseract only.
->>>>>>> Dataset: more stats
+or $8,341$ entries if we consider \peroocr and Tesseract only.
 
 \begin{table}
 \caption{Entities to recognise in the dataset.}
@@ -178,12 +166,6 @@ is then used to back-project the groundtruth tags to build the tagged NER-\emph{
 OCR text; its output is compared to the NER groundtruth. There is only 2 over 3 tags matching in the prediction (precision),
 while only 2 over 4 entities are matched in the reference (recall). It follows an overall f-score of 0.4.
 %
-<<<<<<< HEAD
-A side effect of tag projection is that it can produce degenerated tags, i.e., empty or containing only spaces.
-In such cases, the corresponding entries must be removed from the dataset,
-and only the intersection of the sets of valid entries must be used to compare NER systems with multiple OCR predictions or references.
-=======
 % A side effect of tag projection is that it can produce degenerated tags, i.e. empty or containing only spaces.
 % In such cases, the corresponding entries must be removed from the dataset,
 % and only the intersection of the sets of valid entries must be used to compare NER systems with multiple OCR predictions or references.
->>>>>>> Dataset: more stats
