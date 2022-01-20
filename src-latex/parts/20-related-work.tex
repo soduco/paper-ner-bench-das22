@@ -20,11 +20,8 @@ To overcome the limitations due to different transcription styles in training da
 This block takes the image of the text and a Transcription Style Identifier as inputs and helps the network decide what kind of transcription style to use as output.
 
 \joseph{Move to implementation details for XP OCR or to pipeline summary}
-\begin{itemize}
-    \item Tesseract 4.1.1 (newest version: 5, released Nov. 2021)
-    \item Pero OCR version from git repo, master branch updated on Sep 15, 2021 % 8b20f29    
-    \item other?  % kraken if times allows
-\end{itemize}
+\nathalie{Pour l'instant je les ai déplacés dans le 2.3 pipeline summary}
+
 
 
 % PERO refs
@@ -41,7 +38,7 @@ Rule based approaches look for portions of the text that match patterns like in 
 Such kind of approaches achieve very good results when applied to a specialized domain corpus and when an exhaustive lexicon are available, but at high system engineering cost \cite{nadeau2007}. 
 
 Supervised approaches include both approaches implementing supervised learning algorithms with careful text feature engineering, and deep learning based approaches which automatically build their own features to classify tokens into named entity categories.
-In recent years, the latter have grown dramatically, yielding state-of-the-art performances as shown in the recent survey proposed by \cite{li2020}. This survey concludes that fine-tuning general-purpose contextualized language models with domain-specific data is very likely to give good performance for use cases with domain-specific texts and few training data. This strategy has been adopted by \cite{Labusch2020NamedED} to extract named entities in OCRed historical texts in German, French, and English. However, the NER performance decreased dramatically for OCRed texts compared to the groundtruth dataset. This decrease went hand in hand with the drop of the OCR quality.
+In recent years, the latter have grown dramatically, yielding state-of-the-art performances as shown in the recent survey proposed by \cite{li2020}. This survey concludes that fine-tuning general-purpose contextualized language models with domain-specific data is very likely to give good performance for use cases with domain-specific texts and few training data. This strategy has been adopted by \cite{Labusch2020NamedED} to extract named entities in OCRed historical texts in German, French, and English. However, the NER performance drops significantly as the quality of the OCR decreases and is correlated with its decrease.
 
 Several recent studies have focused on the impact of OCR quality on NER results. Most of the time, they have evaluated NER approaches based on deep learning architectures as they seem to adapt more easily to OCR errors than rule-based or more classical supervised approaches.
 \cite{van2020assessing} use the English model \textit{en-core-web-lg} provided by Spacy\footnote{\url{https://spacy.io/}} library to perform NER on \textit{Person}, \textit{GPE}\footnote{Geopolitical Entity} and \textit{Date} on a corpus made of many journal articles with different levels of OCR errors.
@@ -55,11 +52,15 @@ As long as OCR errors remain low ($CER<2\%$ and $WER<10\%$), this strategy makes
 The latter work focuses on adapting the training data to facilitate the generalization of an off-the-shelf NER model from modern texts to historical texts.
 Finally, reusing a model trained on clean modern data, including embeddings computed on a historical corpus, and fine-tuned on a noisy historical ground truth has proven to be the most effective strategy.
 
-Based on those works, we adopt two French deep-learning-based language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
+\subsection{Pipeline summary}
 
+Based on those works, we chose to test three OCR systems, namely, Tesseract, Pero OCR, and Kraken. We also adopt two deep-learning-based French language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
 
-\subsubsection{spacy}
-Spacy is a software library that offers NLP components assembled in modular pipelines specialised by language.
+\textbf{Tesseract} 4.1.1 (newest version: 5, released Nov. 2021)
+\textbf{Pero OCR} version from git repo, master branch updated on Sep 15, 2021
+\textbf{Kraken}
+
+\textbf{Spacy} is a software library that offers NLP components assembled in modular pipelines specialised by language.
 Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (jan. 2022).
 Hence, we rely on SpaCy's ad hoc pipeline trained on French corpora and capable of named entity recognition.
 % deep-sequoia and wikiner-fr, capable of named entity recognition.\textit{fr\_core\_news\_lg}\footnote{https://spacy.io/models/fr} trained two corpora in French: deep-sequoia and wikiner-fr, capable of named entity recognition.
@@ -75,25 +76,13 @@ The classification layer relies on a finite-state machine whose transition proba
 %For our experiments, the French model \textit{fr\_core\_news\_lg} is fine-tuned using our ground truth corpus.
 
 
-% Other possibilities:
-%1. Traditional ML based:
-%    Conditional Random Fields (CRF) - https://pypi.org/project/sklearn-crfsuite/
-%    Maximum-entropy Markov model
 
-%2. Neural Networks based:
-%    LSTMs, bi-LSTM - https://github.com/flairNLP/flair
-%    CNNs (SpaCy uses CNN based architecture)
-%    Transformers (Spacy has recently launched it) - %https://spacy.io/universe/project/spacy-transformers
-
-
-\subsubsection{Transformers / Bert / Hugging face}
+\textbf{Transformers / Bert / Hugging face}
 Language model based on \textit{Transformers} \cite{vaswani2017attention}, like BERT \cite{devlin2018bert}, have become a new paradigm for NER\cite{li2020}. 
 The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer. 
 They can also be pretrained in an unsupervised way on historical texts for domain adaptation.
 As the directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus.
 \joseph{plutôt tourner ça pour dire qu'il existe des modèles FR / qu'on est limités par la dispo de modèles FR pré-entraînés ?}
-
-\subsection{Pipeline summary}
 
 \Cref{fig.protocol} depicts the evaluation protocol used to assess the OCR and NER systems. 
 

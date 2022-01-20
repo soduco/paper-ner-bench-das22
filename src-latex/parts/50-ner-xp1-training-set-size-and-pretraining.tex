@@ -4,9 +4,10 @@
 The constitution of annotated example sets to train a NER model on a target domain is a critical preliminary step.
 Often done manually, possibly from bootstrapped annotations, this task is tedious, time-consuming and error-prone.
 The ability of a model to perform well even with few training examples is a practical criteria to consider.
-In this first experiment, we investigate the NER performance of SpaCy and CamemBERT when fine-tuned with a decreasing number of training examples.
+In this first experiment, we investigate the NER performance of SpaCy and CamemBERT when fine-tuned with an increasing number of training examples.
 
 \subsection{Training and evaluation protocol}
+\label{sec:ner-xp1-protocol}
 The following three models form our baseline for both NER experiments.
 Their short names written in square brackets will be used to reference them from now on.
 \begin{itemize}
@@ -15,7 +16,7 @@ Their short names written in square brackets will be used to reference them from
     \item \textbf{Huggingface CamemBERT~[CmBERT]}: We rely on the implementation of BERT models provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
 We chose to reuse a CamemBERT model published on the Hugging Face repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
 \item \textbf{CamemBERT pretrained on Paris directories~[CmBERT+ptrn]}: 
-In order to evaluate whether adapting the model to the domain lexicon brings a performance gain, we perform an unsupervised pre-training of CmBERT for next sentence prediciton and masked language modeling, using \num{845000} directories entries extracted from random pages with Pero-OCR.
+In order to evaluate whether adapting CamemBERT to the domain increases its performances, we do an unsupervised pre-training of CmBERT for next sentence prediction and masked language modeling, using \num{845000} entries randomly sampled and OCRed with Pero.
 The model is trained for 3 epochs and is available online\footnote{\url{https://huggingface.co/HueyNemud/das22-10-camembert_pretrained}}.
 \end{itemize}
 
