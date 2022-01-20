@@ -16,12 +16,14 @@
 %Then, in each of these entries, the named entities they contain have to be extracted to produce structured spatio-temporal data representing the evolution over time of the people and businesses listed in these directories, their descriptions and their locations.
 %Both of these extraction tasks require data to train and evaluate the OCR and NER approaches identified as potentially relevant: Tesseract and PERO OCR for the OCR task and Spacy and CamemBERT - pre-trained or fine-tuned - neural models for the NER task.
 
+This section presents the historical sources that we selected and their contents. It also details the construction of the groundtruth dataset leveraged in our experiments and the metrics used.
+
 \subsection{A selection of Paris trade directories from 1798 to 1854}
 
 The directories are available from different libraries in Paris and have been digitised independently in various levels of quality. 
 They cover a large period of time and originate from several publishers.
 Therefore, their contents, indexes, layouts, methods of printing, etc. may vary a lot from one directory to another (see Figure \ref{fig:directories}).
-We want our groundtruth dataset to be representative of the diversity of directories available on the period.
+We want our groundtruth dataset to be representative of the diversity of directories available in the period.
 
 \begin{figure}[htb!]
 	   \center{\includegraphics[width=0.9\textwidth]
@@ -31,15 +33,15 @@ We want our groundtruth dataset to be representative of the diversity of directo
 
 
 Directories contain lists of people with various information attached.
-For instance the directory published by \emph{Didot} in 1854 contains three redundant lists of people sorted by name, by activity and by street name.
+For instance, the directory published by \emph{Didot} in 1854 contains three redundant lists of people sorted by name, by activity, and by street name.
 An typical example entry from this directory is "\textit{Batton (D.-A.) \scalerel*{\includegraphics{./images/LH.png}}{H}, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47.}".
 It begins with the person's name and surname, here inside parentheses.
 The glyph denotes that this person was awarded the \textit{Légion d'Honneur}.
-Then comes a descriptions of the person's activity, here his profession (professor at the Conservatory of music and declamation), but it can also be a social status.
+Then comes a description of the person's activity, here his profession (professor at the Conservatory of music and declamation), but it can also be a social status.
 Such descriptions range from a single word to paragraphs describing the occupation in full detail.
 The street name and number where the person lives or carries out their activities ends the entry.
 
-These are the structured data that we want to extract, deduplicate  and structure to build a spatio-temporal database.
+These are the pieces of information that we want to extract, deduplicate  and structure to build a spatio-temporal database.
 Except for some potentially wordy activity descriptions, they correspond to named entities. However, while most entries contain the same types of named entities, their order and the way they are written vary from one directory/index to another. To provide examples of each entry structure, pages from each type have thus been annotated. %\footnote{In this work, the street name index entries have not been included as they are very different from the others. The strategy to be adopted to process them without loss of quality for the NER model will be the subject of future work.}.
 
 
@@ -64,9 +66,9 @@ semi-automated system and checked by a human. The resulting images, representing
 on the thumbnails of each segmented entry to extract its text. An entry might span over multiple text lines but is
 always a single block. Thus, the most adapted mode is chosen when the OCR system allows for the detection mode (e.g. the
 \emph{block} mode for \emph{Tesseract}). The glyphs used in this dataset might be unknown to the OCR. Some of them, like
-\scalerel*{\includegraphics{./images/LH.png}}{H}, do not even have a unicode codepoint. Text normalisation is thus required
+\scalerel*{\includegraphics{./images/LH.png}}{H}, do not even have a Unicode codepoint. Text normalisation is thus required
 on the OCR outputs and consists in projecting Unicode characters onto the latin-1 \emph{charset} (whenever it makes
-sense), homogenise extra symbols (star and hand symbols) and alleviate some ambiguities (e.g. \emph{no} and \emph{n°}).
+sense), homogenise extra symbols (star and hand symbols), and alleviate some ambiguities (e.g. \emph{no} and \emph{n°}).
 
 At the end of this first stage, an OCR Quality Assessment (Q.A.) between the \emph{normalised} groundtruth text and the
 OCR output is performed.
@@ -78,17 +80,17 @@ OCR output is performed.
 
 
 %2. Entrée/Sortie
-\textbf{NER Stage.} The second stage of the pipeline aims an extracting the named entities from a text with a NER
+\textbf{NER Stage.} The second stage of the pipeline aims at extracting the named entities from a text with a NER
 system. This text originates from the OCR outputs in a real-word scenario but might be the groundtruth text in order to
-evaluate the NER performance independently. There are 5 type of entity to detect~(see.~\cref{tab.entities}).
-The NER system has to classify non-overlapping parts of the text into one of these entity (or none of them). A second
-Q.A. (namely NER Q.A.) is performed at the end of this stage between the groundtruth and the NER output.
+evaluate the NER performance independently. There are 5 types of entity to detect~(see.~\cref{tab.entities}).
+The NER system has to classify non-overlapping parts of the text into one of these entities (or none of them). A second
+Q.A. (namely, NER Q.A.) is performed at the end of this stage between the groundtruth and the NER output.
 
 Note that the dataset used to assess the NER stage is a subset of the entries. Indeed, we need to ensure that the datasets
 contain the same entries whichever the OCR used in the previous stage. Entries where the OCR produced an empty string
 and those for which no entity could be projected from the groundtruth have to be ignored. We filter the set of entries by
-keeping only the entries that are always valid at the end of the stage 1. At the cost of losing 5\% of the references
-entries, we thus have 8341 valid entries at the input of the stage 2.
+keeping only the entries that are always valid at the end of stage 1. At the cost of losing 5\% of the references
+entries, we thus have 8341 valid entries at the input of stage 2.
 
 
 \begin{table}
@@ -170,6 +172,6 @@ is then used to back-project the groundtruth tags to build the tagged NER-\emph{
 OCR text; its output is compared to the NER groundtruth. There is only 2 over 3 tags matching in the prediction (precision),
 while only 2 over 4 entities are matched in the reference (recall). It follows an overall f-score of 0.4.
 %
-A side effect of tag projection is that it can produce degenerated tags, i.e. empty or containing only spaces.
+A side effect of tag projection is that it can produce degenerated tags, i.e., empty or containing only spaces.
 In such cases, the corresponding entries must be removed from the dataset,
 and only the intersection of the sets of valid entries must be used to compare NER systems with multiple OCR predictions or references.
