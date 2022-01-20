@@ -1,13 +1,13 @@
 % !TeX root = ../main-paper.tex
-\section{Conclusion}
-We assessed the performances of three modern OCR systems on a set of historical sources of great interest in social history.
+\section{Conclusion and future works}
+We assessed the performance of three modern OCR systems on a set of historical sources of great interest in social history.
 Although PERO-OCR clearly outperforms its competitors, the qualitative analysis of OCR errors shows that the failure cases are not the same for PERO and Tesseract.
 This calls for leveraging both OCR systems in a complementary way to get the best of the two worlds.
 %Moreover, we evaluate two deep-learning-based NER approaches in terms of their sensibility to the amount of training data and to noisy OCR texts.
 The evaluation of SpaCy NER and CamemBERT (with and without pre-training) showed that BERT-based NER can benefit from pre-training and fine-tuning on a corpus produced with the same process than the texts to annotate.
 %However, the results are not as good as for clean text: it is therefore interesting to investigate how to improve the OCR results or to correct the text in a postprocessing step.
 Furthermore, it seems that all three models achieve good performance with relatively few training examples.
-With a F1-score of 92\% with only 49 training examples, the pre-trained CamemBERT model seems to be a good choice to serve as a bootstrapping model in order to quickly produce large training sets and therefore lower the burden of creating a ground truth from scratch.
+With a F1-score of 92\% with only 49 training examples, the pre-trained CamemBERT model seems to be a good choice to serve as a bootstrapping model to quickly produce large training sets and therefore lower the burden of creating a ground truth from scratch.
 Besides, as directory entries always have the same structure - at least within a given index - we could take advantage of NER results and some simple rules to identify entries within pages instead of relying on the page layout.
 %Interesting points to discuss:
 %\begin{itemize}

@@ -11,7 +11,7 @@ In this first experiment, we investigate the NER performance of SpaCy and CamemB
 The following models form our baseline for both NER experiments.
 Their short names written in square brackets will be used to reference them from now on.
 \begin{itemize}
-    \item \textbf{SpaCy NER pipeline for French~[SpaCy NER]}: We use the pipeline \textit{fr\_core\_news\_lg} provided by SpaCy v.3.2.1\mcite{spacy}, already trained for NER on the french corpora deep-sequoia and wikiner-fr.
+    \item \textbf{SpaCy NER pipeline for French~[SpaCy NER]}: We use the pipeline \textit{fr\_core\_news\_lg} provided by SpaCy v.3.2.1\mcite{spacy}, already trained for NER on the French corpora deep-sequoia and wikiner-fr.
     We stress again that we use the CNN version of this pipeline, not the transformer-based available in SpaCy v3.
     \item \textbf{Huggingface CamemBERT~[CmBERT]}: We rely on the implementation of BERT models provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
 We chose to reuse a CamemBERT model published on the Huggingface repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and already trained for NER on wikiner-fr.
@@ -93,15 +93,15 @@ The metrics are measured for the 24 resulting NER models on the common test set 
 
 
 \subsection{Results and discussion}
-Figure \ref{fig:f1-vs-trainsize} displays the averaged precision, recall and F1-score for all models on the 8 subsets created from the groundtruth.
-CmBERT, CmBERT+ptrn and SpaCy NER display the same behaviour: performances increase dramatically with the number of training examples and rapidly reach an area of slower progress around 1000 examples.
+Figure \ref{fig:f1-vs-trainsize} displays the averaged precision, recall, and F1-score for all models on the 8 subsets created from the groundtruth.
+CmBERT, CmBERT+ptrn and SpaCy NER display the same behaviour: the performances increase dramatically with the number of training examples and rapidly reach an area of slower progress around 1000 examples.
 The F1 score increases by 4.6 points between 49 and 796 examples for CmBERT (resp. 1.6 for CmBERT+ptrn and 5.1 for SpaCy NER) but only by 1 point between 796 and 6373 examples (resp. 0.6 and 1.4).
-The models derived from CamemBERT always outperform the Spacy model.
+The models derived from CamemBERT always outperform the SpaCy model.
 
-It appears that pre-training the CamemBERT model on OCR texts seems worth it only when a the training set used to fine-tune the NER layer is small.
+It appears that pre-training the CamemBERT model on OCR text seems worth it only when a the training set used to fine-tune the NER layer is small.
 This effect might be due to the differences in nature between the training subsets, whose texts are manually corrected, and the noisy OCR texts used to pretrain CamemBERT.
-Indeed, the learned embeddings from the pret-raining are specialised on noisy texts and therefore less adapted to clean texts.
-The pre-training aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counter-productive when the texts do not contain these types of errors.
+Indeed, the learned embeddings from pre-training are specialised to noisy texts and therefore less adapted to clean text.
+The pre-training aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counterproductive when the texts do not contain these types of errors.
 
 % MOVE THIS TABLE TO THE APPENDIX
 %\begin{table}[ht!]
