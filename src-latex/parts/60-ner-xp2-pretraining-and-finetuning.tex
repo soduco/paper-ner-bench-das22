@@ -13,7 +13,7 @@ We leverage the labeled sets of entries NER-\emph{reference}, NER-\emph{pero} an
 Kraken is left aside as it produces poor results that would require removing 500 entries from all datasets to keep the same set of valid entries.
 
 Each dataset is split into training development, and test sets following the same protocol as described in \cref{sec:ner-xp1-protocol}, except this time we do not need to create smaller training sets.
-As the NER sets contain 8341 entries, the produced train sets (resp. development and test) contain 6004 entries - 72\% of the total (resp. 668 - 8\% and 1669 - 20\%).    
+As the NER sets contain 8341 entries (see \cref{sec:dataset-for-eval}), the produced train sets (resp. development and test) contain 6004 entries - 72\% of the total (resp. 668 - 8\% and 1669 - 20\%).    
 
 CmBERT and CmBERT+ptrn are fine-tuned on the training sets built from NER-\emph{reference} and NER-\emph{pero}.
 The training parameters are mostly the same as in \cref{sec:ner-xp1-protocol}, only this time the patience threshold is set to 5 evaluations.
