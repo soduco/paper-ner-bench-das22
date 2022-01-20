@@ -82,6 +82,8 @@ entries, we thus have 8341 valid entries at the input of the stage 2.
 
 
 \begin{table}
+\caption{Entities to recognize in the dataset.}
+\label{tab.entities}
 \small
 \begin{tabular}{llp{8cm}}
 Entity & Count & Description\\    
@@ -92,8 +94,6 @@ LOC & 9709 & mostly street names ("r. de la Jussienne"), but may also be neighbo
 CARDINAL & 8747 & a street number, as part of an address ("16", "5 bis"), or a range of numbers (e.g. "23-25" or "5 à 9").\\
 FT & 43 & a geographic entity type, used to give more details on a location, e.g. "boutique", "atelier", "fab." or "dépôt". \\
 \end{tabular}
-\caption{Entities to recognize in the dataset.}
-\label{tab.entities}
 \end{table}
 
 
@@ -159,8 +159,10 @@ evaluate the OCR accuracy. As there are 11 mismatches over 56 aligned characters
 is then used to back-project the groundtruth tags to build the tagged NER-\emph{target}. Finally, the NER system runs on the
 OCR text; its output is compared to the NER groundtruth. There is only 2 over 3 tags matching in the prediction (precision),
 while only 2 over 4 entities are matched in the reference (recall). It follows an overall f-score of 0.4.
-
-\joseph{FIXME say we need to discard some entries}
+%
+A side-effect of tag projections is that is can produce degenerated tags, i.e. empty or containing only spaces.
+In such cases, the corresponding entries must be removed from the dataset for NER evaluation,
+and only the intersection of the sets of valid entries must be used to compare NER systems on multiple OCR predictions or references.
 
 
 
