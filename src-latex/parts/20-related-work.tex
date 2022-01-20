@@ -55,15 +55,7 @@ As long as OCR errors remain low ($CER<2\%$ and $WER<10\%$), this strategy makes
 The latter work focuses on adapting the training data to facilitate the generalization of an off-the-shelf NER model from modern texts to historical texts.
 Finally, reusing a model trained on clean modern data, including embeddings computed on a historical corpus, and fine-tuned on a noisy historical ground truth has proven to be the most effective strategy.
 
-Based on those works,  
-
-
-
-
-\subsection{== À réintégrer depuis ancienne section 4 ==}
-
-A introduire en disant quo'n chercher à utiliser au plus des modèles simples à reprendre: déjà entraînés, dispos pour du français et adaptables
-We select two deep-learning-based NER models available in packaged software libraries: SpaCy NLP pipelines and CamemBERT.
+Based on those works, we adopt two French deep-learning-based language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
 
 
 \subsubsection{spacy}

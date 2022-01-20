@@ -29,16 +29,16 @@ As the organisation and structure of entries varies across directories, the mode
 To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, $\approx 19\%$) from the ground truth as a test set containing entries from unseen directories.
 
 Then, a stratified sampling based on the source directory of each entry is run on the remainder to create a training set (6373 entries, $\approx 73\%$ of the gold reference) and a development set (709 entries, $\approx 8\%$).
-The development set is used to evaluate the model performance during the training phase.
+The development set is used to evaluate the model during the training phase.
 This resampling procedure is a convenient way to shape both sets, so they reflect the diversity of directories within the ground truth.
 
 To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as for the train/dev split to maintain the relative frequency of directories. 
 We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries maintaining the relative frequency of directories within it
 Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
 
-The three models are trained 5 times on each of the 8 training subsets using an early stopping criterion based on the number of training steps without improvement of the F1-score. 
-This patience threshold is set at 1600 steps for SpaCY NER, and 3 evaluations (1 evaluation every 100 steps) for CmBERT and CmBERT+ptrn.
-The metrics are measured for the 24 resulting NER models on the common test and averaged over the runs.
+The three models are fine-tuned on the NER task 5 times using each of the 8 training subsets, with an early stopping criterion based on the number of training steps without improvement of the F1-score. 
+This patience threshold is set to 1600 steps for SpaCY NER and 3 evaluations (1 evaluation every 100 steps) for CmBERT and CmBERT+ptrn.
+The metrics are measured for the 24 resulting NER models on the common test set and averaged over the runs.
 
 
 
@@ -105,7 +105,7 @@ The pretraining aims at adapting the model to the vocabulary of the domain and t
 
 \begin{table}[h!]
 \centering
-\caption{F1 score, precision and recall measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes.}
+\caption{\label{tab:experiment-1-models-performances} F1 score, precision and recall measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes.}
 \begin{tabular}{llrrrrrrrr}
        & Training examples &  49   &  99   &  199  &  398  &  796  &  1593 &  3186 &  6373 \\
        & \% & 0.8   & 1.6   & 3.1   & 6.2   & 12.5  & 25.0  & 50.0  & 100.0 \\
@@ -122,14 +122,13 @@ The pretraining aims at adapting the model to the vocabulary of the domain and t
        & CmBERT-ptrn &  93.6 &  94.0 &  94.4 &  94.6 &  94.6 &  94.8 &  95.0 &  94.9 \\
        & SpaCy NER &  88.6 &  90.4 &  90.7 &  91.7 &  91.9 &  92.8 &  93.3 &  93.4 \\
 \end{tabular}
-\label{tab:experiment-1-models-performances}
 \end{table}
 
 
 \begin{figure}[h!]
 	   \center{\includegraphics[width=\textwidth]
 	       {images/experiment-1-models-performances.pdf}}
-	  \caption{\label{fig:f1-vs-trainsize} Graph view of the metrics displayed in ~\ref{tab:experiment-1-models-performances}. As SpaCy NER is outperformed by BERT models from the start, CmBERT slightly surpasses the pre-trained version when the number of training samples grows.}.
+	  \caption{\label{fig:f1-vs-trainsize} Graph view of the metrics displayed in~\cref{tab:experiment-1-models-performances}. As SpaCy NER is outperformed by both BERT models from the start, CmBERT slightly surpasses the pre-trained version when the number of training examples becomes large.}.
 \end{figure}
 	                                        
 
