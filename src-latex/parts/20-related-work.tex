@@ -62,14 +62,6 @@ Finally, reusing a model trained on clean modern data, including embeddings comp
 
 Based on those works, we chose to test three OCR systems, namely, Tesseract, Pero OCR, and Kraken. We also adopt two deep-learning-based French language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
 
-\nathalie{A compléter ici?}
-
-\textbf{Tesseract} 4.1.1 (newest version: 5, released Nov. 2021)
-
-\textbf{Pero OCR} version from git repo, master branch updated on Sep 15, 2021
-
-\textbf{Kraken}
-
 \textbf{SpaCy} is a software library that offers NLP components assembled in modular pipelines specialised by language.
 Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (as of january 2022).
 Hence, we rely on SpaCy's ad hoc pipeline trained on French corpora and capable of named entity recognition.

@@ -38,7 +38,7 @@ We stop if a directory has only one entry left, or if the current training subse
 Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
 
 The three models are fine-tuned on the NER task 5 times using each of the 8 training subsets, with an early stopping criterion based on the number of training steps without improvement of the F1-score. 
-This patience threshold is set to 1600 steps for SpaCY NER and 3 evaluations (1 evaluation every 100 steps) for CmBERT and CmBERT+ptrn.
+This patience threshold is set to 1600 steps for SpaCy NER and 3 evaluations (1 evaluation every 100 steps) for CmBERT and CmBERT+ptrn.
 The metrics are measured for the 24 resulting NER models on the common test set and averaged over the runs.
 
 
