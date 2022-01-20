@@ -104,7 +104,7 @@ Indeed, the learned embeddings from the pretraining are specialized on noisy tex
 The pretraining aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counter-productive when the texts do not contain these types of errors.
 
 
-\begin{table}[h!]
+\begin{table}[ht!]
 \centering
 \caption{\label{tab:experiment-1-models-performances} F1 score, precision and recall measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes.}
 \begin{tabular}{llrrrrrrrr}
@@ -126,7 +126,7 @@ The pretraining aims at adapting the model to the vocabulary of the domain and t
 \end{table}
 
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
 	   \center{\includegraphics[width=\textwidth]
 	       {images/experiment-1-models-performances.pdf}}
 	  \caption{\label{fig:f1-vs-trainsize} Graph view of the metrics displayed in~\cref{tab:experiment-1-models-performances}. As SpaCy NER is outperformed by both BERT models from the start, CmBERT slightly surpasses the pre-trained version when the number of training examples becomes large.}.

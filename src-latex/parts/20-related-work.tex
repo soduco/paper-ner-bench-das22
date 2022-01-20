@@ -57,10 +57,12 @@ Finally, reusing a model trained on clean modern data, including embeddings comp
 Based on those works, we chose to test three OCR systems, namely, Tesseract, Pero OCR, and Kraken. We also adopt two deep-learning-based French language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
 
 \textbf{Tesseract} 4.1.1 (newest version: 5, released Nov. 2021)
+
 \textbf{Pero OCR} version from git repo, master branch updated on Sep 15, 2021
+
 \textbf{Kraken}
 
-\textbf{Spacy} is a software library that offers NLP components assembled in modular pipelines specialised by language.
+\textbf{SpaCy} is a software library that offers NLP components assembled in modular pipelines specialised by language.
 Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (jan. 2022).
 Hence, we rely on SpaCy's ad hoc pipeline trained on French corpora and capable of named entity recognition.
 % deep-sequoia and wikiner-fr, capable of named entity recognition.\textit{fr\_core\_news\_lg}\footnote{https://spacy.io/models/fr} trained two corpora in French: deep-sequoia and wikiner-fr, capable of named entity recognition.
@@ -77,13 +79,13 @@ The classification layer relies on a finite-state machine whose transition proba
 
 
 
-\textbf{Transformers / Bert / Hugging face}
+\textbf{CamemBERT}
 Language model based on \textit{Transformers} \cite{vaswani2017attention}, like BERT \cite{devlin2018bert}, have become a new paradigm for NER\cite{li2020}. 
 The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer. 
 They can also be pretrained in an unsupervised way on historical texts for domain adaptation.
-As the directories are written in French, we chose the language model CamemBERT \cite{martin-etal-2020-camembert}, a Transformer model trained on a French corpus.
-\joseph{plutôt tourner ça pour dire qu'il existe des modèles FR / qu'on est limités par la dispo de modèles FR pré-entraînés ?}
+CamemBERT \cite{martin-etal-2020-camembert}, is a weel-known French language model derived from BERT, of which there are already trained versions for the NER task on the Hugging Face library.
 
-\Cref{fig.protocol} depicts the evaluation protocol used to assess the OCR and NER systems. 
+
+The Figure \ref{fig.pipeline} depicts the evaluation protocol used to assess the combined performance of these OCR and NER systems. 
 
 
