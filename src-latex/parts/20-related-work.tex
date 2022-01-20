@@ -61,7 +61,7 @@ Finally, reusing a model trained on clean modern data, including embeddings comp
 \subsection{Pipeline summary}
 \label{sec:pipeline-summary}
 
-Based on those works, we chose to test three OCR systems, namely, Tesseract, Pero OCR, and Kraken. We also adopt two deep-learning-based French language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
+Based on those works, we chose to test three OCR systems, namely, Tesseract, PERO OCR, and Kraken. We also adopt two deep-learning-based French language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
 \Cref{fig.pipeline} depicts the evaluation protocol used to assess the combined performance of these OCR and NER systems. 
 
 \textbf{Tesseract} is a long-living project, born as a closed-sourced OCR at Hewlett-Packard in the eighties, it was progressively modernized, then open-sourced in 2005. From 2006 until November 2018 it was developed by Google, and is still very active. We used in our tests the version 4.1.1, released Dec. 26, 2019. The version 5, released on Nov. 30, 2021, has not been integrated in our tests yet.
@@ -97,5 +97,5 @@ The classification layer relies on a finite-state machine whose transition proba
 Language model based on \textit{Transformers} \cite{vaswani2017attention}, like BERT \cite{devlin2018bert}, have become a new paradigm for NER\cite{li2020}. 
 The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer. 
 They can also be pre-trained in an unsupervised way on historical texts for domain adaptation.
-CamemBERT \cite{martin-etal-2020-camembert}, is a well-known French language model derived from BERT, of which there are already trained versions for the NER task on the Hugging Face library.
+CamemBERT \cite{martin-etal-2020-camembert}, is a well-known French language model derived from BERT, of which there are already trained versions for the NER task on the Huggingface library.
 
