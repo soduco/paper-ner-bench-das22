@@ -2,6 +2,8 @@
 \section{OCR and NER on historical texts}
 \label{sec:related-work}
 
+\joseph{Suggestion pour réduire la présentation de l'état de l'art : l'orienter exclusivement vers une justification des systèmes que nous avons retenus pour cet article.}
+
 The directory processing pipeline presented in \cite{bell2020automated} includes an OCR step, done with Tesseract, and a NER step to identify company names and addresses, performed using regular expressions.
 This section reviews existing OCR and NER approaches with historical texts and presents some works assessing the effects of OCR quality on the NER performance and the proposed solutions. 
 
@@ -17,16 +19,13 @@ The results show that this approach gives state-of-the-art results.
 To overcome the limitations due to different transcription styles in training data, PERO OCR adds a Transcription Style Block layer to a classical model based on a CNN and a Recurrent Neural Network components \cite{kohut2021ts}.
 This block takes the image of the text and a Transcription Style Identifier as inputs and helps the network decide what kind of transcription style to use as output.
 
+\joseph{Move to implementation details for XP OCR or to pipeline summary}
 \begin{itemize}
     \item Tesseract 4.1.1 (newest version: 5, released Nov. 2021)
     \item Pero OCR version from git repo, master branch updated on Sep 15, 2021 % 8b20f29    
     \item other?  % kraken if times allows
 \end{itemize}
-Pero OCR uses ParseNet \joseph{TODO ref} as internal layout parser for line detection.
-Pero OCR uses an LSTM engine \joseph{TODO check + ref} for text line recognition.
-Pero OCR generally works very well, as long as the bounding boxes of the regions to recognize are not too tightly adjusted.
-Trained on newspapers in European languages by its development team.
-Can output results in Latin, Greek and Cyrillic scripts, as well as some commonly-used typographic symbols.
+
 
 % PERO refs
 % O Kodym, M Hradiš: Page Layout Analysis System for Unconstrained Historic Documents. ICDAR, 2021.

@@ -24,6 +24,13 @@
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.4}
 
+% Comment 
+% FIXME : delete before submission :)
+\newcommand{\bertrand}[1]{\textcolor{violet}{Bertrand:~#1}}
+\newcommand{\nathalie}[1]{\textcolor{purple}{Nathalie:~#1}}
+\newcommand{\edwin}[1]{\textcolor{pink}{Edwin:~#1}}
+\newcommand{\joseph}[1]{\textcolor{red}{Joseph:~#1}}
+
 \begin{document}
 %
 \title{%
@@ -145,6 +152,17 @@ To build our ground truth corpus, we annotate 78 pages randomly sampled from eac
     \includegraphics[width=\textwidth]{images/examples_labeled_entries.pdf}
     \caption{\label{fig:annotated-example}Two annotated entries showing the different labels used in the corpus.}
 \end{figure}
+
+
+\subsection{Entry segmentation}
+
+\subsection{Line detection}
+Pero OCR uses ParseNet as internal layout parser for line detection.
+Pero OCR uses an LSTM engine for text line recognition.
+Pero OCR generally works very well, as long as the bounding boxes of the regions to recognize are not too tightly adjusted.
+Trained on newspapers in European languages by its development team.
+Can output results in Latin, Greek and Cyrillic scripts, as well as some commonly-used typographic symbols.
+
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
