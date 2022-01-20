@@ -18,7 +18,7 @@
 
 \subsection{A selection of Paris trade directories from 1798 to 1854}
 
-The directories to be processed are stored in different libraries in Paris. They have been scanned independently and with various levels of quality. Moreover, they cover a wide period and have been produced by different publishers and printers. Therefore, their contents, indexes, layouts, methods of printing, etc. may vary a lot from one directory to another (see Figure \ref{fig:directories}).
+The directories to be processed are stored in different libraries in Paris. They have been scanned independently and with various levels of quality. Moreover, they cover a wide period and have been produced by different publishers and printers. Therefore, their contents, indexes, layouts, methods of printing, etc. may vary a lot from one directory to another (see Figure \ref{fig:directories}). For training and testing purposes, our groundtruth dataset must be as representative as possible of the diversity of the available directories.
 
 
 \begin{figure}[htb!]
@@ -27,11 +27,10 @@ The directories to be processed are stored in different libraries in Paris. They
 	  \caption{\label{fig:directories} Examples of directory layouts and contents: 1) Duverneuil et La Tynna 1806 - index by name; 2) Deflandre 1828 - index by activity ; 3) Bottin 1851 - index by street name}
 \end{figure}
 
-For training as testing purposes, our groundtruth dataset must be as representative as possible of the diversity of the available directories. 
 
-For example, the Didot directory of 1854 is organised according to three indexes: by name, by activity, and by street name. The structure of the following entry is characteristic of its index by name: "Batton (D.-A.) \scalerel*{\includegraphics{./images/LH.png}}{H}, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47." This entry begins with a person's name, followed by the initials of their first name in parentheses.The symbol indicates that this person was awarded the Légion d'Honneur. The following part of this entry represents the person's activity,i.e. their profession, or social status, here "professor at the Conservatory of music and declamation". The street name and number where the person lives or carries out their activity are written at the end of the entry.
+For example, the Didot directory of 1854 is organised according to three indexes: by name, by activity, and by street name. The structure of the following entry is characteristic of its index by name: "Batton (D.-A.) \scalerel*{\includegraphics{./images/LH.png}}{H}, professeur au Conservatoire de musique et de déclamation, Saint-Georges, 47." This entry begins with a person's name, followed by the initials of their first name in parentheses.The symbol indicates that this person was awarded the Légion d'Honneur. The following part of this entry represents the person's activity,i.e., their profession, or social status, here "professor at the Conservatory of music and declamation". The street name and number where the person lives or carries out their activities are written at the end of the entry.
 
-These pieces of information constituting the structure of the entries are the basic data that we want to extract, deduplicate and structure in order to build a spatio-temporal database of XIX\textsuperscript{th} century Parisian inhabitants and businesses. With the exception of some potentially wordy activity descriptions, they correspond to named entities. However, as Table \ref{tab:directories} shows, while most entries contain the same types of named entities, their order and the way they are written vary from one directory or index to another. To provide examples of each entry structure, pages from each type have thus been annotated\footnote{In this work, the street name index entries have not been included as they are very different from the others. The strategy to be adopted to process them without loss of quality for the NER model will be the subject of future work.}.
+These pieces of information constituting the structure of the entries are the basic data that we want to extract, deduplicate, and structure to build a spatio-temporal database of XIX\textsuperscript{th} century Parisian inhabitants and businesses. Except for some potentially wordy activity descriptions, they correspond to named entities. However, while most entries contain the same types of named entities, their order and the way they are written vary from one directory or index to another. To provide examples of each entry structure, pages from each type have thus been annotated. %\footnote{In this work, the street name index entries have not been included as they are very different from the others. The strategy to be adopted to process them without loss of quality for the NER model will be the subject of future work.}.
 
 
 \subsection{A dataset for OCR and NER evaluation}
@@ -39,7 +38,7 @@ These pieces of information constituting the structure of the entries are the ba
 
 \begin{figure}[tb]
     \includegraphics[width=\linewidth]{figs/protocol.pdf}
-    \caption{Scheme of the data extraction pipeline with two quality control checkpoints. \joseph{Missing "Ground truth" for NER stage?}}
+    \caption{Data extraction pipeline with two quality control checkpoints. }
     \label{fig.pipeline}
 \end{figure}
 
@@ -47,7 +46,7 @@ These pieces of information constituting the structure of the entries are the ba
 %\joseph{TODO: separate entry detection, OCR and NER stages explicitely}
 
 The simplified data extraction pipeline depicted in~\cref{fig.pipeline} processes the documents presented
-in~\cref{sec:dataset}. First, the layout extraction and entry segmentation of the page are performed with a
+in~\cref{sec:dataset}. First, the page layout extraction and entry segmentation are performed with a
 semi-automated system and checked by a human. The resulting images, representing 8765 entries, are the inputs of a customizable two-stage pipeline.
 
 %1. Entrée/Sortie de l'OCR
