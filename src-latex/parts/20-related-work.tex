@@ -39,12 +39,12 @@ but further work should include more systems from our initial selection.
 \subsection{Named Entity Recognition in historical texts}
 \label{subsection:stoa-ner-on-historical-texts}
 
-Many approaches have been designed to recognize named entities, ranging from handcrafted rules to supervised approaches \cite{nadeau2007}.
+Many approaches have been designed to recognise named entities, ranging from handcrafted rules to supervised approaches \cite{nadeau2007}.
 Rule based approaches look for portions of the text that match patterns like in \cite{bell2020automated,nouvel2011} or dictionary (gazetteers, author lists, etc.) entries like in \cite{mansouri2008,maurel2011}.
-Such kind of approaches achieve very good results when applied to a specialized domain corpus and when an exhaustive lexicon are available, but at high system engineering cost \cite{nadeau2007}. 
+Such kind of approaches achieve very good results when applied to a specialised domain corpus and when an exhaustive lexicon are available, but at high system engineering cost \cite{nadeau2007}. 
 
 Supervised approaches include both approaches implementing supervised learning algorithms with careful text feature engineering, and deep learning based approaches which automatically build their own features to classify tokens into named entity categories.
-In recent years, the latter have grown dramatically, yielding state-of-the-art performances as shown in the recent survey proposed by \cite{li2020}. This survey concludes that fine-tuning general-purpose contextualized language models with domain-specific data is very likely to give good performance for use cases with domain-specific texts and few training data. This strategy has been adopted by \cite{Labusch2020NamedED} to extract named entities in OCRed historical texts in German, French, and English. However, the NER performance drops significantly as the quality of the OCR decreases and is correlated with its decrease.
+In recent years, the latter have grown dramatically, yielding state-of-the-art performances as shown in the recent survey proposed by \cite{li2020}. This survey concludes that fine-tuning general-purpose contextualised language models with domain-specific data is very likely to give good performance for use cases with domain-specific texts and few training data. This strategy has been adopted by \cite{Labusch2020NamedED} to extract named entities in OCRed historical texts in German, French, and English. However, the NER performance drops significantly as the quality of the OCR decreases and is correlated with its decrease.
 
 Several recent studies have focused on the impact of OCR quality on NER results. Most of the time, they have evaluated NER approaches based on deep learning architectures as they seem to adapt more easily to OCR errors than rule-based or more classical supervised approaches.
 \cite{van2020assessing} use the English model \textit{en-core-web-lg} provided by SpaCy\footnote{\url{https://spacy.io/}} library to perform NER on a corpus made of many journal articles with different levels of OCR errors.
@@ -55,7 +55,7 @@ They tested them on CoNLL-02 and CoNLL-03 NER benchmark corpora, degraded by app
 Two approaches have been proposed by \cite{huynh2020use} and \cite{marz2021data}  to reduce the negative impact of OCR errors on NER performance on historical texts.
 The former applies a spelling correction tool to several corpora with variable OCR error rates. 
 As long as OCR errors remain low ($CER<2\%$ and $WER<10\%$), this strategy makes it possible to maintain good NER results. However, the F1-score starts to decrease significantly when OCR errors exceed these thresholds.
-The latter work focuses on adapting the training data to facilitate the generalization of an off-the-shelf NER model from modern texts to historical texts.
+The latter work focuses on adapting the training data to facilitate the generalisation of an off-the-shelf NER model from modern texts to historical texts.
 Finally, reusing a model trained on clean modern data, including embeddings computed on a historical corpus, and fine-tuned on a noisy historical ground truth has proven to be the most effective strategy.
 
 \subsection{Pipeline summary}
@@ -71,14 +71,14 @@ Based on those works, we chose to test three OCR systems, namely, Tesseract, Per
 \textbf{Kraken}
 
 \textbf{SpaCy} is a software library that offers NLP components assembled in modular pipelines specialised by language.
-Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (jan. 2022).
+Although BERT is available in the latest version of SpaCy (v3), the pipeline for French does not provide a NER layer at the time of our experiments (as of january 2022).
 Hence, we rely on SpaCy's ad hoc pipeline trained on French corpora and capable of named entity recognition.
 % deep-sequoia and wikiner-fr, capable of named entity recognition.\textit{fr\_core\_news\_lg}\footnote{https://spacy.io/models/fr} trained two corpora in French: deep-sequoia and wikiner-fr, capable of named entity recognition.
 The global architecture of these pipelines have not been yet published but are explained by the developers on their website.
 Words are first encoded into local context-aware embeddings using a window-based CNN similar to~\cite{collobert2011}.
 The decision layer is an adaptation of the transition-based model presented in~\cite{lample2016}.
 As words are processed sequentially, their vectors are concatenated with those of the last known entities to encode the nearby predicted semantics.
-The classification layer relies on a finite-state machine whose transition probabilities are learned using a multilayer perceptron.
+The classification layer relies on a finite-state machine whose transition probabilities are learned using a multi layer perceptron.
 % \bertrand{Drop the next sentences if we need space}
 % In 2018~\cite{won2018} evaluated SpaCy's NER ability to detect place names in five corpora of ancient letters written in English.
 % They measured an average F1 score of 0.57.
@@ -90,8 +90,8 @@ The classification layer relies on a finite-state machine whose transition proba
 \textbf{CamemBERT}
 Language model based on \textit{Transformers} \cite{vaswani2017attention}, like BERT \cite{devlin2018bert}, have become a new paradigm for NER\cite{li2020}. 
 The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer. 
-They can also be pretrained in an unsupervised way on historical texts for domain adaptation.
-CamemBERT \cite{martin-etal-2020-camembert}, is a weel-known French language model derived from BERT, of which there are already trained versions for the NER task on the Hugging Face library.
+They can also be pre-trained in an unsupervised way on historical texts for domain adaptation.
+CamemBERT \cite{martin-etal-2020-camembert}, is a well-known French language model derived from BERT, of which there are already trained versions for the NER task on the Hugging Face library.
 
 
 The Figure \ref{fig.pipeline} depicts the evaluation protocol used to assess the combined performance of these OCR and NER systems. 

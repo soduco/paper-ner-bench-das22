@@ -93,15 +93,15 @@ The metrics are measured for the 24 resulting NER models on the common test set 
 
 
 \subsection{Results and discussion}
-Table \ref{tab:experiment-1-models-performances} and Figure \ref{fig:f1-vs-trainsize} display the averaged precision, recall and F1-score for all models on the 8 subsets of ground-truth examples.
+Table \ref{tab:experiment-1-models-performances} and Figure \ref{fig:f1-vs-trainsize} display the averaged precision, recall and F1-score for all models on the 8 subsets created from the groundtruth.
 CmBERT, CmBERT+ptrn and SpaCy NER display the same behaviour: performances increase dramatically with the number of training examples and rapidly reach an area of slower progress around 1000 examples.
 The F1 score increases by 4.6 points between 49 and 796 examples for CmBERT (resp. 1.6 for CmBERT+ptrn and 5.1 for SpaCy NER) but only by 1 point between 796 and 6373 examples (resp. 0.6 and 1.4).
 The models derived from CamemBERT always outperform the Spacy model.
 
-It appears that pretraining the CamemBERT model on OCR texts seems worth it only when a the training set used to fine-tune the NER layer is small.
+It appears that pre-training the CamemBERT model on OCR texts seems worth it only when a the training set used to fine-tune the NER layer is small.
 This effect might be due to the differences in nature between the training subsets, whose texts are manually corrected, and the noisy OCR texts used to pretrain CamemBERT.
-Indeed, the learned embeddings from the pretraining are specialized on noisy texts and therefore less adapted to clean texts.
-The pretraining aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counter-productive when the texts do not contain these types of errors.
+Indeed, the learned embeddings from the pret-raining are specialised on noisy texts and therefore less adapted to clean texts.
+The pre-training aims at adapting the model to the vocabulary of the domain and to the errors caused by the OCR, which reveals not helpful and even counter-productive when the texts do not contain these types of errors.
 
 
 \begin{table}[ht!]
