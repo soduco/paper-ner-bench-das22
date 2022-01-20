@@ -1,7 +1,14 @@
 % !TeX root = ../main-paper.tex
 \section{Conclusion}
-
-In this article, we assessed the performance of three modern OCR systems on real historical data. Although Pero-OCR clearly outperforms its competitors, the qualitative analysis of its errors shows that it fails on different entries. This calls for leveraging both Pero-OCR and Tesseract in a complementary way to get the best out of both systems. Moreover, we evaluated the needs of two deep-learning-based NER approaches in terms of training data amount and text quality for pretraining. We showed that BERT-based NER can benefit from pretraining and fine-tuning on a noisy OCR corpus to improve its performance on a noisy OCRed test dataset. To perform a NER task on OCR texts, it seems therefore worthwhile to train the NER model on a corpus OCRed with the same system and not corrected. However, the results are not as good as for clean text: it is therefore interesting to investigate how to improve the OCR results or to correct the text in a postprocessing step. Furthermore, it seems that the models quickly achieve good performance with very few training examples. Leveraging a model fine-tuned on a few examples to automatically produce much larger training sets could reveal a solution to lower the annotation burden. Besides, as directory entries always have the same structure - at least within a given index - we could take advantage of NER results and some simple rules to identify entries within pages instead of relying on the page layout.
+We assessed the performance of three modern OCR systems on real historical data.
+Although Pero-OCR clearly outperforms its competitors, the qualitative analysis of OCR errors shows that the failure cases are not the same for Pero and Tesseract.
+This calls for leveraging both OCR systems in a complementary way to get the best of the two worlds.
+%Moreover, we evaluate two deep-learning-based NER approaches in terms of their sensibility to the amount of training data and to noisy OCR texts.
+The evaluation of SpaCy NER and CamemBERT (with and without pre-training) showed that BERT-based NER can benefit from pre-training and fine-tuning on a corpus produced with the same process than the texts to annotate.
+%However, the results are not as good as for clean text: it is therefore interesting to investigate how to improve the OCR results or to correct the text in a postprocessing step.
+Furthermore, it seems that all three models achieve good performance with relatively few training examples.
+With a F1-score of 92\% with only 49 training examples, the pre-trained CamemBERT model seems to be a good choice to serve as a bootstrapping model in order to quickly produce large training sets and therefore lower the burden of creating a ground truth from scratch.
+Besides, as directory entries always have the same structure - at least within a given index - we could take advantage of NER results and some simple rules to identify entries within pages instead of relying on the page layout.
 %Interesting points to discuss:
 %\begin{itemize}
 %    \item can we train on noisy data? (without manual OCR correction?) => future work? cf Pero OCR training procedure?
