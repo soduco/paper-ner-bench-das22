@@ -1,9 +1,9 @@
 % !TeX root = ../main-paper.tex
 \section{Experiment 1: NER sensibility to the number of training examples}
 \label{sec:ner-xp1}
-The constitution of annotated example sets to train a NER model on a target domain is a critical preliminary step.
-Often done manually, possibly from bootstrapped annotations, this task is tedious, time-consuming and error-prone.
-The ability of a model to perform well even with few training examples is a practical criteria to consider.
+The constitution of annotated datasets to train a NER model is a critical preliminary step.
+Often done manually, possibly with bootstrapped annotations, this task is tedious, time-consuming, and error-prone.
+The ability of a model to perform well even with a few training examples is a practical criterion to consider.
 In this first experiment, we investigate the NER performance of SpaCy and CamemBERT when fine-tuned with an increasing number of training examples.
 
 \subsection{Training and evaluation protocol}
@@ -26,7 +26,7 @@ The procedure for creating these sets is as follows.
 
 %First, we split the ground truth into a training set, a development set, and a test set. 
 %The training set is then gradually reduced in size while maintaining the relative frequency of directories within it.
-As the organisation and structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features. 
+As the structure of entries varies across directories, the models may learn to overfit on a subset of directories with specific features. 
 To reduce the evaluation bias, we start by leaving out 3 directories (1690 entries, $\approx 19\%$) from the ground truth as a test set containing entries from unseen directories.
 
 Then, a stratified sampling based on the source directory of each entry is run on the remainder to create a training set (6373 entries, $\approx 73\%$ of the gold reference) and a development set (709 entries, $\approx 8\%$).
@@ -34,8 +34,8 @@ The development set is used to evaluate the model during the training phase.
 This resampling procedure is a convenient way to shape both sets, so they reflect the diversity of directories within the ground truth.
 
 To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as for the train/dev split to maintain the relative frequency of directories. 
-We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries maintaining the relative frequency of directories within it
-Applying this procedure to the initial training set produced 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
+We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries, maintaining the relative frequency of directories within it
+Applying this procedure to the initial training set produces 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
 
 The three models are fine-tuned on the NER task 5 times using each of the 8 training subsets, with an early stopping criterion based on the number of training steps without improvement of the F1-score. 
 This patience threshold is set to 1600 steps for SpaCy NER and 3 evaluations (1 evaluation every 100 steps) for CmBERT and CmBERT+ptrn.
@@ -129,7 +129,7 @@ The pre-training aims at adapting the model to the vocabulary of the domain and 
 \begin{figure}[ht!]
 	   \center{\includegraphics[width=\textwidth]
 	       {figs/eval-ner-exp1.pdf}}
-	  \caption{\label{fig:f1-vs-trainsize} Metrics measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes. As SpaCy NER is outperformed by both BERT models from the start, CmBERT slightly surpasses the pre-trained version when the number of training examples becomes large. Values for precision and recall are available in the appendix.\bertrand{TODO!}}
+	  \caption{\label{fig:f1-vs-trainsize} Metrics measured on the fine-tuned models CmBERT, CmBERT+ptrn and SpaCy NER in experiment 1 for 8 training sets of increasing sizes. Precision and recall values are available in the appendix.}
 \end{figure}
 	                                        
 
