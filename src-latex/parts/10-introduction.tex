@@ -23,7 +23,7 @@ A subsequent stage is often needed to extract the pieces of information most lik
 Indeed, being able to properly tag text tokens unlocks the ability to relate entities, and provide colleagues from other fields with databases ready for exploitation.
 
 Being active research topics, OCR and named entity recognition (NER) are still difficult tasks when applied to historical text documents.
-OCR approaches used for modern documents are likely to struggle even on printed historical documents due multiple causes related to text readability (low resolution scans, inconsistent printing rules, artifacts, show-through), document complexity (intricate and versatile page layout, use of ancient fonts \& special glyphs) and the variability inherent to the huge diversity of historical sources.
+OCR approaches used for modern documents are likely to struggle even on printed historical documents due to multiple causes related to text readability (low resolution scans, inconsistent printing rules, artifacts, show-through), document complexity (intricate and versatile page layout, use of ancient fonts \& special glyphs) and the variability inherent to the huge diversity of historical sources.
 On the other hand, NER approaches developed for modern texts suffer from the time gap between the contemporary entities and the entities mentioned in older texts, and also from the errors introduced into the text by the OCR step.
 
 In this article, we focus on a peculiar category of historical printed books: city trade directories of Paris from the XIX\textsuperscript{th} century (1801 - 1854).
@@ -33,7 +33,7 @@ Despite containing roughly the same information, the diversity in layouts, infor
 In a recent work to locate potentially polluted urban soils \cite{bell2020automated}, trade directories were leveraged to identify and locate all the gas stations in the city of Providence during the XX\textsuperscript{th} century.
 The proposed information extraction pipeline extracts texts with OCR, identifies directories entries and recognizes business type and address within each entry.
 In the same way, we aim at producing structured spatio-temporal data from Parisian trade directories.
-These directories originate from several publishers, their content is organized following different indexing methods (by name, by activity or by address), printed in various layouts, use different fonts.
+Because they originate from several publishers, their content is organized following different indexing methods (by name, by activity or by address), is printed in various layouts, and uses different fonts.
 We therefore investigate several state-of-the-art OCR and NER approaches to assess their usability on the corpus.
 
 The contributions of this article are the following.
