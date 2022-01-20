@@ -34,7 +34,7 @@ For example, the Didot directory of 1854 is organised according to three indexes
 These pieces of information constituting the structure of the entries are the basic data that we want to extract, deduplicate and structure in order to build a spatio-temporal database of XIX\textsuperscript{th} century Parisian inhabitants and businesses. With the exception of some potentially wordy activity descriptions, they correspond to named entities. However, as Table \ref{tab:directories} shows, while most entries contain the same types of named entities, their order and the way they are written vary from one directory or index to another. To provide examples of each entry structure, pages from each type have thus been annotated\footnote{In this work, the street name index entries have not been included as they are very different from the others. The strategy to be adopted to process them without loss of quality for the NER model will be the subject of future work.}.
 
 
-\subsection{Groundtruth data extraction}
+\subsection{A dataset for OCR and NER evaluation}
 \joseph{TODO: separate entry detection, OCR and NER stages explicitely}
 
 First, the layout extraction and entry segmentation of the page are performed with a semi-automated system and
@@ -62,7 +62,6 @@ The annotated named entities are as follows:
 Thus, the extracted corpus contains both the bounding boxes of directory entries, their exact text and the named entities they contain. It can therefore be used to train and improve the entry detection, OCR and NER tools.
 % book, page, box, text_ocr, ner_xml (+uid within a page)
 
-\subsection{Summary}
 \joseph{TODO intégrer dans les sections avant ?}
 
 \begin{verbatim}
@@ -89,11 +88,14 @@ TODO average number of tags/entities per entry
 TODO lists actual dataset content: set of entries. For each entry:
 \begin{itemize*}
     \item ref to original book, page, region
-    \item human transcription (OCR ref)
-    \item human NER (NER ref)
+    \item human transcription (OCR GT)
+    \item human NER (NER GT)
     \item OCR produced by Pero OCR, Tesseract v4, Kraken (precise model used)
+    \item NER GT aligned on text predictions from Pero OCR, Tesseract v4, Kraken
 \end{itemize*}
 
+
+\subsection{Focus on how NER GT was aligned on noisy OCR}
 
 \subsection{Metrics proposed}
 
