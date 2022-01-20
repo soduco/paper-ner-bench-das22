@@ -69,12 +69,12 @@ OCR output is performed.
 
 %2. Entrée/Sortie
 \textbf{NER Stage.} The second stage of the pipeline aims an extracting the named entities from a text with a NER
-system. This text originates from the OCR outputs in a real-word scenario but might be groundtruth text in order to
-evaluate the NER performance standalone. There are 5 type of entity to detect~(see.~\cref{tab.entities}).
+system. This text originates from the OCR outputs in a real-word scenario but might be the groundtruth text in order to
+evaluate the NER performance independently. There are 5 type of entity to detect~(see.~\cref{tab.entities}).
 The NER system has to classify non-overlapping parts of the text into one of these entity (or none of them). A second
 Q.A. (namely NER Q.A.) is performed at the end of this stage between the groundtruth and the NER output.
 
-Note that the dataset used to assess the NER stage is subset of the entries. Indeed, we need to ensure that the datasets
+Note that the dataset used to assess the NER stage is a subset of the entries. Indeed, we need to ensure that the datasets
 contain the same entries whichever the OCR used in the previous stage. Entries where the OCR produced an empty string
 and those for which no entity could be projected from the groundtruth have to be ignored. We filter the set of entries by
 keeping only the entries that are always valid at the end of the stage 1. At the cost of losing 5\% of the references
