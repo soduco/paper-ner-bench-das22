@@ -8,7 +8,7 @@ The evaluation of SpaCy NER and CamemBERT (with and without pre-training) showed
 %However, the results are not as good as for clean text: it is therefore interesting to investigate how to improve the OCR results or to correct the text in a postprocessing step.
 Furthermore, it seems that all three models achieve good performance with relatively few training examples.
 With a F1-score of 92\% with only 49 training examples, the pre-trained CamemBERT model is a good choice to serve as a bootstrapping model to quickly produce large training sets and therefore lower the burden of creating a ground truth from scratch.
-Besides, as directory entries always have the same structure - at least within a given index - we could take advantage of NER results and some simple rules to identify entries within pages instead of relying on the page layout only, or even interactively generate per-index NER models to take advantage of the low amount of training examples required.
+Besides, as directory entries always have the same structure - at least within a given index - we could take advantage of NER results and some simple rules to identify entries within pages instead of relying on the page layout only, or even interactively generate per-index NER models to take advantage of the low amount of training samples required.
 %Interesting points to discuss:
 %\begin{itemize}
 %    \item can we train on noisy data? (without manual OCR correction?) => future work? cf Pero OCR training procedure?
