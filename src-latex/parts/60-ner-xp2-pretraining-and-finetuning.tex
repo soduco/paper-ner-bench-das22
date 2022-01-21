@@ -8,7 +8,7 @@ In this second experiment, we aim at assessing the most appropriate strategy to 
 
 \subsection{Training and evaluation protocol}
 Only CmBERT and CmBERT+ptrn are considered since the first experiment shows that SpaCy NER is outperformed by these two models for all sizes of training sets.
-We leverage the labeled sets of entries NER-\emph{reference}, NER-\emph{pero} and NER-\emph{tesseract} created as explained in \cref{sec:dataset}.
+We leverage the labelled sets of entries NER-\emph{reference}, NER-\emph{pero} and NER-\emph{tesseract} created as explained in \cref{sec:dataset}.
 Each dataset is split into training development, and test sets following the same protocol as described in \cref{sec:ner-xp1-protocol}, except this time we do not need to create smaller training sets.
 As the NER sets contain $8,341$ entries (see \cref{sec:dataset-for-eval}), the produced train sets (resp. development and test) count $6,004$ entries - 72\% of the total (resp. 668 - 8\% and $1,669$ - 20\%).
 CmBERT and CmBERT+ptrn are fine-tuned on the training sets built from NER-\emph{reference} and NER-\emph{pero}.
@@ -40,7 +40,7 @@ Results clearly show that models perform best when both the pre-training and the
 In our tests, pre-training the model brings a slight gain in performance ($\approx 0.5\%$).
 We did not pre-train or fine-tune with texts extracted with Tesseract.
 However, despite a loss of performance, the model pre-trained and fine-tuned on NER-pero still gives the best results.
-This is probably due to the fact that the texts produced by PERO-OCR feature characteristics intermediary between human transcriptions and Tesseract.
+This is probably due to the fact that the texts produced by \peroocr feature characteristics intermediary between human transcriptions and Tesseract.
 This OCR tool removes the characters recognised with low confidence, which is probably a great help to the NER.
 
 \begin{figure}
