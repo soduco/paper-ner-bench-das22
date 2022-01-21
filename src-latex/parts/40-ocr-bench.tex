@@ -7,7 +7,7 @@ The dataset used to perform this evaluation is composed of the $8,765$ entries (
 The single-column, cropped images of entries are used as input of each OCR system.
 As the pages were previously deskewed, the text is mostly horizontal except for a few cases.
 The expected output is the human transcription of these images provided in the dataset.
-Before computing the Character Error Rate (CER) for each entry, each text prediction is normalized with the same basic rules as the ones used to post-process human transcription: dashes, quotes, and character codes for some glyphs like stars or hands are normalized.
+Before computing the Character Error Rate (CER) for each entry, each text prediction is normalised with the same basic rules as the ones used to post-process human transcription: dashes, quotes and character codes for glyphs like stars or hands are normalised.
 % Regarding the charset of each OCR, Tesseract predicts characters covering a large portion of Latin script, \peroocr generates characters with a similar range, sometimes predicting some Cyrillic characters, and Kraken is constrained by its English model to predict only ASCII characters.
 
 
