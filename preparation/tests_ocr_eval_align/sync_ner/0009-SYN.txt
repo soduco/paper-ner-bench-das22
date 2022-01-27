@@ -1,0 +1,29 @@
+===============================================================================
+
+<PER>François</PER>, <ACT>fab.{1}et invent. de cache-pots
+p. fl. de t. coul et de fantais{2} ; cette
+nouv. invent. a p. but de faciliter
+les amat. de fl. à les mettre part.
+d. les appartem.; prop. et élég.{3},<LOC>
+Faub.-S{4}-Martin</LOC>, <CARDINAL>147</CARDINAL>.{5}
+===============================================================================
+{1}
+/tmp/tmp.OuGOT3xR1j/ground {}
+/tmp/tmp.OuGOT3xR1j/ocr    { }
+===============================================================================
+{2}
+/tmp/tmp.OuGOT3xR1j/ground {</ACT>}
+/tmp/tmp.OuGOT3xR1j/ocr    {}
+===============================================================================
+{3}
+/tmp/tmp.OuGOT3xR1j/ground {}
+/tmp/tmp.OuGOT3xR1j/ocr    {</ACT>}
+===============================================================================
+{4}
+/tmp/tmp.OuGOT3xR1j/ground {t}
+/tmp/tmp.OuGOT3xR1j/ocr    {i}
+===============================================================================
+{5}
+/tmp/tmp.OuGOT3xR1j/ground {}
+/tmp/tmp.OuGOT3xR1j/ocr    { <CARDINAL>4</CARDINAL>}
+===============================================================================

@@ -1,0 +1,3 @@
+<PER>Jacquin aîné et co.</PER>, <LOC>S.H. O1835-38-</LOC><CARDINAL>
+41046</CARDINAL>, <LOC>q, de la Mégisserie</LOC>, <CARDINAL>14</CARDINAL>, et<PER>
+Gr.-Charonne</PER>, <LOC>r. de Bagnolet</LOC>, <CARDINAL>26</CARDINAL>.

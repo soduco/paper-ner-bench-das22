@@ -1,0 +1,1 @@
+<PER>Delangle</PER>, <ACT>coiffeur</ACT>, <LOC>Thérèse</LOC>, <CARDINAL>1.</CARDINAL>

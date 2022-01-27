@@ -9,26 +9,39 @@ Qualitative results
 
 Quantitative results: table + graph ideally (with training set size info)
 
-\begin{verbatim}
-Accuracy
-|                             ..o   
-|                ..o       o/       
-|            ./`          /`          
-|        ./o`      .o   o            
-|     ./`        .`                    One curve per approach
-|    o       o/`                  o  
-|          .`                  ./    
-|       o`                    /      
-|                         .o        
-|                       .`           
-|                      o            
-|                                   
-+------------------------------   Training set size
-\end{verbatim}
+\begin{table}[!h]
+
+\caption{Models F1 score on unseen data vs trainset size}
+\centering
+\begin{tabular}[t]{lcccccccc}
+\toprule
+Trainset size (\% of the full trainset) & 0.8 & 1.5 & 3.1 & 6.2 & 12.5 & 25 & 50 & 100\\
+\midrule
+Cnn & \textbf{0.855} & \textbf{0.885} & \textbf{0.910} & 0.911 & 0.919 & 0.925 & 0.926 & 0.929\\
+Camembert & 0.236 & 0.626 & 0.856 & \textbf{0.916} & \textbf{0.930} & 0.933 & \textbf{0.948} & 0.953\\
+Camembert+pretraining & 0.190 & 0.685 & 0.889 & 0.913 & \textbf{0.930} & \textbf{0.946} & \textbf{0.948} & \textbf{0.960}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htb!]
+	   \center{\includegraphics[width=\textwidth]
+	       {../material/experiment_1/f1_vs_trainsize.png}}
+	  \vspace{3in}
+	  \caption{\label{fig:f1-vs-trainsize} Models F1 score on unseen data vs trainset size}
+\end{figure}
+	
                                         
 
+\subsection{Experiment 2: sensibility to training on noisy data}
+Idea : Measure the impact of training with noisy data when predicting NER tags on both clean and noisy data.
 
-\subsection{Experiment 2: Accuracy vs NER approach vs OCR noise}
+What's interesting : do models perform better on noisy data when trained on noisy data ? Does it impact predictions on clean data ?
+
+Table : NER NN models VS train on {noisy, clean} datasets VS evaluate on {noisy, clean} datasets
+
+
+\subsection{Experiment 3: Accuracy vs NER approach vs OCR noise}
 
 Qualitative results
 \textbf{TODO random samples of results + selection of failure cases}

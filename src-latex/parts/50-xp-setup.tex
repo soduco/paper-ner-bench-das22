@@ -3,12 +3,24 @@
 
 \subsection{Metrics}
 \begin{itemize}
-    \item NER quality: accuracy? precision? recall? f-score? (idea: stick with standard spacy/sklearn metrics)
-    \item OCR accuracy: outputs from standard tools (beware of unknown glyphs: do we need any special care?)
+    \item NER quality: Precision, Recall, F1 score (idea: stick with standard spacy/sklearn metrics) \textcolor{blue}{Dans la plupart des articles que j'ai lus, c'est toujours une F-mesure qui est utilisée et parfois la précision et le rappel sont ajoutés.}
+    \item OCR accuracy: outputs from standard tools (beware of unknown glyphs: do we need any special care?) \textcolor{blue}{Pour l'instant, j'ai croisé: CER, WER, Levenshtein et Jaccard. J'ai encore un état de l'art à lire sur le sujet: il y aura probablement d'autres mesures mentionnées.}
+    
+    \textcolor{blue}{Pour la partie Experiment 2: dans la litérature j'ai vu des courbes F-Mesure(CER) ou F-Mesure(WER) et des diagrammes avec F-Mesure calculée sur des sous-ensembles du corpus classés par score de Levenshtein.}
 \end{itemize}
 
 \subsection{Training procedure}
-train/val/test splits, number of runs, etc.
+\begin{itemize}
+\item Spacy CNN : do not put a limit on epochs, instead use patience=1600.
+\item CamemBERT : 3 epochs.
+\end{itemize}
+
+Split the full dataset into 80 percent train, 10 percent dev / eval and 10 percent test.
+Use stratified sampling based on the directory name. This way each set contains samples of all directories. 
+
+
+
+
 
 
 \subsection{Parameters for each method}
