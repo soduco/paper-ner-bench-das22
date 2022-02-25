@@ -1,0 +1,86 @@
+----------------------- REVIEW 1 ---------------------
+SUBMISSION: 60
+TITLE: A Benchmark of NER Approaches in Historical Documents
+AUTHORS: Nathalie Abadie, Edwin Carlinet, Joseph Chazalon and Bertrand Duménieu
+
+----------- Summary -----------
+This tries to establish a benchmark for named entity recognition evaluation benchmark for historical documents. The paper essentially evaluates a pipeline OCR+NER on specific historical documents (French 19th Century directories/registers) by varying both the OCR and NER algorithms as well as varying the quantity of data for fine-tuning the supplementary learning process.
+The overall process is quite well thought out and robust and offers a practical approach to choosing an appropriate document analysis pipeline for NER.
+----------- Relevance to DAS -----------
+SCORE: 1 (relevant)
+----------- Significance -----------
+SCORE: 0 (medium)
+----------- Soundness -----------
+SCORE: 1 (very sound)
+----------- Experimental evaluation -----------
+SCORE: 0 (good, but lacking at some aspects)
+----------- Clarity -----------
+SCORE: 1 (easy to read and clear enough)
+----------- Overall evaluation -----------
+SCORE: 0 (borderline paper)
+----- TEXT:
+While the paper is quite well written and the overall evaluation process sound and well thought out there are some fundamental remarks that raise questions.
+
+- end-to-end benchmarking is a difficult task. It would be useful to have a more thorough approach to this kind of evaluation. There seems to have been an ICDAR Contest in 2011 related to that topic that might be interesting to investigate.
+- the format of the data seems very particular and specific. It would seem important to check how much of it actually influences on NER and how dependent it is from the OCR quality as such (in a more explainable way, rather than just rely on the metrics used in the paper)
+It is quite likely that for this particular data OCR errors have a non-uniform effect on downstream NER results.
+- the main concern is the metric that has been used. The authors take great care to have a clean and reproducible way of projecting expected outcomes onto noisy OCR results. The question arises to how useful this is and whether it is not introducing biases in various ways, overestimating or underestimating the effects of the NER labeling.
+
+
+----------------------- REVIEW 2 ---------------------
+SUBMISSION: 60
+TITLE: A Benchmark of NER Approaches in Historical Documents
+AUTHORS: Nathalie Abadie, Edwin Carlinet, Joseph Chazalon and Bertrand Duménieu
+
+----------- Summary -----------
+This paper investigates three different OCR systems and two named entity recognition (NER) methods, combined together for NER on French directories. Pero OCR, Tesseract and Kraken are tried and evaluated on their dataset. The results of Pero OCR and Tesseract, as well as the ground truth transcription, are tried to see how two NER methods perform on noisy and perfect inputs.
+----------- Relevance to DAS -----------
+SCORE: 1 (relevant)
+----------- Significance -----------
+SCORE: 1 (high)
+----------- Soundness -----------
+SCORE: 1 (very sound)
+----------- Experimental evaluation -----------
+SCORE: 1 (sufficient enough)
+----------- Clarity -----------
+SCORE: 1 (easy to read and clear enough)
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+This paper is very well written. While having never worked on NER, I had no issue understanding everything. The experiments are well designed.
+There is a minor point which would require one more (small) experiment. Fig. 5(b) is used to indicate that Pero OCR and Tesseract fail on different samples. This is repeated in the conclusion. However, this statement holds, in my opinion, only if comparing two runs of Pero OCR together, or two runs of Tesseract together, leads to having points more along the diagonal in a plot similar to Fig. 5(b). If this is not the case, then it is not possible to state that failure cases of Pero OCR and Tesseract are inherently more different than the failure cases of a same OCR system trained twice.
+Other points:
+- in Section 6, you do not use Kraken; is there a reason for it? Even if it leads to significantly lower NER results, it would be nice to include it
+- Figure 1 is never referred to in the text
+- When referring to figures, you sometimes write "fig. n", "figure n", and "Figure n"
+- You wrote Tesseract twice with a lowercase t
+If you do future experiments on the impact of OCR noise on NER, then you could try adding artificially different levels of noise to the OCR ground truth (based on typical errors), in order to see the impact of the noise with a finer granularity.
+
+
+----------------------- REVIEW 3 ---------------------
+SUBMISSION: 60
+TITLE: A Benchmark of NER Approaches in Historical Documents
+AUTHORS: Nathalie Abadie, Edwin Carlinet, Joseph Chazalon and Bertrand Duménieu
+
+----------- Summary -----------
+The paper addresses named Entity recognition in historical documents by exploring different performances of OCR tools and evaluating NER approaches based on transformers. One new dataset of 19th C. French directories is also part of the paper's contributions.
+----------- Relevance to DAS -----------
+SCORE: 1 (relevant)
+----------- Significance -----------
+SCORE: 0 (medium)
+----------- Soundness -----------
+SCORE: 0 (sound)
+----------- Experimental evaluation -----------
+SCORE: 1 (sufficient enough)
+----------- Clarity -----------
+SCORE: 1 (easy to read and clear enough)
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+The paper is basically well written even if some parts could be improved. 
+Section 2.3 is a bit odd since it is part of the SOA section, but focuses on  the proposed pipeline and describes only the OCR tools used in the experiments, plus SpaCy and CamemBERT. I suggest to keep some of these concepts in the SOA section if needed and creating a new section 3 explaining the pipeline so as to make clear what is the processing steps in the proposed approach. Figure 3 and its description might be part of that section too.  
+In page 7 I'm not sure I understand what are the "thumbnails of each segmented entry" that are processed by the OCR. Thumbnails (for instance of whole pages) have usually lower resolution than the original image and therefore I would not use an OCR loosing information.
+The description of NER Q.A. in page 8 ("The NER system outputs... the NER-prediction.") is a bit confused in my view.
+In Figure 4 is nice, but not completely clear to me. The left part related to computing the CER is clear, but I don't understand the right part where Precision and Recall are computed. By  looking at the example it seems to me that only "horlogerie" is correct, but the description in page 8 says "There is only 2 over 3 tags matching..."  I assume that the predictions are the colored boxes (BTW what's the meaning of the colors), but the address and the street number looks wrong to me.
+
+Even if the paper mostly deals with standard approaches the combination of the various modules and the experimental evaluation on the proposed dataset are worth of interest in my view.
