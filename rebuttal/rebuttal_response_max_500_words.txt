@@ -5,40 +5,40 @@ Thanks for pointing this out. They are essentially using a full-cross evaluation
 [TODO add ref to https://hal.archives-ouvertes.fr/inria-00608371 + small comment]  We updated the paper with these precisions.
 
 [Reviewer 1] Qualitative analysis of influence of OCR quality on NER
-[Reviewer 1] Metrics uses, potential biases
+[Bertrand] say that effects of OCR noise are indeed non-uniform on NER results. The impact on structuring elements of the entries like punctuation symbols appears to be most significant, as they mark the separation between semantically homogeneous blocks (e.g. between PERS and ACT). We plan to carry out a more in-depth qualitative study in the near future ?
 
+
+[Reviewer 1] Metrics uses, potential biases
 [Bertrand] Ajouter un paragraphe d'évaluation qualitative des résultats de l'ocr+ner comme on avait prévu initialement, et un commentaire la projection des labels dans les chaînes bruitée. 
 [Joseph] say we used metrics as reported on previous work, and also that one of our goals is to assess whether NER could help correcting OCR errors?
 Here OCR is either pretty good or very wrong, so alignments usually make sense or can be detected as degenerated cases. However, it is very true that some borderline cases may cause trouble. This requires more study and [TODO] we updated the paper to be more explicit about these limitations.
-
-
 
 
 [Reviewer 2] comparing two runs of Pero OCR together, or two runs of Tesseract together
 Very good point, but we could not compete with the large, private training datasets used to produce the models we used. We chose to report, as objectively as possible, the performance of actual, off-the-shelf systems.
 
 [Reviewer 2] reason for not reporting Kraken performance on downstream NER
-[Bertrand] Ajouter Kraken à l'évaluation NER ? 
-(say we chose not to report this because would have reduced a lot the size of the test set? This would require to add one extra set of experiment; not possible because of space constraints)
+We chose not to report Kraken performances as it would have drastically reduced the size of the labelled sets "NER-x" and thus hampered the other evaluations on the reference, pero and tesseract datasets.
+All labelled datasets contains the same subset of directories entries by construction (section 3). Kraken performs quite poorly, which hinders the projection of labels from the ground truth and drastically reduces the size of the subset of labelled entries.
+
 
 [Reviewer 2] missing Figure 1 reference, inconsistent reference to figures, Tesseract spelling
 Thanks for pointing these issues, [TODO] we fixed them.
+(Refs. to figures fixed)
+(About T/tesseract : is he refering to fig 7 ? If so, "tesseract" is the name of the test set from "NER-tesseract").
 
 
 [Reviewer 2] Experiment with artificial OCR noise in future work
-This is planned, but it seems to be very hard to generate realistic noise.
-We decided to first focus on real cases with no further assumptions.
-
-
+We plan to perform such experiments following e.g. the techniques presented in https://doi.org/10.1007/978-3-030-86331-9_48
+As it seems to be quite hard to generate realistic noise, we decided to first focus on real cases with no further assumptions.
 
 
 [Reviewer 3] Section 2.3 should be a separate section about the pipeline
-[RBertrand] Transformer la sous-section 2.3 "Pipeline summary" en section 3. 
 [TODO attention espace supplémentaire] We extracted this content as a new section as suggested.
 
 [Reviewer 3] What are "thumbnails" in page 7
 We refer to "thumbnails" as image crops, have the same resolution as the original image.
-We updated the text to clarify this.
+We updated the text to clarify this. (TODO ?)
 
 [Reviewer 3] Description of NER QA is confusing
 [TODO] we clarified the relevant section
