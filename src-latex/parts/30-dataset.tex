@@ -64,8 +64,9 @@ in~\cref{sec:corpus}. First, the page layout extraction and entry segmentation a
 semi-automated system and checked by a human. The resulting images, representing 8765 entries, are the inputs of a customizable two-stage pipeline.
 
 %1. Entrée/Sortie de l'OCR
-\textbf{OCR stage.} The first stage of the pipeline aims at extracting the raw text from the images. An OCR system runs
-on the thumbnails of each segmented entry to extract its text. An entry might span over multiple text lines but is
+\textbf{OCR stage.} The first stage of the pipeline aims at extracting the raw text from the images. 
+Individual image fragments are created from each segmented entry and fed to an OCR system for text extraction.
+An entry might span over multiple text lines but is
 always a single block. Thus, the most adapted mode is chosen when the OCR system allows for the detection mode (e.g. the
 \emph{block} mode for \emph{Tesseract}). 
 Some glyphs used in this dataset might be unknown to the OCR, and some like
