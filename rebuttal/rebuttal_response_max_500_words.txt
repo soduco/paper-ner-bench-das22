@@ -34,7 +34,9 @@ As it seems to be quite hard to generate realistic noise, we decided to first fo
 
 
 [Reviewer 3] Section 2.3 should be a separate section about the pipeline
-[TODO attention espace supplémentaire] We extracted this content as a new section as suggested.
+We extracted this content as a new section as suggested.
+We have also moved the subsection "Metrics for OCR and NER Quality assessment" from the former section 3 "Dataset" to this new section.
+
 
 [Reviewer 3] What are "thumbnails" in page 7
 We refer to "thumbnails" as image crops, have the same resolution as the original image.
