@@ -7,9 +7,13 @@ We thank the reviewers for their comments. We will do our best to update the fin
 
 Thanks for pointing this out. They are essentially using a cross evaluation of all methods to perform end-to-end evaluation, just like us, but do not report NER evaluation, unlike us.
 
+* [ ] JC rajouter une phrase
+
 > [Reviewer 1] Qualitative analysis of influence of OCR quality on NER
 
 Effects of the OCR noise are indeed non-uniform on NER results. The impact on structuring elements of the entries like punctuation symbols appears to be most significant, as they mark the separation between semantically homogeneous blocks. This is under further study.
+
+* [x] ~~?? mettre 1 phrase en future work ?~~
 
 
 > [Reviewer 1] how useful [projecting expected outcomes onto noisy OCR results] is 
@@ -18,19 +22,27 @@ Effects of the OCR noise are indeed non-uniform on NER results. The impact on st
 
 We used standard metrics from previous works. Projecting the ground-truth labels on a noisy text was a sensible way to assess whether NERs could help to correct OCR errors. In our experiments, alignments usually make sense or can be detected as degenerated cases. However, it is very true that some borderline cases may cause trouble. We will be more explicit about these limitations.
 
+* [ ] BD détailler un peu les limitations, être plus explicites à ce sujet
+
 
 > [Reviewer 2] Comparing two runs of PERO OCR together, or two runs of Tesseract together
 
 Very good point, but we could not compete with the large, private training datasets used to produce the models we used. We chose to report, as objectively as possible, the performance of actual, off-the-shelf systems.
 
+* [ ] EC ajouter une phrase ?? (dire qu'on n'avait même pas assez de données pour faire du fine-tuning)
+
 > [Reviewer 2] Reason for not reporting Kraken's performance on downstream NER
 
 We chose not to report Kraken's performance as it would have drastically reduced the size of the labelled sets used to compare the performance of NER systems, because poor Kraken's performance hinders the projection of labels from the ground truth and creates degenerated cases which are skipped.
+
+* [ ] BD revoir un peu la phrase concernée ?
 
 
 > [Reviewer 2] Experiment with artificial OCR noise in future work
 
 We plan to perform such experiments, but as it is hard to generate realistic noise, we decided to first focus on real cases with no further assumptions.
+
+* [ ] BD Explain in future work section 
 
 
 
@@ -40,6 +52,7 @@ We plan to perform such experiments, but as it is hard to generate realistic noi
 
 We have tried to extract this content as a new section as suggested, but this unbalanced sections, disrupted the explication flow, and breaks the 15-pages limits. As a consequence, the overall organization of the paper was left unchanged.
 
+* [x] ~~No change required~~
 
 
 ## Typos, inconsistencies and lack of clarity
@@ -50,11 +63,25 @@ We have tried to extract this content as a new section as suggested, but this un
 
 Thanks, we fixed this.
 
+* [ ] EC
+
 > [Reviewer 3] What are "thumbnails" in page 7
 
 We refer to "thumbnails" as image crops, they have the same resolution as the original image.
+
+* [ ] EC
 
 > [Reviewer 3] Description of NER QA is confusing
 > [Reviewer 3] Figure 4 needs clarification
 
 We clarified the relevant section and fig.4's caption.
+
+* [ ] EC
+
+
+## AUTRES
+
+* [ ] NA passe de relecture
+* [ ] NA relecture readme dataset + critique structure
+* [ ] JC rajouter lien Zenodo dataset
+* [ ] ?? dépôt HAL + ArXiV
