@@ -22,7 +22,7 @@ Effects of the OCR noise are indeed non-uniform on NER results. The impact on st
 
 We used standard metrics from previous works. Projecting the ground-truth labels on a noisy text was a sensible way to assess whether NERs could help to correct OCR errors. In our experiments, alignments usually make sense or can be detected as degenerated cases. However, it is very true that some borderline cases may cause trouble. We will be more explicit about these limitations.
 
-* [ ] BD détailler un peu les limitations, être plus explicites à ce sujet
+* [X] BD détailler un peu les limitations, être plus explicites à ce sujet
 
 
 > [Reviewer 2] Comparing two runs of PERO OCR together, or two runs of Tesseract together
@@ -35,14 +35,14 @@ Very good point, but we could not compete with the large, private training datas
 
 We chose not to report Kraken's performance as it would have drastically reduced the size of the labelled sets used to compare the performance of NER systems, because poor Kraken's performance hinders the projection of labels from the ground truth and creates degenerated cases which are skipped.
 
-* [ ] BD revoir un peu la phrase concernée ?
+* [X] BD revoir un peu la phrase concernée ?
 
 
 > [Reviewer 2] Experiment with artificial OCR noise in future work
 
 We plan to perform such experiments, but as it is hard to generate realistic noise, we decided to first focus on real cases with no further assumptions.
 
-* [ ] BD Explain in future work section 
+* [X] BD Explain in future work section 
 
 
 
