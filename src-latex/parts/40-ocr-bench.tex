@@ -2,12 +2,15 @@
 \section{OCR benchmark}
 \label{sec:ocr-xp}
 
-This section focuses on the evaluation of the performance of the three open-source OCR systems we selected, as described in \cref{sec:pipeline-summary}: Tesseract v4, Kraken and \peroocr.
-The dataset used to perform this evaluation is composed of the $8,765$ entries (containing $424,764$ characters) from the dataset we previously introduced.
-The single-column, cropped images of entries are used as input of each OCR system.
-As the pages were previously deskewed, the text is mostly horizontal except for a few cases.
-The expected output is the human transcription of these images provided in the dataset.
-Before computing the Character Error Rate (CER) for each entry, each text prediction is normalised with the same basic rules as the ones used to post-process human transcription: dashes, quotes and character codes for glyphs like stars or hands are normalised.
+This section focuses on the evaluation of the performance of the three open-source OCR systems we selected, as described
+in \cref{sec:pipeline-summary}: Tesseract v4, Kraken and \peroocr. The OCRs are used ``out-of-the-box'' with their
+default pre-trained models. No fine-tuning was performed as we did not get enough annotated data for such a task. The
+dataset used to perform this evaluation is composed of the $8,765$ entries (containing $424,764$ characters) from the
+dataset we previously introduced. The single-column, cropped images of entries are used as input of each OCR system. As
+the pages were previously deskewed, the text is mostly horizontal except for a few cases. The expected output is the
+human transcription of these images provided in the dataset. Before computing the Character Error Rate (CER) for each
+entry, each text prediction is normalised with the same basic rules as the ones used to post-process human
+transcription: dashes, quotes and character codes for glyphs like stars or hands are normalised.
 % Regarding the charset of each OCR, Tesseract predicts characters covering a large portion of Latin script, \peroocr generates characters with a similar range, sometimes predicting some Cyrillic characters, and Kraken is constrained by its English model to predict only ASCII characters.
 
 

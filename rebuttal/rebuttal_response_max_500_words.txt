@@ -29,7 +29,7 @@ We used standard metrics from previous works. Projecting the ground-truth labels
 
 Very good point, but we could not compete with the large, private training datasets used to produce the models we used. We chose to report, as objectively as possible, the performance of actual, off-the-shelf systems.
 
-* [ ] EC ajouter une phrase ?? (dire qu'on n'avait même pas assez de données pour faire du fine-tuning)
+* [x] EC ajouter une phrase ?? (dire qu'on n'avait même pas assez de données pour faire du fine-tuning)
 
 > [Reviewer 2] Reason for not reporting Kraken's performance on downstream NER
 
@@ -63,20 +63,20 @@ We have tried to extract this content as a new section as suggested, but this un
 
 Thanks, we fixed this.
 
-* [ ] EC
+* [x] EC
 
 > [Reviewer 3] What are "thumbnails" in page 7
 
 We refer to "thumbnails" as image crops, they have the same resolution as the original image.
 
-* [ ] EC
+* [x] EC
 
 > [Reviewer 3] Description of NER QA is confusing
 > [Reviewer 3] Figure 4 needs clarification
 
 We clarified the relevant section and fig.4's caption.
 
-* [ ] EC
+* [x] EC
 
 
 ## AUTRES

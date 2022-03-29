@@ -25,7 +25,7 @@ The resulting dataset is publicly available~\cite{abadie_dataset_22} under the p
 
 The directories are available from different libraries in Paris and have been digitised independently in various levels of quality. 
 They cover a large period of time and originate from several publishers.
-Therefore, their contents, indexes, layouts, methods of printing, etc. may vary a lot from one directory to another (see fig. \ref{fig:directories}).
+Therefore, their contents, indexes, layouts, methods of printing, etc. may vary a lot from one directory to another (see \cref{fig:directories}).
 We want our groundtruth dataset to be representative of the diversity of directories available in the period.
 
 \begin{figure}[htb!]
@@ -133,7 +133,9 @@ FT & 43 & a geographic entity type, used to give more details on a location, e.g
 
 \begin{figure}[tb]
     \includegraphics[width=\linewidth]{figs/eval-ocr-ner.pdf}
-    \caption{OCR and NER evaluation protocol example.}
+    \caption{OCR and NER evaluation protocol example. The OCR prediction is first aligned on the GOLD text to get the
+    OCR quality. The same alignment is used to project the GOLD tags on the OCR prediction. Projected tags enable
+    the NER system run on the OCR predicted text to be assessed.}
     \label{fig.eval-ocr-ner}
 \end{figure}
 
@@ -154,10 +156,10 @@ previous stages. The OCR text is first aligned with the groundtruth text to form
 NER-\emph{reference}\ldots). The tags of the groundtruth are then projected in the alignment on NER-\emph{input} to
 provide the \emph{NER-target}. The NER system then runs on NER-\emph{input} and outputs the \emph{NER-prediction}. The
 precision, recall, and f-measure (or f-score) are computed considering only the exact matches between entities of the
-\emph{NER-target} and those from the \emph{NER-prediction}, i.e. pairs of entries for which the type, start and end positions are exactly the same.
-Precision is the ratio of exact matches divided by the number of predicted entries,
-and recall is defined as the ratio of exact matches divided by the number of expected entries;
-the f-measure is their harmonic mean.
+\emph{NER-target} and those from the \emph{NER-prediction}, i.e. pairs of entries for which the type, start and end
+positions are exactly the same. Precision is the ratio of exact matches divided by the number of predicted entries, and
+recall is defined as the ratio of exact matches divided by the number of expected entries; the f-measure is their
+harmonic mean.
 
 The evaluation process is illustrated on~\cref{fig.eval-ocr-ner}. The OCR and the groundtruth texts are first aligned to
 evaluate the OCR accuracy. As there are 11 mismatches over 56 aligned characters, the CER is thus 24\%. This alignment
