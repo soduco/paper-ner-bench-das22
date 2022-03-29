@@ -29,7 +29,7 @@ We want our groundtruth dataset to be representative of the diversity of directo
 \begin{figure}[htb!]
 	   \center{\includegraphics[width=0.9\textwidth]
 	       {./images/DirectoryExcerpts2.png}}
-	  \caption{\label{fig:directories} Examples of directory layouts and contents: 1) Duverneuil et La Tynna 1806 - index by name; 2) Deflandre 1828 - index by activity ; 3) Bottin 1851 - index by street name}
+	  \caption{\label{fig:directories} Examples of directory layouts and contents. \emph{Top}: Duverneuil et La Tynna 1806 - index by name; \emph{Middle}: Deflandre 1828 - index by activity ; \emph{Bottom}: Bottin 1851 - index by street name.}
 \end{figure}
 
 
@@ -52,8 +52,8 @@ Except for some potentially wordy activity descriptions, they correspond to name
 \begin{figure}[tb]
     \includegraphics[width=\linewidth]{figs/protocol.pdf}
     \caption{Data extraction pipeline with two quality control checkpoints. The
-    NER Q.A. checkpoint may either assess the NER system lonely (the dashed
-    \emph{groundtruth} path) or may evaluate the joint work of a NER
+    NER Q.A. checkpoint may either assess the NER system in isolation (using the dashed
+    \emph{groundtruth} path), or may evaluate the joint work of a NER
     system with an OCR system.}
     \label{fig.pipeline}
 \end{figure}
@@ -70,7 +70,7 @@ An entry might span over multiple text lines but is
 always a single block. Thus, the most adapted mode is chosen when the OCR system allows for the detection mode (e.g. the
 \emph{block} mode for \emph{Tesseract}). 
 Some glyphs used in this dataset might be unknown to the OCR, and some like
-\scalerel*{\includegraphics{./images/LH.png}}{H} do not even have a Unicode codepoint, and were annotated using Unicode Private User Area 1.
+\scalerel*{\includegraphics{./images/LH.png}}{H}, which do not even have a Unicode codepoint, were annotated using Unicode Private User Area 1.
 Furthermore, as some annotations guidelines where unclear to human annotators, some projections rules were applied: whitespace, dash, dots and a couple of commonly confused characters where projected to well-defined codepoints.
 The same normalisation was applied to OCR predictions.
 At the end of this first stage, an OCR Quality Assessment (Q.A.) between the \emph{normalised} groundtruth text and the
@@ -79,7 +79,7 @@ OCR output is performed on the basis of the $8,765$ entries which were manually 
 
 %2. Entrée/Sortie
 \textbf{NER Stage.} The second stage of the pipeline aims at extracting the named entities from a text with a NER
-system. This text originates from the OCR outputs in a real-word scenario but might be the groundtruth text in order to
+system. This text can either originate from the OCR outputs in a real-word scenario, or from groundtruth text in order to
 evaluate the NER performance independently. There are 5 types of entity to detect~(see.~\cref{tab.entities}).
 The NER system has to classify non-overlapping parts of the text into one of these entities (or none of them). A second
 Q.A. (namely, NER Q.A.) is performed at the end of this stage between the groundtruth and the NER output.
@@ -101,13 +101,16 @@ or $8,341$ entries if we consider \peroocr and Tesseract only.
 \label{tab.entities}
 \small
 \begin{tabular}{llp{8cm}}
-Entity & Count & Description\\    
+\toprule
+\textbf{Entity} & \textbf{Count} & \textbf{Description}\\    
+\midrule
 PER & 8788 & a person name or a business name, usually referred to as several person names. First names, initials, or civility mentions are included. E.g.: \textit{Alibert (Prosper)}, \textit{Allamand frères et Hersent},\textit{Heurtemotte (Vve)}. \\
 TITLE & 483 & an honorary title, either text, glyphs or a combination of the two. E.g: O. \scalerel*{\includegraphics{./images/LH.png}} {H} for \textit{Officier de la Légion d'Honneur} or \scalerel*{\includegraphics{./images/GMLondon.png}}{H} for the Great Medal at the London exhibition.\\
 ACT & 6472 & the profession or social status of a person summarised in the single concept of activity. E.g.: \textit{horlogerie}, \textit{export en tous genres}, \textit{Conseiller d'État}, \textit{propriétaire}.\\
 LOC & 9709 & mostly street names (\textit{r. de la Jussienne}), but may also be neighbourhoods (\textit{Marais du Temple}) or any indirect spatial references (\textit{au Palais Royal}).\\
 CARDINAL & 8747 & a street number, as part of an address (16, 5 bis), or a range of numbers (e.g. 23-25 or 5 \textit{à} 9).\\
 FT & 43 & a geographic entity type, used to give more details on a location, e.g. \textit{boutique}, \textit{atelier}, \textit{fab.} or \textit{dépôt}. \\
+\bottomrule
 \end{tabular}
 \end{table}
 
