@@ -7,7 +7,7 @@ We thank the reviewers for their comments. We will do our best to update the fin
 
 Thanks for pointing this out. They are essentially using a cross evaluation of all methods to perform end-to-end evaluation, just like us, but do not report NER evaluation, unlike us.
 
-* [ ] JC rajouter une phrase
+* [ ] ~~JC rajouter une phrase~~ ← Je ne vois pas où en parler, je trouve que cet article a très peu d'intérêt pour nous, je propose de ne pas le citer.
 
 > [Reviewer 1] Qualitative analysis of influence of OCR quality on NER
 
