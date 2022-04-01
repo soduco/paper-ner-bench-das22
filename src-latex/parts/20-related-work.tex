@@ -48,7 +48,7 @@ In recent years, the latter have grown dramatically, yielding state-of-the-art p
 % FIXME few training data -> little training data? / is correlated with its decrease -> redundant?
 
 Several recent studies have focused on the impact of OCR quality on NER results. Most of the time, they have evaluated NER approaches based on deep learning architectures as they seem to adapt more easily to OCR errors than rule-based or more classical supervised approaches.
-\cite{van2020assessing} use the English model \textit{en-core-web-lg} provided by the SpaCy \cite{spacy} library to perform NER on a corpus made of many journal articles with different levels of OCR errors.
+\cite{van2020assessing} used the English model \textit{en-core-web-lg} provided by the SpaCy \cite{spacy} library to perform NER on a corpus made of many journal articles with different levels of OCR errors.
 For each OCRed article, a ground truth text is available so that the Word Error Rate (WER) can be computed.
 The performance of the NER model with respect to OCR quality is eventually assessed by computing the F1-score for each NER class and each article, i.e., each WER value.
 \cite{hamdi2020assessing} performed a similar but more extensive evaluation on four supervised NER models: CoreNLP using Conditional Random Fields and three deep neural models, BLSTM-CNN, BLSTM-CRF, and BLSTM-CNN-CRF.
@@ -62,10 +62,10 @@ Finally, reusing a model trained on clean modern data, including embeddings comp
 \subsection{Pipeline summary}
 \label{sec:pipeline-summary}
 
-Based on those works, we chose to test three OCR systems, namely, Tesseract, \peroocr, and Kraken. We also adopt two deep-learning-based French language models, available in packaged software libraries, already trained for the NER task and that we can adapt to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
+Based on those works, we chose to test three OCR systems, namely, Tesseract, \peroocr, and Kraken. We also adopted two deep-learning-based French language models, available in packaged software libraries, already trained for the NER task and that can be adapted to the domain of historical directories: SpaCy NLP pipelines and CamemBERT.
 In \cref{sec:dataset}, we will explain the evaluation protocol used to assess the combined performance of these OCR and NER systems. 
 
-\textbf{Tesseract} is a long-living project, born as a closed-sourced OCR at Hewlett-Packard in the eighties, it was progressively modernized, then open-sourced in 2005. From 2006 until November 2018, it was developed by Google and is still very active. We used in our tests version 4.1.1, released Dec. 26, 2019. Version 5, released on Nov. 30, 2021, has not been integrated in our tests yet.
+\textbf{Tesseract} is a long-living project, born as a closed-sourced OCR at Hewlett-Packard in the eighties; it was progressively modernized, then open-sourced in 2005. From 2006 until November 2018, it was developed by Google and is still very active. We used in our tests the version 4.1.1, released Dec. 26, 2019. Version 5, released on Nov. 30, 2021, has not been integrated in our tests yet.
 
 \textbf{Kraken} is a project created by Benjamin Kiessling several years ago (development can be traced back to 2015), and is actively used in the open-source eScriptorium project \cite{kiessling_escriptorium_2019}.
 As no pre-trained model for modern French was easily available, we used the default English text recognition model trained on modern printed English by Benjamin Kiessling on 2019. Models can be easily found and downloaded thanks to their hosting on Zenodo.
@@ -94,6 +94,6 @@ The classification layer relies on a finite-state machine whose transition proba
 
 
 
-\textbf{CamemBERT} is well-known adaptation of the BERT transformer-based model for the French language~\cite{vaswani2017attention,devlin2018bert,martin-etal-2020-camembert}. Such language models have become a new paradigm for NER~\cite{li2020}. 
-The learned embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer, usually referred as a ``head''. 
+\textbf{CamemBERT} is well-known adaptation of the BERT Transformer-based model for the French language~\cite{vaswani2017attention,devlin2018bert,martin-etal-2020-camembert}. Such language models have become a new paradigm for NER~\cite{li2020}. 
+The learned contextual embeddings can be used as distributed representations for input instead of traditional embeddings like Google Word2Vec, and they can be further fine-tuned for NER by adding an additional output layer, usually referred to as a ``head''. 
 They can also be pre-trained in an unsupervised way on large amount of unlabelled texts for domain adaptation.
