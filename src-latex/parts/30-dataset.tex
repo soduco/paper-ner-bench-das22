@@ -29,7 +29,7 @@ Therefore, their contents, indexes, layouts, methods of printing, etc. may vary 
 We want our groundtruth dataset to be representative of the diversity of directories available in the period.
 
 \begin{figure}[htb!]
-	   \center{\includegraphics[width=0.9\textwidth]
+	   \center{\includegraphics[width=1.0\textwidth]
 	       {./images/DirectoryExcerpts2.png}}
 	  \caption{\label{fig:directories} Examples of directory layouts and contents. \emph{Top}: Duverneuil et La Tynna 1806 - index by name; \emph{Middle}: Deflandre 1828 - index by activity ; \emph{Bottom}: Bottin 1851 - index by street name.}
 \end{figure}
@@ -42,7 +42,7 @@ It begins with the person's name and surname, here inside parentheses.
 The glyph denotes that this person was awarded the \textit{Légion d'Honneur}.
 Then comes a description of the person's activity, here his profession (professor at the Conservatory of music and declamation), but it can also be a social status.
 Such descriptions range from a single word to paragraphs describing the occupation in full detail.
-The street name and number where the person lives or carries out their activities ends the entry.
+The street name and the number where the person lives or carries out their activities end the entry.
 
 These are the pieces of information we want to extract, deduplicate and structure to build a spatio-temporal database.
 Except for some potentially wordy activity descriptions, they correspond to named entities. However, while most entries contain the same types of named entities, their order and the way they are written vary from one directory/index to another. To provide examples of each entry structure, pages from each type have thus been annotated. %\footnote{In this work, the street name index entries have not been included as they are very different from the others. The strategy to be adopted to process them without loss of quality for the NER model will be the subject of future work.}.
