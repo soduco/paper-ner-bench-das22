@@ -16,7 +16,7 @@ Their short names written in square brackets will be used to reference them from
     \item \textbf{Huggingface CamemBERT~[CmBERT]}: We rely on the implementation of BERT models provided by the software library Huggingface (transformers v.4.15.0, datasets v.1.17.0).
 We chose to reuse a CamemBERT model published on the Huggingface repository \footnote{\url{https://huggingface.co/Jean-Baptiste/camembert-ner}} and trained for NER on wikiner-fr.
 \item \textbf{CamemBERT pre-trained on Paris directories~[CmBERT+ptrn]}: 
-To evaluate whether adapting CamemBERT to the domain increases its performance, we do an unsupervised pre-training of CmBERT for next sentence prediction and masked language modeling, using approx. $845,000$ entries randomly sampled and OCRed with PERO.
+To evaluate whether adapting CamemBERT to the domain increases its performance, we do an unsupervised pre-training of CmBERT for next sentence prediction and masked language modelling, using approx. $845,000$ entries randomly sampled and OCRed with PERO.
 The model is trained for 3 epochs and is available online\footnote{\url{https://huggingface.co/HueyNemud/das22-10-camembert_pretrained}}.
 \end{itemize}
 
@@ -34,7 +34,7 @@ The development set is used to evaluate the model during the training phase.
 This resampling procedure is a convenient way to shape both sets, so they reflect the diversity of directories within the ground truth.
 
 To generate smaller training sets, we start from the initial training set and iteratively split it in half using the same stratified sampling strategy as for the train/dev split to maintain the relative frequency of directories. 
-We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries, maintaining the relative frequency of directories within it
+We stop if a directory has only one entry left, or if the current training subset contains less than 30 entries, maintaining the relative frequency of directories within it.
 Applying this procedure to the initial training set produces 8 training subsets containing 49, 99, 199, 398, 796, 1593, 3186, and 6373 entries.
 
 The three models are fine-tuned on the NER task 5 times using each of the 8 training subsets, with an early stopping criterion based on the number of training steps without improvement of the F1-score. 
