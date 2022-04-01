@@ -83,9 +83,7 @@ Application to 19$^{th}$ Century French Directories''.
 % #    #  #    #     #    #    #  #    #  #          #
 % #####   #    #     #    #    #   ####   ######     #
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Dataset}
-
-\subsection{Content}
+\section{Dataset Content}
 
 The Table \ref{tab:directories} lists the directories selected, their layout, the structure of their entries, and the number of annotated entries according to the considered index.
 \begin{table}[h!]
@@ -140,7 +138,17 @@ The Table \ref{tab:directories} lists the directories selected, their layout, th
     \label{tab:directories}
     \end{table}
     
-\subsubsection{Annotation tools}
+
+\clearpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      ##    #    #  #    #   ####    #####    ##     #####     #     ####   #    #
+%     #  #   ##   #  ##   #  #    #     #     #  #      #       #    #    #  ##   #
+%    #    #  # #  #  # #  #  #    #     #    #    #     #       #    #    #  # #  #
+%    ######  #  # #  #  # #  #    #     #    ######     #       #    #    #  #  # #
+%    #    #  #   ##  #   ##  #    #     #    #    #     #       #    #    #  #   ##
+%    #    #  #    #  #    #   ####      #    #    #     #       #     ####   #    #
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Annotation tools}
 To build our ground truth corpus, we annotate 78 pages randomly sampled from each of the major directory series for which we have digitised copies, using a tool developed for our project (see Figure \ref{fig:annotator}). First, the image of a given directory page is loaded. Second, entries are automatically detected and boxes are drawn around them as shown in the left panel of the Graphical User Interface (GUI). Then the text of each entry is extracted by an OCR tool and finally named entities are annotated by a NER tool: the results are displayed respectively in the first and second tabs of the right panel of the GUI. The entry detection, OCR and NER tasks are performed automatically. But as they are prone to errors, their results can be corrected manually through the GUI. In the end, the entry bounding boxes, their text, and the named entities are stored in a JSON file.
 
 \begin{figure}[htb!]
@@ -156,26 +164,15 @@ To build our ground truth corpus, we annotate 78 pages randomly sampled from eac
 \end{figure}
 
 
-\subsection{Entry segmentation}
+% \subsection{Entry segmentation}
 
-\subsection{Line detection}
-Pero OCR uses ParseNet as internal layout parser for line detection.
-Pero OCR uses an LSTM engine for text line recognition.
-Pero OCR generally works very well, as long as the bounding boxes of the regions to recognize are not too tightly adjusted.
-Trained on newspapers in European languages by its development team.
-Can output results in Latin, Greek and Cyrillic scripts, as well as some commonly-used typographic symbols.
+% \subsection{Line detection}
+% Pero OCR uses ParseNet as internal layout parser for line detection.
+% Pero OCR uses an LSTM engine for text line recognition.
+% Pero OCR generally works very well, as long as the bounding boxes of the regions to recognize are not too tightly adjusted.
+% Trained on newspapers in European languages by its development team.
+% Can output results in Latin, Greek and Cyrillic scripts, as well as some commonly-used typographic symbols.
 
-
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% #####   ######   ####   #    #  #        #####   ####
-% #    #  #       #       #    #  #          #    #
-% #    #  #####    ####   #    #  #          #     ####
-% #####   #            #  #    #  #          #         #
-% #   #   #       #    #  #    #  #          #    #    #
-% #    #  ######   ####    ####   ######     #     ####
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results}
 
 
 
