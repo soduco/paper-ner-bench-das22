@@ -83,5 +83,7 @@ We clarified the relevant section and fig.4's caption.
 
 * [ ] NA passe de relecture
 * [ ] NA relecture readme dataset + critique structure
-* [ ] JC rajouter lien Zenodo dataset
+* [x] JC rajouter lien Zenodo dataset
 * [ ] ?? dépôt HAL + ArXiV
+* [ ] ?? clean repo github
+* [ ] JC upload dataset sur zenodo
