@@ -1,40 +1,57 @@
-# paper-ner-bench-das22
-Sources (latex and code?) for our DAS 2022 paper (NER benchmark)
+# Code and Data for our paper "Benchmark of NER Approaches in Historical Documents…" presented at [DAS 2022](https://das2022.univ-lr.fr/)
 
-## Easy-to-download items
+![](src-latex/figs/overview-intro.svg)
 
-- Dataset: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6394464.svg)](https://doi.org/10.5281/zenodo.6394464)
-- Paper's PDF: HAL | arXiv | GitHub Release
-- Supplementary material: GitHub Release
+This is our original working repo, and it contains almost everything we used to perform the experiments and write the paper.
+As a result, the content may be a bit messy and lack some documentation.
+Instead of waiting for it to be perfectly clean, we chose to make it public early and plan to improve it when we have time and on demand.
+
+**Feel free to [submit an issue](https://github.com/soduco/paper-ner-bench-das22/issues/new) if you cannot find what you are looking for.**
 
 
+## Easy-to-download artifacts
+- Official dataset: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6394464.svg)](https://doi.org/10.5281/zenodo.6394464)
+- Paper's PDF: HAL | arXiv | [GitHub Release](https://github.com/soduco/paper-ner-bench-das22/releases/download/v2.0.0-camera-ready/main-paper.pdf)
+- Supplementary material: [GitHub Release](https://github.com/soduco/paper-ner-bench-das22/releases/download/v2.0.0-camera-ready/main-supplementary-material.pdf)
 
 
 ## Code
-Code is in `src/` for the most part. I guess some of the code is still on python notebooks ?
+Except for the annotation platform we used (which is not published yet), we believe most of the code we produced and used in under the `src/` folder.
 
-Depending on the size of the dataset, we will either share it with GitHub, or with Zenodo.
+Code organization:
 
-Pour l'instant l'asset des images + vignettes est ici:
-https://cloud.lrde.epita.fr/s/a8CXFxz4954SDMw
+- `src/ocr/` contains code related to OCR data preparation.
+  * We do not include OCR code nor models, but the dataset contains the raw OCR predictions.  
+  * It contains a lot of notebooks used to prepare the dataset, and **✨ some normalization and charset stat scripts ✨** may be of some interest to you if you work on OCR evaluation.
+  * Our **✨ Python wrapper around UNLV-ISRI OCR evaluation tools ✨** may also be interesting to you as it really speeds evaluation up. Please check the `src/ocr/DEMO.ipynb` notebook and the `src/ocr/README.md` help.
+  * There also are, in the notebooks, more statistics about the dataset and OCR scores when using different normalization variants. This was not included anywhere else.
+- `src/ner/` contains code related to NER (pre-)training and evaluation.
+  * You may be particularly interested in the **✨ pretraining and fine-tuning scripts for CamemBERT ✨**.
 
 ## Models
 Huggingface models are shared on Huggingface Hub:
+
 - CamemBERT simple: ::TODO:: 
-- CamemBERT pretrained: https://huggingface.co/HueyNemud/berties-pretrained-das22
-Users can simple import those models in Python using `model.from_pretrained('berties-pretrained-das22')`
+- CamemBERT pretrained: https://huggingface.co/HueyNemud/berties-pretrained-das22  
+  Users can simple import those models in Python using `model.from_pretrained('berties-pretrained-das22')`
 
 The SpaCy best model is not shared. It's 630+Mb large so storing it in this repo is a bad idea.
-Where do we share it (if so) ?
 
 
 ## Latex sources
-
-Structure:
-- latex sources are in `src-latex`
+In case you want to copy-paste some table or figure:
+- latex sources are in `src-latex/`
 - main latex file for the paper is `src-latex/main-paper.tex`
 - sub-parts are under `src-latex/parts/`
 - some supplementary material is available in `src-latex/main-supplementary-material.tex`
+
+## ✅ TODOs
+- [ ] MODELS: upload SpaCy best model to Zenodo and/or GitHub release
+- [ ] MODELS: upload CamemBERT simple model to Zenodo and/or GitHub release
+- [ ] MODELS: upload CamemBERT pretrained model to Zenodo and/or GitHub release
+- [ ] NER: extract pre-training and fine-tuning scripts for CamemBERT to another repo for fast retargeting.
+- [ ] OCR: extract OCR evaluation tools (with Python wrapper) to another repo.
+
 
 ## Interesting related work
 - http://spacetime.nypl.org/city-directory-meetup

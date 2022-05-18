@@ -3,10 +3,10 @@
 Reference issue: https://github.com/soduco/paper-ner-bench-das22/issues/3
 
 Tasks:
-- [ ] code for OCR evaluation
-- [ ] code for text normalization
-- [ ] code for text sanity checks
-- [ ] code for projecting tag positions in NER_XML_REF to NER_XML_PRED
+- [x] code for OCR evaluation
+- [x] code for text normalization
+- [x] code for text sanity checks
+- [x] code for projecting tag positions in NER_XML_REF to NER_XML_PRED
 
 # Usage
 
