@@ -13,6 +13,7 @@ Instead of waiting for it to be perfectly clean, we chose to make it public earl
 - Official dataset: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6394464.svg)](https://doi.org/10.5281/zenodo.6394464)
 - Paper's PDF: HAL | arXiv | [GitHub Release](https://github.com/soduco/paper-ner-bench-das22/releases/download/v2.0.0-camera-ready/main-paper.pdf)
 - Supplementary material: [GitHub Release](https://github.com/soduco/paper-ner-bench-das22/releases/download/v2.0.0-camera-ready/main-supplementary-material.pdf)
+- Presentation slides: *coming soon*
 
 
 ## Code
