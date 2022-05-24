@@ -2,7 +2,7 @@ import numpy as np
 import nltk
 from xml.dom.minidom import parseString
 from datasets import load_metric, Dataset
-from config import logger
+from util.config import logger
 from transformers import (
     AutoModelForTokenClassification,
     AutoTokenizer,
@@ -19,20 +19,20 @@ LABELS_ID = {
     "I-PER": 2,      # A person, like "Baboulinet (Vincent)"
     "I-MISC": 3,     # Not used but present in the base model
     "I-ORG": 4,      # Not used but present in the base model
-    "I-CARDINAL": 5, # Not used but present in the base model
+    "I-CARDINAL": 5,  # Not used but present in the base model
     "I-ACT": 6,      # An activity, like "plombier-devin"
     "I-TITRE": 7,    # A person's encoded title, like "O. ::LH::" for "Officier de la Légion d'Honneur"
-    "I-FT": 8,       # A feature type, like "fabrique" or "dépot" in front of addresses.
+    # A feature type, like "fabrique" or "dépot" in front of addresses.
+    "I-FT": 8,
 }
-
 
 
 # Entry point
 def init_model(model_name, training_config):
     logger.info(f"Model {model_name}")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    
-    #output_path = save_model_path or "/tmp/bert-model"    
+
+    #output_path = save_model_path or "/tmp/bert-model"
     training_args = TrainingArguments(**training_config)
 
     # Load the model
@@ -46,6 +46,8 @@ def init_model(model_name, training_config):
     return model, tokenizer, training_args
 
 # Main loop
+
+
 def train_eval_loop(model, training_args, tokenizer, train, dev, test, patience=3):
     data_collator = DataCollatorForTokenClassification(tokenizer)
     trainer = Trainer(
@@ -64,6 +66,8 @@ def train_eval_loop(model, training_args, tokenizer, train, dev, test, patience=
     return trainer.evaluate(test), trainer.evaluate()
 
 # Metrics
+
+
 def compute_metrics(p):
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
@@ -78,19 +82,22 @@ def compute_metrics(p):
         for prediction, label in zip(predictions, labels)
     ]
     metric = load_metric("seqeval")
-    results = metric.compute(predictions=true_predictions, references=true_labels)
+    results = metric.compute(
+        predictions=true_predictions, references=true_labels)
     return {
         "precision": results["overall_precision"],
         "recall": results["overall_recall"],
         "f1": results["overall_f1"],
         "accuracy": results["overall_accuracy"],
     }
-    
-    
+
+
 # =============================================================================
 # region ~ Data conversion utils for Hugginface
 
-_convert_tokenizer = AutoTokenizer.from_pretrained("Jean-Baptiste/camembert-ner")
+_convert_tokenizer = AutoTokenizer.from_pretrained(
+    "Jean-Baptiste/camembert-ner")
+
 
 def create_huggingface_dataset(entries):
     # Creates a Huggingface Dataset from a set of NER-XML entries

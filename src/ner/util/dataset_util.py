@@ -2,16 +2,19 @@ import numpy as np
 from sklearn.model_selection import GroupKFold
 from sklearn.model_selection import train_test_split
 from datasets.dataset_dict import DatasetDict
-from spacy_util import create_spacy_dataset
-from camembert_util import create_huggingface_dataset
-import config
+from util.spacy_util import create_spacy_dataset
+from util.camembert_util import create_huggingface_dataset
+import util.config as config
+
 
 def unwrap(list_of_tuples2):
     return tuple(zip(*list_of_tuples2))
 
+
 def file_name(*parts, separator="_"):
     parts_str = [str(p) for p in parts]
-    return separator.join(filter(None,parts_str))
+    return separator.join(filter(None, parts_str))
+
 
 def train_dev_test_split(gold):
     """Splits the gold dataset into two subsets where entries from the same directory is garanteed
@@ -30,7 +33,8 @@ def train_dev_test_split(gold):
     #   - Duverneuil_et_La_Tynna_1806 (186 entries)
 
     _, groups = unwrap(gold)
-    index_tmp, index_test = list(GroupKFold(n_splits=5).split(gold, groups=groups))[0]
+    index_tmp, index_test = list(GroupKFold(
+        n_splits=5).split(gold, groups=groups))[0]
     subset_tmp, test = gold[index_tmp], gold[index_test]
 
     # Split subset_tmp into train (~90%) and dev (~10%) stratified on directories names
@@ -46,12 +50,12 @@ def train_dev_test_split(gold):
 def save_dataset(output_dir, datasets, names, suffix=None):
     """Export all datasets in Spacy and Huggingface native formats."""
     assert len(datasets) == len(names)
-    
+
     hf_dic = {}
     for ds, name in zip(datasets, names):
 
         examples, _ = unwrap(ds)
-        
+
         # Spacy
         spacy_file = output_dir / file_name("spacy", name, suffix)
         spacy_file = spacy_file.with_suffix(".spacy")
@@ -69,4 +73,3 @@ def save_dataset(output_dir, datasets, names, suffix=None):
     bert_ds = DatasetDict(hf_dic)
     hf_file = output_dir / file_name("huggingface", suffix)
     bert_ds.save_to_disk(hf_file)
-
