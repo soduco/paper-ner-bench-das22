@@ -2,27 +2,23 @@
     A srcipt to export the different paths used by the NER experiments: 
         - BASEDIR:    absolute path to the repository in the local environment
         - DATASETDIR: absolute path to the directory dataset/ that should exist in BASEDIR
-        - NERDIR:     absolute path to the directory src/ner/
-
-    If the notebooks are run in a Google Colab environment then this script will also mount 
-    your Google Drive to the current Google Colab environment. By default GDrive will be
-    mounted in /content/drive.
-    .
+        - NERDIR:     absolute path to the directory src/ner/    .
 """
 
-import dotenv
 import pathlib
-import os.path
+import os
 import sys
 
-_GDRIVE_MOUNT_POINT = "/content/drive"
-
+_GDRIVE_MOUNT_POINT = pathlib.Path("/content/drive")
+_GDRIVE_ROOT_FOLDER = pathlib.Path("MyDrive")
 
 def _mount_google_drive() -> str:
     """ Mount Google Drive to the Google Colab environment. Returns the mount point."""
     from google.colab import drive
-    drive.mount(_GDRIVE_MOUNT_POINT)
-    return pathlib.Path(_GDRIVE_MOUNT_POINT).absolute()
+    already_mounted = os.path.isdir(_GDRIVE_MOUNT_POINT / _GDRIVE_ROOT_FOLDER)
+    if not already_mounted:
+        drive.mount(str(_GDRIVE_MOUNT_POINT))
+    return _GDRIVE_MOUNT_POINT.absolute()
 
 
 def base_dir() -> pathlib.Path:
@@ -30,8 +26,8 @@ def base_dir() -> pathlib.Path:
     is_env_googlecolab = 'google.colab' in str(get_ipython())
 
     if is_env_googlecolab:
-        gdrive_path = _mount_google_drive()
-        base_dir = gcolab_mount_point / os.environ["GCOLAB_BASE_DIR"]
+        gcolab_mount_point = _mount_google_drive()
+        base_dir = gcolab_mount_point / _GDRIVE_ROOT_FOLDER / os.environ['GDRIVE_PAPER_FOLDER']
     else:
         # If not on GColab, BASE will be the directory of this notebook
         this_notebook_location = os.path.dirname(
