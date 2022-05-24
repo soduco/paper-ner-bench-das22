@@ -30,8 +30,13 @@ Code organization:
   * You may be particularly interested in the **✨ pretraining and fine-tuning scripts for CamemBERT ✨**.
 
 ## Models
-Huggingface models [are shared on Huggingface Hub](https://huggingface.co/HueyNemud) and [on Zenodo](https://doi.org/10.5281/zenodo.6576007).
-Users can simple import those models in Python, e. g.  `model.from_pretrained('HueyNemud/das22-44-camembert_finetuned_pero')`
+Huggingface BERT models [are shared on Huggingface Hub](https://huggingface.co/HueyNemud) and [on Zenodo](https://doi.org/10.5281/zenodo.6576007).
+Users can import any model hosted on [Transformers Python library]([https://huggingface.co/docs/transformers/index](https://huggingface.co/docs/transformers/main_classes/model)), e. g.:
+```=python
+from transformers import AutoTokenizer, AutoModelForTokenClassification
+tokenizer = AutoTokenizer.from_pretrained("HueyNemud/das22-44-camembert_finetuned_pero")
+model = AutoModelForTokenClassification.from_pretrained("HueyNemud/das22-44-camembert_finetuned_pero")
+```
 
 The SpaCy fine-tuned best model is available in [the Zenodo repository](https://doi.org/10.5281/zenodo.6576007).
 
