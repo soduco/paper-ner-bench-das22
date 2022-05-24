@@ -30,13 +30,10 @@ Code organization:
   * You may be particularly interested in the **✨ pretraining and fine-tuning scripts for CamemBERT ✨**.
 
 ## Models
-Huggingface models are shared on Huggingface Hub:
+Huggingface models [are shared on Huggingface Hub](https://huggingface.co/HueyNemud) and [on Zenodo](https://doi.org/10.5281/zenodo.6576007).
+Users can simple import those models in Python, e. g.  `model.from_pretrained('HueyNemud/das22-44-camembert_finetuned_pero')`
 
-- CamemBERT simple: ::TODO:: 
-- CamemBERT pretrained: https://huggingface.co/HueyNemud/berties-pretrained-das22  
-  Users can simple import those models in Python using `model.from_pretrained('berties-pretrained-das22')`
-
-The SpaCy best model is not shared. It's 630+Mb large so storing it in this repo is a bad idea.
+The SpaCy fine-tuned best model is available in [the Zenodo repository](https://doi.org/10.5281/zenodo.6576007).
 
 
 ## Latex sources
@@ -47,9 +44,6 @@ In case you want to copy-paste some table or figure:
 - some supplementary material is available in `src-latex/main-supplementary-material.tex`
 
 ## ✅ TODOs
-- [ ] MODELS: upload SpaCy best model to Zenodo and/or GitHub release
-- [ ] MODELS: upload CamemBERT simple model to Zenodo and/or GitHub release
-- [ ] MODELS: upload CamemBERT pretrained model to Zenodo and/or GitHub release
 - [ ] NER: extract pre-training and fine-tuning scripts for CamemBERT to another repo for fast retargeting.
 - [ ] OCR: extract OCR evaluation tools (with Python wrapper) to another repo.
 
