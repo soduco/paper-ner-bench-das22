@@ -12,7 +12,7 @@ Instead of waiting for it to be perfectly clean, we chose to make it public earl
 ## Easy-to-download artifacts
 - Official dataset: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6394464.svg)](https://doi.org/10.5281/zenodo.6394464)
 - NER models dataset: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6576008.svg)](https://doi.org/10.5281/zenodo.6576008)
-- Paper's PDF: HAL | arXiv | [GitHub Release](https://github.com/soduco/paper-ner-bench-das22/releases/download/v2.0.0-camera-ready/main-paper.pdf)
+- Paper's PDF: [HAL](https://hal.archives-ouvertes.fr/hal-03698609/document) | arXiv | [GitHub Release](https://github.com/soduco/paper-ner-bench-das22/releases/download/v2.0.0-camera-ready/main-paper.pdf)
 - Supplementary material: [GitHub Release](https://github.com/soduco/paper-ner-bench-das22/releases/download/v2.0.0-camera-ready/main-supplementary-material.pdf)
 - Presentation slides: [Google slides](https://docs.google.com/presentation/d/1GosXYlkX33KsT7AkA1Avspbae3EvqMNHGKl9TCB5pCU/edit?usp=sharing)
 
