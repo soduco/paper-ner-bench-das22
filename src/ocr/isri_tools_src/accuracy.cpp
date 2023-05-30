@@ -280,7 +280,24 @@ init_accuracy (py::module &m)
     .def_readonly ("reject_characters", &Accdata::reject_characters, "number of reject characters generated")
     .def_readonly ("suspect_markers", &Accdata::suspect_markers, "number of characters marked as suspect")
     .def_readonly ("false_marks", &Accdata::false_marks, "number of false marks")
+    .def_readonly ("total_ops", &Accdata::total_ops, "edit operations for all errors")
     .def ("__repr__", &print_accurary_report);
+
+py::class_<Accops>(m, "Accops")
+    // .def(py::init<>())
+    .def_readonly ("insertions", &Accops::ins, "number of insertions")
+    .def_readonly ("substitutions", &Accops::subst, "number of substitutions")
+    .def_readonly ("deletions", &Accops::del, "number of deletions")
+    .def_readonly ("errors", &Accops::errors, "number of errors")
+    .def ("__repr__", [](const Accops &a) {
+            return std::string("insertions: ") 
+            + std::to_string(a.ins) 
+            + ", substitutions: " 
+            + std::to_string(a.subst) 
+            + ", deletions: " 
+            + std::to_string(a.del);
+        });
+
   m.def ("compute_accurary_stats", &get_accuracy_stats);
   m.def ("compute_accurary_summary", &get_accuracy_summary);
 }

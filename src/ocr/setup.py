@@ -28,6 +28,6 @@ ext = Pybind11Extension("isri_tools", sourcefiles)
 
 setup(
     name="isri_tools",
-    version="20210115_1751",
+    version="2023.05.29a",
     ext_modules = [ext]
 )
